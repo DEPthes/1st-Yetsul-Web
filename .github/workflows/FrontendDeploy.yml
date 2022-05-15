@@ -53,7 +53,7 @@ jobs:
               AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_FRONT }}
            run: aws s3 cp --recursive --region ap-northeast-2 build
               s3://depth-itw #파일이 아닌 폴더 업로드 시에 --recursive 필수
-            working-directory: ${{ env.working-directory }}
+           working-directory: ${{ env.working-directory }}
 
 
          - name: build result to slack #슬랙 메시지 출력
