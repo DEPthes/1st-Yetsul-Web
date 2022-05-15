@@ -1,5 +1,5 @@
 # FrontEnd-ITW
-ITW는 Information of Traditional Wine의 약자로, 2030 MZ 세대들에게 전통주를 소개하는 서비스입니다
+ITW는 Information of Traditional Wine의 약자로, 2030 MZ 세대들에게 전통주를 소개하는 서비스입니다.
 
 기술 스택
 ---
@@ -8,6 +8,9 @@ ITW는 Information of Traditional Wine의 약자로, 2030 MZ 세대들에게 전
 CI/CD
 ---
 `Github Actios` `Amazon AWS S3`
+
+배포 내용은 [이곳](http://depth-itw.s3-website.ap-northeast-2.amazonaws.com/)에서 확인 가능합니다.
+
 
 협업 툴
 ---
