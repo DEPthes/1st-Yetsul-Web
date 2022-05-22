@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import "./App.css";
+import Alcoholresult from "./components/alcoholtest/alcoholresult";
 
 const Sangwon = styled.header`
 	width: 100%;
@@ -26,6 +27,7 @@ function App() {
 				<H1text>프론트 세팅 완료</H1text>
 				<p>프로젝트 같이 잘 해봐요!!!</p>
 			</main>
+			<Alcoholresult />
 			<footer>DEPth, 2022</footer>
 		</div>
 	);
