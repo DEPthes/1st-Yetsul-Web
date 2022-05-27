@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+	<head>
+		<style>
+			* {
+				margin: 0 auto;
+				padding: 0;
+			}
+			header {
+				border: 1px solid gray;
+				padding: 10px;
+				display: grid;
+  				grid-auto-flow: column;
+				grid-template-columns: 1fr;
+				align-items: center;
+			}
+			.logo {
+				font-size: x-large;
+				font-weight: 600;
+			}
+			.login {
+				font-size: medium;
+				font-weight: 400;
+			}
+			.login img {
+				width: 30px;
+        		height: 30px;
+				border-radius: 10px;
+			}
+			.title {
+				margin-top: 40px;
+				text-align: center;
+			}
+			.title .big {
+				font-size: x-large;
+				font-weight: 500;
+				display: inline;
+			}
+			.title .small {
+				font-size: small;
+				font-weight: 500;
+				display: inline;
+			}
+			.title .left {
+				font-size: 3em;
+				font-weight: 500;
+				display: inline-block; 
+			}
+			.title .right {
+				font-size: 3em;
+				font-weight: 500;
+				display: inline-block;
+			}
+			.question {
+				margin-top: 50px;
+				width: 550px;
+				height: 55px;
+				border-radius: 30px;
+				background-color: rgb(162, 162, 162);
+				font-size: large;
+				font-weight: 500;
+				text-align: center;
+				line-height: 50px;
+			}
+			.container {
+				text-align: center;
+			}
+			button {
+				border: none;
+				width: 200px;
+        		height: 200px;
+				display: inline-block; 
+				margin-top: 30px;
+				background-color: white;
+			}
+			button img {
+				width: 200px;
+        		height: 200px;
+			}
+			#img-left {
+				margin-right: 15px;
+			}
+			#img-right {
+				margin-left: 15px;
+			}
+			.progressbar {
+				text-align: center;
+			}
+			#progress {
+				width: 430px;
+				height: 10px;
+				margin-top: 20px;
+				appearance: none;
+			}			
+			#progress::-webkit-progress-bar {
+				background-color: rgb(222, 222, 222);
+			}
+			#progress::-webkit-progress-value {
+				background-color: rgb(93, 93, 93);
+			}
+			.move {
+				text-align: center;
+			}
+			.prev {
+				width: 50px;
+				height:30px;
+				margin-right: 360px;
+				display: inline-block;
+			}
+			.next {
+				width: 50px;
+				height:30px;
+				display: inline-block;
+			}	
+			.progressbarnum {
+				width: 90px;
+				height: 28px;
+				background-color: white;
+				border: 1px solid gray;
+				border-radius: 30px;
+				margin-top: 10px;
+				text-align: center;
+				line-height: 28px;
+			}
+		</style>
+		<script>
+			function btnclick() {
+				document.getElementById('progress').value = '40';
+			}
+			function cl() {
+				alert("눌렀다");
+			}
+		</script>
+	</head>
+	<body>
+		<header>
+			<p class="logo">
+				로고
+			</p>
+			<p class="login">
+				<img src="https://cdn.pixabay.com/photo/2021/06/15/12/14/instagram-6338393_960_720.png"> MY | LOGIN
+			</p>
+		</header>
+		<div class="title">
+			<p class="left">{</p>
+			<p class="big">옛술의 전당 매표소</p>
+			<p class="small">전통주 취향 테스트</p>
+			<p class="right">}</p>
+		</div>
+		<p class="question">
+			질문
+		</p>
+		<div class="container">
+			<button type="button" id="img-left">
+				<img src="https://cdn.pixabay.com/photo/2020/03/14/06/38/cream-4929805_960_720.jpg" onclick="btnclick()">
+			</button>
+			<button type="button" id="img-right">
+				<img src="https://cdn.pixabay.com/photo/2022/04/27/07/47/bee-7159876_960_720.jpg" onclick="btnclick()" >
+			</button>
+		</div>
+		<div class="progressbar">
+			<progress value="20" max="100" id="progress"></progress>
+		</div>
+		<div class="move">
+			<button class="prev">이전</button>
+			<button class="next">다음</button>
+		</div>
+		<p class="progressbarnum">
+			1/8
+		</p>
+	</body>
+</html>

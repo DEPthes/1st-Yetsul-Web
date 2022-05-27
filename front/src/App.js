@@ -1,32 +1,23 @@
 import React from "react";
-import styled from "@emotion/styled";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { createGlobalStyle } from "styled-components";
+import reset from "styled-reset";
 import "./App.css";
+import Alcoholask from "./components/alcoholtest/Alcoholask";
 
-const Sangwon = styled.header`
-	width: 100%;
-	height: 100px;
-	background-color: #60666b;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 35px;
-	font-weight: 700;
-	color: white;
-`;
-
-const H1text = styled.h1`
-	color: red;
+const GlobalStyles = createGlobalStyle`
+    ${reset};
 `;
 
 function App() {
 	return (
-		<div className="main">
-			<Sangwon>여기는 헤더</Sangwon>
-			<main>
-				<H1text>프론트 세팅 완료</H1text>
-				<p>프로젝트 같이 잘 해봐요!!!</p>
-			</main>
-			<footer>DEPth, 2022</footer>
+		<div>
+			<GlobalStyles />
+			<BrowserRouter>
+				<Routes>
+					<Route exact path="/" element={<Alcoholask />} />
+				</Routes>
+			</BrowserRouter>
 		</div>
 	);
 }
