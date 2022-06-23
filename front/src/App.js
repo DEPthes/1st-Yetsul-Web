@@ -1,17 +1,17 @@
-import React from "react";
+import { Component } from "react";
 import "./App.css";
+import StartPage from "./StartPage";
+import Logo from "./Logo";
 
-function App() {
-	return (
-		<div className="main">
-			<header>DEPth 프론트엔드 초기 세팅</header>
-			<main>
-				<h1>프론트 세팅 완료</h1>
-				<p>프로젝트 같이 잘 해봐요!!!</p>
-			</main>
-			<footer>DEPth, 2022</footer>
-		</div>
-	);
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Logo></Logo>
+        <StartPage> </StartPage>
+      </div>
+    );
+  }
 }
 
 export default App;
