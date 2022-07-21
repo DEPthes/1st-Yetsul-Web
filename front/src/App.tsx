@@ -14,6 +14,7 @@ const App: React.FC = () => {
             navigation: true,
             scrollingSpeed: 850,
             easingcss3: 'cubic-bezier(.61,.01,.13,.95)',
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             afterLoad: (anchorLink: string, index: number) => {
                 gsap.timeline().staggerFromTo(
                     $('header'),
