@@ -34,24 +34,10 @@
     height: 402px;
 }
 
-.fp-tableCell {
-    background: radial-gradient(
-        107.4% 339.42% at -7.4% -7.13%,
-        #e2dfda 0%,
-        #ffffff 100%
-    );
-    /*background: radial-gradient(
-        93.19% 246.2% at -8.85% -12.69%,
-        #ffe1dc 0%,
-        rgba(244, 183, 156, 0) 100%
-    ); */
-    /*background: radial-gradient(
-        85.83% 271.28% at -7.4% -7.13%,
-        #feddac 0%,
-        #fff9f7 100%
-    );*/
+.tableCellInner {
     font-size: 20px;
     vertical-align: bottom;
+    transition-property: all;
 }
 
 .section.fadeout .fp-tableCell {

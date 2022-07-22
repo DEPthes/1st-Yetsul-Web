@@ -1,11 +1,64 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { RootState } from '../../store/config';
+import {
+    setColor1,
+    setColor2,
+} from '../../store/slices/updateBackgroundGradientSlice';
 
 const Main: React.FC = () => {
+    const dispatch = useDispatch();
+    const temp = useSelector((state: RootState) => {
+        return state.updateBackgroundGradient.color1;
+    });
+    const [btnHover, setBtnHover] = useState<string>('#ffe1dc');
+    const ClickSoju = () => {
+        const target =
+            document.querySelector<HTMLElement>('.tableCellInner') ||
+            document.body;
+        if (temp === '#e2dfda') {
+            setBtnHover('#feddac');
+            target.style.setProperty('--first-color', '#ffe1dc');
+            target.style.setProperty('--second-type', 'rgba(244, 183, 156, 0)');
+            dispatch(setColor1('#ffe1dc'));
+            dispatch(setColor2('rgba(244, 183, 156, 0)'));
+        } else if (temp === '#ffe1dc') {
+            setBtnHover('#e2dfda');
+            target.style.setProperty('--first-color', '#feddac');
+            target.style.setProperty('--second-type', '#fff9f7');
+            dispatch(setColor1('#feddac'));
+            dispatch(setColor2('#fff9f7'));
+        } else if (temp === '#feddac') {
+            setBtnHover('#ffe1dc');
+            target.style.setProperty('--first-color', '#e2dfda');
+            target.style.setProperty('--second-type', '#fff');
+            dispatch(setColor1('#e2dfda'));
+            dispatch(setColor2('#fff'));
+        }
+    };
+    useEffect(() => {
+        const target =
+            document.querySelector<HTMLElement>('.tableCellInner') ||
+            document.body;
+        if (temp === '#e2dfda') {
+            target.style.setProperty('--first-color', '#e2dfda');
+            target.style.setProperty('--second-type', '#fff');
+            setBtnHover('#ffe1dc');
+        } else if (temp === '#ffe1dc') {
+            target.style.setProperty('--first-color', '#ffe1dc');
+            target.style.setProperty('--second-type', 'rgba(244, 183, 156, 0)');
+            setBtnHover('#feddac');
+        } else if (temp === '#feddac') {
+            target.style.setProperty('--first-color', '#feddac');
+            target.style.setProperty('--second-type', '#fff9f7');
+            setBtnHover('#e2dfda');
+        }
+    }, []);
     return (
-        <MainStyle>
+        <MainStyle className="tableCellInner">
             <div id="line" />
-            <Inner>
+            <Inner color={btnHover}>
                 <InnerText>
                     <div>
                         <h1>9月,</h1>
@@ -19,50 +72,57 @@ const Main: React.FC = () => {
                     </div>
                 </InnerText>
                 <div id="line" />
+
                 <img
                     id="sojuImg"
                     src="https://s3-alpha-sig.figma.com/img/a2d7/f1fd/68c9f1e40c24846da055eebadf32c769?Expires=1659312000&Signature=CpSnHOU4Ak9HaflGQR6KE22c-h3b2ZaEIemP765uYN6QRvZeyHekhC6g-9jmpLsntCBo~onnZHhuACyauptvoIG44F1sQoViXDbh21Rxhs2mbKFe3b5846ESO2mg91-AIoyDn3HEP6mlXbTXkrIK0RWy3gyeGlS1R5WS0WB0B6TLOue5qa0TvZNclC8UdvVHbNaXn5FbDYSCWo9c~~ZtGnOd6QbjK8wbWgnj4Z1RggpoKQdsPQRvWCFadO0LoEALJ6yA05e-Z9qfMPB0IqDWmXvj4tT54x99DyyoWMQnngv-nK8BpLbX9W0f2iZwjxWZ0eweFN~0Ts47C872eBhBEA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
                     alt="traditional soju"
                 />
-                <div id="line" />
-                <div id="svgBtn">
-                    <div id="svgIcon">
-                        <svg
-                            width="50"
-                            height="35"
-                            viewBox="0 0 50 35"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                d="M48.7757 2.96372C47.6353 16.1841 37.3226 26.45 24.8651 26.45C12.4076 26.45 2.09493 16.1841 0.954535 2.96373C0.877347 2.0689 1.61493 1.28002 2.6001 1.28002L47.1301 1.28001C48.1153 1.28001 48.8528 2.0689 48.7757 2.96372Z"
-                                fill="#FAF9F9"
-                                stroke="#4F4941"
-                                strokeWidth="1.5"
-                            />
-                            <path
-                                d="M13.6278 34.07C13.9305 32.6126 15.1118 31.2065 17.0778 30.083C19.3584 28.7799 22.559 27.95 26.135 27.95C29.711 27.95 32.9116 28.7799 35.1921 30.083C37.1582 31.2065 38.3394 32.6126 38.6422 34.07L13.6278 34.07Z"
-                                fill="#FAF9F9"
-                                stroke="#4F4941"
-                                strokeWidth="1.5"
-                            />
-                            <path
-                                d="M1.37012 5.60995H12.8001"
-                                stroke="#4F4941"
-                                strokeWidth="1.5"
-                            />
-                            <path
-                                d="M2.64014 9.41995L10.2601 9.41995"
-                                stroke="#4F4941"
-                                strokeWidth="1.5"
-                            />
-                            <path
-                                d="M3.91016 13.23L8.99016 13.23"
-                                stroke="#4F4941"
-                                strokeWidth="1.5"
-                            />
-                        </svg>
+                <div className="leftLine">
+                    <div id="line" />
+                    <div
+                        aria-hidden="true"
+                        id="svgBtn"
+                        onClick={ClickSoju}
+                        onKeyDown={ClickSoju}
+                    >
+                        <div id="svgIcon">
+                            <svg
+                                width="50"
+                                height="35"
+                                viewBox="0 0 50 35"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M48.7757 2.96372C47.6353 16.1841 37.3226 26.45 24.8651 26.45C12.4076 26.45 2.09493 16.1841 0.954535 2.96373C0.877347 2.0689 1.61493 1.28002 2.6001 1.28002L47.1301 1.28001C48.1153 1.28001 48.8528 2.0689 48.7757 2.96372Z"
+                                    stroke="#4F4941"
+                                    strokeWidth="1.5"
+                                />
+                                <path
+                                    d="M13.6278 34.07C13.9305 32.6126 15.1118 31.2065 17.0778 30.083C19.3584 28.7799 22.559 27.95 26.135 27.95C29.711 27.95 32.9116 28.7799 35.1921 30.083C37.1582 31.2065 38.3394 32.6126 38.6422 34.07L13.6278 34.07Z"
+                                    stroke="#4F4941"
+                                    strokeWidth="1.5"
+                                />
+                                <path
+                                    d="M1.37012 5.60995H12.8001"
+                                    stroke="#4F4941"
+                                    strokeWidth="1.5"
+                                />
+                                <path
+                                    d="M2.64014 9.41995L10.2601 9.41995"
+                                    stroke="#4F4941"
+                                    strokeWidth="1.5"
+                                />
+                                <path
+                                    d="M3.91016 13.23L8.99016 13.23"
+                                    stroke="#4F4941"
+                                    strokeWidth="1.5"
+                                />
+                            </svg>
+                        </div>
                     </div>
+                    <div id="line" />
                 </div>
             </Inner>
         </MainStyle>
@@ -72,13 +132,31 @@ const Main: React.FC = () => {
 export default Main;
 
 const MainStyle = styled.div`
+    @property --first-color {
+        syntax: '<color>';
+        initial-value: #e2dfda;
+        inherits: false;
+    }
+    @property --second-color {
+        syntax: '<color>';
+        initial-value: #ffffff;
+        inherits: false;
+    }
     width: 100%;
     height: 100%;
     background: radial-gradient(
-        107.4% 339.42% at -7.4% -7.13%,
-        #e2dfda 0%,
-        #ffffff 100%
+        var(--first-position) var(--second-position) at var(--third-position)
+            var(--fourth-position),
+        var(--first-color) 0%,
+        var(--second-color) 100%
     );
+    --first-position: 107.4%;
+    --second-position: 339.42%;
+    --third-position: -7.4%;
+    --fourth-position: -7.13%;
+    --first-color: #e2dfda;
+    --second-color: #fff;
+    transition: --first-color 0.3s, --second-color 0.3s;
     #line {
         position: absolute;
         display: block;
@@ -93,12 +171,16 @@ const MainStyle = styled.div`
     }
 `;
 
-const Inner = styled.div`
+type colorType = {
+    color: string;
+};
+
+const Inner = styled.div<colorType>`
     position: absolute;
     width: 100%;
     height: calc(100% - 147px);
     margin-top: 147px;
-    & > #line:not(:nth-of-type(2)) {
+    & > #line:nth-of-type(2) {
         left: 50%;
         transform: translateX(-50%);
         top: 1px;
@@ -106,31 +188,47 @@ const Inner = styled.div`
         width: auto;
         border-left: 1px solid #bbb6a8;
     }
-    & > #line:nth-of-type(2) {
-        right: 292px;
-        top: -147px;
-        position: absolute;
-        height: calc(100% + 147px);
-        width: auto;
-        border-left: 1px solid #bbb6a8;
-    }
-
-    #svgBtn {
-        position: absolute;
-        width: 127px;
-        height: 127px;
-        right: 228.5px;
-        z-index: 999;
-        top: 121px;
-        background: #faf9f9;
-        border: 1px solid #4f4941;
-        border-radius: 50%;
+    .leftLine {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        #svgIcon {
-            margin-top: 5px;
-            height: 35px;
+        flex-direction: column;
+        position: absolute;
+        top: -147px;
+        right: 228.5px;
+        height: calc(100% + 147px);
+        width: 127px;
+        #line:nth-of-type(1) {
+            height: 268px;
+            right: 62px;
+            width: auto;
+            border-left: 1px solid #bbb6a8;
+        }
+        #line:not(:first-of-type) {
+            height: calc(100% - 268px - 127px);
+            bottom: 0;
+            right: 62px;
+            width: auto;
+            border-left: 1px solid #bbb6a8;
+        }
+        #svgBtn {
+            width: 127px;
+            height: 127px;
+            z-index: 999;
+            margin-top: 268px;
+            border: 1px solid #4f4941;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.6s ease;
+            cursor: pointer;
+            #svgIcon {
+                z-index: 1000;
+                margin-top: 5px;
+                height: 35px;
+            }
+            &:hover {
+                background: ${(props) => props.color};
+            }
         }
     }
 

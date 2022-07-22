@@ -1,33 +1,42 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import $ from 'jquery';
 import { gsap } from 'gsap';
 import 'fullpage.js/vendors/scrolloverflow';
 import 'fullpage.js';
 import 'fullpage.js/dist/jquery.fullpage.min.css';
 import './App.css';
-import Header from './components/common/Header';
 import Main from './components/Main/Main';
+import SecondMain from './components/Main/SecondMain';
+import ThirdMain from './components/Main/ThirdMain';
 
 const App: React.FC = () => {
     $(() => {
+        let isLoad = false;
+        // fullpage.js setting
         $('.fullpageStyle').fullpage({
             navigation: true,
             scrollingSpeed: 850,
             easingcss3: 'cubic-bezier(.61,.01,.13,.95)',
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             afterLoad: (anchorLink: string, index: number) => {
-                gsap.timeline().staggerFromTo(
-                    $('header'),
-                    0.5,
-                    { opacity: 0 },
-                    { opacity: 1, delay: 0.3, ease: 'easeInOut' },
-                );
+                if (isLoad) {
+                    gsap.timeline().staggerFromTo(
+                        $('header'),
+                        0.5,
+                        { opacity: 0 },
+                        { opacity: 1, delay: 0.3, ease: 'easeInOut' },
+                    );
+                }
+                isLoad = true;
             },
             onLeave: (
                 anchorLink: number,
                 destination: number,
                 direction: string,
             ) => {
+                if (anchorLink === 2) {
+                    isLoad = true;
+                }
                 gsap.timeline().staggerFromTo(
                     $('header'),
                     0.8,
@@ -45,22 +54,36 @@ const App: React.FC = () => {
             },
         });
     });
+    useEffect(() => {
+        gsap.timeline().staggerFromTo(
+            $('header'),
+            0.8,
+            { opacity: 1 },
+            { opacity: 1, ease: 'easeOut' },
+        );
+        return () => {
+            // 다른 url로 이동 시에 fullpage.js destroy -> 안해주면 fullpage.js가 여러번 호출되어 오류발생
+            if ($('.fullpageStyle')) {
+                $('.fullpageStyle').fullpage.destroy('all');
+            }
+        };
+    }, []);
+
     return (
         <div className="main">
-            <Header />
             <div className="fullpageStyle">
                 <div className="section" id="section1">
                     <Main />
                 </div>
                 <div className="section" id="section2">
-                    2
+                    <SecondMain />
                 </div>
                 <div className="section" id="section3">
-                    3
+                    <ThirdMain />
                 </div>
             </div>
         </div>
     );
 };
 
-export default App;
+export default React.memo(App);

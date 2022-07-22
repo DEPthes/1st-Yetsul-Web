@@ -87,6 +87,14 @@ video {
     vertical-align: baseline;
 }
 
+:root {
+    --background-color: radial-gradient(
+        107.4% 339.42% at -7.4% -7.13%,
+        #e2dfda 0%,
+        #ffffff 100%
+    );
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
         'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',

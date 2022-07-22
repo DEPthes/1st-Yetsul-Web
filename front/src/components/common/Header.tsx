@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Header: React.FC = () => {
@@ -18,17 +19,71 @@ const Header: React.FC = () => {
             </LeftHeaed>
             <HeaderCategory>
                 <HeaderUl>
-                    <li className="active">홈</li>
-                    <li>서비스 소개</li>
-                    <li>전통주 추천</li>
-                    <li>옛술의 전당</li>
-                    <li>이달의 전통주</li>
-                    <li>문의사항</li>
+                    <li className="active">
+                        <NavLink
+                            to="/"
+                            className={(navData) =>
+                                navData.isActive ? 'active' : 'link'
+                            }
+                        >
+                            홈
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/service"
+                            className={(navData) =>
+                                navData.isActive ? 'active' : 'link'
+                            }
+                        >
+                            서비스 소개
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/recommend"
+                            className={(navData) =>
+                                navData.isActive ? 'active' : 'link'
+                            }
+                        >
+                            전통주 추천
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/ticket"
+                            className={(navData) =>
+                                navData.isActive ? 'active' : 'link'
+                            }
+                        >
+                            옛술의 전당
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/mounth"
+                            className={(navData) =>
+                                navData.isActive ? 'active' : 'link'
+                            }
+                        >
+                            이달의 전통주
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/call"
+                            className={(navData) =>
+                                navData.isActive ? 'active' : 'link'
+                            }
+                        >
+                            문의사항
+                        </NavLink>
+                    </li>
                 </HeaderUl>
             </HeaderCategory>
             <RightHeaed>
-                <p>로그인</p>
-                <p>내정보</p>
+                <Link to="/login">로그인</Link>
+                <Link to="/profile">내정보</Link>
             </RightHeaed>
         </HeaderStyle>
     );
@@ -61,20 +116,22 @@ const HeaderUl = styled.ul`
     margin-bottom: 49px;
     li {
         margin-right: 80px;
-        font-size: 18px;
-        line-height: 18px;
-        font-family: 'GmarketSansMedium';
-        font-weight: 400;
         display: flex;
         align-items: center;
-        color: #8e8372;
-        cursor: pointer;
+        a {
+            font-size: 18px;
+            line-height: 18px;
+            font-family: 'GmarketSansMedium';
+            font-weight: 400;
+            color: #8e8372;
+            text-decoration: none;
+        }
+        a.active {
+            color: #454038;
+        }
     }
     li:last-of-type {
         margin-right: 0;
-    }
-    li.active {
-        color: #454038;
     }
 `;
 
@@ -101,14 +158,14 @@ const RightHeaed = styled.div`
     display: flex;
     margin-right: 77px;
     margin-top: 80px;
-    p {
+    a {
         margin: 0;
         font-size: 18px;
         line-height: 18px;
         color: #8e8372;
-        cursor: pointer;
+        text-decoration: none;
     }
-    p:first-of-type {
+    a:first-of-type {
         margin-right: 40px;
     }
 `;
