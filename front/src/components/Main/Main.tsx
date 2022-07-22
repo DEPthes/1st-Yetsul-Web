@@ -12,28 +12,31 @@ const Main: React.FC = () => {
     const temp = useSelector((state: RootState) => {
         return state.updateBackgroundGradient.color1;
     });
-    const [btnHover, setBtnHover] = useState<string>('#ffe1dc');
+    const [btnHover, setBtnHover] = useState<string>('#FCE2D9');
     const ClickSoju = () => {
         const target =
             document.querySelector<HTMLElement>('.tableCellInner') ||
             document.body;
-        if (temp === '#e2dfda') {
-            setBtnHover('#feddac');
-            target.style.setProperty('--first-color', '#ffe1dc');
-            target.style.setProperty('--second-type', 'rgba(244, 183, 156, 0)');
-            dispatch(setColor1('#ffe1dc'));
+        if (temp === '#E6E3DE') {
+            setBtnHover('#FFE5BF');
+            target.style.setProperty('--first-color', '#FCE2D9');
+            target.style.setProperty(
+                '--second-color',
+                'rgba(244, 183, 156, 0)',
+            );
+            dispatch(setColor1('#FCE2D9'));
             dispatch(setColor2('rgba(244, 183, 156, 0)'));
-        } else if (temp === '#ffe1dc') {
-            setBtnHover('#e2dfda');
-            target.style.setProperty('--first-color', '#feddac');
-            target.style.setProperty('--second-type', '#fff9f7');
-            dispatch(setColor1('#feddac'));
+        } else if (temp === '#FCE2D9') {
+            setBtnHover('#FAF9F9');
+            target.style.setProperty('--first-color', '#FFE5BF');
+            target.style.setProperty('--second-color', '#fff9f7');
+            dispatch(setColor1('#FFE5BF'));
             dispatch(setColor2('#fff9f7'));
-        } else if (temp === '#feddac') {
-            setBtnHover('#ffe1dc');
-            target.style.setProperty('--first-color', '#e2dfda');
-            target.style.setProperty('--second-type', '#fff');
-            dispatch(setColor1('#e2dfda'));
+        } else if (temp === '#FFE5BF') {
+            setBtnHover('#FCE2D9');
+            target.style.setProperty('--first-color', '#E6E3DE');
+            target.style.setProperty('--second-color', '#fff');
+            dispatch(setColor1('#E6E3DE'));
             dispatch(setColor2('#fff'));
         }
     };
@@ -41,18 +44,21 @@ const Main: React.FC = () => {
         const target =
             document.querySelector<HTMLElement>('.tableCellInner') ||
             document.body;
-        if (temp === '#e2dfda') {
-            target.style.setProperty('--first-color', '#e2dfda');
-            target.style.setProperty('--second-type', '#fff');
-            setBtnHover('#ffe1dc');
-        } else if (temp === '#ffe1dc') {
-            target.style.setProperty('--first-color', '#ffe1dc');
-            target.style.setProperty('--second-type', 'rgba(244, 183, 156, 0)');
-            setBtnHover('#feddac');
-        } else if (temp === '#feddac') {
-            target.style.setProperty('--first-color', '#feddac');
-            target.style.setProperty('--second-type', '#fff9f7');
-            setBtnHover('#e2dfda');
+        if (temp === '#E6E3DE') {
+            target.style.setProperty('--first-color', '#E6E3DE');
+            target.style.setProperty('--second-color', '#fff');
+            setBtnHover('#FCE2D9');
+        } else if (temp === '#FCE2D9') {
+            target.style.setProperty('--first-color', '#FCE2D9');
+            target.style.setProperty(
+                '--second-color',
+                'rgba(244, 183, 156, 0)',
+            );
+            setBtnHover('#FFE5BF');
+        } else if (temp === '#FFE5BF') {
+            target.style.setProperty('--first-color', '#FFE5BF');
+            target.style.setProperty('--second-color', '#fff9f7');
+            setBtnHover('#FAF9F9');
         }
     }, []);
     return (
@@ -96,27 +102,27 @@ const Main: React.FC = () => {
                             >
                                 <path
                                     d="M48.7757 2.96372C47.6353 16.1841 37.3226 26.45 24.8651 26.45C12.4076 26.45 2.09493 16.1841 0.954535 2.96373C0.877347 2.0689 1.61493 1.28002 2.6001 1.28002L47.1301 1.28001C48.1153 1.28001 48.8528 2.0689 48.7757 2.96372Z"
-                                    stroke="#4F4941"
+                                    stroke="#8B7E6A"
                                     strokeWidth="1.5"
                                 />
                                 <path
                                     d="M13.6278 34.07C13.9305 32.6126 15.1118 31.2065 17.0778 30.083C19.3584 28.7799 22.559 27.95 26.135 27.95C29.711 27.95 32.9116 28.7799 35.1921 30.083C37.1582 31.2065 38.3394 32.6126 38.6422 34.07L13.6278 34.07Z"
-                                    stroke="#4F4941"
+                                    stroke="#8B7E6A"
                                     strokeWidth="1.5"
                                 />
                                 <path
                                     d="M1.37012 5.60995H12.8001"
-                                    stroke="#4F4941"
+                                    stroke="#8B7E6A"
                                     strokeWidth="1.5"
                                 />
                                 <path
                                     d="M2.64014 9.41995L10.2601 9.41995"
-                                    stroke="#4F4941"
+                                    stroke="#8B7E6A"
                                     strokeWidth="1.5"
                                 />
                                 <path
                                     d="M3.91016 13.23L8.99016 13.23"
-                                    stroke="#4F4941"
+                                    stroke="#8B7E6A"
                                     strokeWidth="1.5"
                                 />
                             </svg>
@@ -154,7 +160,7 @@ const MainStyle = styled.div`
     --second-position: 339.42%;
     --third-position: -7.4%;
     --fourth-position: -7.13%;
-    --first-color: #e2dfda;
+    --first-color: #e6e3de;
     --second-color: #fff;
     transition: --first-color 0.3s, --second-color 0.3s;
     #line {
@@ -214,7 +220,7 @@ const Inner = styled.div<colorType>`
             height: 127px;
             z-index: 999;
             margin-top: 268px;
-            border: 1px solid #4f4941;
+            border: 1px solid #8b7e6a;
             border-radius: 50%;
             display: flex;
             justify-content: center;
