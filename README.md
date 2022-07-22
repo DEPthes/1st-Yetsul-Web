@@ -4,8 +4,10 @@ ITW는 Information of Traditional Wine의 약자로, 2030 MZ 세대들에게 전
 기술 스택
 ---
 `React` `Prettier` `Eslint` `Axios`
-</br>
-디자인(figma): https://www.figma.com/file/5v64oL33VbbjKJl1ElUUyp/Untitled?node-id=19%3A60
+
+디자인
+---
+[Figma](https://www.figma.com/file/5v64oL33VbbjKJl1ElUUyp/Untitled?node-id=19%3A60)
 
 CI/CD
 ---
