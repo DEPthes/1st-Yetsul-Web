@@ -38,6 +38,6 @@ const ThirdMainStyle = styled.div<colorType>`
     --third-position: -7.4%;
     --fourth-position: -7.13%;
     --first-color: ${(props) => props.color1};
-    --second-color: ${(props) => props.color2}
+    --second-color: ${(props) => props.color2};
     transition: --first-color 0.3s, --second-color 0.3s;
 `;
