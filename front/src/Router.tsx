@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from './App';
 import Header from './components/common/Header';
-import Login from './components/Login/Login';
 import store from './store/config';
 
 const Router: React.FC = () => {
@@ -13,7 +12,7 @@ const Router: React.FC = () => {
                 <Header />
                 <Routes>
                     <Route path="/" element={<App />} />
-                    <Route path="/login" element={<Login />} />
+                    <Route path="/auth/:service/callback" element={<App />} />
                 </Routes>
             </BrowserRouter>
         </Provider>

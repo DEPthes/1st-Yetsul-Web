@@ -1,90 +1,123 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import $ from 'jquery';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { RootState } from '../../store/config';
+import { setModal } from '../../store/slices/onModalSlice';
+import LoginModal from '../Login/LoginModal';
 
 const Header: React.FC = () => {
+    const dispatch = useDispatch();
+    const isModal = useSelector((state: RootState) => {
+        return state.onModal.modal;
+    });
+    const handleModal = () => {
+        const main = document.getElementsByClassName('main')[0];
+        const head = document.getElementsByClassName('head')[0];
+        const nav = document.getElementById('fp-nav') || document.body;
+        dispatch(setModal(!isModal));
+        if (isModal === false) {
+            main.className = 'main is-blurred';
+            head.className = 'head is-blurred';
+            nav.className = 'right is-blurred';
+            $('body').on('scroll mousewheel', (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                return false;
+            });
+        } else {
+            main.className = 'main';
+            head.className = 'head';
+            nav.className = 'right';
+            $('body').off('scroll mousewheel');
+        }
+    };
     return (
         <HeaderStyle>
-            <LeftHeaed>
-                <img
-                    className="logo_img"
-                    src="https://s3-alpha-sig.figma.com/img/c720/1fc5/65001d3c20ef9c48659dbec5b8379901?Expires=1659312000&Signature=R~EEeDKNfUfk6v~VGGZFXSH-UgtMElsPATKJMWdTZWu3bumd4y3Qmhn8AyGMIOJgMbGoNC3gJVc-u1WEd11Ot9crY9FzD8ncHp7WYSHLPLiiFgYejtH7dwb5jZI~VxyhrWJzVDykmnS4s8apIf65ehjhryLL4urNUCEe~2DzXLj6YZ117bIF4j9cCCIIqDcHmQ0Xp6waz9MVQL2I2-93qKl6anB~kaISgP4OTEh1-h8U9-RsjkOYUVE5JmLM185CYp19buYqTMoCo7HCtIcZwZlcyFoQL~LH6Nmy-IWKPpsOHrthlM11VJC1GBBJvf2QRYI59XZo7gMT23WGnQhrog__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-                    alt="main logo"
-                />
-                <img
-                    className="logo_text"
-                    src="https://s3-alpha-sig.figma.com/img/9585/6086/111126df2f993ddcd0e020839b351d4a?Expires=1659312000&Signature=JhIkb0qQSFyYlpc9sLtbNeq2IvfmAFPZyjVEYdBQvz94dHG3dkSXOr6X9BXpAr3E4cQTMd99R22Bh-GpAJ1xKBic0wvzjt2QZYUVCt6A8X3jbO5dzBmAaWRnc0L6vOAk55I7Ffi0wnk8gkseXe3kqH6KUnUE3kT3td3U6CwPsLIMRXQTW2xD-j~~ciNthX6YMbhftC~SM0uWCfyAmeQJOQOQak6DGaZ-XaeOcdwUKtGzpmtcQuxkDbLgIYE6fb~sn5IBy1HYaJ~bYli6bjmR4k-MiH6QcndY0AKZWiUeOvw4dK6Pysm-MEPBgHu2VKM90-oBk8DtI0o6QcgFLIX92w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-                    alt="main text"
-                />
-            </LeftHeaed>
-            <HeaderCategory>
-                <HeaderUl>
-                    <li className="active">
-                        <NavLink
-                            to="/"
-                            className={(navData) =>
-                                navData.isActive ? 'active' : 'link'
-                            }
-                        >
-                            홈
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to="/service"
-                            className={(navData) =>
-                                navData.isActive ? 'active' : 'link'
-                            }
-                        >
-                            서비스 소개
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to="/recommend"
-                            className={(navData) =>
-                                navData.isActive ? 'active' : 'link'
-                            }
-                        >
-                            전통주 추천
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to="/ticket"
-                            className={(navData) =>
-                                navData.isActive ? 'active' : 'link'
-                            }
-                        >
-                            옛술의 전당
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to="/mounth"
-                            className={(navData) =>
-                                navData.isActive ? 'active' : 'link'
-                            }
-                        >
-                            이달의 전통주
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to="/call"
-                            className={(navData) =>
-                                navData.isActive ? 'active' : 'link'
-                            }
-                        >
-                            문의사항
-                        </NavLink>
-                    </li>
-                </HeaderUl>
-            </HeaderCategory>
-            <RightHeaed>
-                <Link to="/login">로그인</Link>
-                <Link to="/profile">내정보</Link>
-            </RightHeaed>
+            <div className="head">
+                <LeftHeaed>
+                    <img
+                        className="logo_img"
+                        src="https://s3-alpha-sig.figma.com/img/c720/1fc5/65001d3c20ef9c48659dbec5b8379901?Expires=1659312000&Signature=R~EEeDKNfUfk6v~VGGZFXSH-UgtMElsPATKJMWdTZWu3bumd4y3Qmhn8AyGMIOJgMbGoNC3gJVc-u1WEd11Ot9crY9FzD8ncHp7WYSHLPLiiFgYejtH7dwb5jZI~VxyhrWJzVDykmnS4s8apIf65ehjhryLL4urNUCEe~2DzXLj6YZ117bIF4j9cCCIIqDcHmQ0Xp6waz9MVQL2I2-93qKl6anB~kaISgP4OTEh1-h8U9-RsjkOYUVE5JmLM185CYp19buYqTMoCo7HCtIcZwZlcyFoQL~LH6Nmy-IWKPpsOHrthlM11VJC1GBBJvf2QRYI59XZo7gMT23WGnQhrog__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                        alt="main logo"
+                    />
+                    <img
+                        className="logo_text"
+                        src="https://s3-alpha-sig.figma.com/img/9585/6086/111126df2f993ddcd0e020839b351d4a?Expires=1659312000&Signature=JhIkb0qQSFyYlpc9sLtbNeq2IvfmAFPZyjVEYdBQvz94dHG3dkSXOr6X9BXpAr3E4cQTMd99R22Bh-GpAJ1xKBic0wvzjt2QZYUVCt6A8X3jbO5dzBmAaWRnc0L6vOAk55I7Ffi0wnk8gkseXe3kqH6KUnUE3kT3td3U6CwPsLIMRXQTW2xD-j~~ciNthX6YMbhftC~SM0uWCfyAmeQJOQOQak6DGaZ-XaeOcdwUKtGzpmtcQuxkDbLgIYE6fb~sn5IBy1HYaJ~bYli6bjmR4k-MiH6QcndY0AKZWiUeOvw4dK6Pysm-MEPBgHu2VKM90-oBk8DtI0o6QcgFLIX92w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                        alt="main text"
+                    />
+                </LeftHeaed>
+                <HeaderCategory>
+                    <HeaderUl>
+                        <li className="active">
+                            <NavLink
+                                to="/"
+                                className={(navData) =>
+                                    navData.isActive ? 'active' : 'link'
+                                }
+                            >
+                                홈
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="/service"
+                                className={(navData) =>
+                                    navData.isActive ? 'active' : 'link'
+                                }
+                            >
+                                서비스 소개
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="/tradition"
+                                className={(navData) =>
+                                    navData.isActive ? 'active' : 'link'
+                                }
+                            >
+                                전통주 역사
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="/recommend"
+                                className={(navData) =>
+                                    navData.isActive ? 'active' : 'link'
+                                }
+                            >
+                                전통주 추천
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="/list"
+                                className={(navData) =>
+                                    navData.isActive ? 'active' : 'link'
+                                }
+                            >
+                                옛술 리스트
+                            </NavLink>
+                        </li>
+                    </HeaderUl>
+                </HeaderCategory>
+                <RightHeaed click={isModal}>
+                    <p onClick={handleModal} onKeyDown={handleModal}>
+                        로그인
+                    </p>
+                    <span id="centerBlock">ㅣ</span>
+                    <NavLink
+                        to="/profile"
+                        className={(navData) =>
+                            navData.isActive ? 'active' : 'link'
+                        }
+                    >
+                        내정보
+                    </NavLink>
+                </RightHeaed>
+            </div>
+            {isModal && <LoginModal modal={handleModal} />}
         </HeaderStyle>
     );
 };
@@ -152,20 +185,39 @@ const LeftHeaed = styled.div`
     }
 `;
 
-const RightHeaed = styled.div`
+type clickLogintype = {
+    click: boolean;
+};
+
+const RightHeaed = styled.div<clickLogintype>`
     position: absolute;
     right: 0;
     display: flex;
     margin-right: 77px;
     margin-top: 80px;
-    a {
+    a,
+    p {
         margin: 0;
         font-size: 18px;
         line-height: 18px;
         color: #8e8372;
         text-decoration: none;
     }
-    a:first-of-type {
-        margin-right: 40px;
+    a.active {
+        color: #454038;
+    }
+    p {
+        background: none;
+        border: none;
+        color: ${(props) => (props.click ? `#454038` : `#8e8372`)};
+        cursor: pointer;
+    }
+    #centerBlock {
+        font-size: 18px;
+        line-height: 18px;
+        margin-left: 12px;
+        margin-right: 12px;
+        width: 18px;
+        height: 18px;
     }
 `;

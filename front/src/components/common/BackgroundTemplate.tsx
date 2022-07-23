@@ -3,7 +3,11 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { RootState } from '../../store/config';
 
-const login: React.FC = () => {
+type BackgroudChidType = {
+    children: React.ReactNode;
+};
+
+const BackgroundTemplate: React.FC<BackgroudChidType> = ({ children }) => {
     const temp = useSelector((state: RootState) => {
         return state.updateBackgroundGradient.color1;
     });
@@ -11,20 +15,21 @@ const login: React.FC = () => {
         return state.updateBackgroundGradient.color2;
     });
     return (
-        <LoginStyle color1={temp} color2={temp2}>
-            <div>login</div>
-        </LoginStyle>
+        <Background color1={temp} color2={temp2}>
+            <div id="line" />
+            {children}
+        </Background>
     );
 };
 
-export default login;
+export default BackgroundTemplate;
 
 type colorType = {
     color1: string;
     color2: string;
 };
 
-const LoginStyle = styled.div<colorType>`
+const Background = styled.div<colorType>`
     width: 100%;
     height: 100%;
     background: radial-gradient(
@@ -38,6 +43,16 @@ const LoginStyle = styled.div<colorType>`
     --third-position: -7.4%;
     --fourth-position: -7.13%;
     --first-color: ${(props) => props.color1};
-    --second-color: ${(props) => props.color2}
+    --second-color: ${(props) => props.color2};
     transition: --first-color 0.3s, --second-color 0.3s;
+    #line:nth-of-type(1) {
+        border-bottom: 1px solid #bbb6a8;
+        width: calc(100% - 266px);
+        margin-top: 147px;
+        right: 0;
+        height: 1px;
+        position: absolute;
+        display: block;
+        z-index: 999;
+    }
 `;

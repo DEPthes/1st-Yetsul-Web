@@ -14,6 +14,16 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff')
+        format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
 #root {
     width: 100%;
     height: 100%;
@@ -114,4 +124,13 @@
 
 #fp-nav ul li a.active span {
     display: none;
+}
+
+.is-blurred {
+    filter: blur(3px);
+    -webkit-filter: blur(3px);
+}
+
+.scrollLock {
+    overflow: hidden;
 }
