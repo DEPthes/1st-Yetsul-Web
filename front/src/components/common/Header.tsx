@@ -8,6 +8,16 @@ import { setModal } from '../../store/slices/onModalSlice';
 import LoginModal from '../Login/LoginModal';
 
 const Header: React.FC = () => {
+    $(document).ready(() => {
+        $('#serviceMenu').mouseover(() => {
+            $('#submenu').fadeIn(300);
+            $('#serviceMenu').height(50);
+        });
+        $('#serviceMenu').mouseleave(() => {
+            $('#submenu').fadeOut(300);
+            $('#serviceMenu').height(0);
+        });
+    });
     const dispatch = useDispatch();
     const isModal = useSelector((state: RootState) => {
         return state.onModal.modal;
@@ -61,14 +71,35 @@ const Header: React.FC = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink
-                                to="/service"
-                                className={(navData) =>
-                                    navData.isActive ? 'active' : 'link'
-                                }
-                            >
-                                서비스 소개
-                            </NavLink>
+                            <div id="serviceMenu">
+                                <p>서비스 소개</p>
+                                <SubMenu id="submenu">
+                                    <li>
+                                        <NavLink
+                                            to="/depth"
+                                            className={(navData) =>
+                                                navData.isActive
+                                                    ? 'link active'
+                                                    : 'link'
+                                            }
+                                        >
+                                            Depth 소개
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink
+                                            to="/service"
+                                            className={(navData) =>
+                                                navData.isActive
+                                                    ? 'link active'
+                                                    : 'link'
+                                            }
+                                        >
+                                            옛술의 전당 소개
+                                        </NavLink>
+                                    </li>
+                                </SubMenu>
+                            </div>
                         </li>
                         <li>
                             <NavLink
@@ -147,23 +178,36 @@ const HeaderUl = styled.ul`
     padding: 0;
     margin-top: 80px;
     margin-bottom: 49px;
-    li {
+    align-items: flex-start;
+    > li {
         margin-right: 80px;
         display: flex;
         align-items: center;
-        a {
+        position: relative;
+        #serviceMenu {
+            p {
+                font-size: 18px;
+                line-height: 18px;
+                font-family: 'GmarketSansMedium';
+                font-weight: 400;
+                color: #8e8372;
+                cursor: pointer;
+            }
+        }
+        > a {
             font-size: 18px;
             line-height: 18px;
             font-family: 'GmarketSansMedium';
             font-weight: 400;
             color: #8e8372;
             text-decoration: none;
+            transition: 0.5s;
         }
-        a.active {
+        > a.active {
             color: #454038;
         }
     }
-    li:last-of-type {
+    > li:last-of-type {
         margin-right: 0;
     }
 `;
@@ -202,6 +246,7 @@ const RightHeaed = styled.div<clickLogintype>`
         line-height: 18px;
         color: #8e8372;
         text-decoration: none;
+        transition: 0.5s;
     }
     a.active {
         color: #454038;
@@ -219,5 +264,55 @@ const RightHeaed = styled.div<clickLogintype>`
         margin-right: 12px;
         width: 18px;
         height: 18px;
+    }
+`;
+
+const SubMenu = styled.ul`
+    top: 37px;
+    left: -48px;
+    margin-right: 40px;
+    position: absolute;
+    display: block;
+    box-sizing: border-box;
+    width: 199px;
+    height: 109px;
+    background: #ffffff;
+    border: 1px solid #675b4f;
+    border-radius: 42.5px;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    justify-content: center;
+    li {
+        margin-left: 56px;
+        a {
+            font-size: 15px;
+            line-height: 15px;
+            color: #675b4f;
+            text-decoration: none;
+            position: relative;
+            transition: 0.5s;
+        }
+        &:first-of-type {
+            margin-bottom: 18px;
+        }
+        a.active::before {
+            position: absolute;
+            top: 2px;
+            left: -23px;
+            width: 11px;
+            height: 11px;
+            background: #675b4f;
+            border-radius: 50%;
+            content: '';
+            opacity: 1;
+            transform: scale(1);
+            transition: 0.5s;
+        }
+        a::before {
+            opacity: 0;
+            transform: scale(0);
+            content: '';
+        }
     }
 `;

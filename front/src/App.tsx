@@ -30,6 +30,12 @@ const App: React.FC = () => {
                         { opacity: 0 },
                         { opacity: 1, delay: 0.3, ease: 'easeInOut' },
                     );
+                    gsap.timeline().staggerFromTo(
+                        $('#fp-nav'),
+                        0.8,
+                        { opacity: 0, x: '0%' },
+                        { opacity: 1, x: '0%', delay: 0.3, ease: 'easeInOut' },
+                    );
                 }
                 isLoad = true;
             },
@@ -46,6 +52,12 @@ const App: React.FC = () => {
                     0.8,
                     { opacity: 0 },
                     { opacity: 0, ease: 'easeOut' },
+                );
+                gsap.timeline().staggerFromTo(
+                    $('#fp-nav'),
+                    0.8,
+                    { opacity: 0, x: '0%' },
+                    { opacity: 0, x: '%', ease: 'easeInOut' },
                 );
                 if (anchorLink === 3 && direction === 'down') {
                     $('header').fadeOut();

@@ -78,7 +78,7 @@ const Main: React.FC = () => {
                     </div>
                 </InnerText>
                 <div id="line" />
-
+                <div id="line" />
                 <img
                     id="sojuImg"
                     src="https://s3-alpha-sig.figma.com/img/a2d7/f1fd/68c9f1e40c24846da055eebadf32c769?Expires=1659312000&Signature=CpSnHOU4Ak9HaflGQR6KE22c-h3b2ZaEIemP765uYN6QRvZeyHekhC6g-9jmpLsntCBo~onnZHhuACyauptvoIG44F1sQoViXDbh21Rxhs2mbKFe3b5846ESO2mg91-AIoyDn3HEP6mlXbTXkrIK0RWy3gyeGlS1R5WS0WB0B6TLOue5qa0TvZNclC8UdvVHbNaXn5FbDYSCWo9c~~ZtGnOd6QbjK8wbWgnj4Z1RggpoKQdsPQRvWCFadO0LoEALJ6yA05e-Z9qfMPB0IqDWmXvj4tT54x99DyyoWMQnngv-nK8BpLbX9W0f2iZwjxWZ0eweFN~0Ts47C872eBhBEA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
@@ -237,7 +237,6 @@ const Inner = styled.div<colorType>`
             }
         }
     }
-
     #sojuImg {
         position: absolute;
         top: 137px;
@@ -245,6 +244,12 @@ const Inner = styled.div<colorType>`
         transform: translateX(-50%);
         width: 486px;
         height: 583px;
+    }
+    #line:nth-of-type(3) {
+        border-top: 1px solid #bbb6a8;
+        width: 50%;
+        bottom: 0;
+        height: 243px;
     }
 `;
 
