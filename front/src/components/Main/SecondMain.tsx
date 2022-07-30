@@ -4,7 +4,7 @@ import BackgroundTemplate from '../common/BackgroundTemplate';
 
 const SecondMain: React.FC = () => {
     return (
-        <BackgroundTemplate>
+        <BackgroundTemplate heightValue="100%">
             <Inner>
                 <TicketStyle>
                     <svg

@@ -116,10 +116,6 @@ body {
     height: 100%;
 }
 
-html {
-    overflow: hidden;
-}
-
 html,
 .main {
     display: block;
