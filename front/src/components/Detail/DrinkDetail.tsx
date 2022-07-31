@@ -7,16 +7,25 @@ const DrinkDetail: React.FC = () => {
     return (
         <BackgroundTemplate heightValue="100%">
             <AlcoholExplain>
-                <AlcoholImg src="/images/Alcohol.png" alt="술 사진" />
+                <AlcoholImg src="/images/AlcoholImg.png" alt="술 사진" />
                 <AlcoholExplain2>
                     <AlcoholName>담은</AlcoholName>
                     <AlcoholVolume>6.5%</AlcoholVolume>
                     <AlcoholStar>
-                        <AlcoholStar1 src="/images/star1.png" alt="채워진 별" />
-                        <AlcoholStar2 src="/images/star1.png" alt="채워진 별" />
-                        <AlcoholStar3 src="/images/star1.png" alt="채워진 별" />
-                        <AlcoholStar4 src="/images/star2.png" alt="빈 별" />
-                        <AlcoholStar5 src="/images/star2.png" alt="빈 별" />
+                        <AlcoholStar1
+                            src="/images/StarFill.png"
+                            alt="채워진 별"
+                        />
+                        <AlcoholStar2
+                            src="/images/StarFill.png"
+                            alt="채워진 별"
+                        />
+                        <AlcoholStar3
+                            src="/images/StarFill.png"
+                            alt="채워진 별"
+                        />
+                        <AlcoholStar4 src="/images/star.png" alt="빈 별" />
+                        <AlcoholStar5 src="/images/star.png" alt="빈 별" />
                     </AlcoholStar>
                     <SeeReviewLink to="/">(리뷰 +100) &gt;</SeeReviewLink>
                     <Line />
