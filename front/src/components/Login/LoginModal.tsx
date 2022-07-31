@@ -25,10 +25,16 @@ const LoginModal: React.FC<modalType> = ({ modal }) => {
                     </svg>
                 </LoginCloseBtn>
                 <LoginHead>
-                    <h1>로그인</h1>
-                    <p>소셜아이디로 로그인</p>
+                    <img
+                        src="https://s3-alpha-sig.figma.com/img/c720/1fc5/65001d3c20ef9c48659dbec5b8379901?Expires=1659916800&Signature=Ej5j8YrnP5XoSHZY92J3DfjyP3smytdBS3FWvudOo56r0eMImKDaSOjHr-fSz9MaTuUCZPxlXn4yHZy46v5IzdudkOOogv1ISm3DTRJrOB56kYvWzGnC5KIz2woMLJ5NpX~Q0BtqURtg3wlAVzabLZfG2ytVp2ysVT71kcq9gmt9vJX245ZMflBCalnBqJAyTCY9mrr4NVEGPqePy8nnZXZN4N2MQk7O4ka3kVLul8NwBhL3MDVMm6v4TRLrMod2YPFggzyJXLKSnefbZLzYO4t9oS~6SIGjxfx3lRkwV0LazhaDML5TBV~pv71ofiCJYRqtMELlouAwAylXERkwpw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                        alt="logo"
+                    />
+                    <img
+                        src="https://s3-alpha-sig.figma.com/img/9585/6086/111126df2f993ddcd0e020839b351d4a?Expires=1659916800&Signature=DoJ2Ao5wrOLo2FCdQwj5C2phmW60N5aXiUvPSigUMytj5P4pLwW5EQpvoXLoxdnmbiRFxlT~nrQ74XKmDFs~p-R-Z1F-7dtwK0Cy3s19y0kjmH73HDR3e~XY-BU3~8lauW3nVGI~qf~E-jC3wsGwStbCTwkL8C0K9hxi44oqOY4xXuq6H6sRzb-sRHzYYAbApQWRbgDa6hVy5swx5N7fLcT7piqKtfzhBOCzYQnDv5TV6SMjktYb8g~ozwmm3q56Sr-83TTTC7KA3cAGloHPCbg2WJP8R~lCVhpNfgMiiBq7xE2MGG2Yyz1YIqYDOVNb6~eI9d-UEO7VCpJk8F7rKQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                        alt="logotext"
+                    />
                 </LoginHead>
-                <div>
+                <LoginMain>
                     <ButtonStyle
                         id="kakao"
                         href="https://depth-server.herokuapp.com/auth/kakao"
@@ -149,7 +155,7 @@ const LoginModal: React.FC<modalType> = ({ modal }) => {
                         </svg>
                         <p>Gmail 계정으로 시작하기</p>
                     </ButtonStyle>
-                </div>
+                </LoginMain>
                 <LoginFoot>
                     <svg
                         width="7"
@@ -187,45 +193,43 @@ const ModalMain = styled.div`
 `;
 
 const LoginCloseBtn = styled.div`
-    width: 100%;
+    position: absolute;
+    width: 586px;
     display: flex;
-    align-items: center;
     justify-content: flex-end;
     svg {
-        margin-bottom: 48px;
+        margin-top: 32px;
+        margin-right: 32px;
         cursor: pointer;
     }
 `;
 
 const LoginWrap = styled.div`
-    padding: 0 24px;
     z-index: 100001;
     background: #fff;
-    width: 480px;
-    height: 640px;
-    border-radius: 20px;
+    width: 586px;
+    height: 657px;
+    border-radius: 18px;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 `;
 
 const LoginHead = styled.div`
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 29px;
-    h1 {
-        font-size: 30px;
-        line-height: 38px;
-        color: #8b7e6a;
-        margin-bottom: 29px;
+    margin-bottom: 42px;
+    margin-top: 63px;
+    img:first-of-type {
+        width: 86px;
+        height: 75px;
+        margin-bottom: 14px;
     }
-    p {
-        font-size: 15px;
-        line-height: 24px;
+    img {
+        width: 113px;
+        height: 28px;
     }
 `;
 
@@ -254,7 +258,7 @@ const ButtonStyle = styled.a`
     &#google {
         margin: 0;
         box-sizing: border-box;
-        border: 1px solid #999;
+        border: 1px solid #9f9f9f;
     }
     p {
         font-family: 'Pretendard';
@@ -271,6 +275,7 @@ const LoginFoot = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     margin-bottom: 44px;
     p {
         margin-left: 10px;
@@ -278,4 +283,11 @@ const LoginFoot = styled.div`
         line-height: 24px;
         color: #8b7e6a;
     }
+`;
+
+const LoginMain = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 `;
