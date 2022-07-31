@@ -1,27 +1,137 @@
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+        format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff')
+        format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff')
+        format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+#root {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.section.active:not(.fp-auto-height) .fp-tableCell {
+    transform: scale(1) translateY(0%);
+    border-radius: 0;
+    transition: 1s 0.8s;
+}
+
+.section:not(.fp-auto-height, .fadeout) .fp-tableCell {
+    transform: scale(0.88) translateY(0%);
+    transition: 0.3s;
+}
+
+#section4 .fp-tableCell .footer {
+    height: 402px;
+}
+
+.tableCellInner {
+    font-size: 20px;
+    vertical-align: bottom;
+    transition-property: all;
+}
+
+.section.fadeout .fp-tableCell {
+    opacity: 0.7;
+    transition: 0.2s;
+}
+
 .main {
-	display: flex;
-	width: 100%;
-	height: 100%;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+    width: 100%;
 }
 
-main {
-	width: 100%;
-	height: 400px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+#fp-nav {
+    margin-right: 47px;
 }
 
-footer {
-	width: 100%;
-	height: 50px;
-	background-color: #dcdcdc;
-	color: #333;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+#fp-nav ul {
+    position: relative;
+}
+
+#fp-nav ul li {
+    position: relative;
+    background: #4f4940;
+    border-radius: 50%;
+    height: 8px;
+    width: 8px;
+    margin: 0;
+    box-sizing: border-box;
+    outline: 0;
+    display: block;
+}
+
+#fp-nav ul li + li {
+    margin-top: 30px;
+}
+
+#fp-nav ul li a {
+    display: block;
+}
+
+#fp-nav ul li a.active::after {
+    position: absolute;
+    opacity: 1;
+    transform: scale(1);
+    transition: 0.5s;
+    display: block;
+    border-radius: 50%;
+    border: 1px solid #4f4940;
+    box-sizing: border-box;
+    transition: 0.5s;
+    width: 30px;
+    height: 30px;
+    content: '';
+}
+
+#fp-nav ul li a::after {
+    display: block;
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #4f4940;
+    border-radius: 50%;
+    top: -11px;
+    left: -11px;
+    transform: scale(0);
+    opacity: 0;
+    box-sizing: border-box;
+    transition: 0.5s;
+}
+
+#fp-nav ul li a span {
+    display: none;
+}
+
+#fp-nav ul li a.active span {
+    display: none;
+}
+
+.is-blurred {
+    filter: blur(3px);
+    -webkit-filter: blur(3px);
+}
+
+.scrollLock {
+    overflow: hidden;
 }
