@@ -8,7 +8,18 @@ import { setModal } from '../../store/slices/onModalSlice';
 import LoginModal from '../Login/LoginModal';
 
 const Header: React.FC = () => {
+    $(window).scroll(() => {
+        const scroll = $(window).scrollTop() || 0;
+        if (scroll > 1) {
+            $('.head').css('background', `${temp}`);
+        } else {
+            $('.head').css('background', 'rgba(0, 0, 0, 0)');
+        }
+
+        console.log('head color');
+    });
     $(document).ready(() => {
+        $('#submenu').css('display', 'none');
         $('#serviceMenu').mouseover(() => {
             $('#submenu').fadeIn(300);
             $('#serviceMenu').height(50);
@@ -21,6 +32,9 @@ const Header: React.FC = () => {
     const dispatch = useDispatch();
     const isModal = useSelector((state: RootState) => {
         return state.onModal.modal;
+    });
+    const temp = useSelector((state: RootState) => {
+        return state.updateBackgroundGradient.color1;
     });
     const handleModal = () => {
         const main = document.getElementsByClassName('main')[0];
@@ -160,6 +174,10 @@ const HeaderStyle = styled.header`
     height: auto;
     position: fixed;
     z-index: 999;
+    .head {
+        width: 100%;
+        height: 147px;
+    }
 `;
 
 const HeaderCategory = styled.div`
@@ -268,11 +286,12 @@ const RightHeaed = styled.div<clickLogintype>`
 `;
 
 const SubMenu = styled.ul`
+    z-index: 1000;
     top: 37px;
     left: -48px;
     margin-right: 40px;
     position: absolute;
-    display: block;
+    display: none;
     box-sizing: border-box;
     width: 199px;
     height: 109px;

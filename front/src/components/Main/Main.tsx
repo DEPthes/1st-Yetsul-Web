@@ -74,11 +74,28 @@ const Main: React.FC = () => {
                     </div>
                     <div>
                         <h1>개강파티</h1>
+                        <img
+                            src="https://s3-alpha-sig.figma.com/img/bbf8/2db6/afdd82e495d4eede9bb0456081a72bc1?Expires=1659916800&Signature=airT2ZvlIFlTkOPuAqwdX9Rf~YuQ~EhJEXASMCA3WV8YWKtq95~GNH7PQPv0bhtfJHhdKRG-qQbB1tMQcfNCEEULdrnQqtJhltSZOsXElaBuQ4Y0yIaxPC9P1akJ9aFYExC7LXweM1vv~uwtk1ZvBjqhQI3Ojwvx4eIqFDJVkAKF2csuQnvpQ2~MZEbL8aBhzcgIAlPHAN8QQOf6-Brq41LURM-a7r32vFyA91D~y5kwKwjwhjPBhT6ftKZ0H5-RQGuFvszWF14g5qMvzjAaNPxLEQE28e5MT~zuweL449vssUuZ~8Vk52slC59mvUpwZc6y5L9XzdpG8CrmIVDRPA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                            alt="underbar"
+                        />
                         <h1>어때요?</h1>
                     </div>
                 </InnerText>
                 <div id="line" />
                 <div id="line" />
+                <FootBanner>
+                    <div />
+                    <div id="banner-text">
+                        <h3>
+                            <span>옛술의 전당에서 나만의 작품과 옛술을!</span>
+                            <br />
+                            7가지 질문을 통해 나만의 작품과
+                            <br />
+                            옛술을 추천해드립니다. 안주 준비 고?
+                        </h3>
+                    </div>
+                    <Circle />
+                </FootBanner>
                 <img
                     id="sojuImg"
                     src="https://s3-alpha-sig.figma.com/img/a2d7/f1fd/68c9f1e40c24846da055eebadf32c769?Expires=1659312000&Signature=CpSnHOU4Ak9HaflGQR6KE22c-h3b2ZaEIemP765uYN6QRvZeyHekhC6g-9jmpLsntCBo~onnZHhuACyauptvoIG44F1sQoViXDbh21Rxhs2mbKFe3b5846ESO2mg91-AIoyDn3HEP6mlXbTXkrIK0RWy3gyeGlS1R5WS0WB0B6TLOue5qa0TvZNclC8UdvVHbNaXn5FbDYSCWo9c~~ZtGnOd6QbjK8wbWgnj4Z1RggpoKQdsPQRvWCFadO0LoEALJ6yA05e-Z9qfMPB0IqDWmXvj4tT54x99DyyoWMQnngv-nK8BpLbX9W0f2iZwjxWZ0eweFN~0Ts47C872eBhBEA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
@@ -170,7 +187,7 @@ const MainStyle = styled.div`
     }
     & > #line {
         border-bottom: 1px solid #bbb6a8;
-        width: calc(100% - 266px);
+        width: 1611px;
         margin-top: 147px;
         right: 0;
         height: 1px;
@@ -203,9 +220,10 @@ const Inner = styled.div<colorType>`
         height: calc(100% + 147px);
         width: 127px;
         #line:nth-of-type(1) {
+            z-index: 1000;
             height: 268px;
             right: 62px;
-            width: auto;
+            width: 1px;
             border-left: 1px solid #bbb6a8;
         }
         #line:not(:first-of-type) {
@@ -249,8 +267,47 @@ const Inner = styled.div<colorType>`
         border-top: 1px solid #bbb6a8;
         width: 50%;
         bottom: 0;
-        height: 243px;
+        height: 281px;
     }
+`;
+
+const FootBanner = styled.div`
+    height: 281px;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    bottom: 0;
+    position: absolute;
+    div:first-of-type {
+        width: 198px;
+        height: 123px;
+        border: 1px solid #999;
+        background: #d9d9d9;
+        margin-right: 40px;
+        margin: 80px 40px 0 71px;
+    }
+    #banner-text {
+        margin-top: 80px;
+        h3 {
+            font-size: 25px;
+            line-height: 42px;
+            letter-spacing: -0.01em;
+            color: #8b7e6a;
+            font-family: 'GmarketSansLight';
+            span {
+                font-family: 'GmarketSansMedium';
+            }
+        }
+    }
+`;
+
+const Circle = styled.div`
+    width: 136px;
+    height: 136px;
+    border: 1px solid #8b7e6a;
+    border-radius: 50%;
+    margin-top: 67px;
+    margin-left: 29px;
 `;
 
 const InnerText = styled.div`
@@ -285,6 +342,13 @@ const InnerText = styled.div`
         h1:first-of-type {
             margin-right: 20px;
             font-family: 'GmarketSansMedium';
+        }
+        img {
+            position: absolute;
+            width: 433px;
+            height: 433px;
+            top: -100px;
+            left: -60px;
         }
     }
 `;

@@ -7,6 +7,7 @@ import store from './store/config';
 import Depth from './components/introduction/depth';
 import Service from './components/introduction/service';
 import Detail from './components/Detail/DrinkDetail';
+import DrinkList from './components/DrinkList/DrinkList';
 
 const Router: React.FC = () => {
     return (
@@ -19,6 +20,7 @@ const Router: React.FC = () => {
                     <Route path="/depth" element={<Depth />} />
                     <Route path="/service" element={<Service />} />
                     <Route path="/details" element={<Detail />} />
+                    <Route path="/list" element={<DrinkList />} />
                 </Routes>
             </BrowserRouter>
         </Provider>
