@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import DrinkCategoryBtn from './DrinkCategoryBtn';
 import DrinkListElement from './DrinkListElement';
+import { drinkInfo } from '../common/dummydata';
 
 const DrinkList: React.FC = () => {
     return (
@@ -36,18 +37,18 @@ const DrinkList: React.FC = () => {
                     </Category>
                     <DrinkElList>
                         <ul>
-                            <li>
-                                <DrinkListElement />
-                            </li>
-                            <li>
-                                <DrinkListElement />
-                            </li>
-                            <li>
-                                <DrinkListElement />
-                            </li>
-                            <li>
-                                <DrinkListElement />
-                            </li>
+                            {drinkInfo.map((data) => {
+                                return (
+                                    <li key={data.id}>
+                                        <DrinkListElement
+                                            img={data.alcoholImage}
+                                            name={data.AlcoholName}
+                                            abv={data.AlcoholByVolume}
+                                            price={data.price}
+                                        />
+                                    </li>
+                                );
+                            })}
                         </ul>
                     </DrinkElList>
                 </Content>

@@ -1,22 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const DrinkListElement: React.FC = () => {
+type drinkInfoType = {
+    img: string; // 술 이미지
+    name: string; // 술 이름
+    abv: number; // 알코올 도수
+    price: number; // 술 가격
+};
+
+const DrinkListElement: React.FC<drinkInfoType> = ({
+    img,
+    name,
+    abv,
+    price,
+}) => {
     return (
         <DrinkElementWrap>
             <ImageWrap>
-                <img
-                    src="https://s3-alpha-sig.figma.com/img/a2d7/f1fd/68c9f1e40c24846da055eebadf32c769?Expires=1659916800&Signature=L9Qn~O9D03tSsA-ln1QjZCeh16NQL-DJCjMuxdrcvyNFoFqU-XY5RmN28BxajeZgQMK7ZRO4G1kODeoLnc2-yRhIhRM12H00L5Wuvvt~nEGPNhcyacVd5f8nFDPkpczdXxrTBcuuNVZxxbcJSrmf4vOU10CGrv543QxIkS~ywjIb4CDRbjIO67icRDKaBvwlXrSovu9Ave1ZZid7-3ShN~oz5AhTwzDawiPzEHWqkwsfQilkLkK4acJ6sWaGIk1SSbZ-Z2yDNCQysoVQfyuZijUMtlclG~08nNaJZmfeX~4PMpvtnmum3YCd8DMgawqwl4mPKXJKAdp4qgtRF1In~w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-                    alt="drink_image"
-                />
+                <img src={img} alt={name} />
             </ImageWrap>
             <Info>
                 <InfoHead>
-                    <h1>담은</h1>
-                    <h2>6.5%</h2>
+                    <h1>{name}</h1>
+                    <h2>{abv}%</h2>
                 </InfoHead>
                 <InfoFoot>
-                    <h1>$ 11000원대</h1>
+                    <h1>$ {price}원</h1>
                 </InfoFoot>
             </Info>
         </DrinkElementWrap>
