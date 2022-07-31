@@ -20,7 +20,6 @@ const BackgroundTemplate: React.FC<BackgroudChidType> = ({
     });
     return (
         <Background color1={temp} color2={temp2} height={heightValue}>
-            <div id="line" />
             {children}
         </Background>
     );
@@ -50,7 +49,8 @@ const Background = styled.div<colorType>`
     --first-color: ${(props) => props.color1};
     --second-color: ${(props) => props.color2};
     transition: --first-color 0.3s, --second-color 0.3s;
-
+    display: flex;
+    justify-content: center;
     #line:nth-of-type(1) {
         border-bottom: 1px solid #bbb6a8;
         width: calc(100% - 266px);
@@ -59,6 +59,6 @@ const Background = styled.div<colorType>`
         height: 1px;
         position: absolute;
         display: block;
-        z-index: 999;
+        z-index: 998;
     }
 `;
