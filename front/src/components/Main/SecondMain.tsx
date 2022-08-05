@@ -303,6 +303,13 @@ const Inner = styled.div`
     bottom: 60px;
     display: flex;
     justify-content: center;
+    zoom: 0.8;
+    @media screen and (min-height: 1160px) {
+        zoom: 1;
+    }
+    @media screen and (max-height: 930px) {
+        zoom: 0.7;
+    }
 `;
 
 const TicketStyle = styled.div`

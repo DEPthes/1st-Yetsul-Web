@@ -48,10 +48,14 @@ const DrinkElementWrap = styled.div`
 const ImageWrap = styled.div`
     height: 323px;
     width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 52px;
     img {
-        height: 323px;
-        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 `;
 

@@ -11,7 +11,7 @@ const Header: React.FC = () => {
     $(window).scroll(() => {
         const scroll = $(window).scrollTop() || 0;
         if (scroll > 1) {
-            $('.head').css('background', `${temp}`);
+            $('.head').css('background', 'rgba(0, 0, 0, 0)');
         } else {
             $('.head').css('background', 'rgba(0, 0, 0, 0)');
         }
@@ -32,9 +32,6 @@ const Header: React.FC = () => {
     const dispatch = useDispatch();
     const isModal = useSelector((state: RootState) => {
         return state.onModal.modal;
-    });
-    const temp = useSelector((state: RootState) => {
-        return state.updateBackgroundGradient.color1;
     });
     const handleModal = () => {
         const main = document.getElementsByClassName('main')[0];
@@ -63,12 +60,12 @@ const Header: React.FC = () => {
                 <LeftHeaed>
                     <img
                         className="logo_img"
-                        src="https://s3-alpha-sig.figma.com/img/c720/1fc5/65001d3c20ef9c48659dbec5b8379901?Expires=1659312000&Signature=R~EEeDKNfUfk6v~VGGZFXSH-UgtMElsPATKJMWdTZWu3bumd4y3Qmhn8AyGMIOJgMbGoNC3gJVc-u1WEd11Ot9crY9FzD8ncHp7WYSHLPLiiFgYejtH7dwb5jZI~VxyhrWJzVDykmnS4s8apIf65ehjhryLL4urNUCEe~2DzXLj6YZ117bIF4j9cCCIIqDcHmQ0Xp6waz9MVQL2I2-93qKl6anB~kaISgP4OTEh1-h8U9-RsjkOYUVE5JmLM185CYp19buYqTMoCo7HCtIcZwZlcyFoQL~LH6Nmy-IWKPpsOHrthlM11VJC1GBBJvf2QRYI59XZo7gMT23WGnQhrog__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                        src="https://s3-alpha-sig.figma.com/img/c720/1fc5/65001d3c20ef9c48659dbec5b8379901?Expires=1660521600&Signature=FrtbhRm6MGm5AdOcPoYm-ZAl419BdP4v0B8mF3mbq71-euzLl6qZGX2KVi6hljRYQI-tTz-ElRnd1auRm8u4lFm5mUBGZGD2pLWGfVRtQR9ON87Ly~K~33ReM4HWTlAUsJnNRow2h4dCM9~l0UOk~PkTqrJp8mZU5~LLfL9GAWt--oeoUuvyfVFB23x74trc-oWIqilYAuQtdbxWIc5XFGVI9yatmYmUVubb8~uX8bBrIbnXw18MV~HplPHAB5VR4XUhWgTt5rbHmELbvkXWibhTcfqkVD2kD6oE8iT5JWWmX3nytPckqfBjCF~NvkPs15y4CJmWek6nOkcgFxqf4A__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
                         alt="main logo"
                     />
                     <img
                         className="logo_text"
-                        src="https://s3-alpha-sig.figma.com/img/9585/6086/111126df2f993ddcd0e020839b351d4a?Expires=1659312000&Signature=JhIkb0qQSFyYlpc9sLtbNeq2IvfmAFPZyjVEYdBQvz94dHG3dkSXOr6X9BXpAr3E4cQTMd99R22Bh-GpAJ1xKBic0wvzjt2QZYUVCt6A8X3jbO5dzBmAaWRnc0L6vOAk55I7Ffi0wnk8gkseXe3kqH6KUnUE3kT3td3U6CwPsLIMRXQTW2xD-j~~ciNthX6YMbhftC~SM0uWCfyAmeQJOQOQak6DGaZ-XaeOcdwUKtGzpmtcQuxkDbLgIYE6fb~sn5IBy1HYaJ~bYli6bjmR4k-MiH6QcndY0AKZWiUeOvw4dK6Pysm-MEPBgHu2VKM90-oBk8DtI0o6QcgFLIX92w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                        src="https://s3-alpha-sig.figma.com/img/9585/6086/111126df2f993ddcd0e020839b351d4a?Expires=1660521600&Signature=NKWGz44bR10wDUFjrM4aJDPPR6nbbiEGf7g5dDvTHw~giJHl5TyaW6JG1iOzEo9nhfTG2zyA0gm66ea8ohfyKs05l3RPuwJwlLLn2h3sfq~d13-trzqwtLhVVFsHjsjNMva8pWmrX5jnIVegRHS8yiswMpxlCBT7v7nhiquXBat2Rm8soTPHOh9oxPOC00L1ygeoy9-jem3fgyNvnNYHCaQXOny9j7mFhL4LaC2SQ8a-lTUZE8KzbTrwZyzO2l9TF59qjXUqQkeB4dR7iX9cz2p-MVa88TJFR0s~1OZa472VedewSsLK9X8zo6FP-Ki0~3zchbJKueYS2tVrgPvMsQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
                         alt="main text"
                     />
                 </LeftHeaed>
