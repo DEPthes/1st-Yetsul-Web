@@ -20,18 +20,12 @@ const Main: React.FC = () => {
     const temp = useSelector((state: RootState) => {
         return state.updateBackgroundGradient.color1;
     });
-    const temp2 = useSelector((state: RootState) => {
-        return state.updateBackgroundGradient.color2;
-    });
     const [btnHover, setBtnHover] = useState<string>('#FFE1DC');
 
     // 술잔 버튼 클릭시 실행되는 함수
     const [isDone, setIsDone] = useState<boolean>(false); // boolean 속성으로 중복 클릭 방지
-    const [circlePosition, setCirclePosition] = useState({ top: 0, left: 0 });
     const fnRef = useRef<refType>(null); // 자식 컴포넌트의 함수 호출
     const ClickSoju = () => {
-        const backgroundEl =
-            document.querySelector<HTMLElement>('.tableCellInner');
         if (!isDone) {
             setIsDone(true);
             const target =
@@ -62,31 +56,6 @@ const Main: React.FC = () => {
 
             if (fnRef.current) {
                 fnRef.current.SliderHandler();
-            }
-
-            const backgroundCircle =
-                document.getElementById('background-circle');
-            const createBackgroundCircle = document.createElement('div');
-            createBackgroundCircle.id = 'background-circle';
-            createBackgroundCircle.style.transform = '';
-
-            if (backgroundCircle) {
-                backgroundCircle.style.transform = 'scale(1000)';
-                setTimeout(() => {
-                    backgroundCircle.style.transform = '';
-                    backgroundEl?.removeChild(backgroundCircle);
-                }, 1200);
-            } else {
-                backgroundEl?.prepend(createBackgroundCircle);
-                createBackgroundCircle.style.transform = '';
-
-                setTimeout(() => {
-                    createBackgroundCircle.style.transform = 'scale(1000)';
-                }, 0);
-
-                setTimeout(() => {
-                    backgroundEl?.removeChild(createBackgroundCircle);
-                }, 1100);
             }
 
             setTimeout(() => {
@@ -121,11 +90,6 @@ const Main: React.FC = () => {
             setBtnHover('#FAF9F9');
         }
 
-        setCirclePosition({
-            top: document.getElementById('svgIcon')?.offsetTop || 0,
-            left: 308,
-        });
-
         // carousel
         const BannerCarousel = setInterval(() => {
             if (numberRef.current >= 1) {
@@ -141,13 +105,7 @@ const Main: React.FC = () => {
     }, []);
 
     return (
-        <MainStyle
-            className="tableCellInner"
-            left={circlePosition.left}
-            top={circlePosition.top}
-            background={`--first-color:${temp}; --second-color:${temp2};`}
-        >
-            <div id="background-circle" />
+        <MainStyle className="tableCellInner">
             <div id="line" />
             <Inner>
                 <InnerLeft>
@@ -287,34 +245,7 @@ const Main: React.FC = () => {
 
 export default Main;
 
-type CirclePosition = {
-    left: number;
-    top: number;
-    background: string;
-};
-
-const MainStyle = styled.div<CirclePosition>`
-    & > :not(#background-circle) {
-        z-index: 10;
-    }
-    #background-circle {
-        z-index: 0;
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        border: 1px solid #000;
-        border-radius: 50%;
-        right: ${(props) => props.left}px;
-        top: ${(props) => props.top}px;
-        transition: all 1s ease-in;
-        ${(props) => props.background};
-        background: radial-gradient(
-            var(--first-position) var(--second-position) at
-                var(--third-position) var(--fourth-position),
-            var(--first-color) 0%,
-            var(--second-color) 100%
-        );
-    }
+const MainStyle = styled.div`
     @property --first-color {
         syntax: '<color>';
         initial-value: #e2dfda;
