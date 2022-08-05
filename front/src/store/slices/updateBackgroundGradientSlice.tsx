@@ -6,7 +6,7 @@ type InitialState = {
 };
 
 const initialState: InitialState = {
-    color1: '#E6E3DE',
+    color1: '#E2DFDA',
     color2: '#fff',
 };
 
