@@ -35,22 +35,39 @@ const Header: React.FC = () => {
     });
     const handleModal = () => {
         const main = document.getElementsByClassName('main')[0];
+        const background = document.getElementById('root')?.lastElementChild;
         const head = document.getElementsByClassName('head')[0];
-        const nav = document.getElementById('fp-nav') || document.body;
+        const nav = document.getElementById('fp-nav');
         dispatch(setModal(!isModal));
         if (isModal === false) {
-            main.className = 'main is-blurred';
+            console.log('check');
+            if (main) {
+                main.className = 'main is-blurred';
+            } else if (background) {
+                background.id = 'is-blurred';
+            }
             head.className = 'head is-blurred';
-            nav.className = 'right is-blurred';
+            if (nav) {
+                nav.className = 'right is-blurred';
+            }
+
             $('body').on('scroll mousewheel', (event) => {
                 event.preventDefault();
                 event.stopPropagation();
                 return false;
             });
         } else {
-            main.className = 'main';
+            console.log('close');
+            if (main) {
+                main.className = 'main';
+            } else if (background) {
+                background.id = '';
+            }
             head.className = 'head';
-            nav.className = 'right';
+            if (nav) {
+                nav.className = 'right';
+            }
+
             $('body').off('scroll mousewheel');
         }
     };

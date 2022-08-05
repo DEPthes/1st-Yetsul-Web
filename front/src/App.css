@@ -135,7 +135,8 @@
     display: none;
 }
 
-.is-blurred {
+.is-blurred,
+#is-blurred {
     filter: blur(5px);
     -webkit-filter: blur(5px);
 }
