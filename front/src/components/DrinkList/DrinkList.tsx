@@ -27,6 +27,7 @@ const DrinkList: React.FC = () => {
             <Inner>
                 <Head>
                     <h1>옛술 리스트</h1>
+                    <span>다양한 옛술을 옛술 리스트에서 만나보세요.</span>
                 </Head>
                 <Content>
                     <Category>
@@ -71,13 +72,13 @@ const DrinkList: React.FC = () => {
                         </ul>
                     </DrinkElList>
                 </Content>
+                <Pagination
+                    total={drinks.length}
+                    limit={limit}
+                    page={page}
+                    setPage={setPage}
+                />
             </Inner>
-            <Pagination
-                total={drinks.length}
-                limit={limit}
-                page={page}
-                setPage={setPage}
-            />
         </BackgroundTemplate>
     );
 };
@@ -89,7 +90,7 @@ const Inner = styled.div`
     flex-direction: column;
     align-items: center;
     width: 1129px;
-    height: 100%;
+    height: auto;
     padding-top: 147px;
 `;
 
@@ -98,10 +99,16 @@ const Head = styled.div`
     width: 100%;
     height: 69px;
     border-bottom: 1px solid #bbb6a8;
+    padding-bottom: 40px;
     h1 {
         font-size: 30px;
         line-height: 30px;
         color: #454038;
+        margin-bottom: 18px;
+    }
+
+    span {
+        font-size: 20px;
     }
 `;
 
@@ -126,6 +133,7 @@ const Category = styled.div`
 `;
 
 const DrinkElList = styled.div`
+    margin-bottom: 234px;
     ul {
         list-style: none;
         display: flex;
