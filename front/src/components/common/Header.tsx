@@ -151,6 +151,16 @@ const Header: React.FC = () => {
                         </li>
                         <li>
                             <NavLink
+                                to="/month"
+                                className={(navData) =>
+                                    navData.isActive ? 'active' : 'link'
+                                }
+                            >
+                                이달의 전통주
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
                                 to="/list"
                                 className={(navData) =>
                                     navData.isActive ? 'active' : 'link'
