@@ -21,7 +21,7 @@ const Router: React.FC = () => {
                     <Route path="/auth/:service/callback" element={<App />} />
                     <Route path="/depth" element={<Depth />} />
                     <Route path="/service" element={<Service />} />
-                    <Route path="/details" element={<Detail />} />
+                    <Route path="/list/:id" element={<Detail />} />
                     <Route path="/list" element={<DrinkList />} />
                     <Route path="/month" element={<MonthDrink />} />
                     <Route path="/soolot" element={<SoolotMachine />} />

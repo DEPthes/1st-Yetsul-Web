@@ -11,9 +11,17 @@ const Header: React.FC = () => {
     $(window).scroll(() => {
         const scroll = $(window).scrollTop() || 0;
         if (scroll > 1) {
-            $('.head').css('background', 'rgba(0, 0, 0, 0)');
+            $('.head').css('background', '#fff');
+
+            $('.logo_text').fadeOut();
+            $('.logo_img').fadeOut();
+            $('.logo_second').fadeIn();
         } else {
             $('.head').css('background', 'rgba(0, 0, 0, 0)');
+
+            $('.logo_text').fadeIn();
+            $('.logo_img').fadeIn();
+            $('.logo_second').fadeOut();
         }
 
         console.log('head color');
@@ -22,11 +30,9 @@ const Header: React.FC = () => {
         $('#submenu').css('display', 'none');
         $('#serviceMenu').mouseover(() => {
             $('#submenu').fadeIn(300);
-            $('#serviceMenu').height(50);
         });
         $('#serviceMenu').mouseleave(() => {
             $('#submenu').fadeOut(300);
-            $('#serviceMenu').height(0);
         });
     });
     const dispatch = useDispatch();
@@ -85,10 +91,15 @@ const Header: React.FC = () => {
                         src="https://s3-alpha-sig.figma.com/img/9585/6086/111126df2f993ddcd0e020839b351d4a?Expires=1660521600&Signature=NKWGz44bR10wDUFjrM4aJDPPR6nbbiEGf7g5dDvTHw~giJHl5TyaW6JG1iOzEo9nhfTG2zyA0gm66ea8ohfyKs05l3RPuwJwlLLn2h3sfq~d13-trzqwtLhVVFsHjsjNMva8pWmrX5jnIVegRHS8yiswMpxlCBT7v7nhiquXBat2Rm8soTPHOh9oxPOC00L1ygeoy9-jem3fgyNvnNYHCaQXOny9j7mFhL4LaC2SQ8a-lTUZE8KzbTrwZyzO2l9TF59qjXUqQkeB4dR7iX9cz2p-MVa88TJFR0s~1OZa472VedewSsLK9X8zo6FP-Ki0~3zchbJKueYS2tVrgPvMsQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
                         alt="main text"
                     />
+                    <img
+                        className="logo_second"
+                        src="https://s3-alpha-sig.figma.com/img/9585/6086/111126df2f993ddcd0e020839b351d4a?Expires=1661126400&Signature=hr1YEnAf2C-X4kQ4PrlBKozWZjrA20e7kimmyuXEVAlfgk4AUACmh9kIsqEB8rPZ0eBCHky0DqD1vEdMccGisHN0dwI~9A40Mw58GGLKfQfWV2pOiWxW48k0GnHSwlj-69mUTD3B8HqpAp-D1A8QOOpkMUY46V9VEF4cUT2g29e6IfbVxFiEjlcqenTDD3803N~KDwLIEekNxcvjn~1ORNoG3MtFKZez-y5~uG-ztU~8vCqlj50CN9h6hSCZIIqFclRP5~y1~pNlUiUu8efV~ovPabhPYYBOZTaC2FBO6h0Xra1o83Qer0szwYOUQJ5t5dxgS9EXLO2EBGVZtrqkQg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                        alt="logo_second"
+                    />
                 </LeftHeaed>
                 <HeaderCategory>
                     <HeaderUl>
-                        <li className="active">
+                        <li>
                             <NavLink
                                 to="/"
                                 className={(navData) =>
@@ -99,35 +110,14 @@ const Header: React.FC = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <div id="serviceMenu">
-                                <p>서비스 소개</p>
-                                <SubMenu id="submenu">
-                                    <li>
-                                        <NavLink
-                                            to="/depth"
-                                            className={(navData) =>
-                                                navData.isActive
-                                                    ? 'link active'
-                                                    : 'link'
-                                            }
-                                        >
-                                            Depth 소개
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink
-                                            to="/service"
-                                            className={(navData) =>
-                                                navData.isActive
-                                                    ? 'link active'
-                                                    : 'link'
-                                            }
-                                        >
-                                            옛술의 전당 소개
-                                        </NavLink>
-                                    </li>
-                                </SubMenu>
-                            </div>
+                            <NavLink
+                                to="/service"
+                                className={(navData) =>
+                                    navData.isActive ? 'active' : 'link'
+                                }
+                            >
+                                서비스 소개
+                            </NavLink>
                         </li>
                         <li>
                             <NavLink
@@ -169,6 +159,16 @@ const Header: React.FC = () => {
                                 옛술 리스트
                             </NavLink>
                         </li>
+                        <li>
+                            <NavLink
+                                to="/mounth"
+                                className={(navData) =>
+                                    navData.isActive ? 'active' : 'link'
+                                }
+                            >
+                                이달의 전통주
+                            </NavLink>
+                        </li>
                     </HeaderUl>
                 </HeaderCategory>
                 <RightHeaed click={isModal}>
@@ -201,13 +201,14 @@ const HeaderStyle = styled.header`
     .head {
         width: 100%;
         height: 147px;
+        transition: all 0.3s ease-out;
     }
 `;
 
 const HeaderCategory = styled.div`
     position: absolute;
     width: 100%;
-    height: auto;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -218,8 +219,6 @@ const HeaderUl = styled.ul`
     display: flex;
     margin: 0;
     padding: 0;
-    margin-top: 80px;
-    margin-bottom: 49px;
     align-items: flex-start;
     > li {
         margin-right: 80px;
@@ -228,8 +227,7 @@ const HeaderUl = styled.ul`
         position: relative;
         #serviceMenu {
             p {
-                font-size: 18px;
-                line-height: 18px;
+                font-size: 23px;
                 font-family: 'GmarketSansMedium';
                 font-weight: 400;
                 color: #8e8372;
@@ -237,13 +235,13 @@ const HeaderUl = styled.ul`
             }
         }
         > a {
-            font-size: 18px;
-            line-height: 18px;
+            font-size: 23px;
             font-family: 'GmarketSansMedium';
             font-weight: 400;
             color: #8e8372;
             text-decoration: none;
             transition: 0.5s;
+            line-height: 0;
         }
         > a.active {
             color: #454038;
@@ -260,6 +258,7 @@ const LeftHeaed = styled.div`
     margin-top: 77px;
     display: flex;
     flex-direction: column;
+    transition: all 0.2s ease-out;
     .logo_img {
         width: 112px;
         height: 106px;
@@ -268,6 +267,13 @@ const LeftHeaed = styled.div`
     .logo_text {
         width: 112px;
         height: 27px;
+    }
+    .logo_second {
+        position: absolute;
+        margin-top: -22px;
+        margin-right: -3.5px;
+        width: 190px;
+        height: 46px;
     }
 `;
 
@@ -306,56 +312,5 @@ const RightHeaed = styled.div<clickLogintype>`
         margin-right: 12px;
         width: 18px;
         height: 18px;
-    }
-`;
-
-const SubMenu = styled.ul`
-    z-index: 1000;
-    top: 37px;
-    left: -48px;
-    margin-right: 40px;
-    position: absolute;
-    display: none;
-    box-sizing: border-box;
-    width: 199px;
-    height: 109px;
-    background: #ffffff;
-    border: 1px solid #675b4f;
-    border-radius: 42.5px;
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    justify-content: center;
-    li {
-        margin-left: 56px;
-        a {
-            font-size: 15px;
-            line-height: 15px;
-            color: #675b4f;
-            text-decoration: none;
-            position: relative;
-            transition: 0.5s;
-        }
-        &:first-of-type {
-            margin-bottom: 18px;
-        }
-        a.active::before {
-            position: absolute;
-            top: 2px;
-            left: -23px;
-            width: 11px;
-            height: 11px;
-            background: #675b4f;
-            border-radius: 50%;
-            content: '';
-            opacity: 1;
-            transform: scale(1);
-            transition: 0.5s;
-        }
-        a::before {
-            opacity: 0;
-            transform: scale(0);
-            content: '';
-        }
     }
 `;
