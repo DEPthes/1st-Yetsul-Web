@@ -144,3 +144,18 @@
 .scrollLock {
     overflow: hidden;
 }
+
+.fadeout {
+    animation: fadeout 0.8s ease-out;
+}
+
+@keyframes fadeout {
+    0% {
+        opacity: 0;
+        transform: translateY(300px) scale(1.16);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1.16);
+    }
+}

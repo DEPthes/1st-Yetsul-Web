@@ -25,14 +25,8 @@ const LoginModal: React.FC<modalType> = ({ modal }) => {
                     </svg>
                 </LoginCloseBtn>
                 <LoginHead>
-                    <img
-                        src="https://s3-alpha-sig.figma.com/img/c720/1fc5/65001d3c20ef9c48659dbec5b8379901?Expires=1659916800&Signature=Ej5j8YrnP5XoSHZY92J3DfjyP3smytdBS3FWvudOo56r0eMImKDaSOjHr-fSz9MaTuUCZPxlXn4yHZy46v5IzdudkOOogv1ISm3DTRJrOB56kYvWzGnC5KIz2woMLJ5NpX~Q0BtqURtg3wlAVzabLZfG2ytVp2ysVT71kcq9gmt9vJX245ZMflBCalnBqJAyTCY9mrr4NVEGPqePy8nnZXZN4N2MQk7O4ka3kVLul8NwBhL3MDVMm6v4TRLrMod2YPFggzyJXLKSnefbZLzYO4t9oS~6SIGjxfx3lRkwV0LazhaDML5TBV~pv71ofiCJYRqtMELlouAwAylXERkwpw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-                        alt="logo"
-                    />
-                    <img
-                        src="https://s3-alpha-sig.figma.com/img/9585/6086/111126df2f993ddcd0e020839b351d4a?Expires=1659916800&Signature=DoJ2Ao5wrOLo2FCdQwj5C2phmW60N5aXiUvPSigUMytj5P4pLwW5EQpvoXLoxdnmbiRFxlT~nrQ74XKmDFs~p-R-Z1F-7dtwK0Cy3s19y0kjmH73HDR3e~XY-BU3~8lauW3nVGI~qf~E-jC3wsGwStbCTwkL8C0K9hxi44oqOY4xXuq6H6sRzb-sRHzYYAbApQWRbgDa6hVy5swx5N7fLcT7piqKtfzhBOCzYQnDv5TV6SMjktYb8g~ozwmm3q56Sr-83TTTC7KA3cAGloHPCbg2WJP8R~lCVhpNfgMiiBq7xE2MGG2Yyz1YIqYDOVNb6~eI9d-UEO7VCpJk8F7rKQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-                        alt="logotext"
-                    />
+                    <img src="images/yetsul_logo1.png" alt="logo" />
+                    <img src="images/yetsul_logo2.png" alt="logotext" />
                 </LoginHead>
                 <LoginMain>
                     <ButtonStyle
