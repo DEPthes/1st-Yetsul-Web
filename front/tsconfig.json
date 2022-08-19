@@ -17,8 +17,12 @@
         "moduleResolution": "node",
         "resolveJsonModule": true,
         "isolatedModules": true,
-        "noEmit": true
+        "noEmit": true,
+        "typeRoots": ["./types", "./node_modules/@types"], // 보통 types 폴더를 만들어 타입 정의
+        "declaration": true, // lib 만들 때 .d.ts 파일을 자동으로
+        "declarationDir": "./types" // 이 폴더에 만들어주는 옵션
     },
     "include": ["./src/"],
+    "typeRoots": ["./types", "./node_modules/@types"],
     "exclude": ["node_modules/*"]
 }
