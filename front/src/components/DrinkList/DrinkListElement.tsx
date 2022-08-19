@@ -25,7 +25,7 @@ const DrinkListElement: React.FC<drinkInfoType> = ({
                     <h2>{abv}%</h2>
                 </InfoHead>
                 <InfoFoot>
-                    <h1>$ {price}원</h1>
+                    <h1>{price}원대</h1>
                 </InfoFoot>
             </Info>
         </DrinkElementWrap>

@@ -231,7 +231,6 @@ const DrinkDetail: React.FC = () => {
     );
 };
 export default DrinkDetail;
-
 const AlcoholExplain = styled.div`
     display: flex;
     justify-content: center;
@@ -277,8 +276,6 @@ const AlcoholNames = styled.div`
 `;
 
 const AlcoholStar = styled.div`
-    margin-top: 10px;
-    margin-left: 5px;
     display: inline-block;
 `;
 
@@ -289,7 +286,6 @@ const AlcoholStarS = styled.img`
 const SeeReviewLink = styled(Link)`
     text-decoration: none;
     margin-left: 5px;
-
     font-family: 'GmarketSansLight';
     font-style: normal;
     font-weight: bold;
@@ -300,7 +296,6 @@ const SeeReviewLink = styled(Link)`
 const AlcoholVolume = styled.div`
     margin-top: 20px;
     margin-left: 5px;
-
     font-family: 'GmarketSansMedium';
     font-style: normal;
     font-weight: 400;
@@ -312,14 +307,12 @@ const AlcoholVolume = styled.div`
 const Line = styled.div`
     margin-top: 15px;
     width: 505px;
-
     border-bottom: 1px solid #bbb6a8;
 `;
 
 const AlcoholPrice = styled.div`
     margin-top: 20px;
     margin-left: 5px;
-
     font-family: 'GmarketSansMedium';
     font-style: normal;
     font-weight: 400;
@@ -331,7 +324,6 @@ const AlcoholPrice = styled.div`
 const Distillery = styled.div`
     margin-top: 30px;
     margin-left: 5px;
-
     font-family: 'GmarketSansMedium';
     font-style: normal;
     font-weight: 400;
@@ -345,7 +337,6 @@ const Explain = styled.div`
     margin-bottom: 50px;
     margin-left: 5px;
     width: 500px;
-
     font-family: 'GmarketSansLight';
     font-style: normal;
     font-weight: 300;
@@ -371,7 +362,6 @@ const AlcoholGraph = styled.div`
 const LingLine = styled.div`
     margin-top: 30px;
     width: 1000px;
-
     border-bottom: 1px solid #bbb6a8;
 `;
 
@@ -379,7 +369,6 @@ const Tastes = styled.div`
     display: flex;
     justify-content: center;
     margin-top: 70px;
-
     font-family: 'GmarketSansMedium';
     font-style: normal;
     font-weight: 400;
@@ -400,7 +389,6 @@ const HLine = styled.div`
 const TasteBox = styled.div`
     display: flex;
     justify-content: center;
-
     margin-top: 50px;
     margin-bottom: 450px;
 `;
@@ -408,7 +396,6 @@ const TasteBox = styled.div`
 const Box = styled.div`
     width: 700px;
     height: 65px;
-
     border: 1px solid #8b7e6a;
     border-radius: 18px;
 `;

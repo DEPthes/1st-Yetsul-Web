@@ -36,7 +36,7 @@ const FootBannerSwiper: React.FC = () => {
         <FootBanner>
             <div id="footbanner-wrap">
                 <FootBannerInner>
-                    <div />
+                    <img src="images/ticketIcon.png" alt="ticketIcon" />
                     <div id="banner-text">
                         <h3>
                             <span>옛술의 전당에서 나만의 작품과 옛술을!</span>
@@ -51,7 +51,7 @@ const FootBannerSwiper: React.FC = () => {
                     </Circle>
                 </FootBannerInner>
                 <FootBannerInner>
-                    <div />
+                    <img src="images/soolotIcon.png" alt="soolotIcon" />
                     <div id="banner-text">
                         <h3>
                             <span>돌려돌려 술롯머신</span>
@@ -113,11 +113,7 @@ const FootBannerInner = styled.div`
     display: flex;
     flex-direction: row;
     height: 100%;
-    > div:first-of-type {
-        width: 198px;
-        height: 123px;
-        border: 1px solid #999;
-        background: #d9d9d9;
+    > img {
     }
     #banner-text {
         h3 {
