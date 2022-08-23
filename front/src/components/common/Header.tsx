@@ -83,17 +83,17 @@ const Header: React.FC = () => {
                 <LeftHeaed>
                     <img
                         className="logo_img"
-                        src="https://s3-alpha-sig.figma.com/img/c720/1fc5/65001d3c20ef9c48659dbec5b8379901?Expires=1660521600&Signature=FrtbhRm6MGm5AdOcPoYm-ZAl419BdP4v0B8mF3mbq71-euzLl6qZGX2KVi6hljRYQI-tTz-ElRnd1auRm8u4lFm5mUBGZGD2pLWGfVRtQR9ON87Ly~K~33ReM4HWTlAUsJnNRow2h4dCM9~l0UOk~PkTqrJp8mZU5~LLfL9GAWt--oeoUuvyfVFB23x74trc-oWIqilYAuQtdbxWIc5XFGVI9yatmYmUVubb8~uX8bBrIbnXw18MV~HplPHAB5VR4XUhWgTt5rbHmELbvkXWibhTcfqkVD2kD6oE8iT5JWWmX3nytPckqfBjCF~NvkPs15y4CJmWek6nOkcgFxqf4A__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                        src="images/yetsul_logo1.png"
                         alt="main logo"
                     />
                     <img
                         className="logo_text"
-                        src="https://s3-alpha-sig.figma.com/img/9585/6086/111126df2f993ddcd0e020839b351d4a?Expires=1660521600&Signature=NKWGz44bR10wDUFjrM4aJDPPR6nbbiEGf7g5dDvTHw~giJHl5TyaW6JG1iOzEo9nhfTG2zyA0gm66ea8ohfyKs05l3RPuwJwlLLn2h3sfq~d13-trzqwtLhVVFsHjsjNMva8pWmrX5jnIVegRHS8yiswMpxlCBT7v7nhiquXBat2Rm8soTPHOh9oxPOC00L1ygeoy9-jem3fgyNvnNYHCaQXOny9j7mFhL4LaC2SQ8a-lTUZE8KzbTrwZyzO2l9TF59qjXUqQkeB4dR7iX9cz2p-MVa88TJFR0s~1OZa472VedewSsLK9X8zo6FP-Ki0~3zchbJKueYS2tVrgPvMsQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                        src="images/yetsul_logo2.png"
                         alt="main text"
                     />
                     <img
                         className="logo_second"
-                        src="https://s3-alpha-sig.figma.com/img/9585/6086/111126df2f993ddcd0e020839b351d4a?Expires=1661126400&Signature=hr1YEnAf2C-X4kQ4PrlBKozWZjrA20e7kimmyuXEVAlfgk4AUACmh9kIsqEB8rPZ0eBCHky0DqD1vEdMccGisHN0dwI~9A40Mw58GGLKfQfWV2pOiWxW48k0GnHSwlj-69mUTD3B8HqpAp-D1A8QOOpkMUY46V9VEF4cUT2g29e6IfbVxFiEjlcqenTDD3803N~KDwLIEekNxcvjn~1ORNoG3MtFKZez-y5~uG-ztU~8vCqlj50CN9h6hSCZIIqFclRP5~y1~pNlUiUu8efV~ovPabhPYYBOZTaC2FBO6h0Xra1o83Qer0szwYOUQJ5t5dxgS9EXLO2EBGVZtrqkQg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                        src="images/yetsul_logo3.png"
                         alt="logo_second"
                     />
                 </LeftHeaed>
@@ -269,6 +269,7 @@ const LeftHeaed = styled.div`
         height: 27px;
     }
     .logo_second {
+        display: none;
         position: absolute;
         margin-top: -22px;
         margin-right: -3.5px;

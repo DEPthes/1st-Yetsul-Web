@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import $ from 'jquery';
 import { gsap } from 'gsap';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
 import 'fullpage.js/vendors/scrolloverflow';
 import 'fullpage.js';
 import 'fullpage.js/dist/jquery.fullpage.min.css';
@@ -12,8 +10,6 @@ import SecondMain from './components/Main/SecondMain';
 import ThirdMain from './components/Main/ThirdMain';
 
 const App: React.FC = () => {
-    const { service } = useParams();
-    const [userData, setUserData] = useState(null);
     $(() => {
         let isLoad = false;
         // fullpage.js setting
@@ -77,11 +73,6 @@ const App: React.FC = () => {
             { opacity: 1 },
             { opacity: 1, ease: 'easeOut' },
         );
-        axios
-            .get(`https://depth-server.herokuapp.com/auth/${service}`)
-            .then((res) => setUserData(res.data))
-            .catch((err) => console.log(err));
-        console.log(userData || null);
         return () => {
             // 다른 url로 이동 시에 fullpage.js destroy -> 안해주면 fullpage.js가 여러번 호출되어 오류발생
             if ($('.fullpageStyle')) {

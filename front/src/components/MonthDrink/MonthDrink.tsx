@@ -50,7 +50,6 @@ const Head = styled.div`
         color: #454038;
         margin-bottom: 18px;
     }
-
     span {
         font-size: 20px;
     }
@@ -68,7 +67,6 @@ const MonthList = styled.div`
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-
     h1 {
         font-size: 25px;
         margin-bottom: 20px;
@@ -84,7 +82,6 @@ const MonthContent = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 35px;
-
     img {
         width: inherit;
         height: inherit;

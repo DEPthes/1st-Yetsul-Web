@@ -9,6 +9,8 @@ import Service from './components/introduction/service';
 import Detail from './components/Detail/DrinkDetail';
 import DrinkList from './components/DrinkList/DrinkList';
 import SoolotMachine from './components/soolotmachine/SoolotMachine';
+import DrinkTestBox from './components/DrinkTest/DrinkTest';
+import DrinkTestResult from './components/DrinkTest/DrinkTestResult';
 import MonthDrink from './components/MonthDrink/MonthDrink';
 
 const Router: React.FC = () => {
@@ -25,6 +27,12 @@ const Router: React.FC = () => {
                     <Route path="/list" element={<DrinkList />} />
                     <Route path="/month" element={<MonthDrink />} />
                     <Route path="/soolot" element={<SoolotMachine />} />
+                    <Route path="/drinktest" element={<DrinkTestBox />} />
+                    <Route
+                        path="/drinktest/ticket"
+                        element={<DrinkTestResult />}
+                    />
+                    <Route path="/month" element={<MonthDrink />} />
                 </Routes>
             </BrowserRouter>
         </Provider>

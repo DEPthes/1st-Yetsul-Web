@@ -32,12 +32,11 @@ const Pagination = ({ total, limit, page, setPage }: PageType) => {
 };
 
 const Nav = styled.nav`
-    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 5px;
-    top: 2980px;
+    margin-bottom: 157px;
 `;
 
 const Button = styled.button`
@@ -45,15 +44,16 @@ const Button = styled.button`
     background-color: transparent;
     margin: 0;
     color: #8b7e6a;
-    font-size: 20px;
-
+    font-size: 18px;
     &:hover {
         cursor: pointer;
-        font-weight: bold;
     }
-
     &[aria-current] {
-        font-weight: bold;
+        background: #8b7e6a;
+        width: 27px;
+        height: 27px;
+        border-radius: 50%;
+        color: #fff;
     }
 `;
 
