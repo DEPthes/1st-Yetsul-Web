@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 
@@ -268,7 +269,7 @@ const SecondMain: React.FC = () => {
                             몇 가지 단계가 필요합니다! 입장하시겠습니까?
                         </span>
                     </TicketText>
-                    <TicketBtn>
+                    <TicketBtn to="/drinktest">
                         <svg
                             width="157"
                             height="157"
@@ -341,6 +342,6 @@ const TicketText = styled.p`
     margin-bottom: 70px;
 `;
 
-const TicketBtn = styled.div`
+const TicketBtn = styled(Link)`
     cursor: pointer;
 `;

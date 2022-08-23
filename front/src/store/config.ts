@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
 import { combineReducers } from 'redux';
+import listCategorySlice from './slices/listCategorySlice';
 import onModalSlice from './slices/onModalSlice';
 import updateBackgroundGradientSlice from './slices/updateBackgroundGradientSlice';
 
 const rootReducer = combineReducers({
     updateBackgroundGradient: updateBackgroundGradientSlice,
     onModal: onModalSlice,
+    listCategory: listCategorySlice,
 });
 
 export const store = configureStore({

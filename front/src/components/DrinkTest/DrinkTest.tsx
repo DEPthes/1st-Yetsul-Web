@@ -13,10 +13,10 @@ const DrinkTicketBox: React.FC = () => {
 
     useEffect(() => {
         axios
-            .post(`https://depth-server.herokuapp.com/ticketbox/test`)
+            .get(`https://depth-server.herokuapp.com/ticketbox/test`)
             .then((res) => setQuestions(res.data))
             .catch((err) => console.log(err));
-    });
+    }, []);
 
     const SelectionClick = (i: number) => {
         result.push(i);
@@ -202,8 +202,10 @@ const PrevButton = styled.button<{ margin: number }>`
     margin-right: 58.3333vw;
     width: 3.0208vw;
     height: 4.5vh;
+
     background-color: transparent;
     border: none;
+
     :hover {
         cursor: pointer;
     }
@@ -221,6 +223,7 @@ const Question = styled.div<{ margin: number }>`
     margin-top: ${(props) => props.margin}vh;
     width: 59.7396vw;
     height: 15.6481vh;
+
     background: #fbfbfa;
     border: 1px solid #675b4f;
     border-radius: 18px;
@@ -240,9 +243,11 @@ const Selection = styled.button<{ margin: number }>`
     margin-right: 1.4021vw;
     width: 28.924vw;
     height: 13.0556vh;
+
     border: 1px solid #675b4f;
     border-radius: 18px;
     background-color: transparent;
+
     font-family: 'GmarketSansMedium';
     font-style: normal;
     font-weight: 400;
@@ -250,6 +255,7 @@ const Selection = styled.button<{ margin: number }>`
     letter-spacing: 0.01em;
     color: #675b4f;
     word-break: keep-all;
+
     :hover {
         cursor: pointer;
         background: #675b4f;
@@ -271,6 +277,7 @@ const Selection3 = styled.button<{ display: string }>`
     border: 1px solid #675b4f;
     border-radius: 18px;
     background-color: transparent;
+
     font-family: 'GmarketSansMedium';
     font-style: normal;
     font-weight: 400;
@@ -278,6 +285,7 @@ const Selection3 = styled.button<{ display: string }>`
     letter-spacing: 0.01em;
     color: #675b4f;
     word-break: keep-all;
+
     :hover {
         cursor: pointer;
         background: #675b4f;
@@ -294,6 +302,7 @@ const ProgressBar = styled.div<{ margin: number }>`
     margin-top: ${(props) => props.margin}vh;
     width: 59.7396vw;
     height: 3.4259vh;
+
     background: #ffffff;
     border: 1px solid #675b4f;
     border-radius: 18px;
@@ -304,6 +313,7 @@ const ProgressBarFill = styled.div<{ width: number }>`
     margin-left: 0.9896vw;
     width: ${(props) => props.width}vw;
     height: 1.3889vh;
+
     background: #675b4f;
     border: 1px solid #675b4f;
     border-radius: 18px;

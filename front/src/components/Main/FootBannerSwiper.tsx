@@ -12,7 +12,6 @@ const FootBannerSwiper: React.FC = () => {
         // carousel
         const BannerCarousel = setInterval(() => {
             if (carouselSlide) {
-                console.log(carouselSlide);
                 carouselSlide.style.transition = '2s ease';
                 numberRef.current += 1;
                 carouselSlide.style.transform = `translateX(${
