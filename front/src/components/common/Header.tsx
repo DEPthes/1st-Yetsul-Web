@@ -139,16 +139,7 @@ const Header: React.FC = () => {
                                 전통주 추천
                             </NavLink>
                         </li>
-                        <li>
-                            <NavLink
-                                to="/month"
-                                className={(navData) =>
-                                    navData.isActive ? 'active' : 'link'
-                                }
-                            >
-                                이달의 전통주
-                            </NavLink>
-                        </li>
+
                         <li>
                             <NavLink
                                 to="/list"
@@ -161,12 +152,12 @@ const Header: React.FC = () => {
                         </li>
                         <li>
                             <NavLink
-                                to="/mounth"
+                                to="/month"
                                 className={(navData) =>
                                     navData.isActive ? 'active' : 'link'
                                 }
                             >
-                                이달의 전통주
+                                이달의 옛술
                             </NavLink>
                         </li>
                     </HeaderUl>
