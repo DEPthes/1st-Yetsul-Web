@@ -20,7 +20,7 @@ const DrinkListElement: React.FC<drinkInfoType> = ({
     star,
 }) => {
     return (
-        <LinkWrap to={`/list/${id}`}>
+        <LinkWrap to={`/list/${id}/spec`}>
             <DrinkElementWrap>
                 <ImageWrap>
                     <img src={img} alt={name} />
