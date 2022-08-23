@@ -44,8 +44,8 @@ const DrinkDetail: React.FC = () => {
 
     const [drinks, setDrinks] = useState<DrinkDetailType>(Object); // 술 상세 정보
     const [reviews, setReviews] = useState<ReviewType[]>([]); // 리뷰 보드리스트
-    const [reviewForSort, setReviewForSort] = useState<ReviewType[]>([]); // 리뷰 정렬 시 랜더링 다시 하기 위해
-    const [starPercent, setStarPercent] = useState([]); // 리뷰 / 별점 평점비율
+    const [reviewForSort, setReviewForSort] = useState<ReviewType[]>([]); // 리뷰 정렬 시 포토 후기 빼고 랜더링 다시 하기 위해
+    const [starPercent, setStarPercent] = useState([]); // 평점비율
     const [isSelected, setIsSelected] = useState([true, false]); // 버튼 선택 유무
 
     useEffect(() => {
@@ -148,6 +148,7 @@ const DrinkDetail: React.FC = () => {
     };
 
     const sortByStar = () => {
+        // 평점 높은 순, 평점 낮은 순 정렬
         if (isSelected[1] === false) {
             const sortedByStarReviews = reviewForSort
                 .slice(0)
@@ -166,29 +167,6 @@ const DrinkDetail: React.FC = () => {
             isSelected[1] = false;
         }
     };
-
-    // const SortByStarDes = () => {
-    //     if (
-    //         reviewForSort[0].star.valueOf() >
-    //         reviewForSort[reviewForSort.length - 1].star.valueOf()
-    //     ) {
-    //         const sortedByStarReviews = reviewForSort
-    //             .slice(0)
-    //             .sort((a: ReviewType, b: ReviewType) => {
-    //                 return b.star.valueOf() - a.star.valueOf();
-    //             });
-    //         setReviewForSort(sortedByStarReviews);
-    //         setIsSelected([false, false, true]);
-    //     } else {
-    //         const sortedByStarReviews = reviewForSort
-    //             .slice(0)
-    //             .sort((a: ReviewType, b: ReviewType) => {
-    //                 return a.star.valueOf() - b.star.valueOf();
-    //             });
-    //         setReviewForSort(sortedByStarReviews);
-    //         setIsSelected([false, false, false]);
-    //     }
-    // };
 
     return (
         <BackgroundTemplate heightValue="auto">
@@ -214,7 +192,9 @@ const DrinkDetail: React.FC = () => {
                 </DrinkInfoWrapper>
                 <ReviewTitle>
                     <h1>리뷰 / 별점</h1>
+                    <ReviewWriteLink to="#">리뷰작성</ReviewWriteLink>
                 </ReviewTitle>
+
                 <ReviewStar
                     starAvg={StarAvg()}
                     reviewCount={reviews.length}
@@ -269,7 +249,6 @@ const DrinkDetail: React.FC = () => {
 
                 <ReviewTitle>
                     <h1>리뷰 ({reviews.length})개</h1>
-                    <div />
                 </ReviewTitle>
                 <ReviewSort>
                     <button
@@ -287,13 +266,6 @@ const DrinkDetail: React.FC = () => {
                     >
                         {isSelected[1] ? '평점 높은 순' : '평점 낮은 순'}
                     </button>
-                    {/* <button
-                        type="button"
-                        onClick={SortByStarDes}
-                        style={{ color: isSelected[2] ? '#8B7E6A' : '' }}
-                    >
-                        평점 낮은 순
-                    </button> */}
                 </ReviewSort>
 
                 {reviews.length === 0 ? (
@@ -365,13 +337,36 @@ const ReviewSort = styled.div`
 `;
 
 const ReviewTitle = styled.div`
+    padding-bottom: 40px;
+    border-bottom: 1px solid #bbb6a8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1153px;
     h1 {
         font-size: 1.875rem;
         color: #675b4f;
-        padding-bottom: 40px;
-        border-bottom: 1px solid #bbb6a8;
         width: 1153px;
     }
+`;
+
+const ReviewWriteLink = styled(Link)`
+    width: 159px;
+    height: 51px;
+    background: #8b7e6a;
+    border: 1px solid #8b7e6a;
+    border-radius: 18px;
+
+    font-family: inherit;
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: 400;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-decoration-line: none;
 `;
 
 const Inner = styled.div`
