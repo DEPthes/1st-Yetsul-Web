@@ -311,7 +311,6 @@ const ReviewSort = styled.div`
     width: 1153px;
 
     button {
-        text-align: center;
         background: none;
         border: none;
         font-family: inherit;
@@ -328,11 +327,8 @@ const ReviewSort = styled.div`
     }
 
     button:nth-child(2) {
-        margin: 0 40px;
-    }
-
-    button:last-child {
-        margin-left: 40px;
+        margin: 0 28px;
+        margin-bottom: 5px;
     }
 `;
 
