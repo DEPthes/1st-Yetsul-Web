@@ -6,7 +6,7 @@ import BackgroundTemplate from '../common/BackgroundTemplate';
 import Clock from './Clock';
 import ShareInstagram from '../DrinkTestShare/ShareInstagram';
 import ShareGmail from '../DrinkTestShare/ShareGmail';
-import ShareKakaoBtn from '../DrinkTestShare/ShareKakaoBtn';
+import ShareKakao from '../DrinkTestShare/ShareKakao';
 
 const DrinkTicketBoxResult: React.FC = () => {
     const { state } = useLocation();
@@ -250,7 +250,7 @@ const DrinkTicketBoxResult: React.FC = () => {
                         </ShareText>
                         <ShareGmail />
                         <ShareInstagram />
-                        <ShareKakaoBtn />
+                        <ShareKakao />
                     </Share>
                 </Ticket>
                 <TicketImg src="/images/Ticket.png" alt="Ticket" />

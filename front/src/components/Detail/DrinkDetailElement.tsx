@@ -37,6 +37,72 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
     star,
     alcoholImage,
 }) => {
+    const StarSrc = (starCount: number) => {
+        // 별 반쪽 채워진 거 받고 수정해야됨
+        const result = [];
+        if (starCount === 0) {
+            result.push(
+                '/images/Star.png',
+                '/images/Star.png',
+                '/images/Star.png',
+                '/images/Star.png',
+                '/images/Star.png',
+            );
+        } else if (starCount <= 1.5) {
+            result.push(
+                '/images/StarFill.png',
+                '/images/Star.png',
+                '/images/Star.png',
+                '/images/Star.png',
+                '/images/Star.png',
+            );
+        } else if (starCount <= 2.5) {
+            result.push(
+                '/images/StarFill.png',
+                '/images/StarFill.png',
+                '/images/Star.png',
+                '/images/Star.png',
+                '/images/Star.png',
+            );
+        } else if (starCount <= 3.5) {
+            result.push(
+                '/images/StarFill.png',
+                '/images/StarFill.png',
+                '/images/StarFill.png',
+                '/images/Star.png',
+                '/images/Star.png',
+            );
+        } else if (starCount <= 4.5) {
+            result.push(
+                '/images/StarFill.png',
+                '/images/StarFill.png',
+                '/images/StarFill.png',
+                '/images/StarFill.png',
+                '/images/Star.png',
+            );
+        } else {
+            result.push(
+                '/images/StarFill.png',
+                '/images/StarFill.png',
+                '/images/StarFill.png',
+                '/images/StarFill.png',
+                '/images/StarFill.png',
+            );
+        }
+
+        result.toString();
+
+        return (
+            <div>
+                <img src={result[0]} alt="star" />
+                <img src={result[1]} alt="star" />
+                <img src={result[2]} alt="star" />
+                <img src={result[3]} alt="star" />
+                <img src={result[4]} alt="star" />
+            </div>
+        );
+    };
+
     return (
         <div>
             <AlcoholExplain>
@@ -52,105 +118,7 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
                     </AlcoholType>
                     <AlcoholHeart src="/images/Heart.png" alt="빈 하트" />
                     <AlcoholNames>{AlcoholName}</AlcoholNames>
-                    {star === 0 ? (
-                        <AlcoholStar>
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                        </AlcoholStar>
-                    ) : null}
-                    {star === 1 ? (
-                        <AlcoholStar>
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                        </AlcoholStar>
-                    ) : null}
-                    {star === 2 ? (
-                        <AlcoholStar>
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                        </AlcoholStar>
-                    ) : null}
-                    {star === 3 ? (
-                        <AlcoholStar>
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                        </AlcoholStar>
-                    ) : null}
-                    {star === 4 ? (
-                        <AlcoholStar>
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                        </AlcoholStar>
-                    ) : null}
-                    {star === 5 ? (
-                        <AlcoholStar>
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                        </AlcoholStar>
-                    ) : null}
+                    <AlcoholStar>{StarSrc(star)}</AlcoholStar>
                     <SeeReviewLink to="/">(리뷰 +100) &gt;</SeeReviewLink>
                     <Line />
                     <AlcoholVolume>{AlcoholByVolume}%</AlcoholVolume>
@@ -241,10 +209,6 @@ const AlcoholStar = styled.div`
     margin-top: 10px;
     margin-left: 5px;
     display: inline-block;
-`;
-
-const AlcoholStarS = styled.img`
-    margin-right: 5px;
 `;
 
 const SeeReviewLink = styled(Link)`
@@ -433,21 +397,3 @@ const SourCircle = styled.div`
     background: #8b7e6a;
     border-radius: 100px;
 `;
-
-type DrinkDetailType = {
-    id: number;
-    AlcoholName: string;
-    category: number;
-    brewery: string;
-    price: number;
-    AlcoholByVolume: number;
-    sweet: boolean;
-    bitter: boolean;
-    refreshing: boolean;
-    clean: boolean;
-    cool: boolean;
-    sour: boolean;
-    description: string;
-    star: number;
-    alcoholImage: string;
-};
