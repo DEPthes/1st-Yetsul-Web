@@ -24,14 +24,13 @@ const Router: React.FC = () => {
                     <Route path="/auth/:service/callback" element={<App />} />
                     <Route path="/depth" element={<Depth />} />
                     <Route path="/service" element={<Service />} />
-
                     <Route path="/list/:id/spec" element={<DrinkDetail />} />
                     <Route path="/list" element={<DrinkList />} />
                     <Route path="/month" element={<MonthDrink />} />
                     <Route path="/soolot" element={<SoolotMachine />} />
-                    <Route path="/drinktest" element={<DrinkTestBox />} />
+                    <Route path="/ticketbox" element={<DrinkTestBox />} />
                     <Route
-                        path="/drinktest/ticket"
+                        path="ticketbox/result/:result"
                         element={<DrinkTestResult />}
                     />
                     <Route path="/month" element={<MonthDrink />} />

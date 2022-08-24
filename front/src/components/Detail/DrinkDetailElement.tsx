@@ -42,16 +42,23 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
             <AlcoholExplain>
                 <AlcoholImg src={alcoholImage} alt={AlcoholName} />
                 <AlcoholExplain2>
-                    <AlcoholType>{category}</AlcoholType>
+                    <AlcoholType>
+                        {category === 1 ? '탁주' : null}
+                        {category === 2 ? '과실주' : null}
+                        {category === 3 ? '약주' : null}
+                        {category === 4 ? '청주' : null}
+                        {category === 5 ? '증류주' : null}
+                        {category === 6 ? '리큐르주' : null}
+                    </AlcoholType>
                     <AlcoholHeart src="/images/Heart.png" alt="빈 하트" />
                     <AlcoholNames>{AlcoholName}</AlcoholNames>
                     {star === 0 ? (
                         <AlcoholStar>
-                            <AlcoholStarS src="/images/star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/star.png" alt="빈 별" />
+                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
+                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
+                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
+                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
+                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
                         </AlcoholStar>
                     ) : null}
                     {star === 1 ? (
@@ -60,10 +67,10 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
                                 src="/images/StarFill.png"
                                 alt="채워진 별"
                             />
-                            <AlcoholStarS src="/images/star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/star.png" alt="빈 별" />
+                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
+                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
+                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
+                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
                         </AlcoholStar>
                     ) : null}
                     {star === 2 ? (
@@ -76,9 +83,9 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
                                 src="/images/StarFill.png"
                                 alt="채워진 별"
                             />
-                            <AlcoholStarS src="/images/star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/star.png" alt="빈 별" />
+                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
+                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
+                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
                         </AlcoholStar>
                     ) : null}
                     {star === 3 ? (
@@ -95,8 +102,8 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
                                 src="/images/StarFill.png"
                                 alt="채워진 별"
                             />
-                            <AlcoholStarS src="/images/star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/star.png" alt="빈 별" />
+                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
+                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
                         </AlcoholStar>
                     ) : null}
                     {star === 4 ? (
@@ -117,7 +124,7 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
                                 src="/images/StarFill.png"
                                 alt="채워진 별"
                             />
-                            <AlcoholStarS src="/images/star.png" alt="빈 별" />
+                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
                         </AlcoholStar>
                     ) : null}
                     {star === 5 ? (
