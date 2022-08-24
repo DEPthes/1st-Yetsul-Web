@@ -269,7 +269,7 @@ const SecondMain: React.FC = () => {
                             몇 가지 단계가 필요합니다! 입장하시겠습니까?
                         </span>
                     </TicketText>
-                    <TicketBtn to="/drinktest">
+                    <TicketBtn to="/ticketbox">
                         <svg
                             width="157"
                             height="157"

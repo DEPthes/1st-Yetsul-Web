@@ -45,7 +45,7 @@ const DrinkTicketBox: React.FC = () => {
             setNum(7);
             setIdNum(8);
         } else if (num === 7) {
-            navigate(`/drinktest/ticket`, { state: result });
+            navigate(`/ticketbox/result/${result}`, { state: result });
         }
     };
 
