@@ -15,7 +15,14 @@ const MonthDrink: React.FC = () => {
                         <div>
                             <h1>9월</h1>
                             <MonthContent>
-                                <img src="/images/9월의전통주.png" alt="test" />
+                                <DrinkImg
+                                    src="/images/9월의전통주.png"
+                                    alt="9Drink"
+                                />
+                                <AnimationBtnImg
+                                    src="/images/9월의전통주animationBtn.png"
+                                    alt="9DrinkanimationBtn"
+                                />
                             </MonthContent>
                         </div>
                         <div>
@@ -37,7 +44,11 @@ const Inner = styled.div`
     height: auto;
     padding-top: 147px;
 `;
-
+const AnimationBtnImg = styled.img`
+    position: relative;
+    top: 65px;
+    left: -225px;
+`;
 const Head = styled.div`
     margin-top: 79px;
     width: 100%;
@@ -53,6 +64,14 @@ const Head = styled.div`
     span {
         font-size: 20px;
     }
+`;
+
+const DrinkImg = styled.img`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    position: absolute;
 `;
 
 const Content = styled.div`
@@ -82,10 +101,6 @@ const MonthContent = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 35px;
-    img {
-        width: inherit;
-        height: inherit;
-    }
 `;
 
 export default MonthDrink;
