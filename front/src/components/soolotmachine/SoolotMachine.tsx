@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import BackgroundTemplate from '../common/BackgroundTemplate';
+import FeelingCarousel from './FeelingCarousel';
 
 const SoolotMachine: React.FC = () => {
     return (
@@ -25,7 +26,7 @@ const SoolotMachine: React.FC = () => {
                     <MachineContent>
                         <RectangleWrap>
                             <Rectangle>
-                                <div />
+                                <FeelingCarousel />
                             </Rectangle>
                             <Rectangle>
                                 <div />
@@ -46,6 +47,7 @@ const SoolotMachine: React.FC = () => {
                         <p>2. 손잡이를 당겨 랜덤 조합하기</p>
                     </MachineText>
                 </MachineWrap>
+                <MachineResultBtn>결과확인</MachineResultBtn>
             </Inner>
         </BackgroundTemplate>
     );
@@ -58,10 +60,28 @@ const Inner = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     zoom: 0.9;
+`;
+
+const MachineResultBtn = styled.div`
+    width: 157px;
+    height: 157px;
+    cursor: pointer;
+    margin-left: 151.43px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid #675b4f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    line-height: 35px;
+    letter-spacing: -0.01em;
+    color: #8b7e6a;
+    font-family: 'LABDigital';
 `;
 
 const MachineText = styled.div`
@@ -173,7 +193,7 @@ const MachineBtnWrap = styled.div`
     box-sizing: border-box;
     width: 55.22px;
     height: 293.89px;
-    border: 1px solid #c4baae;
+    border: 1px solid #675b4f;
     border-radius: 47px;
     margin-left: 36.29px;
     display: flex;
@@ -184,14 +204,14 @@ const MachineBtnWrap = styled.div`
         width: 42.12px;
         height: 258.32px;
         background: #ffffff;
-        border: 1px solid #c4baae;
+        border: 1px solid #675b4f;
         border-radius: 47px;
         > div {
             box-sizing: border-box;
             width: 72.07px;
             height: 73px;
-            background: #aaa39f;
-            border: 1px solid #cac2b7;
+            background: #675b4f;
+            border: 1px solid #675b4f;
             border-radius: 50%;
             margin-top: 160px;
             margin-left: -16.475px;
