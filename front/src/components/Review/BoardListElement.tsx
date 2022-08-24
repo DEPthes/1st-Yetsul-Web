@@ -122,6 +122,7 @@ const ReviewsWrapper = styled.div`
     display: flex;
     justify-content: center;
     margin-top: 58px;
+
     width: 1153px;
 `;
 
@@ -129,6 +130,7 @@ const UserImgWrap = styled.div`
     margin-right: 17px;
     width: 103px;
     height: 103px;
+
     img {
         background: #d9d9d9;
         border-radius: 50%;
@@ -145,6 +147,7 @@ const ReviewImgWrap = styled.div`
     background: #d9d9d9;
     border-radius: 18px;
     margin-top: 10px;
+
     img {
         width: 207px;
         height: 206px;
@@ -157,6 +160,7 @@ const ReviewBox = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+
     h1 {
         margin-left: 13px;
         margin-bottom: 13px;
@@ -170,6 +174,7 @@ const ReviewBoxHeadInfo = styled.div`
     align-items: center;
     margin-left: 13px;
     margin-bottom: 20px;
+
     h3 {
         font-size: 15px;
         color: #8b7e6a;
@@ -182,12 +187,14 @@ const Star = styled.div`
     margin-bottom: 9px;
     display: flex;
     align-items: center;
+
     img {
         width: 33px;
         height: 33px;
         color: #8e8372;
         border-radius: 1px;
     }
+
     h3 {
         margin-left: 20px;
         font-size: 18px;
@@ -203,11 +210,13 @@ const ReviewBoxContent = styled.div`
     border-radius: 18px;
     margin-right: 35px;
     position: relative;
+
     h3 {
         font-size: 15px;
         color: #8b7e6a;
         margin: 20px 13px;
     }
+
     button {
         border: none;
         background: none;
@@ -227,9 +236,11 @@ const LikeBtn = styled.button`
     border-radius: 52px;
     background: none;
     margin: auto 0;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     h3 {
         font-size: 15px;
         color: #000000;

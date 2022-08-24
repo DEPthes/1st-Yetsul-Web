@@ -199,22 +199,27 @@ const Inner = styled.div`
     display: flex;
     margin-top: 28px;
     margin-bottom: 58px;
+
     img {
         width: 44px;
         height: 44px;
         color: #8e8372;
         border-radius: 1px;
     }
+
     h1 {
         font-size: 25px;
         color: #675b4f;
+
         margin-top: 64px;
     }
+
     h2 {
         font-weight: 500;
         font-size: 30px;
         color: #8b7e6a;
     }
+
     h3 {
         font-weight: 500;
         font-size: 25px;
@@ -235,6 +240,7 @@ const Circle = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
     margin-top: 20px;
     margin-bottom: 53px;
 `;
@@ -252,6 +258,7 @@ const PercentBox = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
     margin-left: 21px;
 `;
 
@@ -265,8 +272,10 @@ const PercentBar = styled.div<BarHeightType>`
     height: ${(props) => props.bar}px;
     max-height: 85px;
     min-height: 17px;
+
     background: #d9d9d9;
     border-radius: 18px;
+
     margin-top: 7px;
     margin-bottom: 11px;
 `;
@@ -286,11 +295,13 @@ const HighestPercent = styled.div`
     border-radius: 18px;
     display: flex;
     justify-content: center;
+
     span {
         margin-top: 3px; // align-center 잘안먹어서
         font-size: 14px;
         color: #ffffff;
     }
+
     + div {
         background: #8e8372;
     }

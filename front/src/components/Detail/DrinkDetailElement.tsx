@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 type DrinkDetailElementType = {
+    id: number; // 술 id
     AlcoholName: string; // 술 이름
     category: number; // 주종
     brewery: string; // 양조장
@@ -20,6 +21,7 @@ type DrinkDetailElementType = {
 };
 
 const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
+    id,
     AlcoholName,
     category,
     brewery,
@@ -241,6 +243,7 @@ const AlcoholStarS = styled.img`
 const SeeReviewLink = styled(Link)`
     text-decoration: none;
     margin-left: 5px;
+
     font-family: 'GmarketSansLight';
     font-style: normal;
     font-weight: bold;
@@ -251,6 +254,7 @@ const SeeReviewLink = styled(Link)`
 const AlcoholVolume = styled.div`
     margin-top: 20px;
     margin-left: 5px;
+
     font-family: 'GmarketSansMedium';
     font-style: normal;
     font-weight: 400;
@@ -262,12 +266,14 @@ const AlcoholVolume = styled.div`
 const Line = styled.div`
     margin-top: 15px;
     width: 505px;
+
     border-bottom: 1px solid #bbb6a8;
 `;
 
 const AlcoholPrice = styled.div`
     margin-top: 20px;
     margin-left: 5px;
+
     font-family: 'GmarketSansMedium';
     font-style: normal;
     font-weight: 400;
@@ -279,6 +285,7 @@ const AlcoholPrice = styled.div`
 const Distillery = styled.div`
     margin-top: 30px;
     margin-left: 5px;
+
     font-family: 'GmarketSansMedium';
     font-style: normal;
     font-weight: 400;
@@ -292,6 +299,7 @@ const Explain = styled.div`
     margin-bottom: 50px;
     margin-left: 5px;
     width: 500px;
+
     font-family: 'GmarketSansLight';
     font-style: normal;
     font-weight: 300;
@@ -317,6 +325,7 @@ const AlcoholGraph = styled.div`
 const LingLine = styled.div`
     margin-top: 30px;
     width: 1000px;
+
     border-bottom: 1px solid #bbb6a8;
 `;
 
@@ -324,6 +333,7 @@ const Tastes = styled.div`
     display: flex;
     justify-content: center;
     margin-top: 70px;
+
     font-family: 'GmarketSansMedium';
     font-style: normal;
     font-weight: 400;
@@ -344,6 +354,7 @@ const HLine = styled.div`
 const TasteBox = styled.div`
     display: flex;
     justify-content: center;
+
     margin-top: 50px;
     margin-bottom: 450px;
 `;
@@ -351,6 +362,7 @@ const TasteBox = styled.div`
 const Box = styled.div`
     width: 700px;
     height: 65px;
+
     border: 1px solid #8b7e6a;
     border-radius: 18px;
 `;
@@ -414,3 +426,21 @@ const SourCircle = styled.div`
     background: #8b7e6a;
     border-radius: 100px;
 `;
+
+type DrinkDetailType = {
+    id: number;
+    AlcoholName: string;
+    category: number;
+    brewery: string;
+    price: number;
+    AlcoholByVolume: number;
+    sweet: boolean;
+    bitter: boolean;
+    refreshing: boolean;
+    clean: boolean;
+    cool: boolean;
+    sour: boolean;
+    description: string;
+    star: number;
+    alcoholImage: string;
+};
