@@ -3,11 +3,17 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import BackgroundTemplate from '../common/BackgroundTemplate';
+import Clock from './Clock';
+import ShareInstagram from '../DrinkTestShare/ShareInstagram';
+import ShareGmail from '../DrinkTestShare/ShareGmail';
+import ShareKakaoBtn from '../DrinkTestShare/ShareKakaoBtn';
 
 const DrinkTicketBoxResult: React.FC = () => {
     const { state } = useLocation();
+    const [loading, setLoading] = useState(true);
     const [movie, setMovie] = useState<ResultMoiveType>(Object);
     const [drink, setDrink] = useState<ResultDrinkType>(Object);
+    const [drinks, setDrinks] = useState<ResultDrinkType[]>([]);
     const [ticket, setTicket] = useState([]);
 
     useEffect(() => {
@@ -17,172 +23,237 @@ const DrinkTicketBoxResult: React.FC = () => {
             })
             .then((res) => {
                 setTicket(res.data);
-                setMovie(ticket[0][0]);
-                setDrink(ticket[1]);
+                if (ticket.length > 0) {
+                    setMovie(ticket[0][0]);
+                    setDrink(ticket[1]);
+                    setDrinks(ticket[2]);
+                } else {
+                    setLoading(false);
+                }
             })
             .catch((err) => console.log(err));
-    }, []);
+    }, [loading]);
 
     return (
         <BackgroundTemplate heightValue="auto">
             <Result>
-                {ticket && (
+                <ResultText>나의 옛술 티켓 확인하기</ResultText>
+                <Ticket>
+                    <Date>
+                        <Clock />
+                    </Date>
                     <div>
-                        <ResultText>나의 옛술 티켓 확인하기</ResultText>
-                        <Ticket>
-                            <Date>2022/08/24</Date>
-                            <div>
-                                <LogoImg
-                                    src="/images/LogoImg.png"
-                                    alt="LogoImg"
-                                />
-                            </div>
-                            <LogoText
-                                src="/images/LogoText.png"
-                                alt="LogoText"
-                            />
-                            <div>
-                                <TicketText>TICKET</TicketText>
-                                <div>
-                                    <FlavorText>FLAVOR</FlavorText>
-                                    <DottedLine margin={3} />
-                                    <Flavors>
-                                        <Flavor marginleft={0} marginright={17}>
-                                            달달함
-                                        </Flavor>
-                                        <Flavor
-                                            marginleft={16}
-                                            marginright={17}
-                                        >
-                                            쓴 맛
-                                        </Flavor>
-                                        <Flavor
-                                            marginleft={17}
-                                            marginright={15}
-                                        >
-                                            상큼함
-                                        </Flavor>
-                                        <Flavor
-                                            marginleft={14}
-                                            marginright={14}
-                                        >
-                                            깔끔함
-                                        </Flavor>
-                                        <Flavor
-                                            marginleft={14}
-                                            marginright={17}
-                                        >
-                                            청량함
-                                        </Flavor>
-                                        <Flavor marginleft={17} marginright={3}>
-                                            신 맛
-                                        </Flavor>
-                                    </Flavors>
-                                    <div>
-                                        <FlavorBox>
-                                            {drink.sweet ? <Circle /> : null}
-                                        </FlavorBox>
-                                        <FlavorBox>
-                                            {drink.bitter ? <Circle /> : null}
-                                        </FlavorBox>
-                                        <FlavorBox>
-                                            {drink.refreshing ? (
-                                                <Circle />
-                                            ) : null}
-                                        </FlavorBox>
-                                        <FlavorBox>
-                                            {drink.clean ? <Circle /> : null}
-                                        </FlavorBox>
-                                        <FlavorBox>
-                                            {drink.cool ? <Circle /> : null}
-                                        </FlavorBox>
-                                        <FlavorBox>
-                                            {drink.sour ? <Circle /> : null}
-                                        </FlavorBox>
-                                    </div>
-                                </div>
-                                <Title>TITLE : {movie.title}</Title>
-                                <DottedLine margin={10} />
-                                <CircleDottedLine>
-                                    <CircleMovieImg
-                                        src={movie.image}
-                                        alt={movie.title}
-                                    />
-                                </CircleDottedLine>
-                                <DottedLine margin={17} />
-                                <Drinks>
-                                    <DrinkImg
-                                        src={drink.alcoholImage}
-                                        alt={drink.AlcoholName}
-                                    />
-                                    <Drink>
-                                        <DrinkVolume>
-                                            {drink.AlcoholByVolume}%
-                                        </DrinkVolume>
-                                        <DrinkType>
-                                            {(() => {
-                                                if (drink.category === 1) {
-                                                    return '탁주';
-                                                }
-                                                if (drink.category === 2) {
-                                                    return '과실주';
-                                                }
-                                                if (drink.category === 3) {
-                                                    return '약주';
-                                                }
-                                                if (drink.category === 4) {
-                                                    return '청주';
-                                                }
-                                                if (drink.category === 5) {
-                                                    return '증류주';
-                                                }
-                                                if (drink.category === 6) {
-                                                    return '리큐르주';
-                                                }
-                                                return null;
-                                            })()}
-                                        </DrinkType>
-                                        <DrinkName>
-                                            {drink.AlcoholName}
-                                        </DrinkName>
-                                        <DrinkDetail>
-                                            {movie.description}
-                                        </DrinkDetail>
-                                        <DetailLink to="/">
-                                            상세페이지 &gt;
-                                        </DetailLink>
-                                    </Drink>
-                                    <Rating>RATING : </Rating>
-                                    {drink.star === '0' ? (
-                                        <TicketStar>
-                                            <TicketStarImg
-                                                src="/images/TicketStar.png"
-                                                alt="TicketStar"
-                                            />
-                                            <TicketStarImg
-                                                src="/images/TicketStar.png"
-                                                alt="TicketStar"
-                                            />
-                                            <TicketStarImg
-                                                src="/images/TicketStar.png"
-                                                alt="TicketStar"
-                                            />
-                                            <TicketStarImg
-                                                src="/images/TicketStar.png"
-                                                alt="TicketStar"
-                                            />
-                                            <TicketStarImg
-                                                src="/images/TicketStar.png"
-                                                alt="TicketStar"
-                                            />
-                                        </TicketStar>
-                                    ) : null}
-                                </Drinks>
-                            </div>
-                        </Ticket>
-                        <Ticket1 src="/images/Ticket1.png" alt="Ticket1" />
+                        <LogoImg src="/images/LogoImg.png" alt="LogoImg" />
                     </div>
-                )}
+                    <LogoText src="/images/LogoText.png" alt="LogoText" />
+                    <div>
+                        <TicketText margin={19}>TICKET</TicketText>
+                        <div>
+                            <FlavorText>FLAVOR</FlavorText>
+                            <DottedLine margin={3} />
+                            <Flavors>
+                                <Flavor marginleft={0} marginright={17}>
+                                    달달함
+                                </Flavor>
+                                <Flavor marginleft={16} marginright={17}>
+                                    쓴 맛
+                                </Flavor>
+                                <Flavor marginleft={17} marginright={15}>
+                                    상큼함
+                                </Flavor>
+                                <Flavor marginleft={14} marginright={14}>
+                                    깔끔함
+                                </Flavor>
+                                <Flavor marginleft={14} marginright={17}>
+                                    청량함
+                                </Flavor>
+                                <Flavor marginleft={17} marginright={3}>
+                                    신 맛
+                                </Flavor>
+                            </Flavors>
+                            <div>
+                                <FlavorBox>
+                                    {drink.sweet ? <Circle /> : null}
+                                </FlavorBox>
+                                <FlavorBox>
+                                    {drink.bitter ? <Circle /> : null}
+                                </FlavorBox>
+                                <FlavorBox>
+                                    {drink.refreshing ? <Circle /> : null}
+                                </FlavorBox>
+                                <FlavorBox>
+                                    {drink.clean ? <Circle /> : null}
+                                </FlavorBox>
+                                <FlavorBox>
+                                    {drink.cool ? <Circle /> : null}
+                                </FlavorBox>
+                                <FlavorBox>
+                                    {drink.sour ? <Circle /> : null}
+                                </FlavorBox>
+                            </div>
+                        </div>
+                        <Title>TITLE : {movie.title}</Title>
+                        <DottedLine margin={10} />
+                        <CircleDottedLine>
+                            <CircleMovieImg
+                                src={movie.image}
+                                alt={movie.title}
+                            />
+                        </CircleDottedLine>
+                        <DottedLine margin={17} />
+                        <Drinks margin={0}>
+                            <DrinkImg
+                                src={drink.alcoholImage}
+                                alt={drink.AlcoholName}
+                            />
+                            <Drink>
+                                <DrinkVolume>
+                                    {drink.AlcoholByVolume}%
+                                </DrinkVolume>
+                                <DrinkType>
+                                    {(() => {
+                                        if (drink.category === 1) {
+                                            return '탁주';
+                                        }
+                                        if (drink.category === 2) {
+                                            return '과실주';
+                                        }
+                                        if (drink.category === 3) {
+                                            return '약주';
+                                        }
+                                        if (drink.category === 4) {
+                                            return '청주';
+                                        }
+                                        if (drink.category === 5) {
+                                            return '증류주';
+                                        }
+                                        if (drink.category === 6) {
+                                            return '리큐르주';
+                                        }
+                                        return null;
+                                    })()}
+                                </DrinkType>
+                                <DrinkName>{drink.AlcoholName}</DrinkName>
+                                <DrinkDetail>{movie.description}</DrinkDetail>
+                                <DetailLink to="/" margin={175}>
+                                    상세페이지 &gt;
+                                </DetailLink>
+                            </Drink>
+                            <Rating>RATING : </Rating>
+                            {drink.star === '0' ? (
+                                <TicketStar>
+                                    <TicketStarImg
+                                        src="/images/TicketStar.png"
+                                        alt="TicketStar"
+                                    />
+                                    <TicketStarImg
+                                        src="/images/TicketStar.png"
+                                        alt="TicketStar"
+                                    />
+                                    <TicketStarImg
+                                        src="/images/TicketStar.png"
+                                        alt="TicketStar"
+                                    />
+                                    <TicketStarImg
+                                        src="/images/TicketStar.png"
+                                        alt="TicketStar"
+                                    />
+                                    <TicketStarImg
+                                        src="/images/TicketStar.png"
+                                        alt="TicketStar"
+                                    />
+                                </TicketStar>
+                            ) : null}
+                        </Drinks>
+                    </div>
+                    <TicketText margin={602}>TICKET</TicketText>
+                    <DottedLine margin={26} />
+                    <Plus>이런 술도 있어요!</Plus>
+                    <DottedLinex />
+                    {drinks.map((data) => {
+                        return (
+                            <Drinks key={data.id} margin={60}>
+                                <DrinkImg
+                                    src={data.alcoholImage}
+                                    alt={data.AlcoholName}
+                                />
+                                <Drink>
+                                    <DrinkVolume>
+                                        {data.AlcoholByVolume}%
+                                    </DrinkVolume>
+                                    <DrinkType>
+                                        {(() => {
+                                            if (data.category === 1) {
+                                                return '탁주';
+                                            }
+                                            if (data.category === 2) {
+                                                return '과실주';
+                                            }
+                                            if (data.category === 3) {
+                                                return '약주';
+                                            }
+                                            if (data.category === 4) {
+                                                return '청주';
+                                            }
+                                            if (data.category === 5) {
+                                                return '증류주';
+                                            }
+                                            if (data.category === 6) {
+                                                return '리큐르주';
+                                            }
+                                            return null;
+                                        })()}
+                                    </DrinkType>
+                                    <DrinkName>{data.AlcoholName}</DrinkName>
+                                    <DrinkDetail>
+                                        {data.description}
+                                    </DrinkDetail>
+                                    <DetailLink to="/" margin={165}>
+                                        상세페이지 &gt;
+                                    </DetailLink>
+                                </Drink>
+                            </Drinks>
+                        );
+                    })}
+                    <Ratings>RATING : </Ratings>
+                    {drink.star === '0' ? (
+                        <TicketStars>
+                            <TicketStarImg
+                                src="/images/TicketStar.png"
+                                alt="TicketStar"
+                            />
+                            <TicketStarImg
+                                src="/images/TicketStar.png"
+                                alt="TicketStar"
+                            />
+                            <TicketStarImg
+                                src="/images/TicketStar.png"
+                                alt="TicketStar"
+                            />
+                            <TicketStarImg
+                                src="/images/TicketStar.png"
+                                alt="TicketStar"
+                            />
+                            <TicketStarImg
+                                src="/images/TicketStar.png"
+                                alt="TicketStar"
+                            />
+                        </TicketStars>
+                    ) : null}
+                    <Restart>
+                        <RestartLink to="/ticketbox">다시하기</RestartLink>
+                    </Restart>
+                    <Share>
+                        <ShareText>
+                            친구들한테 <strong>공유하고</strong> 옛술의 전당
+                            알리기!
+                        </ShareText>
+                        <ShareGmail />
+                        <ShareInstagram />
+                        <ShareKakaoBtn />
+                    </Share>
+                </Ticket>
+                <TicketImg src="/images/Ticket.png" alt="Ticket" />
             </Result>
         </BackgroundTemplate>
     );
@@ -221,11 +292,13 @@ const Ticket = styled.div`
     transform: translateX(-50%);
 `;
 
-const Ticket1 = styled.img`
+const TicketImg = styled.img`
     position: relative;
-    margin-top: 50px;
     width: 618px;
-    height: 2068px;
+    height: 3888px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 50px;
     filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.25));
 `;
 
@@ -255,9 +328,8 @@ const LogoText = styled.img`
     height: 26px;
 `;
 
-const TicketText = styled.div`
-    margin-top: 19px;
-
+const TicketText = styled.div<{ margin: number }>`
+    margin-top: ${(props) => props.margin}px;
     font-family: 'GmarketSansMedium';
     font-style: normal;
     font-weight: 400;
@@ -350,8 +422,10 @@ const CircleMovieImg = styled.img`
     height: 163px;
 `;
 
-const Drinks = styled.div`
+const Drinks = styled.div<{ margin: number }>`
     display: flex;
+    margin-top: ${(props) => props.margin}px;
+    margin-bottom: 330px;
 `;
 
 const DrinkImg = styled.img`
@@ -422,9 +496,9 @@ const DrinkDetail = styled.div`
     color: #8e8372;
 `;
 
-const DetailLink = styled(Link)`
+const DetailLink = styled(Link)<{ margin: number }>`
     text-decoration: none;
-    margin-left: 180px;
+    margin-left: ${(props) => props.margin}px;
 
     font-family: 'GmarketSansMedium';
     font-style: normal;
@@ -456,6 +530,103 @@ const TicketStar = styled.div`
 
 const TicketStarImg = styled.img`
     margin-right: 10px;
+`;
+
+const Plus = styled.div`
+    margin-top: 24px;
+
+    font-family: 'GmarketSansMedium';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 30px;
+    text-align: center;
+    letter-spacing: 0.01em;
+    color: #675b4f;
+`;
+
+const DottedLinex = styled.div`
+    position: absolute;
+    margin-top: 370px;
+    width: 497px;
+    height: 0px;
+
+    border-bottom: 1px dashed #000000;
+`;
+
+const Ratings = styled.div`
+    position: absolute;
+    margin-top: 3px;
+    margin-left: 88px;
+
+    font-family: 'GmarketSansMedium';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 175.5%;
+    text-align: center;
+
+    color: #675b4f;
+`;
+
+const TicketStars = styled.div`
+    margin-left: 158px;
+`;
+
+const Restart = styled.div`
+    position: absolute;
+    margin-top: 605px;
+    left: 50%;
+    transform: translateX(-50%);
+`;
+
+const RestartLink = styled(Link)`
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    width: 157px;
+    height: 157px;
+
+    background: #ffffff;
+    border: 1px solid #675b4f;
+    border-radius: 100px;
+
+    font-family: 'GmarketSansMedium';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 162px;
+    letter-spacing: -0.01em;
+    color: #8b7e6a;
+
+    :hover {
+        cursor: pointer;
+    }
+`;
+
+const Share = styled.div`
+    position: absolute;
+    margin-top: 845px;
+    left: 50%;
+    transform: translateX(-50%);
+`;
+
+const ShareText = styled.div`
+    width: 373px;
+    height: 102px;
+
+    font-family: 'GmarketSansMedium';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 60px;
+    text-align: center;
+    letter-spacing: 0.01em;
+    color: #675b4f;
+
+    strong {
+        font-family: 'GmarketSansBold';
+    }
 `;
 
 type ResultMoiveType = {
