@@ -15,41 +15,7 @@ const ThirdMain: React.FC = () => {
                             당신의 전통주를 추천받아보세요!
                         </p>
                     </MachineText>
-                    <MachineWrap>
-                        <MachineHead>
-                            <div id="circleWrap">
-                                <Circle />
-                                <Circle black />
-                                <Circle />
-                            </div>
-                            <LongCircle>
-                                <h1>SOOLOT MACHINE</h1>
-                            </LongCircle>
-                            <div id="circleWrap">
-                                <Circle />
-                                <Circle black />
-                                <Circle />
-                            </div>
-                        </MachineHead>
-                        <MachineContent>
-                            <RectangleWrap>
-                                <Rectangle>
-                                    <div />
-                                </Rectangle>
-                                <Rectangle>
-                                    <div />
-                                </Rectangle>
-                                <Rectangle>
-                                    <div />
-                                </Rectangle>
-                            </RectangleWrap>
-                            <MachineBtnWrap>
-                                <div>
-                                    <div />
-                                </div>
-                            </MachineBtnWrap>
-                        </MachineContent>
-                    </MachineWrap>
+                    <MachineImg src="/images/soolot.png" alt="soolot" />
                     <Link to="/soolot">
                         <svg
                             width="157"
@@ -95,123 +61,11 @@ const InnerLeft = styled.div`
     align-items: center;
 `;
 
-const MachineWrap = styled.div`
-    width: 814px;
-    height: 480px;
-    border: 1px solid #4f4941;
-    border-radius: 47px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 60px;
-`;
-
-const MachineHead = styled.div`
-    width: 100%;
-    margin-top: 34px;
-    margin-bottom: 29px;
-    display: flex;
-    justify-content: center;
-    #circleWrap {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-`;
-
-const MachineContent = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: center;
-`;
-
-const RectangleWrap = styled.div`
-    display: flex;
-`;
-
-type isblack = {
-    black?: boolean;
-};
-
-const Circle = styled.div<isblack>`
-    box-sizing: border-box;
-    width: 22.46px;
-    height: 21.53px;
-    background: ${(props) => (props.black ? '#AAA39F' : '#FFFFFF')};
-    border: 1px solid #cac2b7;
-    border-radius: 50%;
-`;
-
-const LongCircle = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    width: 578px;
-    height: 82px;
-    background: #ffffff;
-    border: 1px solid #c3baae;
-    border-radius: 42.5px;
-    margin: 0 59.85px;
-    h1 {
-        font-family: 'LABDigital';
-        font-size: 50px;
-        line-height: 104%;
-        color: #675b4f;
-    }
-`;
-
-const Rectangle = styled.div`
-    box-sizing: border-box;
-    width: 196.55px;
-    height: 293.89px;
-    background: #ffffff;
-    border: 1px solid #675b4f;
-    border-radius: 47px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    &:not(:nth-of-type(3)) {
-        margin-right: 23.54px;
-    }
-    > div {
-        box-sizing: border-box;
-        height: 276.91px;
-        width: 157.24px;
-        border-right: 1px solid #675b4f;
-        border-left: 1px solid #675b4f;
-    }
-`;
-
-const MachineBtnWrap = styled.div`
-    box-sizing: border-box;
-    width: 55.22px;
-    height: 293.89px;
-    border: 1px solid #c4baae;
-    border-radius: 47px;
-    margin-left: 36.29px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    > div {
-        box-sizing: border-box;
-        width: 42.12px;
-        height: 258.32px;
-        background: #ffffff;
-        border: 1px solid #c4baae;
-        border-radius: 47px;
-        > div {
-            box-sizing: border-box;
-            width: 72.07px;
-            height: 73px;
-            background: #aaa39f;
-            border: 1px solid #cac2b7;
-            border-radius: 50%;
-            margin-top: 160px;
-            margin-left: -16.475px;
-        }
-    }
+const MachineImg = styled.img`
+    width: 404px;
+    height: 394px;
+    margin-bottom: 53px;
+    margin-left: 115px;
 `;
 
 const MachineText = styled.div`
