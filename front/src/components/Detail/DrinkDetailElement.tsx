@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import Star from '../common/Star';
 
-type DrinkDetailElementType = {
-    id: number; // 술 id
+export interface DrinkDetailElementType {
     AlcoholName: string; // 술 이름
     category: number; // 주종
     brewery: string; // 양조장
@@ -18,10 +18,9 @@ type DrinkDetailElementType = {
     description: string; // 술 설명
     star: number; // 술 별 점
     alcoholImage: string; // 술 사진
-};
+}
 
 const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
-    id,
     AlcoholName,
     category,
     brewery,
@@ -37,72 +36,6 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
     star,
     alcoholImage,
 }) => {
-    const StarSrc = (starCount: number) => {
-        // 별 반쪽 채워진 거 받고 수정해야됨
-        const result = [];
-        if (starCount === 0) {
-            result.push(
-                '/images/Star.png',
-                '/images/Star.png',
-                '/images/Star.png',
-                '/images/Star.png',
-                '/images/Star.png',
-            );
-        } else if (starCount <= 1.5) {
-            result.push(
-                '/images/StarFill.png',
-                '/images/Star.png',
-                '/images/Star.png',
-                '/images/Star.png',
-                '/images/Star.png',
-            );
-        } else if (starCount <= 2.5) {
-            result.push(
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/Star.png',
-                '/images/Star.png',
-                '/images/Star.png',
-            );
-        } else if (starCount <= 3.5) {
-            result.push(
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/Star.png',
-                '/images/Star.png',
-            );
-        } else if (starCount <= 4.5) {
-            result.push(
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/Star.png',
-            );
-        } else {
-            result.push(
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-            );
-        }
-
-        result.toString();
-
-        return (
-            <div>
-                <img src={result[0]} alt="star" />
-                <img src={result[1]} alt="star" />
-                <img src={result[2]} alt="star" />
-                <img src={result[3]} alt="star" />
-                <img src={result[4]} alt="star" />
-            </div>
-        );
-    };
-
     return (
         <div>
             <AlcoholExplain>
@@ -118,7 +51,7 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
                     </AlcoholType>
                     <AlcoholHeart src="/images/Heart.png" alt="빈 하트" />
                     <AlcoholNames>{AlcoholName}</AlcoholNames>
-                    <AlcoholStar>{StarSrc(star)}</AlcoholStar>
+                    <Star star={star} big={false} />
                     <SeeReviewLink to="/">(리뷰 +100) &gt;</SeeReviewLink>
                     <Line />
                     <AlcoholVolume>{AlcoholByVolume}%</AlcoholVolume>
@@ -203,12 +136,6 @@ const AlcoholNames = styled.div`
     font-size: 40px;
     line-height: 50px;
     color: #8b7e6a;
-`;
-
-const AlcoholStar = styled.div`
-    margin-top: 10px;
-    margin-left: 5px;
-    display: inline-block;
 `;
 
 const SeeReviewLink = styled(Link)`

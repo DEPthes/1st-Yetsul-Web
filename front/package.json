@@ -73,5 +73,6 @@
         "eslint-plugin-react-hooks": "^4.3.0",
         "prettier": "^2.6.2",
         "react-app-rewired": "^2.2.1"
-    }
+    },
+    "proxy": "https://depth-server.herokuapp.com"
 }

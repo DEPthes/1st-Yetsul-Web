@@ -25,8 +25,14 @@ const LoginModal: React.FC<modalType> = ({ modal }) => {
                     </svg>
                 </LoginCloseBtn>
                 <LoginHead>
-                    <img src="images/yetsul_logo1.png" alt="logo" />
-                    <img src="images/yetsul_logo2.png" alt="logotext" />
+                    <img
+                        src={`${process.env.PUBLIC_URL}/images/yetsul_logo1.png`}
+                        alt="logo"
+                    />
+                    <img
+                        src={`${process.env.PUBLIC_URL}/images/yetsul_logo2.png`}
+                        alt="logotext"
+                    />
                 </LoginHead>
                 <LoginMain>
                     <ButtonStyle

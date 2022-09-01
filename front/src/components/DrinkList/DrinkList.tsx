@@ -1,21 +1,19 @@
-import React, { Key, ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import DrinkCategoryBtn from './DrinkCategoryBtn';
 import DrinkListElement from './DrinkListElement';
-import { drinkInfo } from '../common/dummydata';
 import Pagination from './Pagination';
 import { RootState } from '../../store/config';
 
 const DrinkList: React.FC = () => {
     const [drinks, setDrinks] = useState<DrinkType[]>([]);
-    const [limit, setLimit] = useState(12); // 페이지 당 보여줄 게시물 수
+    const [limit] = useState(12); // 페이지 당 보여줄 게시물 수
     const [page, setPage] = useState(1); // 현재 페이지
     const offset = (page - 1) * limit; // 페이지 당 첫 게시물의 index
     const [sort, setSort] = useState('ASC');
-    const dispatch = useDispatch();
 
     const category = useSelector((state: RootState) => {
         return state.listCategory.category;

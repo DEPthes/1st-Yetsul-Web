@@ -15,7 +15,10 @@ const ThirdMain: React.FC = () => {
                             당신의 전통주를 추천받아보세요!
                         </p>
                     </MachineText>
-                    <MachineImg src="/images/soolot.png" alt="soolot" />
+                    <MachineImg
+                        src={`${process.env.PUBLIC_URL}/images/soolot.png`}
+                        alt="soolot"
+                    />
                     <Link to="/soolot">
                         <svg
                             width="157"
