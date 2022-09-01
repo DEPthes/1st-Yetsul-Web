@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Star from '../common/Star';
 
 type ReviewStarType = {
     starAvg: number; // 사용자 총 평점 별 개수, 사용자 총 평점
@@ -16,78 +17,14 @@ const ReviewStar: React.FC<ReviewStarType> = ({
     highestPercent,
     mostStars,
 }) => {
-    const StarSrc = (starCount: number) => {
-        // 별 반쪽 채워진 거 받고 수정해야됨
-        const result = [];
-        if (starCount === 0) {
-            result.push(
-                '/images/Star.png',
-                '/images/Star.png',
-                '/images/Star.png',
-                '/images/Star.png',
-                '/images/Star.png',
-            );
-        } else if (starCount <= 1.5) {
-            result.push(
-                '/images/StarFill.png',
-                '/images/Star.png',
-                '/images/Star.png',
-                '/images/Star.png',
-                '/images/Star.png',
-            );
-        } else if (starCount <= 2.5) {
-            result.push(
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/Star.png',
-                '/images/Star.png',
-                '/images/Star.png',
-            );
-        } else if (starCount <= 3.5) {
-            result.push(
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/Star.png',
-                '/images/Star.png',
-            );
-        } else if (starCount <= 4.5) {
-            result.push(
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/Star.png',
-            );
-        } else {
-            result.push(
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-            );
-        }
-
-        result.toString();
-
-        return (
-            <div>
-                <img src={result[0]} alt="star" />
-                <img src={result[1]} alt="star" />
-                <img src={result[2]} alt="star" />
-                <img src={result[3]} alt="star" />
-                <img src={result[4]} alt="star" />
-            </div>
-        );
-    };
-
     return (
         <Inner>
             {Number.isNaN(starAvg) ? (
                 <Box>
                     <h1>사용자 총 평점</h1>
-                    <ImgBox>{StarSrc(0)}</ImgBox>
+                    <ImgBox>
+                        <Star star={0} big />
+                    </ImgBox>
                     <div>
                         <h2>0 / 5</h2>
                     </div>
@@ -95,7 +32,9 @@ const ReviewStar: React.FC<ReviewStarType> = ({
             ) : (
                 <Box>
                     <h1>사용자 총 평점</h1>
-                    <ImgBox>{StarSrc(starAvg)}</ImgBox>
+                    <ImgBox>
+                        <Star star={starAvg} big />
+                    </ImgBox>
                     <div>
                         <h2>{starAvg} / 5</h2>
                     </div>

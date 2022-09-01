@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Star from '../common/Star';
 
 type reviewType = {
     userImg: string; // user 프로필 사진
@@ -24,63 +25,6 @@ const BoardListElement: React.FC<reviewType> = ({
     like,
     reviewImg,
 }) => {
-    const StarSrc = (starCount: number) => {
-        const result = [];
-        if (starCount === 1) {
-            result.push(
-                '/images/StarFill.png',
-                '/images/Star.png',
-                '/images/Star.png',
-                '/images/Star.png',
-                '/images/Star.png',
-            );
-        } else if (starCount === 2) {
-            result.push(
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/Star.png',
-                '/images/Star.png',
-                '/images/Star.png',
-            );
-        } else if (starCount === 3) {
-            result.push(
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/Star.png',
-                '/images/Star.png',
-            );
-        } else if (starCount === 4) {
-            result.push(
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/Star.png',
-            );
-        } else {
-            result.push(
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-                '/images/StarFill.png',
-            );
-        }
-
-        result.toString();
-
-        return (
-            <div>
-                <img src={result[0]} alt="star" />
-                <img src={result[1]} alt="star" />
-                <img src={result[2]} alt="star" />
-                <img src={result[3]} alt="star" />
-                <img src={result[4]} alt="star" />
-            </div>
-        );
-    };
-
     return (
         <ReviewsWrapper>
             <UserImgWrap>
@@ -89,11 +33,10 @@ const BoardListElement: React.FC<reviewType> = ({
 
             <ReviewBox>
                 <h1>{title}</h1>
-                <Star>
-                    {StarSrc(starCount).props.children}
-
+                <StarWrap>
+                    <Star star={starCount} big />
                     <h3>{starCount}개</h3>
-                </Star>
+                </StarWrap>
                 <ReviewBoxHeadInfo>
                     <h3>{userName}</h3>
                     <h3>{date.slice(0, 10)}</h3>
@@ -180,7 +123,7 @@ const ReviewBoxHeadInfo = styled.div`
     }
 `;
 
-const Star = styled.div`
+const StarWrap = styled.div`
     margin-left: 8px;
     margin-bottom: 9px;
     display: flex;

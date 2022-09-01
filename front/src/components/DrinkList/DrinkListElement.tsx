@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import Star from '../common/Star';
 
 type drinkInfoType = {
     id: number;
@@ -179,154 +180,7 @@ const DrinkListElement: React.FC<drinkInfoType> = ({
                         <h1>{abv}%</h1>
                     </InfoHead>
                     <InfoFoot>
-                        {
-                            {
-                                0: (
-                                    <AlcoholStar>
-                                        <AlcoholStarS
-                                            src="/images/star.png"
-                                            alt="빈 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/star.png"
-                                            alt="빈 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/star.png"
-                                            alt="빈 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/star.png"
-                                            alt="빈 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/star.png"
-                                            alt="빈 별"
-                                        />
-                                    </AlcoholStar>
-                                ),
-                                1: (
-                                    <AlcoholStar>
-                                        <AlcoholStarS
-                                            src="/images/StarFill.png"
-                                            alt="채워진 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/star.png"
-                                            alt="빈 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/star.png"
-                                            alt="빈 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/star.png"
-                                            alt="빈 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/star.png"
-                                            alt="빈 별"
-                                        />
-                                    </AlcoholStar>
-                                ),
-                                2: (
-                                    <AlcoholStar>
-                                        <AlcoholStarS
-                                            src="/images/StarFill.png"
-                                            alt="채워진 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/StarFill.png"
-                                            alt="채워진 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/star.png"
-                                            alt="빈 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/star.png"
-                                            alt="빈 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/star.png"
-                                            alt="빈 별"
-                                        />
-                                    </AlcoholStar>
-                                ),
-                                3: (
-                                    <AlcoholStar>
-                                        <AlcoholStarS
-                                            src="/images/StarFill.png"
-                                            alt="채워진 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/StarFill.png"
-                                            alt="채워진 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/StarFill.png"
-                                            alt="채워진 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/star.png"
-                                            alt="빈 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/star.png"
-                                            alt="빈 별"
-                                        />
-                                    </AlcoholStar>
-                                ),
-                                4: (
-                                    <AlcoholStar>
-                                        <AlcoholStarS
-                                            src="/images/StarFill.png"
-                                            alt="채워진 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/StarFill.png"
-                                            alt="채워진 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/StarFill.png"
-                                            alt="채워진 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/StarFill.png"
-                                            alt="채워진 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/star.png"
-                                            alt="빈 별"
-                                        />
-                                    </AlcoholStar>
-                                ),
-                                5: (
-                                    <AlcoholStar>
-                                        <AlcoholStarS
-                                            src="/images/StarFill.png"
-                                            alt="채워진 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/StarFill.png"
-                                            alt="채워진 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/StarFill.png"
-                                            alt="채워진 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/StarFill.png"
-                                            alt="채워진 별"
-                                        />
-                                        <AlcoholStarS
-                                            src="/images/StarFill.png"
-                                            alt="채워진 별"
-                                        />
-                                    </AlcoholStar>
-                                ),
-                            }[star]
-                        }
+                        <Star star={star} big={false} />
                     </InfoFoot>
                 </Info>
             </DrinkElementWrap>
@@ -353,14 +207,6 @@ const DrinkElementWrap = styled.div`
         border-radius: 18px;
     }
     cursor: pointer;
-`;
-
-const AlcoholStar = styled.div`
-    display: inline-block;
-`;
-
-const AlcoholStarS = styled.img`
-    margin-right: 5px;
 `;
 
 const DrinkCategory = styled.div`

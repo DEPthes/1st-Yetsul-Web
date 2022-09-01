@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import Star from '../common/Star';
 
-type DrinkDetailElementType = {
+export interface DrinkDetailElementType {
     AlcoholName: string; // 술 이름
     category: number; // 주종
     brewery: string; // 양조장
@@ -17,7 +18,7 @@ type DrinkDetailElementType = {
     description: string; // 술 설명
     star: number; // 술 별 점
     alcoholImage: string; // 술 사진
-};
+}
 
 const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
     AlcoholName,
@@ -50,105 +51,7 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
                     </AlcoholType>
                     <AlcoholHeart src="/images/Heart.png" alt="빈 하트" />
                     <AlcoholNames>{AlcoholName}</AlcoholNames>
-                    {star === 0 ? (
-                        <AlcoholStar>
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                        </AlcoholStar>
-                    ) : null}
-                    {star === 1 ? (
-                        <AlcoholStar>
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                        </AlcoholStar>
-                    ) : null}
-                    {star === 2 ? (
-                        <AlcoholStar>
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                        </AlcoholStar>
-                    ) : null}
-                    {star === 3 ? (
-                        <AlcoholStar>
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                        </AlcoholStar>
-                    ) : null}
-                    {star === 4 ? (
-                        <AlcoholStar>
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS src="/images/Star.png" alt="빈 별" />
-                        </AlcoholStar>
-                    ) : null}
-                    {star === 5 ? (
-                        <AlcoholStar>
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                            <AlcoholStarS
-                                src="/images/StarFill.png"
-                                alt="채워진 별"
-                            />
-                        </AlcoholStar>
-                    ) : null}
+                    <Star star={star} big={false} />
                     <SeeReviewLink to="/">(리뷰 +100) &gt;</SeeReviewLink>
                     <Line />
                     <AlcoholVolume>{AlcoholByVolume}%</AlcoholVolume>
@@ -233,16 +136,6 @@ const AlcoholNames = styled.div`
     font-size: 40px;
     line-height: 50px;
     color: #8b7e6a;
-`;
-
-const AlcoholStar = styled.div`
-    margin-top: 10px;
-    margin-left: 5px;
-    display: inline-block;
-`;
-
-const AlcoholStarS = styled.img`
-    margin-right: 5px;
 `;
 
 const SeeReviewLink = styled(Link)`
