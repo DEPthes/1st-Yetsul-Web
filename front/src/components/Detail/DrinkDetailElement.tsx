@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 type DrinkDetailElementType = {
-    id: number; // 술 id
     AlcoholName: string; // 술 이름
     category: number; // 주종
     brewery: string; // 양조장
@@ -21,7 +20,6 @@ type DrinkDetailElementType = {
 };
 
 const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
-    id,
     AlcoholName,
     category,
     brewery,
@@ -433,21 +431,3 @@ const SourCircle = styled.div`
     background: #8b7e6a;
     border-radius: 100px;
 `;
-
-type DrinkDetailType = {
-    id: number;
-    AlcoholName: string;
-    category: number;
-    brewery: string;
-    price: number;
-    AlcoholByVolume: number;
-    sweet: boolean;
-    bitter: boolean;
-    refreshing: boolean;
-    clean: boolean;
-    cool: boolean;
-    sour: boolean;
-    description: string;
-    star: number;
-    alcoholImage: string;
-};

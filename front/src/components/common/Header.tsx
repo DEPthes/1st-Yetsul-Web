@@ -83,17 +83,17 @@ const Header: React.FC = () => {
                 <LeftHeaed>
                     <img
                         className="logo_img"
-                        src="images/yetsul_logo1.png"
+                        src={`${process.env.PUBLIC_URL}/images/yetsul_logo1.png`}
                         alt="main logo"
                     />
                     <img
                         className="logo_text"
-                        src="images/yetsul_logo2.png"
+                        src={`${process.env.PUBLIC_URL}/images/yetsul_logo2.png`}
                         alt="main text"
                     />
                     <img
                         className="logo_second"
-                        src="images/yetsul_logo3.png"
+                        src={`${process.env.PUBLIC_URL}/images/yetsul_logo3.png`}
                         alt="logo_second"
                     />
                 </LeftHeaed>

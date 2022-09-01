@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 declare global {
     interface Window {
+        // eslint-disable-next-line @typescript-eslint/ban-types, @typescript-eslint/no-explicit-any
         Kakao: any;
     }
 }

@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 type reviewType = {
-    id: number; // 술 id
     userImg: string; // user 프로필 사진
     userName: string; // user 이름
     title: string; // review 제목
@@ -15,7 +14,6 @@ type reviewType = {
 };
 
 const BoardListElement: React.FC<reviewType> = ({
-    id,
     userImg,
     userName,
     title,
