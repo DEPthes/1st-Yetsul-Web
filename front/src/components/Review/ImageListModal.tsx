@@ -37,7 +37,7 @@ const ImageListModal: React.FC<modalType> = ({ modal, photoReview }) => {
     return (
         <ModalMain aria-hidden id="modal">
             <ImageListWrap aria-hidden className="imageModalBackground">
-                <p>포토후기 60</p>
+                <p>{`포토후기 ${photoReview.length}`}</p>
                 <CloseBtn>
                     <svg
                         width="38"
