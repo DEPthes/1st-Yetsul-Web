@@ -7,7 +7,10 @@ export const FixProfile: React.FC = () => {
     return (
         <BackgroundTemplate heightValue="100%">
             <Inner>
-                <ProfileHeader />
+                <ProfileHeader
+                    BigHeader="나의 프로필 변경하기"
+                    SmallHeader=""
+                />
                 <ProfileImgFrame>
                     <UserProfileImg src="images/profilegray.png" />
                 </ProfileImgFrame>

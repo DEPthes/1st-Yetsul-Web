@@ -6,11 +6,13 @@ import Star from '../common/Star';
 type myreviewtype = {
     alcoholId: number;
     title: string;
+    star: number;
 };
 
 export const MyReviewWidget: React.FC<myreviewtype> = ({
     alcoholId,
     title,
+    star,
 }) => {
     const MyreviewAlcoholId = alcoholId;
     const [MyreviewAlcoholData, setMyreviewAlcoholData] = useState(Object);
@@ -52,7 +54,6 @@ export const MyReviewWidget: React.FC<myreviewtype> = ({
                 break;
         }
     }, [MyreviewAlcoholCategoryNum]);
-    console.log(categoryString);
 
     return (
         <MyreviewBarInner>
@@ -72,7 +73,7 @@ export const MyReviewWidget: React.FC<myreviewtype> = ({
             </MyreviewInformationSection>
             <MyreviewRightSection>
                 <StarBox>
-                    <Star big star={2} widthValue={15} heightValue={27} />
+                    <Star big star={star} widthValue={15} heightValue={27} />
                 </StarBox>
                 <SeeFull>전체보기 &#62;</SeeFull>
             </MyreviewRightSection>
@@ -86,7 +87,7 @@ const MyreviewBarInner = styled.div`
     border: 1px solid #675b4f;
     border-radius: 18px;
     display: flex;
-    margin: 8px 0;
+    margin: 8px;
 `;
 const MyreviewDrinkImgSection = styled.div`
     margin-left: 101.8px;
@@ -114,11 +115,10 @@ const MyreviewDrinkKind = styled.div`
     color: #454038;
     border: 1px solid #454038;
     border-radius: 24px;
-    padding: 0.5vw 1.3vw;
+    padding: 10px 25px;
 `;
 const MyreviewDrinkName = styled.p`
     color: #675b4f;
-
     margin-left: 20px;
     font-size: 28px;
     line-height: 0;

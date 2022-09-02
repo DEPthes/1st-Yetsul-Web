@@ -33,10 +33,10 @@ export const Profile: React.FC = () => {
             .catch((err) => console.log(err));
     }, []);
 
-    // const ReviewalcholId = AlcholthatUserWrite.alcoholId;
-    // console.log(ReviewalcholId);
+    const AlcholthatUserWriteforWidget = AlcholthatUserWrite.slice(0, 3);
+
     return (
-        <BackgroundTemplate heightValue="100%">
+        <BackgroundTemplate heightValue="auto">
             <Inner>
                 <ProfileContainer>
                     <ProfileImgSection>
@@ -73,21 +73,24 @@ export const Profile: React.FC = () => {
                             </MyreviewArray>
                         </MyreviewHeader>
                         <Myreview>
-                            {AlcholthatUserWrite.map(
+                            {AlcholthatUserWriteforWidget.map(
                                 (myreview: {
                                     id: number;
                                     alcoholId: number;
                                     title: string;
+                                    star: number;
                                 }) => (
                                     <MyReviewWidget
                                         key={myreview.id}
                                         alcoholId={myreview.alcoholId}
                                         title={myreview.title}
+                                        star={myreview.star}
                                     />
                                 ),
                             )}
-
-                            <SeeFullOuter>전체보기 &#62;</SeeFullOuter>
+                            <MyReviewSeeFullLink to="/profile/MyReview">
+                                <SeeFullOuter>전체보기 &#62;</SeeFullOuter>
+                            </MyReviewSeeFullLink>
                         </Myreview>
                         <MyreviewHeader>
                             <MyreviewHeadingCom>
@@ -95,21 +98,35 @@ export const Profile: React.FC = () => {
                             </MyreviewHeadingCom>
                         </MyreviewHeader>
                         <MyfavoriteBox>
-                            {MyLikeAlcoholDataforWidget.map(
-                                (mylike: {
-                                    id: number;
-                                    AlcoholName: string;
-                                    star: number;
-                                    AlcoholByVolume: number;
-                                }) => (
-                                    <FavoriteAlcholWidget
-                                        key={mylike.id}
-                                        AlcoholName={mylike.AlcoholName}
-                                        star={mylike.star}
-                                        AlcoholByVolume={mylike.AlcoholByVolume}
-                                    />
-                                ),
-                            )}
+                            <MyLikeWidgetContainer>
+                                {MyLikeAlcoholDataforWidget.map(
+                                    (mylike: {
+                                        id: number;
+                                        AlcoholName: string;
+                                        star: number;
+                                        AlcoholByVolume: number;
+                                        alcoholImage: string;
+                                    }) => (
+                                        <FavoriteAlcholWidget
+                                            id={mylike.id}
+                                            key={mylike.id}
+                                            AlcoholName={mylike.AlcoholName}
+                                            star={mylike.star}
+                                            AlcoholByVolume={
+                                                mylike.AlcoholByVolume
+                                            }
+                                            alcoholImage={mylike.alcoholImage}
+                                        />
+                                    ),
+                                )}
+                            </MyLikeWidgetContainer>
+                            <SeeFullOuter2Container>
+                                <MyLikeSeeFullLink to="/profile/MyLikeAlcohole">
+                                    <SeeFullOuter2>
+                                        전체보기 &#62;
+                                    </SeeFullOuter2>
+                                </MyLikeSeeFullLink>
+                            </SeeFullOuter2Container>
                         </MyfavoriteBox>
                     </ProfileImformationSection>
                 </ProfileContainer>
@@ -120,32 +137,26 @@ export const Profile: React.FC = () => {
 
 const Inner = styled.div`
     width: 100vw;
-    overflow-y: hidden;
-    overflow-x: hidden;
 `;
 
 const ProfileContainer = styled.div`
-    width: 185.938vw;
     margin-left: 13.958vw;
-    margin-top: 147px;
+    margin-top: 120px;
     display: flex;
     border-top: 1.3px solid #bbb6a8;
-    border-bottom: 1.3px solid #bbb6a8;
     justify-content: flex-start;
 `;
 
 const ProfileImgSection = styled.section`
-    border-right: 1.3px solid #bbb6a8;
     width: 20.104vw;
-    height: calc(100vh - 147px);
+    height: calc(100vh - 142px);
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 `;
 
 const ProfileImformationSection = styled.section`
-    border-right: 1.3px solid #bbb6a8;
-    width: 65.833vw;
+    border-left: 1.3px solid #bbb6a8;
 `;
 
 const ProfileBox = styled.div`
@@ -169,7 +180,6 @@ const ProfileImg = styled.div`
 const ProfileFixImg = styled.img`
     position: relative;
     left: 5px;
-
     z-index: 200;
 `;
 
@@ -195,14 +205,15 @@ const Myreview = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    margin-left: 2.5vw;
+    padding-left: 48px;
+    padding-right: 130px;
 `;
 
 const MyreviewHeader = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    height: 90px;
+    height: 60px;
     width: 1014px;
     margin-left: 48px;
 `;
@@ -210,7 +221,6 @@ const MyreviewHeader = styled.div`
 const MyreviewHeadingCom = styled.p`
     font-size: 1.4375rem;
     color: #675b4f;
-    margin-bottom: 28px;
 `;
 
 const MyreviewArray = styled.ul`
@@ -229,13 +239,38 @@ const MyreviewArrayBar = styled.p`
     font-size: 19px;
 `;
 
+const MyReviewSeeFullLink = styled(Link)`
+    text-decoration: none;
+    color: #8b7e6a;
+`;
+
+const MyLikeSeeFullLink = styled(Link)`
+    text-decoration: none;
+    color: #8b7e6a;
+`;
+
 const SeeFullOuter = styled.p`
     margin-right: 20px;
 `;
 
-const MyfavoriteBox = styled.div`
+const SeeFullOuter2Container = styled.div`
     display: flex;
+    justify-content: flex-end;
+`;
+
+const SeeFullOuter2 = styled.p`
+    margin-right: 30px;
+`;
+
+const MyfavoriteBox = styled.div`
+    display: inline-flex;
+    flex-direction: column;
     margin-left: 48px;
+`;
+
+const MyLikeWidgetContainer = styled.div`
+    display: flex;
+    margin-top: 15px;
 `;
 
 type DrinkType = {
