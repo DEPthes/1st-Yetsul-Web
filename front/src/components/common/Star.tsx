@@ -16,8 +16,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                     0: (
                         <AlcoholStar>
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -29,8 +29,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -42,8 +42,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -55,8 +55,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -68,8 +68,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -84,8 +84,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                     1: (
                         <AlcoholStar>
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -97,8 +97,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -110,8 +110,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -123,8 +123,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -136,8 +136,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -152,8 +152,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                     1.5: (
                         <AlcoholStar>
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -165,8 +165,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -178,8 +178,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -191,8 +191,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -204,8 +204,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -288,8 +288,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                     2.5: (
                         <AlcoholStar>
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -301,8 +301,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -314,8 +314,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -327,8 +327,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -340,8 +340,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -356,8 +356,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                     3: (
                         <AlcoholStar>
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -369,8 +369,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -382,8 +382,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -395,8 +395,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -408,8 +408,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -424,8 +424,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                     3.5: (
                         <AlcoholStar>
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -437,8 +437,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -450,8 +450,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -463,8 +463,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -476,8 +476,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -492,8 +492,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                     4: (
                         <AlcoholStar>
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -505,8 +505,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -518,8 +518,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -531,8 +531,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -544,8 +544,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -560,8 +560,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                     4.5: (
                         <AlcoholStar>
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -573,8 +573,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -586,8 +586,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -599,8 +599,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -612,8 +612,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -628,8 +628,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                     5: (
                         <AlcoholStar>
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -641,8 +641,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -654,8 +654,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -667,8 +667,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -680,8 +680,8 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
