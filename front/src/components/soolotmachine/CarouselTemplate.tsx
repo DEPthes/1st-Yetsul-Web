@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 
@@ -20,9 +21,9 @@ const CarouselTemplate: React.FC<CarouselTemplateType> = ({ dataArr }) => {
     const carouselSlideRef = useRef<HTMLDivElement>(null);
 
     const SliderUp = () => {
-        carouselSlideRef.current.style.transition = 'transform 0.8s ease-out';
+        carouselSlideRef.current!.style.transition = 'transform 0.8s ease-out';
         count.current -= 1;
-        carouselSlideRef.current.style.transform = `translateY(${
+        carouselSlideRef.current!.style.transform = `translateY(${
             -276.91 * count.current
         }px)`;
         console.log(count.current);
@@ -38,9 +39,9 @@ const CarouselTemplate: React.FC<CarouselTemplateType> = ({ dataArr }) => {
     };
 
     const SliderDown = () => {
-        carouselSlideRef.current.style.transition = 'transform 0.8s ease-out';
+        carouselSlideRef.current!.style.transition = 'transform 0.8s ease-out';
         count.current += 1;
-        carouselSlideRef.current.style.transform = `translateY(${
+        carouselSlideRef.current!.style.transform = `translateY(${
             -276.91 * count.current
         }px)`;
         console.log(count.current);

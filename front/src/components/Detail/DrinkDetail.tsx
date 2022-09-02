@@ -1,9 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { RootState } from '../../store/config';
+import { setListModal } from '../../store/slices/listModalSlice';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import BoardListElement from '../Review/BoardListElement';
+import ImageListModal from '../Review/ImageListModal';
 import DrinkDetailElement from './DrinkDetailElement';
 import ReviewStar from './ReviewStar';
 
@@ -46,7 +50,7 @@ const DrinkDetail: React.FC = () => {
     const [reviews, setReviews] = useState<ReviewType[]>([]); // 리뷰 보드리스트
     const [reviewForSort, setReviewForSort] = useState<ReviewType[]>([]); // 리뷰 정렬 시 포토 후기 빼고 랜더링 다시 하기 위해
     const [starPercent, setStarPercent] = useState([]); // 평점비율
-    const [isSelected, setIsSelected] = useState([true, false]); // 버튼 선택 유무
+    const [isSelected] = useState([true, false]); // 버튼 선택 유무
 
     useEffect(() => {
         axios
@@ -72,7 +76,7 @@ const DrinkDetail: React.FC = () => {
         return starPercentArr;
     };
 
-    const PhotoReviewSrcArr = () => {
+    const PhotoReviewSrcArr = (): string[] => {
         // 해당 리뷰에 달린 포토 url 가져오고 빈 값 제외한 배열 생성
         const photoArr: string[] = [];
 
@@ -80,7 +84,7 @@ const DrinkDetail: React.FC = () => {
             return photoArr.push(p.reviewImgUrl);
         });
 
-        const newArr = photoArr.filter((element, i) => element !== '');
+        const newArr = photoArr.filter((element) => element !== '');
 
         return newArr;
     };
@@ -168,12 +172,41 @@ const DrinkDetail: React.FC = () => {
         }
     };
 
+    const dispatch = useDispatch();
+    const isModal = useSelector((state: RootState) => {
+        return state.listModal.modal;
+    });
+    const handleModal = () => {
+        const main = document.getElementById('listModalBack');
+        const head = document.getElementsByClassName('head')[0];
+        const nav = document.getElementById('fp-nav');
+        dispatch(setListModal(!isModal));
+        if (isModal === false) {
+            console.log('check');
+            if (main) {
+                main.className = 'is-blurred';
+            }
+            head.className = 'head is-blurred';
+            if (nav) {
+                nav.className = 'right is-blurred';
+            }
+        } else {
+            console.log('close');
+            if (main) {
+                main.className = '';
+            }
+            head.className = 'head';
+            if (nav) {
+                nav.className = 'right';
+            }
+        }
+    };
+
     return (
         <BackgroundTemplate heightValue="auto">
-            <Inner>
+            <Inner id="listModalBack">
                 <DrinkInfoWrapper>
                     <DrinkDetailElement
-                        id={drinks.id}
                         AlcoholName={drinks.AlcoholName}
                         category={drinks.category}
                         brewery={drinks.brewery}
@@ -222,7 +255,7 @@ const DrinkDetail: React.FC = () => {
                                                 <img src={p} key={p} alt={p} />
                                             );
                                         })}
-                                    <button type="button">
+                                    <button type="button" onClick={handleModal}>
                                         <h1>더보기</h1>
                                     </button>
                                 </PhotoReviewWrapper>
@@ -279,7 +312,6 @@ const DrinkDetail: React.FC = () => {
                                 return (
                                     <li key={review.id}>
                                         <BoardListElement
-                                            id={review.id}
                                             userImg={review.profileImg}
                                             userName={review.userId.toString()}
                                             title={review.title}
@@ -295,6 +327,12 @@ const DrinkDetail: React.FC = () => {
                     </ul>
                 )}
             </Inner>
+            {isModal && (
+                <ImageListModal
+                    modal={handleModal}
+                    photoReview={PhotoReviewSrcArr()}
+                />
+            )}
         </BackgroundTemplate>
     );
 };

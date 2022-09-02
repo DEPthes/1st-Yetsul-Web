@@ -35,7 +35,10 @@ const FootBannerSwiper: React.FC = () => {
         <FootBanner>
             <div id="footbanner-wrap">
                 <FootBannerInner>
-                    <img src="images/ticketIcon.png" alt="ticketIcon" />
+                    <img
+                        src={`${process.env.PUBLIC_URL}/images/ticketIcon`}
+                        alt="ticketIcon"
+                    />
                     <div id="banner-text">
                         <h3>
                             <span>옛술의 전당에서 나만의 작품과 옛술을!</span>
@@ -46,11 +49,16 @@ const FootBannerSwiper: React.FC = () => {
                         </h3>
                     </div>
                     <Circle>
-                        <div />
+                        <Link to="ticketbox">
+                            <div />
+                        </Link>
                     </Circle>
                 </FootBannerInner>
                 <FootBannerInner>
-                    <img src="images/soolotIcon.png" alt="soolotIcon" />
+                    <img
+                        src={`${process.env.PUBLIC_URL}/images/soolotIcon.png`}
+                        alt="soolotIcon"
+                    />
                     <div id="banner-text">
                         <h3>
                             <span>돌려돌려 술롯머신</span>
@@ -67,7 +75,10 @@ const FootBannerSwiper: React.FC = () => {
                     </Circle>
                 </FootBannerInner>
                 <FootBannerInner>
-                    <div />
+                    <img
+                        src={`${process.env.PUBLIC_URL}/images/ticketIcon.png`}
+                        alt="ticketIcon"
+                    />
                     <div id="banner-text">
                         <h3>
                             <span>옛술의 전당에서 나만의 작품과 옛술을!</span>
@@ -78,7 +89,9 @@ const FootBannerSwiper: React.FC = () => {
                         </h3>
                     </div>
                     <Circle>
-                        <div />
+                        <Link to="ticketbox">
+                            <div />
+                        </Link>
                     </Circle>
                 </FootBannerInner>
             </div>
