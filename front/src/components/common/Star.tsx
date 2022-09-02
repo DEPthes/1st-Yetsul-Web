@@ -4,9 +4,11 @@ import styled from 'styled-components';
 type StarType = {
     star: number;
     big: boolean;
+    widthValue: number;
+    heightValue: number;
 };
 
-const Star: React.FC<StarType> = ({ star, big }) => {
+const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
     return big ? (
         <div>
             {
@@ -218,8 +220,8 @@ const Star: React.FC<StarType> = ({ star, big }) => {
                     2: (
                         <AlcoholStar>
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -231,8 +233,8 @@ const Star: React.FC<StarType> = ({ star, big }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -244,8 +246,8 @@ const Star: React.FC<StarType> = ({ star, big }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -257,8 +259,8 @@ const Star: React.FC<StarType> = ({ star, big }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -270,8 +272,8 @@ const Star: React.FC<StarType> = ({ star, big }) => {
                             </svg>
 
                             <svg
-                                width="29"
-                                height="27"
+                                width={widthValue}
+                                height={heightValue}
                                 viewBox="0 0 29 27"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
