@@ -34,12 +34,7 @@ const BoardListElement: React.FC<reviewType> = ({
             <ReviewBox>
                 <h1>{title}</h1>
                 <StarWrap>
-                    <Star
-                        star={starCount}
-                        big
-                        widthValue={29}
-                        heightValue={27}
-                    />
+                    <Star star={starCount} widthValue={29} heightValue={27} />
                     <h3>{starCount}개</h3>
                 </StarWrap>
                 <ReviewBoxHeadInfo>

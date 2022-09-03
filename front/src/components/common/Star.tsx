@@ -3,22 +3,21 @@ import styled from 'styled-components';
 
 type StarType = {
     star: number;
-    big: boolean;
     widthValue: number;
     heightValue: number;
 };
 
-const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
-    return big ? (
+const Star: React.FC<StarType> = ({ star, widthValue, heightValue }) => {
+    return (
         <div>
             {
                 {
                     0: (
-                        <AlcoholStar>
+                        <AlcoholStar width={widthValue}>
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -31,7 +30,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -44,7 +43,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -57,7 +56,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -70,7 +69,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -82,11 +81,11 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                         </AlcoholStar>
                     ),
                     1: (
-                        <AlcoholStar>
+                        <AlcoholStar width={widthValue}>
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -99,7 +98,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -112,7 +111,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -125,7 +124,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -138,7 +137,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -150,11 +149,11 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                         </AlcoholStar>
                     ),
                     1.5: (
-                        <AlcoholStar>
+                        <AlcoholStar width={widthValue}>
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -167,7 +166,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -180,7 +179,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -193,7 +192,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -206,7 +205,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -218,11 +217,11 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                         </AlcoholStar>
                     ),
                     2: (
-                        <AlcoholStar>
+                        <AlcoholStar width={widthValue}>
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -235,7 +234,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -248,7 +247,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -261,7 +260,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -274,7 +273,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -286,11 +285,11 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                         </AlcoholStar>
                     ),
                     2.5: (
-                        <AlcoholStar>
+                        <AlcoholStar width={widthValue}>
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -303,7 +302,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -316,7 +315,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -329,7 +328,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -342,7 +341,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -354,11 +353,11 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                         </AlcoholStar>
                     ),
                     3: (
-                        <AlcoholStar>
+                        <AlcoholStar width={widthValue}>
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -371,7 +370,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -384,7 +383,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -397,7 +396,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -410,7 +409,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -422,11 +421,11 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                         </AlcoholStar>
                     ),
                     3.5: (
-                        <AlcoholStar>
+                        <AlcoholStar width={widthValue}>
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -439,7 +438,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -452,7 +451,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -465,7 +464,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -478,7 +477,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -490,11 +489,11 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                         </AlcoholStar>
                     ),
                     4: (
-                        <AlcoholStar>
+                        <AlcoholStar width={widthValue}>
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -507,7 +506,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -520,7 +519,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -533,7 +532,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -546,7 +545,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -558,11 +557,11 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                         </AlcoholStar>
                     ),
                     4.5: (
-                        <AlcoholStar>
+                        <AlcoholStar width={widthValue}>
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -575,7 +574,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -588,7 +587,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -601,7 +600,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -614,7 +613,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -626,11 +625,11 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                         </AlcoholStar>
                     ),
                     5: (
-                        <AlcoholStar>
+                        <AlcoholStar width={widthValue}>
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -643,7 +642,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -656,7 +655,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -669,7 +668,7 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
@@ -682,700 +681,13 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
                             <svg
                                 width={widthValue}
                                 height={heightValue}
-                                viewBox="0 0 29 27"
+                                viewBox={`0 0 ${widthValue} ${heightValue}`}
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
                                 <path
                                     d="M13.5489 0.945607C13.8483 0.0242963 15.1517 0.0242946 15.4511 0.945605L17.98 8.72879C18.1138 9.14081 18.4978 9.41977 18.931 9.41977H27.1147C28.0835 9.41977 28.4862 10.6594 27.7025 11.2288L21.0818 16.0391C20.7313 16.2937 20.5846 16.7451 20.7185 17.1571L23.2474 24.9403C23.5468 25.8616 22.4923 26.6277 21.7086 26.0583L15.0878 21.248C14.7373 20.9934 14.2627 20.9934 13.9122 21.248L7.29144 26.0583C6.50773 26.6277 5.45325 25.8616 5.7526 24.9403L8.28151 17.1571C8.41538 16.7451 8.26873 16.2937 7.91824 16.0391L1.29747 11.2288C0.513753 10.6594 0.916527 9.41977 1.88525 9.41977H10.069C10.5022 9.41977 10.8862 9.14081 11.02 8.72879L13.5489 0.945607Z"
                                     fill="#8E8372"
-                                />
-                            </svg>
-                        </AlcoholStar>
-                    ),
-                }[star]
-            }
-        </div>
-    ) : (
-        <div>
-            {
-                {
-                    0: (
-                        <AlcoholStar>
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-                        </AlcoholStar>
-                    ),
-                    1: (
-                        <AlcoholStar>
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-                        </AlcoholStar>
-                    ),
-                    1.5: (
-                        <AlcoholStar>
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-                        </AlcoholStar>
-                    ),
-                    2: (
-                        <AlcoholStar>
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-                        </AlcoholStar>
-                    ),
-                    2.5: (
-                        <AlcoholStar>
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-                        </AlcoholStar>
-                    ),
-                    3: (
-                        <AlcoholStar>
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-                        </AlcoholStar>
-                    ),
-                    3.5: (
-                        <AlcoholStar>
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-                        </AlcoholStar>
-                    ),
-                    4: (
-                        <AlcoholStar>
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-                        </AlcoholStar>
-                    ),
-                    4.5: (
-                        <AlcoholStar>
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#CACACA"
-                                />
-                            </svg>
-                        </AlcoholStar>
-                    ),
-                    5: (
-                        <AlcoholStar>
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
-                                />
-                            </svg>
-
-                            <svg
-                                width="15"
-                                height="14"
-                                viewBox="0 0 15 14"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M7.5 0.050415L9.18386 5.23279H14.6329L10.2245 8.43567L11.9084 13.618L7.5 10.4152L3.09161 13.618L4.77547 8.43567L0.367076 5.23279H5.81614L7.5 0.050415Z"
-                                    fill="#8B7E6A"
                                 />
                             </svg>
                         </AlcoholStar>
@@ -1388,9 +700,17 @@ const Star: React.FC<StarType> = ({ star, big, widthValue, heightValue }) => {
 
 export default Star;
 
-const AlcoholStar = styled.div`
+type StarScaleType = {
+    width: number;
+};
+
+const AlcoholStar = styled.div<StarScaleType>`
     display: inline-block;
     > svg {
         margin-right: 5px;
+        > path {
+            transform: scale();
+            ${(props) => `transform: scale(${props.width / 29})`}
+        }
     }
 `;

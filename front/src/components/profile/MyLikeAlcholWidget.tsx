@@ -32,12 +32,7 @@ export const FavoriteAlcholWidget: React.FC<myliketype> = ({
                         </FavoriteAlcholeABV>
                     </FavoriteAlcholNameABV>
                     <FavoriteAlchilStarDiv>
-                        <Star
-                            big
-                            star={star}
-                            widthValue={15}
-                            heightValue={27}
-                        />
+                        <Star star={star} widthValue={15} heightValue={14} />
                     </FavoriteAlchilStarDiv>
                 </FavoriteAlcholLower>
             </FavoriteAlcholBox>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, ReactNode } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import Star from '../common/Star';
@@ -73,7 +73,7 @@ export const MyReviewWidget: React.FC<myreviewtype> = ({
             </MyreviewInformationSection>
             <MyreviewRightSection>
                 <StarBox>
-                    <Star big star={star} widthValue={15} heightValue={27} />
+                    <Star star={star} widthValue={15} heightValue={14} />
                 </StarBox>
                 <SeeFull>전체보기 &#62;</SeeFull>
             </MyreviewRightSection>
@@ -147,24 +147,3 @@ const StarBox = styled.div`
     display: flex;
     justify-content: flex-end;
 `;
-
-type DrinkType = {
-    children: ReactNode;
-    id: number;
-    AlcoholName: string;
-    category: number;
-    brewery: string;
-    price: number;
-    AlcoholByVolume: number;
-    sweet: boolean;
-    bitter: boolean;
-    refreshing: boolean;
-    clean: boolean;
-    cool: boolean;
-    sour: boolean;
-    description: string;
-    star: number;
-    alcoholImage: string;
-    alcoholId: number;
-    title: string;
-};

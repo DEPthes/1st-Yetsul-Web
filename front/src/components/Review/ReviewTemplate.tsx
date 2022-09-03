@@ -46,7 +46,11 @@ const ReviewTemplate: React.FC<ReviewTemplateType> = ({
 
                             <InfoBottom>
                                 <div>
-                                    <Star star={drinkInfo.star} big={false} />
+                                    <Star
+                                        star={drinkInfo.star}
+                                        widthValue={24}
+                                        heightValue={24}
+                                    />
                                 </div>
 
                                 <SeeReviewLink to="/">
