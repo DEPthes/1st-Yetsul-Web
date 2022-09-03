@@ -11,7 +11,7 @@ import ImageListModal from '../Review/ImageListModal';
 import DrinkDetailElement from './DrinkDetailElement';
 import ReviewStar from './ReviewStar';
 
-type DrinkDetailType = {
+export interface DrinkDetailType {
     // alcohol : { }
     id: number; // 술 id
     AlcoholName: string; // 술 이름
@@ -28,7 +28,7 @@ type DrinkDetailType = {
     description: string; // 술 설명
     star: number; // 술 별 점
     alcoholImage: string; // 술 사진
-};
+}
 
 type ReviewType = {
     // reviewsWithUserInfo : []
@@ -182,7 +182,7 @@ const DrinkDetail: React.FC = () => {
         const nav = document.getElementById('fp-nav');
         dispatch(setListModal(!isModal));
         if (isModal === false) {
-            console.log('check');
+            $('body').css('overflow', 'hidden');
             if (main) {
                 main.className = 'is-blurred';
             }
@@ -191,7 +191,7 @@ const DrinkDetail: React.FC = () => {
                 nav.className = 'right is-blurred';
             }
         } else {
-            console.log('close');
+            $('body').css('overflow', 'scroll');
             if (main) {
                 main.className = '';
             }
