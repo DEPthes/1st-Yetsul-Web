@@ -102,7 +102,7 @@ const Main: React.FC = () => {
                         <div>
                             <h1>개강파티</h1>
                             <img
-                                src="https://s3-alpha-sig.figma.com/img/bbf8/2db6/afdd82e495d4eede9bb0456081a72bc1?Expires=1661126400&Signature=Px8A5HujeYlTLHC~An1TU7edTViMFiR66MmFXYVWzTj2jQbuX4tp-LrJAjnlc645qR5aD927hcyK7ifQlSMRMjstSfFJlolgJxd4Mr~kxBE80TBhn9MvXty8ZGrohY1jGfDFVx4jOVjplrVDR5BHcIBAhMwL61RLEUKYKPsYQm27TZgohPtKIpmljB1WnKyIZt4CjDXH22pSlSeieIf2uAzjYkd32KYy2LpBTidkVS5m-e9Hyn0sdF059yx-K91RpQPHkiTmANVbkvjlmxncUq6L1iGoqGLYzk~Ne2-UAbjcHYCTbvVmteSoxZXrNgnTpXyYG7vzSu8zXSIbXmIwkQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                                src={`${process.env.PUBLIC_URL}/images/underbar.png`}
                                 alt="underbar"
                             />
                             <h1>어때요?</h1>

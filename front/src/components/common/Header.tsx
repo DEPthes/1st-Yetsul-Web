@@ -78,7 +78,7 @@ const Header: React.FC = () => {
         }
     };
     return (
-        <HeaderStyle>
+        <HeaderStyle data-html2canvas-ignore="true">
             <div className="head">
                 <LeftHeaed>
                     <img

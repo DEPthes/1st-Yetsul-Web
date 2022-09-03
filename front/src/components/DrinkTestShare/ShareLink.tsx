@@ -1,14 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 
+export const clip = () => {
+    const nowUrl = window.location.href;
+
+    navigator.clipboard.writeText(nowUrl).then(() => {
+        // eslint-disable-next-line no-alert
+        alert('공유 링크가 복사되었습니다');
+    });
+};
+
 const ShareGmail: React.FC = () => {
     return (
-        <ShareBtn type="button">
-            <ShareImg src="/images/ShareGmail.png" alt="ShareKakaoTalk" />
+        <ShareBtn type="button" onClick={clip}>
+            <ShareImg src="/images/ShareGmail.png" alt="ShareLink" />
         </ShareBtn>
     );
 };
-
 export default ShareGmail;
 
 const ShareBtn = styled.button`

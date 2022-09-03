@@ -9,6 +9,7 @@ const DrinkTicketBox: React.FC = () => {
     const [idNum, setIdNum] = useState(1);
     const [questions, setQuestions] = useState<DrinkTicketBoxType[]>([]);
     const [result, setResult] = useState<number[]>([]);
+    const [resultStr, setResultStr] = useState<string>('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -44,8 +45,9 @@ const DrinkTicketBox: React.FC = () => {
         } else if (num === 6) {
             setNum(7);
             setIdNum(8);
+            setResultStr(result.join(''));
         } else if (num === 7) {
-            navigate(`/ticketbox/result/${result}`, { state: result });
+            navigate(`/ticketbox/result/${resultStr}`);
         }
     };
 

@@ -28,6 +28,7 @@ export interface DrinkDetailType {
     description: string; // 술 설명
     star: number; // 술 별 점
     alcoholImage: string; // 술 사진
+    likeCount: number; // 술 찜 횟수
 }
 
 type ReviewType = {
@@ -221,11 +222,14 @@ const DrinkDetail: React.FC = () => {
                         description={drinks.description}
                         star={drinks.star}
                         alcoholImage={drinks.alcoholImage}
+                        likeCount={drinks.likeCount}
                     />
                 </DrinkInfoWrapper>
                 <ReviewTitle>
                     <h1>리뷰 / 별점</h1>
-                    <ReviewWriteLink to="#">리뷰작성</ReviewWriteLink>
+                    <ReviewWriteLink to={`/list/${drinks.id}/write`}>
+                        리뷰작성
+                    </ReviewWriteLink>
                 </ReviewTitle>
 
                 <ReviewStar

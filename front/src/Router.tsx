@@ -41,7 +41,7 @@ const Router: React.FC = () => {
                         element={<MyLikeAll />}
                     />
                     <Route
-                        path="/ticketbox/result/:result"
+                        path="ticketbox/result/:resultStr"
                         element={<DrinkTestResult />}
                     />
                     <Route path="/month" element={<MonthDrink />} />
