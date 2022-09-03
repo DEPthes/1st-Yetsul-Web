@@ -12,6 +12,10 @@ import DrinkTestBox from './components/DrinkTest/DrinkTest';
 import DrinkTestResult from './components/DrinkTest/DrinkTestResult';
 import MonthDrink from './components/MonthDrink/MonthDrink';
 import DrinkDetail from './components/Detail/DrinkDetail';
+import { Profile } from './components/profile/Profile';
+import { FixProfile } from './components/profile/fixprofile';
+import { MyReviewAll } from './components/profile/MyReviewAll';
+import { MyLikeAll } from './components/profile/MyLikeAll';
 import ReviewWrite from './components/Review/ReviewWrite/ReviewWrite';
 
 const Router: React.FC = () => {
@@ -29,6 +33,13 @@ const Router: React.FC = () => {
                     <Route path="/month" element={<MonthDrink />} />
                     <Route path="/soolot" element={<SoolotMachine />} />
                     <Route path="/ticketbox" element={<DrinkTestBox />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/profile/fix" element={<FixProfile />} />
+                    <Route path="/profile/MyReview" element={<MyReviewAll />} />
+                    <Route
+                        path="/profile/MyLikeAlcohole"
+                        element={<MyLikeAll />}
+                    />
                     <Route
                         path="/ticketbox/result/:result"
                         element={<DrinkTestResult />}
