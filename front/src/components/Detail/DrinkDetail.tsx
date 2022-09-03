@@ -28,6 +28,7 @@ type DrinkDetailType = {
     description: string; // 술 설명
     star: number; // 술 별 점
     alcoholImage: string; // 술 사진
+    likeCount: number; // 술 찜 횟수
 };
 
 type ReviewType = {
@@ -221,6 +222,7 @@ const DrinkDetail: React.FC = () => {
                         description={drinks.description}
                         star={drinks.star}
                         alcoholImage={drinks.alcoholImage}
+                        likeCount={drinks.likeCount}
                     />
                 </DrinkInfoWrapper>
                 <ReviewTitle>

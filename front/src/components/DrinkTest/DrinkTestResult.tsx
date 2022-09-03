@@ -1,15 +1,15 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import Clock from './Clock';
-import ShareInstagram from '../DrinkTestShare/ShareInstagram';
-import ShareGmail from '../DrinkTestShare/ShareGmail';
-import ShareKakao from '../DrinkTestShare/ShareKakao';
+import ShareImg from '../DrinkTestShare/ShareImg';
+import ShareLink from '../DrinkTestShare/ShareLink';
+import ShareKakaoBtn from '../DrinkTestShare/ShareKakaoBtn';
 
 const DrinkTicketBoxResult: React.FC = () => {
-    const { state } = useLocation();
+    const params = useParams();
     const [loading, setLoading] = useState(true);
     const [movie, setMovie] = useState<ResultMoiveType>(Object);
     const [drink, setDrink] = useState<ResultDrinkType>(Object);
@@ -19,7 +19,7 @@ const DrinkTicketBoxResult: React.FC = () => {
     useEffect(() => {
         axios
             .post(`https://depth-server.herokuapp.com/ticketbox/result`, {
-                resultCombination: state,
+                resultCombination: params.resultStr,
             })
             .then((res) => {
                 setTicket(res.data);
@@ -37,7 +37,9 @@ const DrinkTicketBoxResult: React.FC = () => {
     return (
         <BackgroundTemplate heightValue="auto">
             <Result>
-                <ResultText>나의 옛술 티켓 확인하기</ResultText>
+                <ResultText data-html2canvas-ignore="true">
+                    나의 옛술 티켓 확인하기
+                </ResultText>
                 <Ticket>
                     <Date>
                         <Clock />
@@ -240,17 +242,17 @@ const DrinkTicketBoxResult: React.FC = () => {
                             />
                         </TicketStars>
                     ) : null}
-                    <Restart>
+                    <Restart data-html2canvas-ignore="true">
                         <RestartLink to="/ticketbox">다시하기</RestartLink>
                     </Restart>
-                    <Share>
+                    <Share data-html2canvas-ignore="true">
                         <ShareText>
                             친구들한테 <strong>공유하고</strong> 옛술의 전당
                             알리기!
                         </ShareText>
-                        <ShareGmail />
-                        <ShareInstagram />
-                        <ShareKakao />
+                        <ShareLink />
+                        <ShareImg />
+                        <ShareKakaoBtn />
                     </Share>
                 </Ticket>
                 <TicketImg src="/images/Ticket.png" alt="Ticket" />
