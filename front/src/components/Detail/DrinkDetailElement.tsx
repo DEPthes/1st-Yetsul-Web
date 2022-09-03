@@ -51,7 +51,12 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
                     </AlcoholType>
                     <AlcoholHeart src="/images/Heart.png" alt="빈 하트" />
                     <AlcoholNames>{AlcoholName}</AlcoholNames>
-                    <Star star={star} big={false} />
+                    <Star
+                        star={star}
+                        big={false}
+                        widthValue={29}
+                        heightValue={27}
+                    />
                     <SeeReviewLink to="/">(리뷰 +100) &gt;</SeeReviewLink>
                     <Line />
                     <AlcoholVolume>{AlcoholByVolume}%</AlcoholVolume>
