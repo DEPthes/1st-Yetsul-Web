@@ -26,7 +26,13 @@ const ReviewTemplate: React.FC<ReviewTemplateType> = ({
                 </div>
                 <div>
                     <DrinkInfo>
-                        <img src={drinkInfo.alcoholImage} alt="alcoholImage" />
+                        <ImgWrapper>
+                            <img
+                                src={drinkInfo.alcoholImage}
+                                alt="alcoholImage"
+                            />
+                        </ImgWrapper>
+
                         <MainInfo>
                             <InfoHead>
                                 <AlcoholType>
@@ -48,8 +54,8 @@ const ReviewTemplate: React.FC<ReviewTemplateType> = ({
                                 <div>
                                     <Star
                                         star={drinkInfo.star}
-                                        widthValue={24}
-                                        heightValue={24}
+                                        widthValue={15}
+                                        heightValue={14}
                                     />
                                 </div>
 
@@ -100,6 +106,18 @@ const MainInfo = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    padding-right: 40px;
+`;
+
+const ImgWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 108px;
+    > img {
+        height: 100%;
+        object-fit: cover;
+    }
 `;
 
 const InfoHead = styled.div`
