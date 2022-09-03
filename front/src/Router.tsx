@@ -12,6 +12,7 @@ import DrinkTestBox from './components/DrinkTest/DrinkTest';
 import DrinkTestResult from './components/DrinkTest/DrinkTestResult';
 import MonthDrink from './components/MonthDrink/MonthDrink';
 import DrinkDetail from './components/Detail/DrinkDetail';
+import ReviewWrite from './components/Review/ReviewWrite/ReviewWrite';
 
 const Router: React.FC = () => {
     return (
@@ -29,10 +30,11 @@ const Router: React.FC = () => {
                     <Route path="/soolot" element={<SoolotMachine />} />
                     <Route path="/ticketbox" element={<DrinkTestBox />} />
                     <Route
-                        path="ticketbox/result/:result"
+                        path="/ticketbox/result/:result"
                         element={<DrinkTestResult />}
                     />
                     <Route path="/month" element={<MonthDrink />} />
+                    <Route path="/list/:id/write" element={<ReviewWrite />} />
                 </Routes>
             </BrowserRouter>
         </Provider>
