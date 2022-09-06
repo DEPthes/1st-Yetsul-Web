@@ -1,10 +1,15 @@
 import React from 'react';
+
+/* eslint-disable no-nested-ternary */
+
+import { Link } from 'react-router-dom';
+
 import styled from 'styled-components';
 import Star from '../common/Star';
 
 type reviewType = {
     userImg: string; // user 프로필 사진
-    userName: string; // user 이름
+    nickname: string; // user 이름
     title: string; // review 제목
     // star: string; // 별점
     starCount: number; // 별점 개수
@@ -12,11 +17,13 @@ type reviewType = {
     date: string; // review 작성 날짜
     like: number; // 추천 수
     reviewImg: string; // review 사진
+    reviewId: number;
+    alcoholId: number;
 };
 
 const BoardListElement: React.FC<reviewType> = ({
     userImg,
-    userName,
+    nickname,
     title,
     // star,
     starCount,
@@ -24,11 +31,13 @@ const BoardListElement: React.FC<reviewType> = ({
     date,
     like,
     reviewImg,
+    reviewId,
+    alcoholId,
 }) => {
     return (
         <ReviewsWrapper>
             <UserImgWrap>
-                <img src={userImg} alt={userName} />
+                <img src={userImg} alt={userImg} />
             </UserImgWrap>
 
             <ReviewBox>
@@ -38,17 +47,27 @@ const BoardListElement: React.FC<reviewType> = ({
                     <h3>{starCount}개</h3>
                 </StarWrap>
                 <ReviewBoxHeadInfo>
-                    <h3>{userName}</h3>
+                    <h3>{nickname}</h3>
                     <h3>{date.slice(0, 10)}</h3>
                 </ReviewBoxHeadInfo>
 
                 <ReviewBoxContent>
                     <h3>{content}</h3>
-                    <button type="button">전체보기 {'>'}</button>
+                    <ReviewLink
+                        to={`/review/alcohol${alcoholId}/review${reviewId}`}
+                    >
+                        전체보기 {'>'}
+                    </ReviewLink>
                 </ReviewBoxContent>
             </ReviewBox>
             <ReviewImgWrap>
-                <img src={reviewImg} alt={userName} />
+                {reviewImg.length < 1 ? (
+                    '이것은 리뷰 사진 개수가 0개일 때 보여줄 사진.'
+                ) : reviewImg.length < 2 ? (
+                    <img src={reviewImg} alt={userImg} />
+                ) : (
+                    <img src={reviewImg[0]} alt={userImg} />
+                )}
             </ReviewImgWrap>
             <LikeBtn>
                 👍<h3>{like}</h3>
@@ -157,17 +176,18 @@ const ReviewBoxContent = styled.div`
         color: #8b7e6a;
         margin: 20px 13px;
     }
+`;
 
-    button {
-        border: none;
-        background: none;
-        font-family: inherit;
-        font-size: 15px;
-        color: #675b4f;
-        position: absolute;
-        bottom: 11px;
-        right: 17px;
-    }
+const ReviewLink = styled(Link)`
+    border: none;
+    background: none;
+    font-family: inherit;
+    font-size: 15px;
+    color: #675b4f;
+    position: absolute;
+    bottom: 11px;
+    right: 17px;
+    text-decoration: none;
 `;
 
 const LikeBtn = styled.button`
