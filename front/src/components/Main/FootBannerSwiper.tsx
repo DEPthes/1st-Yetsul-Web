@@ -36,7 +36,7 @@ const FootBannerSwiper: React.FC = () => {
             <div id="footbanner-wrap">
                 <FootBannerInner>
                     <img
-                        src={`${process.env.PUBLIC_URL}/images/ticketIcon`}
+                        src={`${process.env.PUBLIC_URL}/images/ticketIcon.png`}
                         alt="ticketIcon"
                     />
                     <div id="banner-text">

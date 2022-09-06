@@ -23,11 +23,6 @@ const ElementWrap = styled.div`
     height: 137px;
     border-radius: 18px;
     background: #d9d9d9;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    &:nth-of-type(6n) {
-        margin-right: 0;
-    }
     cursor: pointer;
 `;
 

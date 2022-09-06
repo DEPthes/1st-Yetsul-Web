@@ -11,7 +11,7 @@ import ImageListModal from '../Review/ImageListModal';
 import DrinkDetailElement from './DrinkDetailElement';
 import ReviewStar from './ReviewStar';
 
-type DrinkDetailType = {
+export interface DrinkDetailType {
     // alcohol : { }
     id: number; // 술 id
     AlcoholName: string; // 술 이름
@@ -28,7 +28,8 @@ type DrinkDetailType = {
     description: string; // 술 설명
     star: number; // 술 별 점
     alcoholImage: string; // 술 사진
-};
+    likeCount: number; // 술 찜 횟수
+}
 
 type ReviewType = {
     // reviewsWithUserInfo : []
@@ -164,7 +165,7 @@ const DrinkDetail: React.FC = () => {
         const nav = document.getElementById('fp-nav');
         dispatch(setListModal(!isModal));
         if (isModal === false) {
-            console.log('check');
+            $('body').css('overflow', 'hidden');
             if (main) {
                 main.className = 'is-blurred';
             }
@@ -173,7 +174,7 @@ const DrinkDetail: React.FC = () => {
                 nav.className = 'right is-blurred';
             }
         } else {
-            console.log('close');
+            $('body').css('overflow', 'scroll');
             if (main) {
                 main.className = '';
             }
@@ -215,11 +216,12 @@ const DrinkDetail: React.FC = () => {
                         description={drinks.description}
                         star={drinks.star}
                         alcoholImage={drinks.alcoholImage}
+                        likeCount={drinks.likeCount}
                     />
                 </DrinkInfoWrapper>
                 <ReviewTitle>
                     <h1>리뷰 / 별점</h1>
-                    <ReviewWriteLink to="/ReviewWrite">
+                    <ReviewWriteLink to={`/list/${drinks.id}/write`}>
                         리뷰작성
                     </ReviewWriteLink>
                 </ReviewTitle>

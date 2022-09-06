@@ -180,7 +180,7 @@ const DrinkListElement: React.FC<drinkInfoType> = ({
                         <h1>{abv}%</h1>
                     </InfoHead>
                     <InfoFoot>
-                        <Star star={star} big={false} />
+                        <Star star={star} widthValue={15} heightValue={14} />
                     </InfoFoot>
                 </Info>
             </DrinkElementWrap>

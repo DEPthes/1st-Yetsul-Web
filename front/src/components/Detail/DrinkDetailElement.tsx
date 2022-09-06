@@ -1,5 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Star from '../common/Star';
 
@@ -18,6 +19,7 @@ export interface DrinkDetailElementType {
     description: string; // 술 설명
     star: number; // 술 별 점
     alcoholImage: string; // 술 사진
+    likeCount: number; // 술 찜 횟수
 }
 
 const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
@@ -35,291 +37,303 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
     description,
     star,
     alcoholImage,
+    likeCount,
 }) => {
+    const { id } = useParams();
+    const [like, setLike] = useState(false);
+
+    useEffect(() => {
+        axios
+            .post(
+                `https://depth-server.herokuapp.com/alcohol/description/${id}/likeornot`,
+                {
+                    userEmail: 'er196725@googlemail.com',
+                },
+            )
+            .then((res) => {
+                if (res.data === 'LIKE') {
+                    setLike(true);
+                } else if (res.data === 'NOT') {
+                    setLike(false);
+                }
+            })
+            .catch((err) => console.log(err));
+    }, []);
+
+    const [likes, setLikes] = useState(likeCount);
+    const [loading, setLoading] = useState(true);
+
+    const DrinkLike = () => {
+        setLike(!like);
+    };
+
+    const DrinkLikeN = async () => {
+        try {
+            await axios
+                .post(
+                    `https://depth-server.herokuapp.com/alcohol/description/${id}`,
+                    {
+                        userEmail: 'er196725@googlemail.com',
+                    },
+                )
+                .then((res) => {
+                    setLikes(res.data.likeCount);
+                    setLoading(false);
+                    DrinkLike();
+                });
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <div>
-            <AlcoholExplain>
-                <AlcoholImg src={alcoholImage} alt={AlcoholName} />
-                <AlcoholExplain2>
-                    <AlcoholType>
+            <DrinkExplain>
+                <DrinkImg src={alcoholImage} alt={AlcoholName} />
+                <div>
+                    <DrinkCategory>
                         {category === 1 ? '탁주' : null}
                         {category === 2 ? '과실주' : null}
                         {category === 3 ? '약주' : null}
                         {category === 4 ? '청주' : null}
                         {category === 5 ? '증류주' : null}
                         {category === 6 ? '리큐르주' : null}
-                    </AlcoholType>
-                    <AlcoholHeart src="/images/Heart.png" alt="빈 하트" />
-                    <AlcoholNames>{AlcoholName}</AlcoholNames>
-                    <Star star={star} big={false} />
-                    <SeeReviewLink to="/">(리뷰 +100) &gt;</SeeReviewLink>
-                    <Line />
-                    <AlcoholVolume>{AlcoholByVolume}%</AlcoholVolume>
-                    <Line />
-                    <AlcoholPrice>&#8361; {price}원대</AlcoholPrice>
-                    <Line />
-                    <Distillery>{brewery}</Distillery>
-                    <Explain>{description}</Explain>
-                </AlcoholExplain2>
-            </AlcoholExplain>
-            <AlcoholTaste>
-                <AlcoholGraph>맛 그래프</AlcoholGraph>
-                <LingLine />
-                <Tastes>
-                    <Taste>달달함</Taste>
-                    <HLine>ㅣ</HLine>
-                    <Taste>쓴 맛</Taste>
-                    <HLine>ㅣ</HLine>
-                    <Taste>상큼함</Taste>
-                    <HLine>ㅣ</HLine>
-                    <Taste>깔끔함</Taste>
-                    <HLine>ㅣ</HLine>
-                    <Taste>청량함</Taste>
-                    <HLine>ㅣ</HLine>
-                    <Taste>신 맛</Taste>
-                </Tastes>
+                    </DrinkCategory>
+                    <DrinkLikeCount>
+                        {loading === true ? likeCount : likes}
+                    </DrinkLikeCount>
+                    <DrinkLikeBtn type="button" onClick={() => DrinkLikeN()}>
+                        {like === true ? (
+                            <img src="/images/HeartFill.png" alt="하트" />
+                        ) : (
+                            <img src="/images/Heart.png" alt="빈 하트" />
+                        )}
+                    </DrinkLikeBtn>
+                    <h1>{AlcoholName}</h1>
+                    <SeeReview
+                        type="button"
+                        onClick={() => {
+                            window.scrollTo({
+                                top: 1400,
+                                behavior: 'smooth',
+                            });
+                        }}
+                    >
+                        (리뷰 +100) &gt;
+                    </SeeReview>
+                    <Star star={star} widthValue={15} heightValue={14} />
+                    <Line margintop={18} marginbottom={27} width={511} />
+                    <h2>{AlcoholByVolume}%</h2>
+                    <Line margintop={23} marginbottom={32} width={511} />
+                    <h2>&#8361; {price}원대</h2>
+                    <Line margintop={30} marginbottom={38} width={511} />
+                    <DrinkBrewery>{brewery}</DrinkBrewery>
+                    <DrinkDescription>{description}</DrinkDescription>
+                </div>
+            </DrinkExplain>
+            <DrinkTaste>
+                <h1>맛 그래프</h1>
+                <Line margintop={40} marginbottom={79} width={1153} />
+                <TasteText>
+                    <h2>달달함</h2>
+                    <h3>ㅣ</h3>
+                    <h2>쓴 맛</h2>
+                    <h3>ㅣ</h3>
+                    <h2>상큼함</h2>
+                    <h3>ㅣ</h3>
+                    <h2>깔끔함</h2>
+                    <h3>ㅣ</h3>
+                    <h2>청량함</h2>
+                    <h3>ㅣ</h3>
+                    <h2>신 맛</h2>
+                </TasteText>
                 <TasteBox>
                     <Box>
-                        {sweet ? <SweetCircle /> : null}
-                        {bitter ? <BitterCircle /> : null}
-                        {refreshing ? <RefreshingCircle /> : null}
-                        {clean ? <CleanCircle /> : null}
-                        {cool ? <CoolCircle /> : null}
-                        {sour ? <SourCircle /> : null}
+                        {sweet ? <Circle marginleft={45} /> : null}
+                        {bitter ? <Circle marginleft={165} /> : null}
+                        {refreshing ? <Circle marginleft={288} /> : null}
+                        {clean ? <Circle marginleft={417} /> : null}
+                        {cool ? <Circle marginleft={547} /> : null}
+                        {sour ? <Circle marginleft={670} /> : null}
                     </Box>
                 </TasteBox>
-            </AlcoholTaste>
+            </DrinkTaste>
         </div>
     );
 };
 export default DrinkDetailElement;
 
-const AlcoholExplain = styled.div`
+const DrinkExplain = styled.div`
     display: flex;
     justify-content: center;
+
+    h1 {
+        margin-top: 47px;
+        margin-bottom: 25px;
+        width: 330px;
+        font-size: 40px;
+        line-height: 40px;
+        letter-spacing: -0.01em;
+        color: #675b4f;
+        word-break: keep-all;
+    }
+
+    h2 {
+        margin-left: 11px;
+
+        font-size: 25px;
+        line-height: 25px;
+        letter-spacing: -0.01em;
+        color: #8b7e6a;
+    }
 `;
 
-const AlcoholExplain2 = styled.div`
-    margin-top: 265px;
-    display: inline-block;
+const DrinkImg = styled.img`
+    margin-top: 253.03px;
+    margin-right: 114px;
+
+    width: 526px;
+    height: 631px;
 `;
 
-const AlcoholImg = styled.img`
-    width: 420px;
-    height: 500px;
-    margin-top: 235px;
-    padding-right: 130px;
-`;
+const DrinkCategory = styled.div`
+    margin-top: 305.03px;
 
-const AlcoholType = styled.div`
     width: 76px;
     height: 34px;
-    line-height: 36px;
-    text-align: center;
     border: 1px solid #454038;
     border-radius: 24px;
+
+    text-align: center;
+    font-size: 15px;
+    line-height: 36px;
+    letter-spacing: -0.01em;
     color: #454038;
 `;
 
-const AlcoholHeart = styled.img`
-    position: absolute;
-    padding-left: 460px;
-    padding-top: 60px;
-`;
+const DrinkLikeCount = styled.div`
+    margin-right: 30px;
+    margin-top: 65px;
 
-const AlcoholNames = styled.div`
-    width: 330px;
-    margin-top: 25px;
-    font-family: 'GmarketSansMedium';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 40px;
-    line-height: 50px;
+    font-size: 20px;
+    line-height: 20px;
+    letter-spacing: -0.01em;
     color: #8b7e6a;
+    float: right;
 `;
 
-const SeeReviewLink = styled(Link)`
-    text-decoration: none;
-    margin-left: 5px;
+const DrinkLikeBtn = styled.button`
+    position: absolute;
+    margin-top: 56px;
+    margin-left: 480px;
+    background-color: transparent;
+    border: none;
+
+    :hover {
+        cursor: pointer;
+    }
+`;
+
+const SeeReview = styled.button`
+    position: absolute;
+    margin-left: 103px;
+    background-color: transparent;
+    border: none;
 
     font-family: 'GmarketSansLight';
-    font-style: normal;
     font-weight: bold;
     font-size: 15px;
+    line-height: 18px;
     color: #8b7e6a;
+
+    :hover {
+        cursor: pointer;
+    }
 `;
 
-const AlcoholVolume = styled.div`
-    margin-top: 20px;
-    margin-left: 5px;
-
-    font-family: 'GmarketSansMedium';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 21px;
-    line-height: 30px;
-    color: #8b7e6a;
-`;
-
-const Line = styled.div`
-    margin-top: 15px;
-    width: 505px;
-
+const Line = styled.div<{
+    margintop: number;
+    marginbottom: number;
+    width: number;
+}>`
+    margin-top: ${(props) => props.margintop}px;
+    margin-bottom: ${(props) => props.marginbottom}px;
+    width: ${(props) => props.width}px;
     border-bottom: 1px solid #bbb6a8;
 `;
 
-const AlcoholPrice = styled.div`
-    margin-top: 20px;
-    margin-left: 5px;
-
-    font-family: 'GmarketSansMedium';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 21px;
-    line-height: 30px;
-    color: #8b7e6a;
-`;
-
-const Distillery = styled.div`
-    margin-top: 30px;
-    margin-left: 5px;
-
-    font-family: 'GmarketSansMedium';
-    font-style: normal;
-    font-weight: 400;
+const DrinkBrewery = styled.div`
     font-size: 18px;
-    line-height: 20px;
+    line-height: 18px;
+    letter-spacing: -0.01em;
     color: #8b7e6a;
 `;
 
-const Explain = styled.div`
+const DrinkDescription = styled.div`
     margin-top: 20px;
     margin-bottom: 50px;
-    margin-left: 5px;
-    width: 500px;
+    width: 511px;
 
     font-family: 'GmarketSansLight';
-    font-style: normal;
     font-weight: 300;
     font-size: 18px;
     line-height: 31px;
     color: #8b7e6a;
+    word-break: keep-all;
 `;
 
-const AlcoholTaste = styled.div`
-    margin-top: 300px;
+const DrinkTaste = styled.div`
+    margin-top: 237.97px;
+
+    h1 {
+        margin-left: 7px;
+
+        font-size: 30px;
+        line-height: 30px;
+        letter-spacing: -0.01em;
+        color: #675b4f;
+    }
 `;
 
-const AlcoholGraph = styled.div`
-    margin-left: 20px;
-    font-family: 'GmarketSansMedium';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 30px;
-    line-height: 30px;
-    color: #675b4f;
-`;
-
-const LingLine = styled.div`
-    margin-top: 30px;
-    width: 1000px;
-
-    border-bottom: 1px solid #bbb6a8;
-`;
-
-const Tastes = styled.div`
+const TasteText = styled.div`
     display: flex;
     justify-content: center;
-    margin-top: 70px;
 
-    font-family: 'GmarketSansMedium';
-    font-style: normal;
-    font-weight: 400;
-    line-height: 25px;
-    color: #8b7e6a;
-`;
+    h2 {
+        margin-right: 20px;
 
-const Taste = styled.div`
-    margin-right: 20px;
-    font-size: 23px;
-`;
+        font-size: 25px;
+        line-height: 25px;
+        letter-spacing: -0.01em;
+        color: #8b7e6a;
+    }
 
-const HLine = styled.div`
-    margin-right: 20px;
-    font-size: 18px;
+    h3 {
+        margin-right: 20px;
+        font-size: 18px;
+    }
 `;
 
 const TasteBox = styled.div`
     display: flex;
     justify-content: center;
 
-    margin-top: 50px;
-    margin-bottom: 450px;
+    margin-top: 55px;
+    margin-bottom: 184px;
 `;
 
 const Box = styled.div`
-    width: 700px;
+    width: 750px;
     height: 65px;
-
     border: 1px solid #8b7e6a;
     border-radius: 18px;
 `;
 
-const SweetCircle = styled.div`
+const Circle = styled.div<{ marginleft: number }>`
     position: absolute;
     width: 27px;
     height: 27px;
-    margin-left: 30px;
-    margin-top: 19px;
-    background: #8b7e6a;
-    border-radius: 100px;
-`;
-
-const BitterCircle = styled.div`
-    position: absolute;
-    width: 27px;
-    height: 27px;
-    margin-left: 150px;
-    margin-top: 19px;
-    background: #8b7e6a;
-    border-radius: 100px;
-`;
-
-const RefreshingCircle = styled.div`
-    position: absolute;
-    width: 27px;
-    height: 27px;
-    margin-left: 268px;
-    margin-top: 19px;
-    background: #8b7e6a;
-    border-radius: 100px;
-`;
-
-const CleanCircle = styled.div`
-    position: absolute;
-    width: 27px;
-    height: 27px;
-    margin-left: 391px;
-    margin-top: 19px;
-    background: #8b7e6a;
-    border-radius: 100px;
-`;
-
-const CoolCircle = styled.div`
-    position: absolute;
-    width: 27px;
-    height: 27px;
-    margin-left: 517px;
-    margin-top: 19px;
-    background: #8b7e6a;
-    border-radius: 100px;
-`;
-
-const SourCircle = styled.div`
-    position: absolute;
-    width: 27px;
-    height: 27px;
-    margin-left: 638px;
+    margin-left: ${(props) => props.marginleft}px;
     margin-top: 19px;
     background: #8b7e6a;
     border-radius: 100px;

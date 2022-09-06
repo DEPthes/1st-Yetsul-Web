@@ -62,19 +62,24 @@ const ImageListModal: React.FC<modalType> = ({ modal, photoReview }) => {
                     </svg>
                 </CloseBtn>
                 <ModalInner>
-                    <PhotoList>
-                        {photoReview.map((el) => {
-                            return (
-                                // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-                                <div key={el} onClick={() => handleModal(el)}>
-                                    <ModalImageElement
-                                        id={photoReview.indexOf(el)}
-                                        src={el}
-                                    />
-                                </div>
-                            );
-                        })}
-                    </PhotoList>
+                    <PhotoListScroll>
+                        <PhotoList>
+                            {photoReview.map((el) => {
+                                return (
+                                    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+                                    <PhotoDiv
+                                        key={el}
+                                        onClick={() => handleModal(el)}
+                                    >
+                                        <ModalImageElement
+                                            id={photoReview.indexOf(el)}
+                                            src={el}
+                                        />
+                                    </PhotoDiv>
+                                );
+                            })}
+                        </PhotoList>
+                    </PhotoListScroll>
                 </ModalInner>
             </ImageListWrap>
             {isModal && <ImageModal modal={handleModal} src={src} />}
@@ -126,18 +131,16 @@ const CloseBtn = styled.div`
 
 const ModalInner = styled.div`
     width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
 `;
 
-const PhotoList = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 71px;
-    width: 1020px;
+const PhotoListScroll = styled.div`
     height: 610px;
+    width: 1020px;
     overflow-y: scroll;
+    margin-top: 71px;
     &::-webkit-scrollbar {
         width: 8px; /* 스크롤바의 너비 */
     }
@@ -146,5 +149,20 @@ const PhotoList = styled.div`
         background: #675b4f; /* 스크롤바의 색상 */
 
         border-radius: 10px;
+    }
+`;
+
+const PhotoList = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+`;
+
+const PhotoDiv = styled.div`
+    height: auto;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    &:nth-of-type(6n) {
+        margin-right: 0;
     }
 `;
