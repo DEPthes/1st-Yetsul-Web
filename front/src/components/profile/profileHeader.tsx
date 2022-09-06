@@ -12,15 +12,24 @@ export const ProfileHeader: React.FC<headertype> = ({
 }) => {
     return (
         <ProfileHeaderInner>
-            <HeaderHeading>{BigHeader}</HeaderHeading>
-            <HeaderLittleHeading>{SmallHeader}</HeaderLittleHeading>
+            <ProfileHeaderHeadingContainer>
+                <HeaderHeading>{BigHeader}</HeaderHeading>
+                <HeaderLittleHeading>{SmallHeader}</HeaderLittleHeading>
+            </ProfileHeaderHeadingContainer>
         </ProfileHeaderInner>
     );
 };
 
 const ProfileHeaderInner = styled.div`
+    display: flex;
+    justify-content: space-between;
     width: 1125px;
     border-bottom: 1px solid #bbb6a8;
+`;
+
+const ProfileHeaderHeadingContainer = styled.div`
+    display: flex;
+    flex-direction: column;
 `;
 
 const HeaderHeading = styled.h1`
