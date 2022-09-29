@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -14,9 +15,29 @@ const KakaoLogin: React.FC = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
                 if (data.access_token) {
                     localStorage.setItem('token', data.access_token);
+                    console.log('success');
+                    getJwtToken();
+                } else {
+                    console.log('fail');
+                    navigate('/');
+                }
+            })
+            .catch((err) => console.log(err));
+    };
+
+    const getJwtToken = () => {
+        axios
+            .get(
+                `https://depth-server.herokuapp.com/auth/createjwttoken/${localStorage.getItem(
+                    'token',
+                )}`,
+            )
+            .then((res) => {
+                console.log('accesstoken: ', res.data);
+                if (res.data) {
+                    localStorage.setItem('accessToken', res.data);
                     console.log('success');
                 } else {
                     console.log('fail');
@@ -27,10 +48,8 @@ const KakaoLogin: React.FC = () => {
     };
 
     useEffect(() => {
-        console.log(KAKAO_CODE);
         if (!location.search) return;
         getKakaoToken();
-        console.log(localStorage);
     }, []);
 
     return <div>KakaoLogin</div>;
