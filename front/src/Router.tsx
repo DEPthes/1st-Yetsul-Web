@@ -17,6 +17,7 @@ import { FixProfile } from './components/profile/fixprofile';
 import { MyReviewAll } from './components/profile/MyReviewAll';
 import { MyLikeAll } from './components/profile/MyLikeAll';
 import ReviewWrite from './components/Review/ReviewWrite/ReviewWrite';
+import KakaoLogin from './components/Login/KakaoLogin';
 
 const Router: React.FC = () => {
     return (
@@ -25,7 +26,11 @@ const Router: React.FC = () => {
                 <Header />
                 <Routes>
                     <Route path="/" element={<App />} />
-                    <Route path="/auth/:service/callback" element={<App />} />
+                    <Route
+                        path="/auth/:service/callback"
+                        element={<KakaoLogin />}
+                    />
+                    <Route path="/auth/*" element={<KakaoLogin />} />
                     <Route path="/depth" element={<Depth />} />
                     <Route path="/service" element={<Service />} />
                     <Route path="/list/:id/spec" element={<DrinkDetail />} />
