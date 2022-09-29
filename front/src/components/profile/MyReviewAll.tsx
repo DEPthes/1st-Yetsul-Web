@@ -2,7 +2,6 @@
 import React, { useState, useEffect, ReactNode } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import { ProfileHeader } from './profileHeader';
 import { MyReviewWidget } from './MyReviewWidget';
