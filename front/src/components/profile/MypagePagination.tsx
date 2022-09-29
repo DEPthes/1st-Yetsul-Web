@@ -1,19 +1,26 @@
-import styled from 'styled-components';
 import React from 'react';
+import styled from 'styled-components';
 
 type PageType = {
     total: number; // 전체 게시물 수
     limit: number; // 페이지 당 보여줄 게시물 수
     page: number; // 현재 페이지
     setPage: (page: number) => void;
+    marginValue: number;
 };
 
-const MyPagination = ({ total, limit, page, setPage }: PageType) => {
+const MyPagination = ({
+    total,
+    limit,
+    page,
+    setPage,
+    marginValue,
+}: PageType) => {
     const numPages = Math.ceil(total / limit); // paginator 수
 
     return (
         <>
-            <Nav>
+            <Nav marginValue={marginValue}>
                 {Array(numPages)
                     .fill(undefined)
                     .map((v, i) => (
@@ -31,12 +38,12 @@ const MyPagination = ({ total, limit, page, setPage }: PageType) => {
     );
 };
 
-const Nav = styled.nav`
+const Nav = styled.nav<{ marginValue: number }>`
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 5px;
-    margin-bottom: 55px;
+    margin-top: ${(props) => props.marginValue}px;
 `;
 
 const Button = styled.button`

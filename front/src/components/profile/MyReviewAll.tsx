@@ -3,11 +3,16 @@ import React, { useState, useEffect, ReactNode } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import BackgroundTemplate from '../common/BackgroundTemplate';
-import { ProfileHeader } from './profileHeader';
 import { MyReviewWidget } from './MyReviewWidget';
-import MyPagination from '../DrinkList/Pagination';
+import MyPagination from './MypagePagination';
+import { TemporarySaveModal } from './TemporarySaveModal2';
 
 export const MyReviewAll: React.FC = () => {
+    const [OpenModal, setOpenModal] = useState(false);
+    const ChangeOpenModalShow = () => {
+        setOpenModal((e) => !e);
+    };
+    console.log(OpenModal);
     const [AlcholthatUserWrite, setAlcholthatUserWrite] = useState<DrinkType[]>(
         [],
     );
@@ -26,10 +31,17 @@ export const MyReviewAll: React.FC = () => {
         <BackgroundTemplate heightValue="100%">
             <Inner>
                 <MyReviewAllConatainer>
-                    <ProfileHeader
-                        BigHeader="나의 리뷰 모아보기"
-                        SmallHeader="내가 쓴 리뷰를  한 번에 볼 수 있어요!  "
-                    />
+                    <ProfileHeaderInner>
+                        <ProfileHeaderHeadingContainer>
+                            <HeaderHeading>나의 리뷰 모아보기</HeaderHeading>
+                            <HeaderLittleHeading>
+                                내가 쓴 리뷰를 한 번에 볼 수 있어요!
+                            </HeaderLittleHeading>
+                        </ProfileHeaderHeadingContainer>
+                        <ModalBtn onClick={ChangeOpenModalShow}>
+                            임시저장
+                        </ModalBtn>
+                    </ProfileHeaderInner>
                     <MyReviewWidgetContainer>
                         {AlcholthatUserWrite.slice(offset, offset + limit).map(
                             (myreview: {
@@ -52,8 +64,13 @@ export const MyReviewAll: React.FC = () => {
                         limit={limit}
                         page={page}
                         setPage={setPage}
+                        marginValue={80}
                     />
                 </MyReviewAllConatainer>
+                <TemporarySaveModal
+                    ChangeOpenModalShow={ChangeOpenModalShow}
+                    OpenModal={OpenModal}
+                />
             </Inner>
         </BackgroundTemplate>
     );
@@ -77,7 +94,6 @@ const MyReviewWidgetContainer = styled.div`
     flex-direction: column;
     align-items: center;
     width: 1113.9px;
-    margin-bottom: 50px;
 `;
 
 type DrinkType = {
@@ -100,3 +116,37 @@ type DrinkType = {
     alcoholId: number;
     title: string;
 };
+const ProfileHeaderInner = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 1125px;
+    border-bottom: 1px solid #bbb6a8;
+`;
+
+const ProfileHeaderHeadingContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+const HeaderHeading = styled.h1`
+    font-size: 30px;
+    color: #454038;
+    margin-bottom: 24px;
+`;
+
+const HeaderLittleHeading = styled.h2`
+    font-size: 20px;
+    color: #8e8372;
+    margin-bottom: 24px;
+`;
+
+const ModalBtn = styled.button`
+    width: 159px;
+    height: 51px;
+    border: 1px solid #675b4f;
+    border-radius: 18px;
+    background: none;
+    font-size: 20px;
+    margin-top: 55px;
+    cursor: pointer;
+`;

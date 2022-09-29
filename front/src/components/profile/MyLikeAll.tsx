@@ -54,6 +54,7 @@ export const MyLikeAll: React.FC = () => {
                         limit={limit}
                         page={page}
                         setPage={setPage}
+                        marginValue={20}
                     />
                 </MyReviewAllConatainer>
             </Inner>
