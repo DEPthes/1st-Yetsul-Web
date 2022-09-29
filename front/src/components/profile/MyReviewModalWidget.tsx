@@ -9,7 +9,7 @@ type myreviewtype = {
     star: number;
 };
 
-export const MyReviewWidget: React.FC<myreviewtype> = ({
+export const MyReviewModalWidget: React.FC<myreviewtype> = ({
     alcoholId,
     title,
     star,
@@ -73,7 +73,7 @@ export const MyReviewWidget: React.FC<myreviewtype> = ({
             </MyreviewInformationSection>
             <MyreviewRightSection>
                 <StarBox>
-                    <Star star={star} widthValue={15} heightValue={14} />
+                    <Star star={star} widthValue={10} heightValue={14} />
                 </StarBox>
                 <SeeFull>전체보기 &#62;</SeeFull>
             </MyreviewRightSection>
@@ -82,67 +82,72 @@ export const MyReviewWidget: React.FC<myreviewtype> = ({
 };
 
 const MyreviewBarInner = styled.div`
-    width: 100%;
-    height: 119px;
+    width: 687px;
+    height: 73.39px;
     border: 1px solid #675b4f;
     border-radius: 18px;
     display: flex;
-    margin: 8px 0px;
+    margin-bottom: 16.61px;
 `;
 const MyreviewDrinkImgSection = styled.div`
-    margin-left: 101.8px;
+    margin-left: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
 `;
 const MyreviewDrinkImg = styled.img`
-    height: 90px;
+    height: 60px;
 `;
 const MyreviewInformationSection = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: flex-start;
-    width: 800px;
-    margin-left: 150px;
 `;
 const MyreviewInformationUpper = styled.div`
     display: flex;
     align-items: center;
-    margin-top: 23px;
+    margin-top: 6px;
+    margin-left: 80px;
 `;
-const MyreviewInformationLower = styled.div``;
+const MyreviewInformationLower = styled.div`
+    margin-left: 80px;
+    margin-top: 10px;
+`;
 const MyreviewDrinkKind = styled.div`
     color: #454038;
     border: 1px solid #454038;
     border-radius: 24px;
-    padding: 10px 25px;
+    width: 29px;
+    padding: 1px 10px;
+    display: flex;
+    justify-content: center;
+    font-size: 13px;
 `;
-const MyreviewDrinkName = styled.p`
-    color: #675b4f;
-    margin-left: 20px;
-    font-size: 28px;
+const MyreviewDrinkName = styled.div`
+    font-size: 18px;
     line-height: 0;
     margin-top: 3px;
+    margin-left: 11px;
 `;
-const MyreviewHeading = styled.p`
-    margin-top: 23px;
-    margin-left: 15px;
+const MyreviewHeading = styled.div`
+    margin-top: 2.3px;
+    font-size: 13px;
+    margin-left: 7px;
 `;
 const MyreviewRightSection = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
-    width: 200px;
-    margin-right: 50px;
+    margin-left: 80px;
 `;
 
-const SeeFull = styled.p`
-    margin-top: 25px;
+const SeeFull = styled.div`
+    font-size: 15px;
 `;
 
 const StarBox = styled.div`
-    width: 129px;
     height: 30px;
     display: flex;
     justify-content: flex-end;
