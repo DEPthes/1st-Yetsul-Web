@@ -20,7 +20,7 @@ const ReviewDetailList: React.FC<ReviewType> = ({
     return (
         <ListWrapper>
             <BoardList>
-                <Star star={star} big={false} />
+                <Star star={star} widthValue={28} heightValue={28} />
                 <div>{title}</div>
                 <div>{nickname}</div>
                 <div>{date.slice(0, 10)}</div>

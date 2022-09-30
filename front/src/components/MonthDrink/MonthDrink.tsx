@@ -16,11 +16,11 @@ const MonthDrink: React.FC = () => {
                             <h1>9월</h1>
                             <MonthContent>
                                 <DrinkImg
-                                    src="/images/9월의전통주.png"
+                                    src="/images/septemberDrink.png"
                                     alt="9Drink"
                                 />
                                 <AnimationBtnImg
-                                    src="/images/9월의전통주animationBtn.png"
+                                    src="/images/MonthDrinkAnimationBtn.png"
                                     alt="9DrinkanimationBtn"
                                 />
                             </MonthContent>

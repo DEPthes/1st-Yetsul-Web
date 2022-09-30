@@ -3,7 +3,6 @@ import React from 'react';
 /* eslint-disable no-nested-ternary */
 
 import { Link } from 'react-router-dom';
-
 import styled from 'styled-components';
 import Star from '../common/Star';
 
@@ -35,48 +34,112 @@ const BoardListElement: React.FC<reviewType> = ({
     alcoholId,
 }) => {
     return (
-        <ReviewsWrapper>
-            <UserImgWrap>
-                <img src={userImg} alt={userImg} />
-            </UserImgWrap>
+        <>
+            {reviewImg.length < 1 ? (
+                <ReviewsWrapper>
+                    <UserImgWrap>
+                        <img src={userImg} alt={userImg} />
+                    </UserImgWrap>
 
-            <ReviewBox>
-                <h1>{title}</h1>
-                <StarWrap>
-                    <Star star={starCount} widthValue={29} heightValue={27} />
-                    <h3>{starCount}개</h3>
-                </StarWrap>
-                <ReviewBoxHeadInfo>
-                    <h3>{nickname}</h3>
-                    <h3>{date.slice(0, 10)}</h3>
-                </ReviewBoxHeadInfo>
+                    <ReviewBox>
+                        <h1>{title}</h1>
+                        <StarWrap>
+                            <Star
+                                star={starCount}
+                                widthValue={29}
+                                heightValue={27}
+                            />
+                            <h3>{starCount}개</h3>
+                        </StarWrap>
+                        <ReviewBoxHeadInfo>
+                            <h3>{nickname}</h3>
+                            <h3>{date.slice(0, 10)}</h3>
+                        </ReviewBoxHeadInfo>
 
-                <ReviewBoxContent>
-                    <h3>{content}</h3>
-                    <ReviewLink
-                        to={`/review/alcohol${alcoholId}/review${reviewId}`}
-                    >
-                        전체보기 {'>'}
-                    </ReviewLink>
-                </ReviewBoxContent>
-            </ReviewBox>
-            <ReviewImgWrap>
-                {reviewImg.length < 1 ? (
-                    '이것은 리뷰 사진 개수가 0개일 때 보여줄 사진.'
-                ) : reviewImg.length < 2 ? (
-                    <img src={reviewImg} alt={userImg} />
-                ) : (
-                    <img src={reviewImg[0]} alt={userImg} />
-                )}
-            </ReviewImgWrap>
-            <LikeBtn>
-                👍<h3>{like}</h3>
-            </LikeBtn>
-        </ReviewsWrapper>
+                        <ReviewBoxContentNoImg>
+                            <h3>{content}</h3>
+                            <ReviewLink
+                                to={`/review/alcohol${alcoholId}/review${reviewId}`}
+                            >
+                                전체보기 {'>'}
+                            </ReviewLink>
+                        </ReviewBoxContentNoImg>
+                    </ReviewBox>
+                    <LikeBtn>
+                        👍<h3>{like}</h3>
+                    </LikeBtn>
+                </ReviewsWrapper>
+            ) : (
+                <ReviewsWrapper>
+                    {userImg === '' || null || undefined ? (
+                        <UserImgWrap>
+                            <img
+                                src="/images/userDefaultProfileImg.png"
+                                alt={userImg}
+                            />
+                        </UserImgWrap>
+                    ) : (
+                        <UserImgWrap>
+                            <img src={userImg} alt={userImg} />
+                        </UserImgWrap>
+                    )}
+
+                    <ReviewBox>
+                        <h1>{title}</h1>
+                        <StarWrap>
+                            <Star
+                                star={starCount}
+                                widthValue={29}
+                                heightValue={27}
+                            />
+                            <h3>{starCount}개</h3>
+                        </StarWrap>
+                        <ReviewBoxHeadInfo>
+                            <h3>{nickname}</h3>
+                            <h3>{date.slice(0, 10)}</h3>
+                        </ReviewBoxHeadInfo>
+
+                        <ReviewBoxContent>
+                            <h3>{content}</h3>
+                            <ReviewLink
+                                to={`/review/alcohol${alcoholId}/review${reviewId}`}
+                            >
+                                전체보기 {'>'}
+                            </ReviewLink>
+                        </ReviewBoxContent>
+                    </ReviewBox>
+                    <ReviewImgWrap>
+                        {reviewImg.length < 2 ? (
+                            <img src={reviewImg} alt={userImg} />
+                        ) : (
+                            <img src={reviewImg[0]} alt={userImg} />
+                        )}
+                    </ReviewImgWrap>
+                    <LikeBtn>
+                        👍<h3>{like}</h3>
+                    </LikeBtn>
+                </ReviewsWrapper>
+            )}
+        </>
     );
 };
 
 export default BoardListElement;
+
+const ReviewBoxContentNoImg = styled.div`
+    width: 856px;
+    height: 92px;
+    border: 1px solid #675b4f;
+    border-radius: 18px;
+    margin-right: 47px;
+    position: relative;
+
+    h3 {
+        font-size: 15px;
+        color: #8b7e6a;
+        margin: 20px 13px;
+    }
+`;
 
 const ReviewsWrapper = styled.div`
     display: flex;
@@ -92,7 +155,6 @@ const UserImgWrap = styled.div`
     height: 103px;
 
     img {
-        background: #d9d9d9;
         border-radius: 50%;
         object-fit: cover;
         width: 103px;

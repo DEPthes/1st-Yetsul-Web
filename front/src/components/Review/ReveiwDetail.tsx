@@ -119,7 +119,11 @@ const ReviewDetail: React.FC = () => {
 
                     <DrinkEl>
                         <div>
-                            <Star star={drink.star} big={false} />
+                            <Star
+                                star={drink.star}
+                                widthValue={15}
+                                heightValue={15}
+                            />
                             <h2>
                                 (리뷰 +{reviewCount}) {'>'}
                             </h2>
@@ -138,12 +142,16 @@ const ReviewDetail: React.FC = () => {
                             <h3>{review.nickname}</h3>
                         </HeaderLeft>
 
-                        <Star star={review.star} big />
+                        <Star
+                            star={review.star}
+                            widthValue={38.63}
+                            heightValue={39}
+                        />
                     </ReviewHeader>
 
                     <ContentHeader>
                         <div>
-                            <LikeBtn>😎 {review.like} </LikeBtn>
+                            <LikeBtn>👍 {review.like} </LikeBtn>
                             <LikeBanner>추천을 눌러주세요</LikeBanner>
                         </div>
                         <div>

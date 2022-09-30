@@ -88,6 +88,7 @@ const DrinkDetail: React.FC = () => {
         });
 
         const newArr = photoArr.filter(
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             (element, i) => element !== undefined || null || '',
         );
         newArr.reverse(); // 최신순으로 보여줌
