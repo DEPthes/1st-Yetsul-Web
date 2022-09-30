@@ -1,4 +1,6 @@
-import React from 'react';
+/* eslint-disable react/button-has-type */
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
 /* eslint-disable no-nested-ternary */
 
@@ -33,6 +35,36 @@ const BoardListElement: React.FC<reviewType> = ({
     reviewId,
     alcoholId,
 }) => {
+    const [likeCount, setLikeCount] = useState(like);
+    // eslint-disable-next-line prefer-const
+    let [reviewLike, setReviewLike] = useState(false);
+
+    const getdata = () => {
+        const accessToken = localStorage.getItem('accessToken') || '';
+        console.log(accessToken);
+        return axios.create({
+            headers: { Authorization: `Bearer ${accessToken}` },
+        });
+    };
+
+    useEffect(() => {
+        getdata()
+            .post(
+                `https://depth-server.herokuapp.com/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+            )
+            .then((res) => console.log(res.data))
+            .catch((err) => console.log(err));
+    }, []);
+
+    useEffect(() => {
+        console.log(reviewLike);
+        console.log('reviewLike값 업데이트 될 때만 실행');
+    }, [reviewLike]);
+
+    const LikeBtnHandler = () => {
+        setReviewLike(!reviewLike);
+    };
+
     return (
         <>
             {reviewImg.length < 1 ? (
@@ -65,8 +97,13 @@ const BoardListElement: React.FC<reviewType> = ({
                             </ReviewLink>
                         </ReviewBoxContentNoImg>
                     </ReviewBox>
-                    <LikeBtn>
-                        👍<h3>{like}</h3>
+                    <LikeBtn
+                    // onClick={() => {
+                    //     setReviewLike((reviewLike += 1));
+                    // }}
+                    >
+                        👍
+                        <span>{like}</span>
                     </LikeBtn>
                 </ReviewsWrapper>
             ) : (
@@ -115,8 +152,13 @@ const BoardListElement: React.FC<reviewType> = ({
                             <img src={reviewImg[0]} alt={userImg} />
                         )}
                     </ReviewImgWrap>
-                    <LikeBtn>
-                        👍<h3>{like}</h3>
+                    <LikeBtn
+                        onClick={() => {
+                            LikeBtnHandler();
+                        }}
+                    >
+                        👍
+                        <span>{like}</span>
                     </LikeBtn>
                 </ReviewsWrapper>
             )}
@@ -264,7 +306,10 @@ const LikeBtn = styled.button`
     align-items: center;
     justify-content: center;
 
-    h3 {
+    span {
+        border: none;
+        background: none;
+        font-family: inherit;
         font-size: 15px;
         color: #000000;
         margin-left: 5px;
