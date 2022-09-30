@@ -37,7 +37,7 @@ const LoginModal: React.FC<modalType> = ({ modal }) => {
                 <LoginMain>
                     <ButtonStyle
                         id="kakao"
-                        href="https://depth-server.herokuapp.com/auth/kakao"
+                        href="https://kauth.kakao.com/oauth/authorize?client_id=301680b168fe30cd27fdafb039d82a6a&redirect_uri=http://localhost:3000/auth/kakaologin&response_type=code"
                     >
                         <svg
                             width="70"
