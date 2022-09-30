@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from './App';
 import Header from './components/common/Header';
 import store from './store/config';
-import Depth from './components/introduction/depth';
 import Service from './components/introduction/service';
 import DrinkList from './components/DrinkList/DrinkList';
 import SoolotMachine from './components/soolotmachine/SoolotMachine';
@@ -31,7 +30,6 @@ const Router: React.FC = () => {
                         element={<KakaoLogin />}
                     />
                     <Route path="/auth/*" element={<KakaoLogin />} />
-                    <Route path="/depth" element={<Depth />} />
                     <Route path="/service" element={<Service />} />
                     <Route path="/list/:id/spec" element={<DrinkDetail />} />
                     <Route path="/list" element={<DrinkList />} />

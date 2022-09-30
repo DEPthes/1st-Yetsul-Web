@@ -16,8 +16,15 @@ export const MyReviewWidget: React.FC<myreviewtype> = ({
 }) => {
     const MyreviewAlcoholId = alcoholId;
     const [MyreviewAlcoholData, setMyreviewAlcoholData] = useState(Object);
+    const getData = () => {
+        const JWT = localStorage.getItem('accessToken') || '';
+        return axios.create({
+            headers: { Authorization: `Bearer ${JWT}` },
+        });
+    };
+
     useEffect(() => {
-        axios
+        getData()
             .get(
                 `https://depth-server.herokuapp.com/alcohol/description/${MyreviewAlcoholId}`,
             )
@@ -90,7 +97,7 @@ const MyreviewBarInner = styled.div`
     margin: 8px 0px;
 `;
 const MyreviewDrinkImgSection = styled.div`
-    margin-left: 101.8px;
+    margin-left: 90px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -102,15 +109,17 @@ const MyreviewInformationSection = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 800px;
-    margin-left: 150px;
+    width: 100%;
+    padding-left: 150px;
 `;
 const MyreviewInformationUpper = styled.div`
     display: flex;
     align-items: center;
     margin-top: 23px;
 `;
-const MyreviewInformationLower = styled.div``;
+const MyreviewInformationLower = styled.div`
+    margin-top: 23px;
+`;
 const MyreviewDrinkKind = styled.div`
     color: #454038;
     border: 1px solid #454038;
@@ -120,12 +129,11 @@ const MyreviewDrinkKind = styled.div`
 const MyreviewDrinkName = styled.p`
     color: #675b4f;
     margin-left: 20px;
-    font-size: 28px;
+    font-size: 25px;
     line-height: 0;
     margin-top: 3px;
 `;
 const MyreviewHeading = styled.p`
-    margin-top: 23px;
     margin-left: 15px;
 `;
 const MyreviewRightSection = styled.div`
@@ -133,8 +141,8 @@ const MyreviewRightSection = styled.div`
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
-    width: 200px;
-    margin-right: 50px;
+    width: 100px;
+    margin-right: 40px;
 `;
 
 const SeeFull = styled.p`

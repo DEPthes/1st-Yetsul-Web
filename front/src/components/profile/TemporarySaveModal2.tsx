@@ -19,11 +19,15 @@ export const TemporarySaveModal: React.FC<ModalType> = ({
     const [limit] = useState(4); // 페이지 당 보여줄 게시물 수
     const [page, setPage] = useState(1); // 현재 페이지
     const offset = (page - 1) * limit; // 페이지 당 첫 게시물의 index
+    const getData = () => {
+        const JWT = localStorage.getItem('accessToken') || '';
+        return axios.create({
+            headers: { Authorization: `Bearer ${JWT}` },
+        });
+    };
     useEffect(() => {
-        axios
-            .post('https://depth-server.herokuapp.com/review/user', {
-                user: 1,
-            })
+        getData()
+            .post('https://depth-server.herokuapp.com/review/user/temporary')
             .then((res) => setAlcholthatUserWrite(res.data))
             .catch((err) => console.log(err));
     }, []);
@@ -89,8 +93,11 @@ const ModalInner = styled.div`
     height: 100vh;
     background: rgba(90, 90, 90, 0.5);
     backdrop-filter: blur(10px);
-    position: fixed;
     z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
 `;
 
 const WidgetContainer = styled.div`
@@ -100,9 +107,6 @@ const WidgetContainer = styled.div`
 `;
 
 const Modal = styled.div`
-    position: absolute;
-    left: 578px;
-    top: 210px;
     width: 724px;
     height: 582px;
     padding: 40px;
@@ -114,7 +118,7 @@ const Modal = styled.div`
     h1 {
         font-size: 30px;
         color: #454038;
-        margin-bottom: 18px;
+        margin-bottom: 13px;
         margin-left: 10px;
     }
     p {
