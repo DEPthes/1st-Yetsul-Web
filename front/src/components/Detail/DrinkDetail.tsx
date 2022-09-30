@@ -156,6 +156,19 @@ const DrinkDetail: React.FC = () => {
         }
     };
 
+    const sortByLikeAsc = () => {
+        // 평점 높은 순 정렬
+        if (isSelected[3] === false) {
+            const sortedByStarReviews = reviewForSort
+                .slice(0)
+                .sort((a: ReviewType, b: ReviewType) => {
+                    return a.like.valueOf() - b.like.valueOf();
+                });
+            setReviewForSort(sortedByStarReviews);
+            setSelected([false, false, false, true]);
+        }
+    };
+
     const dispatch = useDispatch();
     const isModal = useSelector((state: RootState) => {
         return state.listModal.modal;
@@ -311,6 +324,14 @@ const DrinkDetail: React.FC = () => {
                         style={{ color: isSelected[2] ? '#8B7E6A' : '' }}
                     >
                         평점 낮은 순
+                    </button>
+                    |
+                    <button
+                        type="button"
+                        onClick={sortByLikeAsc}
+                        style={{ color: isSelected[3] ? '#8B7E6A' : '' }}
+                    >
+                        추천 많은 순
                     </button>
                 </ReviewSort>
 

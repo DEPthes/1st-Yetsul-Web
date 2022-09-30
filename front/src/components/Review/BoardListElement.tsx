@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable react/button-has-type */
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -22,6 +23,17 @@ type reviewType = {
     alcoholId: number;
 };
 
+type reviewLikeType = {
+    id: number;
+    title: string;
+    content: string;
+    star: number;
+    reviewImgUrl: string;
+    date: number;
+    like: number;
+    userId: number;
+};
+
 const BoardListElement: React.FC<reviewType> = ({
     userImg,
     nickname,
@@ -35,9 +47,9 @@ const BoardListElement: React.FC<reviewType> = ({
     reviewId,
     alcoholId,
 }) => {
-    const [likeCount, setLikeCount] = useState(like);
-    // eslint-disable-next-line prefer-const
-    let [reviewLike, setReviewLike] = useState(false);
+    const [likeType, setLikeType] = useState<reviewLikeType[]>([]);
+    let [likeCount, setLikeCount] = useState(0);
+    let [isLiked, setIsLiked] = useState(false);
 
     const getdata = () => {
         const accessToken = localStorage.getItem('accessToken') || '';
@@ -52,18 +64,37 @@ const BoardListElement: React.FC<reviewType> = ({
             .post(
                 `https://depth-server.herokuapp.com/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
             )
-            .then((res) => console.log(res.data))
+            .then((res) => {
+                setLikeCount(res.data.like);
+
+                console.log(`like${likeCount}`);
+            })
             .catch((err) => console.log(err));
     }, []);
 
     useEffect(() => {
-        console.log(reviewLike);
-        console.log('reviewLike값 업데이트 될 때만 실행');
-    }, [reviewLike]);
+        if (isLiked === true) {
+            setLikeCount((likeCount += 1));
+        } else {
+            setLikeCount((likeCount -= 1));
+        }
+    }, [isLiked]);
 
-    const LikeBtnHandler = () => {
-        setReviewLike(!reviewLike);
+    const likeBtnHandler = () => {
+        setIsLiked(!isLiked);
     };
+
+    // useEffect(() => {
+    //     console.log(reviewLike);
+    //     console.log('reviewLike값 업데이트 될 때만 실행');
+    // }, [reviewLike]);
+
+    // const LikeBtnHandler = () => {
+    //     setReviewLike(!reviewLike);
+    //     if (reviewLike === true) {
+    //         setLikeCount((likeCount += 1));
+    //     } else setLikeCount((likeCount -= 1));
+    // };
 
     return (
         <>
@@ -154,7 +185,7 @@ const BoardListElement: React.FC<reviewType> = ({
                     </ReviewImgWrap>
                     <LikeBtn
                         onClick={() => {
-                            LikeBtnHandler();
+                            likeBtnHandler();
                         }}
                     >
                         👍

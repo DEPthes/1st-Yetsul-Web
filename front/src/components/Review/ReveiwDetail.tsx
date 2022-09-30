@@ -124,9 +124,17 @@ const ReviewDetail: React.FC = () => {
                                 widthValue={15}
                                 heightValue={15}
                             />
-                            <h2>
+
+                            <button
+                                onClick={() => {
+                                    window.scrollTo({
+                                        top: 1400,
+                                        behavior: 'smooth',
+                                    });
+                                }}
+                            >
                                 (리뷰 +{reviewCount}) {'>'}
-                            </h2>
+                            </button>
                         </div>
                     </DrinkEl>
 
@@ -176,7 +184,7 @@ const ReviewDetail: React.FC = () => {
                     </Content>
                 </ReviewWrapper>
 
-                <Header>
+                <Header id="headerScroll">
                     <div>평점</div>
                     <div>제목</div>
                     <div>닉네임</div>
@@ -271,8 +279,13 @@ const DrinkWrapper = styled.div`
         font-size: 15px;
         color: #8b7e6a;
 
-        h2 {
+        button {
             margin-left: 10px;
+            border: none;
+            font-size: 15px;
+            font-family: inherit;
+            font-weight: inherit;
+            color: #8b7e6a;
         }
     }
 
@@ -316,6 +329,7 @@ const PrevBtn = styled.button`
 `;
 const ImgWrapper = styled.div`
     display: flex;
+    justify-content: flex-start;
     overflow-x: scroll;
     margin-bottom: 44px;
     img {
