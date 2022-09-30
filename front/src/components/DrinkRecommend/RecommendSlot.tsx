@@ -1,11 +1,12 @@
 import React from 'react';
+import BackgroundTemplate from '../common/BackgroundTemplate';
 import ThirdMain from '../Main/ThirdMain';
 
 const RecommendSlot = () => {
     return (
-        <div>
+        <BackgroundTemplate heightValue="100%">
             <ThirdMain />
-        </div>
+        </BackgroundTemplate>
     );
 };
 
