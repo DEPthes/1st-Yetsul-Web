@@ -13,7 +13,7 @@ const drinkinformation = [
     {
         id: 0,
         img: 'images/AlcoholImg.png',
-        name: '이강주',
+        name: '담은',
         abv: 6.5,
     },
     {
@@ -25,7 +25,7 @@ const drinkinformation = [
     {
         id: 2,
         img: 'images/AlcoholImg3.png',
-        name: '이감주',
+        name: '이강주',
         abv: 19,
     },
 ];
