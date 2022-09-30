@@ -19,6 +19,10 @@ import { MyReviewAll } from './components/profile/MyReviewAll';
 import { MyLikeAll } from './components/profile/MyLikeAll';
 import ReviewWrite from './components/Review/ReviewWrite/ReviewWrite';
 import KakaoLogin from './components/Login/KakaoLogin';
+import AllDrinkRecommend from './components/DrinkRecommend/AllDrinkRecommend';
+import SecondMain from './components/Main/SecondMain';
+import RecommendSlot from './components/DrinkRecommend/RecommendSlot';
+import RecommendTicket from './components/DrinkRecommend/RecommendTicket';
 
 const Router: React.FC = () => {
     return (
@@ -57,6 +61,15 @@ const Router: React.FC = () => {
                         element={<ReviewDetail />}
                     />
                     <Route path="/list/:id/write" element={<ReviewWrite />} />
+                    <Route
+                        path="/AllDrinkRecommend"
+                        element={<AllDrinkRecommend />}
+                    />
+                    <Route
+                        path="/RecommendTicket"
+                        element={<RecommendTicket />}
+                    />
+                    <Route path="/RecommendSlot" element={<RecommendSlot />} />
                 </Routes>
             </BrowserRouter>
         </Provider>
