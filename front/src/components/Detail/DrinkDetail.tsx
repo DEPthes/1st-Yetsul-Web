@@ -42,6 +42,8 @@ type ReviewType = {
     like: number; // 해당 리뷰가 받은 좋아요 수
     userId: number; // 해당 리뷰 작성 userId
     profileImg: string; // 해당 리뷰 작성 user img
+    alcoholId: number;
+    nickname: string;
 };
 
 const DrinkDetail: React.FC = () => {
@@ -51,7 +53,7 @@ const DrinkDetail: React.FC = () => {
     const [reviews, setReviews] = useState<ReviewType[]>([]); // 리뷰 보드리스트
     const [reviewForSort, setReviewForSort] = useState<ReviewType[]>([]); // 리뷰 정렬 시 포토 후기 빼고 랜더링 다시 하기 위해
     const [starPercent, setStarPercent] = useState([]); // 평점비율
-    const [isSelected] = useState([true, false]); // 버튼 선택 유무
+    const [isSelected, setSelected] = useState([true, false, false, false]); // 버튼 선택 유무
 
     useEffect(() => {
         axios
@@ -82,10 +84,14 @@ const DrinkDetail: React.FC = () => {
         const photoArr: string[] = [];
 
         reviews.map((p) => {
-            return photoArr.push(p.reviewImgUrl);
+            return photoArr.push(p.reviewImgUrl[0]); // 사진이 2개 이상인거 있을 때, 그냥일 때 첫 번째 사진만 보여줌
         });
 
-        const newArr = photoArr.filter((element) => element !== '');
+        const newArr = photoArr.filter(
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            (element, i) => element !== undefined || null || '',
+        );
+        newArr.reverse(); // 최신순으로 보여줌
 
         return newArr;
     };
@@ -125,35 +131,20 @@ const DrinkDetail: React.FC = () => {
     };
 
     const sortByDate = () => {
-        // 최신 순, 오래된 순 정렬
-
-        if (isSelected[0] === true) {
-            const sortedByDateReviews = reviewForSort
-                .slice(0)
-                .sort((a: ReviewType, b: ReviewType) => {
-                    return (
-                        new Date(b.date.slice(0, 10)).valueOf() -
-                        new Date(a.date.slice(0, 10)).valueOf()
-                    );
-                });
-            setReviewForSort(sortedByDateReviews);
-            isSelected[0] = false;
-        } else {
-            const sortedByDateReviews = reviewForSort
-                .slice(0)
-                .sort((a: ReviewType, b: ReviewType) => {
-                    return (
-                        new Date(a.date.slice(0, 10)).valueOf() -
-                        new Date(b.date.slice(0, 10)).valueOf()
-                    );
-                });
-            setReviewForSort(sortedByDateReviews);
-            isSelected[0] = true;
-        }
+        const sortedByDateReviews = reviewForSort
+            .slice(0)
+            .sort((a: ReviewType, b: ReviewType) => {
+                return (
+                    new Date(a.date.slice(0, 10)).valueOf() -
+                    new Date(b.date.slice(0, 10)).valueOf()
+                );
+            });
+        setReviewForSort(sortedByDateReviews);
+        setSelected([true, false, false, false]);
     };
 
-    const sortByStar = () => {
-        // 평점 높은 순, 평점 낮은 순 정렬
+    const sortByStarAsc = () => {
+        // 평점 높은 순 정렬
         if (isSelected[1] === false) {
             const sortedByStarReviews = reviewForSort
                 .slice(0)
@@ -161,15 +152,20 @@ const DrinkDetail: React.FC = () => {
                     return a.star.valueOf() - b.star.valueOf();
                 });
             setReviewForSort(sortedByStarReviews);
-            isSelected[1] = true;
-        } else {
+            setSelected([false, true, false, false]);
+        }
+    };
+
+    const sortByLikeAsc = () => {
+        // 평점 높은 순 정렬
+        if (isSelected[3] === false) {
             const sortedByStarReviews = reviewForSort
                 .slice(0)
                 .sort((a: ReviewType, b: ReviewType) => {
-                    return b.star.valueOf() - a.star.valueOf();
+                    return a.like.valueOf() - b.like.valueOf();
                 });
             setReviewForSort(sortedByStarReviews);
-            isSelected[1] = false;
+            setSelected([false, false, false, true]);
         }
     };
 
@@ -201,6 +197,18 @@ const DrinkDetail: React.FC = () => {
                 nav.className = 'right';
             }
         }
+    };
+
+    const sortByStarDes = () => {
+        // 평점 낮은 순 정렬
+
+        const sortedByStarReviews = reviewForSort
+            .slice(0)
+            .sort((a: ReviewType, b: ReviewType) => {
+                return b.star.valueOf() - a.star.valueOf();
+            });
+        setReviewForSort(sortedByStarReviews);
+        setSelected([false, false, true, false]);
     };
 
     return (
@@ -250,13 +258,18 @@ const DrinkDetail: React.FC = () => {
                         </>
                     ) : (
                         <>
-                            {PhotoReviewSrcArr().length >= 6 ? (
+                            {PhotoReviewSrcArr().length >= 5 ? (
                                 <PhotoReviewWrapper>
                                     {PhotoReviewSrcArr()
                                         .slice(0, 4)
-                                        .map((p) => {
+                                        .map((p, index) => {
                                             return (
-                                                <img src={p} key={p} alt={p} />
+                                                <img
+                                                    src={p}
+                                                    // eslint-disable-next-line react/no-array-index-key
+                                                    key={index}
+                                                    alt={p}
+                                                />
                                             );
                                         })}
                                     <button type="button" onClick={handleModal}>
@@ -268,11 +281,12 @@ const DrinkDetail: React.FC = () => {
                                     <PhotoReviewWrapper>
                                         {PhotoReviewSrcArr()
                                             .slice(0, 5)
-                                            .map((p) => {
+                                            .map((p, index) => {
                                                 return (
                                                     <img
                                                         src={p}
-                                                        key={p}
+                                                        // eslint-disable-next-line react/no-array-index-key
+                                                        key={index}
                                                         alt={p}
                                                     />
                                                 );
@@ -293,15 +307,31 @@ const DrinkDetail: React.FC = () => {
                         onClick={sortByDate}
                         style={{ color: isSelected[0] ? '#8B7E6A' : '' }}
                     >
-                        {isSelected[0] ? '최신순' : '오래된순'}
+                        최신순
                     </button>
                     |
                     <button
                         type="button"
-                        onClick={sortByStar}
+                        onClick={sortByStarAsc}
                         style={{ color: isSelected[1] ? '#8B7E6A' : '' }}
                     >
-                        {isSelected[1] ? '평점 높은 순' : '평점 낮은 순'}
+                        평점 높은 순
+                    </button>
+                    |
+                    <button
+                        type="button"
+                        onClick={sortByStarDes}
+                        style={{ color: isSelected[2] ? '#8B7E6A' : '' }}
+                    >
+                        평점 낮은 순
+                    </button>
+                    |
+                    <button
+                        type="button"
+                        onClick={sortByLikeAsc}
+                        style={{ color: isSelected[3] ? '#8B7E6A' : '' }}
+                    >
+                        추천 많은 순
                     </button>
                 </ReviewSort>
 
@@ -317,13 +347,15 @@ const DrinkDetail: React.FC = () => {
                                     <li key={review.id}>
                                         <BoardListElement
                                             userImg={review.profileImg}
-                                            userName={review.userId.toString()}
+                                            nickname={review.nickname}
                                             title={review.title}
                                             starCount={review.star}
                                             content={review.content}
                                             date={review.date}
                                             like={review.like}
                                             reviewImg={review.reviewImgUrl}
+                                            reviewId={review.id}
+                                            alcoholId={review.alcoholId}
                                         />
                                     </li>
                                 );
@@ -340,6 +372,7 @@ const DrinkDetail: React.FC = () => {
         </BackgroundTemplate>
     );
 };
+
 export default DrinkDetail;
 
 const ReviewSort = styled.div`
@@ -353,28 +386,16 @@ const ReviewSort = styled.div`
     width: 1153px;
 
     button {
-        text-align: center;
         background: none;
         border: none;
         font-family: inherit;
         color: #bbb6a8;
+        margin: 0 28px;
     }
 
     button:hover {
         cursor: pointer;
         color: #8b7e6a;
-    }
-
-    button:first-child {
-        margin-right: 28px;
-    }
-
-    button:nth-child(2) {
-        margin: 0 40px;
-    }
-
-    button:last-child {
-        margin-left: 40px;
     }
 `;
 

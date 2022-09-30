@@ -1,22 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 
-const MonthDrink: React.FC = () => {
+const AllDrinkRecommend = () => {
     return (
         <BackgroundTemplate heightValue="100%">
             <Inner>
                 <Head>
-                    <h1>이달의 전통주</h1>
-                    <span>전통주 이야기와 함께하는 이달의 전통주 추천!</span>
+                    <h1>옛술 추천</h1>
+                    <span>* 취향에 맞는 다양한 전통주를 추천해드립니다!</span>
                 </Head>
                 <Content>
                     <MonthList>
                         <div>
-                            <h1>9월</h1>
-                            <MonthContent>
+                            <h1>옛술의 전당</h1>
+                            <MonthContent to="/RecommendTicket">
                                 <DrinkImg
-                                    src="/images/septemberDrink.png"
+                                    src="/images/Recommend_Ticket.png"
                                     alt="9Drink"
                                 />
                                 <AnimationBtnImg
@@ -26,8 +27,17 @@ const MonthDrink: React.FC = () => {
                             </MonthContent>
                         </div>
                         <div>
-                            <h1>10월</h1>
-                            <MonthContent>준비중</MonthContent>
+                            <h1>슬롯머신</h1>
+                            <MonthContent to="/RecommendSlot">
+                                <DrinkImg
+                                    src="/images/Recommend_Slot.png"
+                                    alt="9Drink"
+                                />
+                                <AnimationBtnImg
+                                    src="/images/MonthDrinkAnimationBtn.png"
+                                    alt="9DrinkanimationBtn"
+                                />
+                            </MonthContent>
                         </div>
                     </MonthList>
                 </Content>
@@ -92,7 +102,7 @@ const MonthList = styled.div`
     }
 `;
 
-const MonthContent = styled.div`
+const MonthContent = styled(Link)`
     background-color: #eae8e4;
     width: 523px;
     height: 205px;
@@ -102,5 +112,4 @@ const MonthContent = styled.div`
     align-items: center;
     font-size: 35px;
 `;
-
-export default MonthDrink;
+export default AllDrinkRecommend;

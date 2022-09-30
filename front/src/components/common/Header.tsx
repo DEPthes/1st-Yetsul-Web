@@ -131,7 +131,7 @@ const Header: React.FC = () => {
                         </li>
                         <li>
                             <NavLink
-                                to="/recommend"
+                                to="/AllDrinkRecommend"
                                 className={(navData) =>
                                     navData.isActive ? 'active' : 'link'
                                 }
