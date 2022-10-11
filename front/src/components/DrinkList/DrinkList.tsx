@@ -191,18 +191,29 @@ const DrinkList: React.FC = () => {
                         </ul>
                     </DrinkElList>
                 </Content>
-                <Pagination
-                    total={drinks.length}
-                    limit={limit}
-                    page={page}
-                    setPage={setPage}
-                />
+                <PageScroller
+                    onClick={() => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                >
+                    <Pagination
+                        total={drinks.length}
+                        limit={limit}
+                        page={page}
+                        setPage={setPage}
+                    />
+                </PageScroller>
             </Inner>
         </BackgroundTemplate>
     );
 };
 
 export default DrinkList;
+
+const PageScroller = styled.button`
+    background-color: inherit;
+    border: none;
+`;
 
 const Inner = styled.div`
     display: flex;

@@ -17,7 +17,7 @@ const Service: React.FC = () => {
     return (
         <BackgroundTemplate heightValue="auto">
             <Inner>
-                <Scrollspy sectionRefs={sectionRefs}>
+                {/* <Scrollspy sectionRefs={sectionRefs}>
                     {({ currentElementIndexInViewport }) => (
                         <div>
                             <InnerNav>
@@ -75,7 +75,7 @@ const Service: React.FC = () => {
                             </div>
                         </div>
                     )}
-                </Scrollspy>
+                </Scrollspy> */}
                 <Introduction>
                     <QuoteBox>
                         <Quote>
@@ -165,17 +165,17 @@ const Service: React.FC = () => {
                     <VisionCircleBox>
                         <VisionSmallCircle>
                             <VisionCricleParagraph color="#675B4F">
-                                전통주 시장 <br /> 활성화에 기여
+                                전통주 시장 <br /> 활성화
                             </VisionCricleParagraph>
                         </VisionSmallCircle>
                         <VisionBigCircle>
                             <VisionCricleParagraph color="#FFFFFF">
-                                전통주의 대중화를 <br /> 추구
+                                전통주의 <br /> 대중화
                             </VisionCricleParagraph>
                         </VisionBigCircle>
                         <VisionSmallCircle>
                             <VisionCricleParagraph color="#675B4F">
-                                전통주의 <br /> 신선한 이미지를 <br /> 제공
+                                전통주의 <br /> 신선한 이미지
                             </VisionCricleParagraph>
                         </VisionSmallCircle>
                     </VisionCircleBox>
@@ -361,8 +361,8 @@ const VisionCircleBox = styled.div`
 `;
 
 const VisionBigCircle = styled.div`
-    width: 439px;
-    height: 439px;
+    width: 318px;
+    height: 318px;
     border-radius: 100%;
     background: #aaa39f;
     border: 1px solid #4f4941;
@@ -373,8 +373,8 @@ const VisionBigCircle = styled.div`
 `;
 
 const VisionSmallCircle = styled.div`
-    width: 337px;
-    height: 337px;
+    width: 277px;
+    height: 277px;
     border-radius: 100%;
     border: 1px solid #4f4941;
     display: flex;
@@ -385,7 +385,7 @@ const VisionSmallCircle = styled.div`
 const VisionCricleParagraph = styled.p`
     text-align: center;
     color: ${(props) => props.color};
-    font-size: 35px;
+    font-size: 25px;
 `;
 
 const VisionIntroContainer = styled.div`
