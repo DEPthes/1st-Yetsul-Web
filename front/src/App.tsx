@@ -8,6 +8,7 @@ import './App.css';
 import Main from './components/Main/Main';
 import SecondMain from './components/Main/SecondMain';
 import ThirdMain from './components/Main/ThirdMain';
+import Footer from './components/Main/Footer';
 
 const App: React.FC = () => {
     $(() => {
@@ -92,6 +93,9 @@ const App: React.FC = () => {
                 </div>
                 <div className="section" id="section3">
                     <ThirdMain />
+                </div>
+                <div className="section fp-auto-height" id="section4">
+                    <Footer />
                 </div>
             </div>
         </div>
