@@ -82,7 +82,6 @@ video {
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
     font: inherit;
     vertical-align: baseline;
 }
@@ -109,8 +108,43 @@ body {
     font-family: 'GmarketSansMedium';
     font-weight: 400;
     color: #8d837b;
+    font-size: 100%;
 }
-
+@media (max-width: 1920px) and (min-width: 768px) {
+    body {
+        font-size: 80%;
+    }
+}
+@media (max-width: 1680px) and (min-width: 768px) {
+    body {
+        font-size: 70%;
+    }
+}
+@media (max-width: 1480px) and (min-width: 768px) {
+    body {
+        font-size: 60%;
+    }
+}
+@media (max-width: 1120px) and (min-width: 768px) {
+    body {
+        font-size: 50%;
+    }
+}
+@media (max-width: 767px) and (min-width: 540px) {
+    body {
+        font-size: 130%;
+    }
+}
+@media (max-width: 540px) and (min-width: 420px) {
+    body {
+        font-size: 110%;
+    }
+}
+@media (max-width: 389px) and (max-height: 844px) and (min-height: 420px) {
+    body {
+        font-size: 80%;
+    }
+}
 .root {
     width: 100%;
     height: 100%;

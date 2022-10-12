@@ -13,11 +13,17 @@ export const Profile: React.FC = () => {
         [],
     );
 
+    const getdata = () => {
+        const accessToken = localStorage.getItem('accessToken') || '';
+        console.log(accessToken);
+        return axios.create({
+            headers: { Authorization: `Bearer ${accessToken}` },
+        });
+    };
+
     useEffect(() => {
-        axios
-            .post('https://depth-server.herokuapp.com/auth/myLikeAlcoholList', {
-                id: 1,
-            })
+        getdata()
+            .post('https://depth-server.herokuapp.com/auth/myLikeAlcoholList')
             .then((res) => setMyLikeAlcholData(res.data))
             .catch((err) => console.log(err));
     }, []);
@@ -25,10 +31,8 @@ export const Profile: React.FC = () => {
     const MyLikeAlcoholDataforWidget = MyLikeAlcholData.slice(0, 4);
 
     useEffect(() => {
-        axios
-            .post('https://depth-server.herokuapp.com/review/user', {
-                user: 1,
-            })
+        getdata()
+            .post('https://depth-server.herokuapp.com/review/user')
             .then((res) => setAlcholthatUserWrite(res.data))
             .catch((err) => console.log(err));
     }, []);

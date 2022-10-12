@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
 import { combineReducers } from 'redux';
+import formModalSlice from './slices/formModalSlice';
 import imageModalSlice from './slices/imageModalSlice';
 import listCategorySlice from './slices/listCategorySlice';
 import listModalSlice from './slices/listModalSlice';
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     listCategory: listCategorySlice,
     listModal: listModalSlice,
     imageModal: imageModalSlice,
+    formModal: formModalSlice,
 });
 
 export const store = configureStore({

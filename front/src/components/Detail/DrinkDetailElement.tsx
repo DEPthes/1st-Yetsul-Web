@@ -45,7 +45,7 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
     useEffect(() => {
         axios
             .post(
-                `https://depth-server.herokuapp.com/alcohol/description/${id}/likeornot`,
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/alcohol/description/${id}/likeornot`,
                 {
                     userEmail: 'er196725@googlemail.com',
                 },
@@ -71,7 +71,7 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
         try {
             await axios
                 .post(
-                    `https://depth-server.herokuapp.com/alcohol/description/${id}`,
+                    `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/alcohol/description/${id}`,
                     {
                         userEmail: 'er196725@googlemail.com',
                     },

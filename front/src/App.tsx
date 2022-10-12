@@ -56,7 +56,15 @@ const App: React.FC = () => {
                     { opacity: 0, x: '0%' },
                     { opacity: 0, x: '%', ease: 'easeInOut' },
                 );
-                if (anchorLink === 3 && direction === 'down') {
+                if (
+                    (anchorLink === 3 && direction === 'down') ||
+                    (anchorLink === 1 &&
+                        direction === 'down' &&
+                        destination === 4) ||
+                    (anchorLink === 2 &&
+                        direction === 'down' &&
+                        destination === 4)
+                ) {
                     $('header').fadeOut();
                     $('.section:nth-last-child(2)').addClass('fadeout');
                 }

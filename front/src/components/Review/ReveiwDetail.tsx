@@ -54,7 +54,7 @@ const ReviewDetail: React.FC = () => {
     useEffect(() => {
         axios
             .get(
-                `https://depth-server.herokuapp.com/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
             )
             .then((res) => {
                 setReview(res.data);
@@ -64,7 +64,9 @@ const ReviewDetail: React.FC = () => {
             .catch((err) => console.log(err));
 
         axios
-            .get(`https://depth-server.herokuapp.com/review/${alcoholId}/spec`)
+            .get(
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${alcoholId}/spec`,
+            )
             .then((res) => {
                 setList(res.data.reviewsWithUserInfo);
                 setdrink(res.data.alcohol);
