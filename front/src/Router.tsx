@@ -20,7 +20,6 @@ import KakaoLogin from './components/Login/KakaoLogin';
 import AllDrinkRecommend from './components/DrinkRecommend/AllDrinkRecommend';
 import RecommendSlot from './components/DrinkRecommend/RecommendSlot';
 import RecommendTicket from './components/DrinkRecommend/RecommendTicket';
-import Logintest from './components/Login/Logintest';
 
 const Router: React.FC = () => {
     return (
