@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import $ from 'jquery';
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import axios from 'axios';
 import { RootState } from '../../store/config';
 import { setModal } from '../../store/slices/onModalSlice';
 import LoginModal from '../Login/LoginModal';
@@ -11,7 +10,7 @@ import {
     deleteUserLocalStorage,
     getUserLocalStorage,
 } from '../../services/userControl';
-import { deleteAccessToken, getAccessToken } from '../../services/tokenControl';
+import { deleteAccessToken } from '../../services/tokenControl';
 
 const Header: React.FC = () => {
     $(window).scroll(() => {
