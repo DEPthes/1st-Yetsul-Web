@@ -348,7 +348,7 @@ const InnerLeft = styled.div`
 const InnerRight = styled.div`
     @media (max-width: 767px) {
         width: calc(100% - 4.4375em);
-        height: calc(100vh - 19.1875em - 6.0625em - 7.1875em);
+        height: 20em;
         margin-top: 0;
         border-top: 1px solid #bbb6a8;
         position: static;
@@ -486,7 +486,7 @@ const InnerText = styled.div`
             float: right;
             margin-right: 1.125em;
             margin-top: 2.9375em !important;
-            width: 8.75em !important;
+            width: 9.25em !important;
             line-height: 0.8125em !important;
             > svg {
                 width: 0.5em;

@@ -45,7 +45,7 @@
 }
 
 .section:not(.fp-auto-height, .fadeout) .fp-tableCell {
-    transform: scale(0.88) translateY(0%);
+    /**transform: scale(0.88) translateY(0%);**/
     transition: 0.3s;
 }
 
@@ -66,6 +66,10 @@
 
 .main {
     width: 100%;
+}
+
+#fp-nav.right {
+    right: 1.125em;
 }
 
 #fp-nav {

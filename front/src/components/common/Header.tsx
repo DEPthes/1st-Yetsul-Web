@@ -275,6 +275,7 @@ const HeaderStyle = styled.header`
         transition: all 0.3s ease-out;
         @media (max-width: 767px) {
             height: 6.0625em;
+            border-bottom: 1px solid #bbb6a8;
         }
     }
 `;
@@ -337,6 +338,9 @@ const LeftHeaed = styled.div`
         flex-direction: row;
         > div {
             display: block !important;
+            > svg {
+                height: 3.0625em !important;
+            }
         }
         .logo_text {
             width: 5.68625em !important;
@@ -386,6 +390,9 @@ const RightHeaed = styled.div<clickLogintype>`
         margin-right: 1.706875em;
         > div:nth-of-type(2) {
             display: block !important;
+            > svg {
+                height: 1.501875em !important;
+            }
         }
     }
     position: absolute;
