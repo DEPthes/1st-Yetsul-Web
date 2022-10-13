@@ -22,7 +22,7 @@ const main: React.FC = () => {
     const [starCount, setStarCount] = useState<number>(0);
     const [title, setTitle] = useState<string>('');
     const [contents, setContents] = useState<string>('');
-    const formData = new FormData();
+    let formData = new FormData();
     const { id } = useParams();
 
     const titleChange = (e: React.FormEvent<HTMLInputElement>): void => {
@@ -42,6 +42,9 @@ const main: React.FC = () => {
     };
 
     const postReview = () => {
+        if (formData) {
+            formData = new FormData();
+        }
         appendFormData();
         formData.append('title', title);
         formData.append('content', contents);
@@ -59,6 +62,29 @@ const main: React.FC = () => {
                 // eslint-disable-next-line no-alert
                 alert('리뷰작성이 완료되었습니다.');
                 window.location.replace(`/list/${id}/spec`);
+            });
+    };
+
+    const temporarySave = () => {
+        if (formData) {
+            formData = new FormData();
+        }
+        appendFormData();
+        formData.append('title', title);
+        formData.append('content', contents);
+        formData.append('star', starCount.toString());
+
+        axios
+            .post(
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${id}/temporary`,
+                formData,
+                {
+                    headers: { Authorization: `Bearer ${getAccessToken()}` },
+                },
+            )
+            .then(() => {
+                // eslint-disable-next-line no-alert
+                alert('임시저장 되었습니다.');
             });
     };
 
@@ -215,7 +241,7 @@ const main: React.FC = () => {
                 <button type="button" onClick={postReview}>
                     <p>등록하기</p>
                 </button>
-                <button type="button">
+                <button type="button" onClick={temporarySave}>
                     <p>임시저장</p>
                 </button>
             </Foot>

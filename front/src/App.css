@@ -45,7 +45,7 @@
 }
 
 .section:not(.fp-auto-height, .fadeout) .fp-tableCell {
-    /**transform: scale(0.88) translateY(0%);**/
+    transform: scale(0.88) translateY(0%);
     transition: 0.3s;
 }
 
@@ -82,9 +82,12 @@
 
 @media (max-width: 767px) {
     #fp-nav {
-        margin-right: 2.34375em;
+        margin-right: 0;
         zoom: 0.6;
         top: 92%;
+    }
+    #fp-nav.right {
+        right: 3.35em;
     }
 }
 

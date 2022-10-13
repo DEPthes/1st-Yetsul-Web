@@ -73,13 +73,17 @@ const ModalMain = styled.div`
 `;
 
 const LoginWrap = styled.div`
+    @media (max-width: 767px) {
+        right: 4.3125em;
+        bottom: 9.4375em;
+    }
     position: absolute;
-    bottom: 166px;
-    right: 183px;
+    bottom: 10.375em;
+    right: 11.4375em;
     z-index: 1001;
     background: #fff;
-    width: 302px;
-    height: 344px;
+    width: 18.875em;
+    height: 21.5em;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -93,8 +97,8 @@ const LoginWrap = styled.div`
 const CloseBtn = styled.div`
     z-index: 20;
     position: absolute;
-    top: 11px;
-    right: 11px;
+    top: 0.6875em;
+    right: 0.6875em;
     > svg {
         cursor: pointer;
     }
@@ -102,19 +106,20 @@ const CloseBtn = styled.div`
 
 const ModalContents = styled.div`
     > div {
-        margin-top: 30px;
-        margin-bottom: 24.64px;
+        margin-top: 1.875em;
+        margin-bottom: 1.54em;
     }
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 265px;
+    height: 16.5625em;
     font-family: 'GmarketSansMedium';
     font-style: normal;
     font-weight: 400;
-    font-size: 15px;
     line-height: 175.5%;
-    /* or 26px */
+    > h1 {
+        font-size: 0.9375em;
+    }
 
     text-align: center;
 
@@ -122,11 +127,11 @@ const ModalContents = styled.div`
     background: #e2dfda;
     border-radius: 12px 12px 0px 0px;
     > p {
-        margin-top: 25px;
+        margin-top: 2.5em;
         font-family: 'GmarketSansMedium';
         font-style: normal;
         font-weight: 400;
-        font-size: 10px;
+        font-size: 0.625em;
         line-height: 175.5%;
         text-align: center;
         color: #8b7e6a;
@@ -135,8 +140,11 @@ const ModalContents = styled.div`
 
 const LogoWrap = styled.div`
     width: 100%;
-    height: 57.36px;
+    height: 3.585em;
     transform: scale(1.3);
+    svg {
+        height: 3.585em;
+    }
 `;
 
 const ModalBottom = styled.div`
@@ -144,7 +152,7 @@ const ModalBottom = styled.div`
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: calc(100% - 265px);
+    height: calc(100% - 16.5625em);
 `;
 
 const Btn = styled.div`
@@ -156,19 +164,20 @@ const Btn = styled.div`
         align-items: center;
         justify-content: center;
         color: #ffffff;
+        font-size: 0.9375em;
     }
 
     cursor: pointer;
-    width: 262px;
-    height: 35px;
+    width: 16.375em;
+    height: 2.1875em;
     border: none;
     background: #8b7e6a;
-    border-radius: 12px;
+    border-radius: 0.75em;
 
     font-family: 'GmarketSansLight';
     font-style: normal;
     font-weight: 400;
-    font-size: 15px;
-    line-height: 15px;
+
+    line-height: 0.9375em;
     letter-spacing: -0.01em;
 `;

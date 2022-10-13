@@ -28,8 +28,6 @@ const Header: React.FC = () => {
             $('.logo_img').fadeIn();
             $('.logo_second').fadeOut();
         }
-
-        console.log('head color');
     });
     $(document).ready(() => {
         $('#submenu').css('display', 'none');

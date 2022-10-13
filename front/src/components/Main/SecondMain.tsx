@@ -324,6 +324,7 @@ const TicketStyle = styled.div`
     align-items: center;
     justify-content: center;
     @media (max-width: 767px) {
+        zoom: 0.8;
         > svg {
             height: 33.6875em !important;
         }

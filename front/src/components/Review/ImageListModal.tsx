@@ -1,39 +1,16 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { RootState } from '../../store/config';
-import { setImageModal } from '../../store/slices/imageModalSlice';
-import ImageModal from './ImageModal';
+import { ReviewType } from '../Detail/DrinkDetail';
 import ModalImageElement from './ModalImageElement';
 
 type modalType = {
     modal: () => void;
-    photoReview: string[];
+    photoReview: ReviewType[];
+    id: string | undefined;
 };
 
-const ImageListModal: React.FC<modalType> = ({ modal, photoReview }) => {
-    const dispatch = useDispatch();
-    const isModal = useSelector((state: RootState) => {
-        return state.imageModal.modal;
-    });
-    const [src, setSrc] = useState('');
-    const handleModal = (src?: string) => {
-        const main = document.getElementsByClassName('imageModalBackground')[0];
-        dispatch(setImageModal(!isModal));
-        if (src) {
-            setSrc(src);
-        }
-
-        if (isModal === false) {
-            if (main) {
-                main.id = 'is-blurred';
-                $(main).hide();
-            }
-        } else if (main && isModal === true) {
-            main.id = '';
-            $(main).show();
-        }
-    };
+const ImageListModal: React.FC<modalType> = ({ modal, photoReview, id }) => {
     return (
         <ModalMain aria-hidden id="modal">
             <ImageListWrap aria-hidden className="imageModalBackground">
@@ -64,16 +41,20 @@ const ImageListModal: React.FC<modalType> = ({ modal, photoReview }) => {
                 <ModalInner>
                     <PhotoListScroll>
                         <PhotoList>
-                            {photoReview.map((el) => {
+                            {photoReview.map((el, index) => {
                                 return (
                                     // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
                                     <PhotoDiv
-                                        key={el}
-                                        onClick={() => handleModal(el)}
+                                        to={`/review/alcohol${id}/review${el.id}`}
+                                        // eslint-disable-next-line react/no-array-index-key
+                                        key={index}
                                     >
                                         <ModalImageElement
-                                            id={photoReview.indexOf(el)}
-                                            src={el}
+                                            src={
+                                                el.reviewImgUrl
+                                                    .toString()
+                                                    .split(',')[0]
+                                            }
                                         />
                                     </PhotoDiv>
                                 );
@@ -82,7 +63,6 @@ const ImageListModal: React.FC<modalType> = ({ modal, photoReview }) => {
                     </PhotoListScroll>
                 </ModalInner>
             </ImageListWrap>
-            {isModal && <ImageModal modal={handleModal} src={src} />}
         </ModalMain>
     );
 };
@@ -138,7 +118,7 @@ const ModalInner = styled.div`
 
 const PhotoListScroll = styled.div`
     height: 610px;
-    width: 1020px;
+    width: 942px;
     overflow-y: scroll;
     margin-top: 71px;
     &::-webkit-scrollbar {
@@ -155,10 +135,11 @@ const PhotoListScroll = styled.div`
 const PhotoList = styled.div`
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
 `;
 
-const PhotoDiv = styled.div`
+const PhotoDiv = styled(Link)`
+    text-decoration: none;
     height: auto;
     margin-right: 20px;
     margin-bottom: 20px;

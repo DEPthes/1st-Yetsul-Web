@@ -2,14 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 type ModalImageElementType = {
-    id: number;
     src: string;
 };
 
-const ModalImageElement: React.FC<ModalImageElementType> = ({ id, src }) => {
+const ModalImageElement: React.FC<ModalImageElementType> = ({ src }) => {
     return (
         <ElementWrap>
-            <ImgWrap className={id.toString()}>
+            <ImgWrap>
                 <img src={src} alt="img" />
             </ImgWrap>
         </ElementWrap>

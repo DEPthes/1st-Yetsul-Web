@@ -105,6 +105,7 @@ const FootBanner = styled.div`
     @media (max-width: 767px) {
         height: 7.1875em;
         width: calc(100% - 4.45em);
+        border-right: none;
     }
     position: absolute;
     height: 17.5625em;

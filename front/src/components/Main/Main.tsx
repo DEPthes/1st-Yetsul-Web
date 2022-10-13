@@ -259,8 +259,8 @@ const FormBtn = styled.div`
     border: 1px solid #675b4f;
     border-radius: 50%;
     @media (max-width: 767px) {
-        bottom: 8em;
-        right: 1em;
+        top: 80%;
+        right: 1.0625em;
         width: 2.375em;
         height: 2.375em;
     }
@@ -317,6 +317,7 @@ const MainStyle = styled.div`
         height: 9.1875em;
         float: right;
         @media (max-width: 767px) {
+            border-bottom: none;
             height: 6.0625em;
             width: 100%;
         }
