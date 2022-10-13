@@ -47,7 +47,7 @@ const KakaoLogin: React.FC = () => {
 
                     setTimeout(() => {
                         window.location.replace('/');
-                    }, 200);
+                    }, 300);
                 } else {
                     console.log('fail');
                     navigate('/');

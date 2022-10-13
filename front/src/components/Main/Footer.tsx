@@ -8,9 +8,10 @@ const Footer: React.FC = () => {
             <FooterInner>
                 <FooterInfo>
                     <h1>
-                        ‘옛술의 전당'은 명지대학교 소속 DEPth팀에서 전통주
-                        활성화를 목표로 다양한 컨텐츠를 제공하는
-                        정보사이트입니다.
+                        &lt;옛술의 전당&gt;은 명지대학교 소속 DEPth팀이 운영하고
+                        있으며, <br />
+                        전통주 활성화를 목표로 다양한 컨텐츠를 제공하는 정보
+                        사이트입니다.
                     </h1>
                 </FooterInfo>
                 <FooterCenter>
@@ -39,8 +40,11 @@ export default Footer;
 
 const FooterWrapper = styled.div`
     width: 100%;
-    height: 300px;
+    height: 18.75em;
     background: #f2f2f2;
+    @media (max-width: 767px) {
+        height: 8.1875em;
+    }
 `;
 
 const FooterInner = styled.div`
@@ -54,30 +58,61 @@ const FooterInner = styled.div`
 
 const FooterInfo = styled.div`
     font-weight: 400;
-    font-size: 25px;
-    line-height: 25px;
+    line-height: 1.5625em;
     letter-spacing: -0.01em;
     color: #8b7e6a;
+    > h1 {
+        font-size: 1.5625em;
+    }
+    @media (max-width: 767px) {
+        margin-top: 1em;
+        line-height: 190%;
+        > h1 {
+            font-size: 0.5em !important;
+            text-align: center;
+        }
+    }
 `;
 
 const FooterCenter = styled.div`
     display: flex;
-    margin: 45px 0;
+    margin: 2.8125em 0;
+    @media (max-width: 767px) {
+        margin: 1.125em 0;
+    }
 `;
 
 const SnsIcon = styled.div`
     &:first-of-type {
-        margin-right: 45px;
+        margin-right: 2.8125em;
     }
-    width: 65px;
-    height: 65px;
+    width: 4.0625em;
+    height: 4.0625em;
+    img {
+        width: 4.0625em;
+    }
+    @media (max-width: 767px) {
+        &:first-of-type {
+            margin-right: 1.0625em;
+        }
+        width: 1.625em;
+        height: 1.625em;
+        img {
+            width: 1.625em;
+        }
+    }
 `;
 
 const FooterFoot = styled.div`
     font-weight: 400;
-    font-size: 25px;
-    line-height: 25px;
+    line-height: 1.5625em;
     text-align: center;
     letter-spacing: -0.01em;
     color: #000000;
+    h1 {
+        font-size: 1.5625em;
+    }
+    @media (max-width: 767px) {
+        display: none;
+    }
 `;

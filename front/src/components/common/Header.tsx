@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import $ from 'jquery';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { RootState } from '../../store/config';
 import { setModal } from '../../store/slices/onModalSlice';
@@ -11,33 +11,45 @@ import {
     getUserLocalStorage,
 } from '../../services/userControl';
 import { deleteAccessToken } from '../../services/tokenControl';
+import { setMobileMenu } from '../../store/slices/mobileMenuSlice';
 
 const Header: React.FC = () => {
     $(window).scroll(() => {
         const scroll = $(window).scrollTop() || 0;
         if (scroll > 1) {
             $('.head').css('background', '#fff');
-
-            $('.logo_text').fadeOut();
-            $('.logo_img').fadeOut();
-            $('.logo_second').fadeIn();
         } else {
             $('.head').css('background', 'rgba(0, 0, 0, 0)');
-
-            $('.logo_text').fadeIn();
-            $('.logo_img').fadeIn();
-            $('.logo_second').fadeOut();
         }
     });
-    $(document).ready(() => {
-        $('#submenu').css('display', 'none');
-        $('#serviceMenu').mouseover(() => {
-            $('#submenu').fadeIn(300);
+    if (window.innerWidth >= 768) {
+        $(window).scroll(() => {
+            const scroll = $(window).scrollTop() || 0;
+            if (scroll > 1) {
+                $('.head').css('background', '#fff');
+
+                $('.logo_text').fadeOut();
+                $('.logo_img').fadeOut();
+                $('.logo_second').fadeIn();
+            } else {
+                $('.head').css('background', 'rgba(0, 0, 0, 0)');
+
+                $('.logo_text').fadeIn();
+                $('.logo_img').fadeIn();
+                $('.logo_second').fadeOut();
+            }
         });
-        $('#serviceMenu').mouseleave(() => {
-            $('#submenu').fadeOut(300);
+        $(document).ready(() => {
+            $('#submenu').css('display', 'none');
+            $('#serviceMenu').mouseover(() => {
+                $('#submenu').fadeIn(300);
+            });
+            $('#serviceMenu').mouseleave(() => {
+                $('#submenu').fadeOut(300);
+            });
         });
-    });
+    }
+
     const dispatch = useDispatch();
     const isModal = useSelector((state: RootState) => {
         return state.onModal.modal;
@@ -89,12 +101,48 @@ const Header: React.FC = () => {
         window.location.replace('/');
     };
 
+    const mobileMenuOn = useSelector((state: RootState) => {
+        return state.mobileMenu.modal;
+    });
+
+    const onMobileMenu = () => {
+        dispatch(setMobileMenu(true));
+        setTimeout(() => {
+            $('#mobileMenu').css('transform', 'translateX(0%)');
+            $('#mobileMenuWrap').css('opacity', '1');
+        }, 10);
+    };
+    const closeMobileMenu = () => {
+        $('#mobileMenu').css('transform', 'translateX(-100%)');
+        $('#mobileMenuWrap').css('opacity', '0');
+
+        setTimeout(() => {
+            $('#mobileMenuWrap').css('display', 'none');
+            dispatch(setMobileMenu(false));
+        }, 400);
+    };
+
+    const navigate = useNavigate();
+    const onClickMenu = (to: string) => {
+        closeMobileMenu();
+        navigate(to);
+    };
+
+    const profileMobile = () => {
+        if (localStorage.getItem('user')) {
+            navigate('/profile');
+        } else {
+            handleModal();
+        }
+    };
+
     return (
         <HeaderStyle data-html2canvas-ignore="true">
             <div className="head">
                 <LeftHeaed>
-                    <div>
+                    <div aria-hidden>
                         <svg
+                            onClick={onMobileMenu}
                             width="49"
                             height="49"
                             viewBox="0 0 49 49"
@@ -229,7 +277,7 @@ const Header: React.FC = () => {
                             </Link>
                         </div>
                     )}
-                    <div>
+                    <div onClick={profileMobile} aria-hidden>
                         <svg
                             width="22"
                             height="26"
@@ -256,11 +304,231 @@ const Header: React.FC = () => {
                 </RightHeaed>
             </div>
             {isModal && <LoginModal modal={handleModal} />}
+            {mobileMenuOn && (
+                <MobileMenuWrap id="mobileMenuWrap">
+                    <MobileMenuInner id="mobileMenu">
+                        <CloseBtn>
+                            <svg
+                                onClick={closeMobileMenu}
+                                width="32"
+                                height="32"
+                                viewBox="0 0 32 32"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M9.34766 22.4608L21.8144 9.99404"
+                                    stroke="#675B4F"
+                                    strokeWidth="1.3"
+                                    strokeLinecap="round"
+                                />
+                                <path
+                                    d="M9.34766 9.99402L21.8144 22.4608"
+                                    stroke="#675B4F"
+                                    strokeWidth="1.3"
+                                    strokeLinecap="round"
+                                />
+                            </svg>
+                        </CloseBtn>
+                        <MobileHeadLogoMenu>
+                            <img
+                                onClick={() => onClickMenu('/')}
+                                aria-hidden
+                                className="logo_text"
+                                src={`${process.env.PUBLIC_URL}/images/yetsul_logo2.png`}
+                                alt="main text"
+                            />
+                        </MobileHeadLogoMenu>
+                        <MenuLoginBlock>
+                            {!localStorage.getItem('user') ? (
+                                <>
+                                    <button type="button" onClick={handleModal}>
+                                        <p>로그인</p>
+                                    </button>
+                                    <button type="button" onClick={handleModal}>
+                                        <p>내정보</p>
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    <button type="button">
+                                        <p>
+                                            {getUserLocalStorage().nickname}님
+                                        </p>
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={logoutHandler}
+                                    >
+                                        <p>로그아웃</p>
+                                    </button>
+                                </>
+                            )}
+                        </MenuLoginBlock>
+                        <MenuElemBlock onClick={() => onClickMenu('/service')}>
+                            <h1>서비스 소개</h1>
+                        </MenuElemBlock>
+                        <MenuElemBlock
+                            onClick={() => onClickMenu('/tradition')}
+                        >
+                            <h1>전통주 역사</h1>
+                        </MenuElemBlock>
+                        <MenuElemBlock>
+                            <h1
+                                onClick={() =>
+                                    onClickMenu('/AllDrinkRecommend')
+                                }
+                                aria-hidden
+                            >
+                                옛술 추천
+                            </h1>
+                            <p
+                                onClick={() => onClickMenu('/RecommendTicket')}
+                                aria-hidden
+                            >
+                                옛술의 전당
+                            </p>
+                            <p
+                                onClick={() => onClickMenu('/RecommendSlot')}
+                                aria-hidden
+                            >
+                                술롯 머신
+                            </p>
+                        </MenuElemBlock>
+                        <MenuElemBlock onClick={() => onClickMenu('/list')}>
+                            <h1>옛술 리스트</h1>
+                        </MenuElemBlock>
+                        <MenuElemBlock onClick={() => onClickMenu('/month')}>
+                            <h1>이달의 옛술</h1>
+                        </MenuElemBlock>
+                    </MobileMenuInner>
+                </MobileMenuWrap>
+            )}
         </HeaderStyle>
     );
 };
 
 export default Header;
+
+const CloseBtn = styled.div`
+    position: absolute;
+    top: 2.9375em;
+    right: 1.1875em;
+    cursor: pointer;
+    > svg {
+        height: 2em;
+    }
+`;
+
+const MenuElemBlock = styled.div`
+    display: flex;
+    align-items: center;
+    height: 4.375em;
+    &:not(:last-of-type) {
+        border-bottom: 1px solid #bbb6a8;
+    }
+    &:nth-last-of-type(3) {
+        height: 8.75em;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        > h1 {
+            margin-bottom: 1.375em;
+        }
+        > p {
+            &:first-of-type {
+                margin-bottom: 1.125em;
+            }
+            font-family: 'GmarketSansMedium';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 0.8125em;
+            line-height: 1em;
+            letter-spacing: -0.05em;
+            color: #8b7e6a;
+        }
+    }
+
+    > h1 {
+        font-family: 'GmarketSansBold';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 0.9375em;
+        line-height: 1em;
+        letter-spacing: -0.04em;
+        color: #8b7e6a;
+    }
+`;
+
+const MenuLoginBlock = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 3.625em;
+    border-bottom: 1px solid #bbb6a8;
+    > button {
+        width: 4.0625em;
+        height: 1.5em;
+        background: #675b4f;
+        border: 0.7px solid #8b7e6a;
+        border-radius: 18px;
+        &:first-of-type {
+            background: #fff;
+            margin-right: 0.5625em;
+            > p {
+                color: #8b7e6a;
+            }
+        }
+        line-height: 0.75em;
+        letter-spacing: -0.04em;
+        > p {
+            font-family: 'GmarketSansMedium';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 0.65em;
+
+            color: #ffffff;
+        }
+    }
+`;
+
+const MobileHeadLogoMenu = styled.div`
+    margin-top: 3.266875em;
+    > img {
+        height: 1.35125em;
+    }
+`;
+
+const MobileMenuWrap = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    z-index: 100002;
+    display: flex;
+    justify-content: flex-start;
+    opacity: 0;
+    transition: all 0.4s ease;
+`;
+
+const MobileMenuInner = styled.div`
+    zoom: 1.2;
+    height: 100%;
+    width: 15.8125em;
+    background: #fff;
+    transform: translateX(-100%);
+    position: relative;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    > div:not(:first-of-type) {
+        width: 12.6875em;
+    }
+`;
 
 const HeaderStyle = styled.header`
     width: 100%;

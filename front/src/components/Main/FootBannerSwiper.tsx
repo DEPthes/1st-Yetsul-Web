@@ -165,6 +165,14 @@ const Circle = styled.div`
     @media (max-width: 767px) {
         width: 4.1875em;
         height: 4.1875em;
+        display: flex;
+        > a {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     }
     width: 8.5em;
     height: 8.5em;
@@ -176,7 +184,9 @@ const Circle = styled.div`
 
     div {
         @media (max-width: 767px) {
-            font-size: 0.5em;
+            width: 4.1875em;
+            height: 4.1875em;
+            zoom: 0.75;
         }
         width: 8.5em;
         height: 8.5em;
