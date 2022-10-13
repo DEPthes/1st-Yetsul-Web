@@ -260,14 +260,16 @@ const SecondMain: React.FC = () => {
                 </TicketStyle>
                 <TicketRight>
                     <TicketText>
-                        옛술의 전당에 오신 여러분 모두 환영합니다.
-                        <br />
-                        옛술의 전당에 입장하기 위해서는{' '}
-                        <span>여러분의 취향을 알아가는</span>
-                        <br />
-                        <span>
-                            몇 가지 단계가 필요합니다! 입장하시겠습니까?
-                        </span>
+                        <p>
+                            옛술의 전당에 오신 여러분 모두 환영합니다.
+                            <br />
+                            옛술의 전당에 입장하기 위해서는{' '}
+                            <span>여러분의 취향을 알아가는</span>
+                            <br />
+                            <span>
+                                몇 가지 단계가 필요합니다! 입장하시겠습니까?
+                            </span>
+                        </p>
                     </TicketText>
                     <TicketBtn to="/ticketbox">
                         <svg
@@ -301,20 +303,32 @@ export default SecondMain;
 const Inner = styled.div`
     width: 100%;
     position: absolute;
-    bottom: 60px;
+    bottom: 0;
     display: flex;
     justify-content: center;
-    zoom: 0.8;
-    @media screen and (min-height: 1160px) {
+    zoom: 1.3;
+    @media (max-width: 767px) {
+        height: 100%;
         zoom: 1;
-    }
-    @media screen and (max-height: 930px) {
-        zoom: 0.7;
+        flex-direction: column-reverse;
+        justify-content: flex-start;
     }
 `;
 
 const TicketStyle = styled.div`
-    transform: scale(1.16);
+    //transform: scale(1.16);
+    > svg {
+        height: 53.1875em;
+    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media (max-width: 767px) {
+        zoom: 0.8;
+        > svg {
+            height: 33.6875em !important;
+        }
+    }
 `;
 
 const TicketRight = styled.div`
@@ -322,26 +336,46 @@ const TicketRight = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-left: 140px;
-    margin-bottom: 170px;
+    margin-left: 8.75em;
+    margin-bottom: 10.625em;
+    @media (max-width: 767px) {
+        margin-bottom: 1.8125em;
+        margin-left: 0;
+    }
 `;
 
-const TicketText = styled.p`
+const TicketText = styled.div`
+    @media (max-width: 767px) {
+        > p {
+            font-size: 0.75em !important;
+        }
+        margin-bottom: 1.25em;
+    }
+    > p {
+        font-size: 1.5625em;
+    }
     font-family: 'GmarketSansMedium';
     font-weight: 400;
-    font-size: 25px;
+
     line-height: 175.5%;
     color: #675b4f;
     text-align: center;
     span {
         font-family: 'GmarketSansBold';
         font-weight: 500;
-        font-size: 25px;
         line-height: 175.5%;
     }
-    margin-bottom: 70px;
+    margin-bottom: 4.375em;
 `;
 
 const TicketBtn = styled(Link)`
+    @media (max-width: 767px) {
+        > svg {
+            height: 4.0625em !important;
+        }
+    }
     cursor: pointer;
+    svg {
+        height: 9.8125em;
+    }
 `;

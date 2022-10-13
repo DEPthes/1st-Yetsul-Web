@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
 import { combineReducers } from 'redux';
+import formModalSlice from './slices/formModalSlice';
 import imageModalSlice from './slices/imageModalSlice';
 import listCategorySlice from './slices/listCategorySlice';
 import listModalSlice from './slices/listModalSlice';
+import mobileMenuSlice from './slices/mobileMenuSlice';
 import onModalSlice from './slices/onModalSlice';
 import updateBackgroundGradientSlice from './slices/updateBackgroundGradientSlice';
 
@@ -13,6 +15,8 @@ const rootReducer = combineReducers({
     listCategory: listCategorySlice,
     listModal: listModalSlice,
     imageModal: imageModalSlice,
+    formModal: formModalSlice,
+    mobileMenu: mobileMenuSlice,
 });
 
 export const store = configureStore({

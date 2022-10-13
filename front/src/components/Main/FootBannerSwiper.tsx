@@ -40,8 +40,8 @@ const FootBannerSwiper: React.FC = () => {
                         alt="ticketIcon"
                     />
                     <div id="banner-text">
+                        <h3>옛술의 전당에서 나만의 작품과 옛술을!</h3>
                         <h3>
-                            <span>옛술의 전당에서 나만의 작품과 옛술을!</span>
                             <br />
                             7가지 질문을 통해 나만의 작품과
                             <br />
@@ -60,8 +60,8 @@ const FootBannerSwiper: React.FC = () => {
                         alt="soolotIcon"
                     />
                     <div id="banner-text">
+                        <h3>돌려돌려 술롯머신</h3>
                         <h3>
-                            <span>돌려돌려 술롯머신</span>
                             <br />
                             날씨 / 기분 / 상황 조합으로 옛술을
                             <br />
@@ -80,8 +80,8 @@ const FootBannerSwiper: React.FC = () => {
                         alt="ticketIcon"
                     />
                     <div id="banner-text">
+                        <h3>옛술의 전당에서 나만의 작품과 옛술을!</h3>
                         <h3>
-                            <span>옛술의 전당에서 나만의 작품과 옛술을!</span>
                             <br />
                             7가지 질문을 통해 나만의 작품과
                             <br />
@@ -102,9 +102,14 @@ const FootBannerSwiper: React.FC = () => {
 export default FootBannerSwiper;
 
 const FootBanner = styled.div`
+    @media (max-width: 767px) {
+        height: 7.1875em;
+        width: calc(100% - 4.45em);
+        border-right: none;
+    }
     position: absolute;
-    height: 281px;
-    width: calc(50% - 1px);
+    height: 17.5625em;
+    width: calc(50% - 0.0625em);
     bottom: 0;
     left: 0;
     overflow: hidden;
@@ -119,6 +124,21 @@ const FootBanner = styled.div`
 `;
 
 const FootBannerInner = styled.div`
+    @media (max-width: 767px) {
+        > img {
+            display: none;
+        }
+        #banner-text {
+            line-height: 1.5375em !important;
+            > h3 {
+                font-size: 0.9375em !important;
+                width: 9.75em;
+            }
+            > h3:not(:first-of-type) {
+                display: none;
+            }
+        }
+    }
     width: 100%;
     align-items: center;
     justify-content: space-evenly;
@@ -126,24 +146,36 @@ const FootBannerInner = styled.div`
     flex-direction: row;
     height: 100%;
     > img {
+        width: 12.4375em;
     }
     #banner-text {
+        h3:first-of-type {
+            font-family: 'GmarketSansMedium';
+        }
         h3 {
-            font-size: 25px;
-            line-height: 42px;
+            font-size: 1.5625em;
             letter-spacing: -0.01em;
             color: #8b7e6a;
             font-family: 'GmarketSansLight';
-            span {
-                font-family: 'GmarketSansMedium';
-            }
         }
     }
 `;
 
 const Circle = styled.div`
-    width: 136px;
-    height: 136px;
+    @media (max-width: 767px) {
+        width: 4.1875em;
+        height: 4.1875em;
+        display: flex;
+        > a {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    width: 8.5em;
+    height: 8.5em;
     border: 1px solid #8b7e6a;
     border-radius: 50%;
     transition: all 0.3s cubic-bezier(0.67, 0.13, 0.1, 0.81),
@@ -151,8 +183,13 @@ const Circle = styled.div`
     z-index: 1000;
 
     div {
-        width: 136px;
-        height: 136px;
+        @media (max-width: 767px) {
+            width: 4.1875em;
+            height: 4.1875em;
+            zoom: 0.75;
+        }
+        width: 8.5em;
+        height: 8.5em;
         position: absolute;
         overflow: hidden;
         cursor: pointer;
@@ -182,7 +219,7 @@ const Circle = styled.div`
 
     div:after {
         content: 'CLICK';
-        top: -44px;
+        top: -2.75em;
         opacity: 0;
     }
 
@@ -192,7 +229,7 @@ const Circle = styled.div`
     }
 
     div:hover:before {
-        top: 44px;
+        top: 2.75em;
         opacity: 0;
     }
 `;

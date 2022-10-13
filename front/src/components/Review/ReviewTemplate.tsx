@@ -8,14 +8,12 @@ import { DrinkDetailElementType } from '../Detail/DrinkDetailElement';
 type ReviewTemplateType = {
     Head: React.FC;
     Main: React.FC;
-    Foot: React.FC;
     drinkInfo: DrinkDetailElementType;
 };
 
 const ReviewTemplate: React.FC<ReviewTemplateType> = ({
     Head,
     Main,
-    Foot,
     drinkInfo,
 }) => {
     return (
@@ -70,9 +68,6 @@ const ReviewTemplate: React.FC<ReviewTemplateType> = ({
                     </DrinkInfo>
                     <div>
                         <Main />
-                    </div>
-                    <div>
-                        <Foot />
                     </div>
                 </div>
             </Inner>

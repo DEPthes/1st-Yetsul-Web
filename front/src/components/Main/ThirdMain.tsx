@@ -54,32 +54,51 @@ const Inner = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 59px;
+    margin-top: 3.6875em;
     zoom: 0.9;
+    @media (max-width: 767px) {
+        margin-top: 0;
+        zoom: 0;
+    }
 `;
 
 const InnerLeft = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    > a > svg {
+        height: 4.09375em;
+    }
 `;
 
 const MachineImg = styled.img`
-    width: 404px;
-    height: 394px;
-    margin-bottom: 53px;
-    margin-left: 115px;
+    width: 25.25em;
+    height: 24.625em;
+    margin-bottom: 3.3125em;
+    margin-left: 7.1875em;
+    @media (max-width: 767px) {
+        width: 17.165em;
+        height: 16.9375em;
+        margin-bottom: 2.9375em;
+        margin-left: 4.1875em;
+    }
 `;
 
 const MachineText = styled.div`
-    margin-bottom: 30px;
+    margin-bottom: 1.875em;
     p {
-        font-size: 25px;
+        font-size: 1.5625em;
         line-height: 175.5%;
         text-align: center;
         color: #675b4f;
         span {
             font-family: 'GmarketSansBold';
+        }
+    }
+    @media (max-width: 767px) {
+        margin-bottom: 2.125em;
+        p {
+            font-size: 0.75em;
         }
     }
 `;

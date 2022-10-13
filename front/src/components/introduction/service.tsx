@@ -5,77 +5,46 @@ import { Scrollspy } from '@makotot/ghostui';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 
 const Service: React.FC = () => {
+    const SIZE = 3;
+    const list = new Array(SIZE).fill(0);
+    const arr = ['서비스 소개', '옛술의 전당 구성', '서비스 비전'];
     const sectionRefs = [
         useRef<HTMLDivElement>(null),
         useRef<HTMLDivElement>(null),
         useRef<HTMLDivElement>(null),
-        useRef<HTMLDivElement>(null),
-        useRef<HTMLDivElement>(null),
     ];
-    const SIZE = 3;
-    const list = new Array(SIZE).fill(0);
     return (
         <BackgroundTemplate heightValue="auto">
-            <Inner>
-                {/* <Scrollspy sectionRefs={sectionRefs}>
-                    {({ currentElementIndexInViewport }) => (
-                        <div>
-                            <InnerNav>
-                                <InnerNavUl data-cy="nav-wrapper">
-                                    {list.map((_, i) => (
-                                        <li
-                                            key={i}
-                                            className={
+            <Scrollspy sectionRefs={sectionRefs}>
+                {({ currentElementIndexInViewport }) => (
+                    <div>
+                        <InnerNavUl>
+                            {list.map((_, i) => (
+                                <InnerNavLI key={i}>
+                                    <a
+                                        href={`#section-${i}`}
+                                        style={{
+                                            color:
                                                 currentElementIndexInViewport ===
                                                 i
-                                                    ? 'active'
-                                                    : ''
-                                            }
-                                        >
-                                            <a
-                                                href={`#section-${i}`}
-                                                style={{
-                                                    color:
-                                                        currentElementIndexInViewport ===
-                                                        i
-                                                            ? '#f00'
-                                                            : '#222',
-                                                }}
-                                            >
-                                                section-{i + 1}
-                                            </a>
-                                        </li>
-                                    ))}
-                                </InnerNavUl>
-                            </InnerNav>
-                            <div data-cy="section-wrapper">
-                                {list.map((_, i) => (
-                                    <div
-                                        id={`section-${i}`}
-                                        key={i}
-                                        ref={sectionRefs[i]}
-                                        className={
-                                            currentElementIndexInViewport === i
-                                                ? 'active'
-                                                : ''
-                                        }
-                                        style={{
-                                            display: 'flex',
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                            height: '500px',
-                                            backgroundColor: `#${i}${i}${i}`,
-                                            color: '#fff',
-                                            fontSize: '2rem',
+                                                    ? '#675B4F'
+                                                    : '#A7A7A7',
+                                            borderBottom:
+                                                currentElementIndexInViewport ===
+                                                i
+                                                    ? '5px solid #675B4F'
+                                                    : '1px solid #A7A7A7',
                                         }}
                                     >
-                                        {i}
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-                </Scrollspy> */}
+                                        {arr[i]}
+                                    </a>
+                                </InnerNavLI>
+                            ))}
+                        </InnerNavUl>
+                    </div>
+                )}
+            </Scrollspy>
+            <Inner>
                 <Introduction>
                     <QuoteBox>
                         <Quote>
@@ -90,7 +59,7 @@ const Service: React.FC = () => {
                         src="/images/introImg_AlcoholeGlass.png"
                         alt="티켓"
                     />
-                    <IntroParagraph id="section-1">
+                    <IntroParagraph id="section-0" ref={sectionRefs[0]}>
                         <section>
                             <h1>&#60;옛술의 전당&#62;</h1>
                             <p>은</p>
@@ -111,13 +80,19 @@ const Service: React.FC = () => {
                         </div>
                     </IntroParagraph>
                 </Introduction>
-                <Construction id="section-2">
+                <Construction ref={sectionRefs[1]} id="section-1">
                     <WhiteBannerBox>
                         <WhiteBannerP>
                             <em> 첫 째. &#91;옛술의 전당 매표소&#93;</em>와
                             <em>&#91;술롯머신&#93;</em>을 통해 나에게 어울리는
                             전통주를 추천받을 수 있습니다.
                         </WhiteBannerP>
+                        <WhiteBannerP1300>
+                            <em> 첫 째. &#91;옛술의 전당 매표소&#93;</em>와
+                            <em>&#91;술롯머신&#93;</em>을 통해 나에게 어울리는{' '}
+                            <br />
+                            전통주를 추천받을 수 있습니다.
+                        </WhiteBannerP1300>
                         <WhiteBannerImgBox>
                             <img src="/images/introImg_TICKET.png" alt="티켓" />
                             <img src="/images/introImg_SLOT.png" alt="티켓" />
@@ -138,6 +113,20 @@ const Service: React.FC = () => {
                                 }}
                             />
                         </WhiteBannerP>
+                        <WhiteBannerP1300>
+                            <em>둘 째. [옛술리스트] </em>를 통해 수백 가지의
+                            다양한 전통주 정보를 제공하며 <br />
+                            리뷰 작성을 통해
+                            <em>나만의 `옛술리스트` </em>를 만들어갈 수
+                            있습니다. <br />
+                            <img
+                                src="/images/introImg_2ndBanner.png"
+                                alt="2nd banner"
+                                style={{
+                                    marginTop: '60px',
+                                }}
+                            />
+                        </WhiteBannerP1300>
                     </WhiteBannerBox>
                     <WhiteBannerBox>
                         <WhiteBannerP>
@@ -151,13 +140,24 @@ const Service: React.FC = () => {
                                 }}
                             />
                         </WhiteBannerP>
+                        <WhiteBannerP1300>
+                            <em>셋 째. [전통주 역사] </em>를 통해 우리 전통주의
+                            역사를 주종 별로 알아볼 수 있습니다. <br />
+                            <img
+                                src="/images/introImg_3rdBanner.png"
+                                alt="3rd 배너"
+                                style={{
+                                    marginTop: '40px',
+                                }}
+                            />
+                        </WhiteBannerP1300>
                     </WhiteBannerBox>
                 </Construction>
                 <WhiteBannerEndingP>
                     당신의 청춘을 위한 한 잔, 옛술의 전당에서 즐겨보는건
                     어떨까요?
                 </WhiteBannerEndingP>
-                <Vision id="section-3">
+                <Vision ref={sectionRefs[2]} id="section-2">
                     <Heading>&#91; 옛술의 전당 비전 &#93;</Heading>
                     <VisionParagraph>
                         저희 &#60;옛술의 전당&#62;은 3가지를 추구합니다.
@@ -203,11 +203,16 @@ const Inner = styled.div`
     flex-direction: column;
     width: 100%;
     align-items: center;
-    padding-top: 320px;
+    padding-top: 400px;
     padding-bottom: 1000px;
     z-index: 2;
     background-image: url('/images/introServiceBg.png');
     background-size: cover;
+
+    @media screen and (max-width: 613px) {
+        background-image: url('/images/introServiceMobileBg.png');
+        background-position: 50% 150px;
+    }
 `;
 
 const Introduction = styled.section`
@@ -217,17 +222,39 @@ const Introduction = styled.section`
     margin-bottom: 220px;
 `;
 
-const InnerNav = styled.nav`
-    width: 64.03px;
-`;
-
 const InnerNavUl = styled.ul`
+    z-index: 31101;
     list-style: none;
     position: fixed;
-    top: 0;
-    right: 0;
-    background-color: red;
-    padding: 1rem;
+    top: 184px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    @media screen and (max-width: 613px) {
+    }
+`;
+
+const InnerNavLI = styled.li`
+    float: left;
+    a {
+        padding-bottom: 39px;
+        padding-left: 6.77vw;
+        padding-right: 6.77vw;
+        font-size: 20px;
+        text-decoration: none;
+
+        @media screen and (max-width: 613px) {
+            padding-bottom: 39px;
+            padding-left: 6.77vw;
+            padding-right: 6.77vw;
+            font-size: 18px;
+        }
+        @media screen and (max-width: 550px) {
+            font-size: 13px;
+        }
+    }
 `;
 
 const Heading = styled.h1`
@@ -249,6 +276,9 @@ const Quote = styled.blockquote`
     font-size: 30px;
     line-height: 50px;
     color: #675b4f;
+    @media screen and (max-width: 550px) {
+        font-size: 18px;
+    }
 `;
 
 const IntroSlogan = styled.div`
@@ -265,6 +295,9 @@ const Speaker = styled.p`
     line-height: 25px;
     color: #675b4f;
     margin-top: 20px;
+    @media screen and (max-width: 550px) {
+        font-size: 13px;
+    }
 `;
 
 const IntroImgAlcohole = styled.img`
@@ -309,6 +342,10 @@ const WhiteBannerBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media screen and (max-width: 1300px) {
+        width: 800px;
+        height: 464px;
+    }
 `;
 
 const WhiteBannerP = styled.p`
@@ -319,6 +356,27 @@ const WhiteBannerP = styled.p`
     margin-bottom: 64px;
     em {
         font-family: 'GmarketSansBold';
+    }
+    @media screen and (max-width: 1300px) {
+        display: none;
+    }
+`;
+
+const WhiteBannerP1300 = styled.p`
+    display: none;
+    font-size: 22px;
+    line-height: 175.5%;
+    text-align: center;
+    margin-top: 64px;
+    margin-bottom: 64px;
+    em {
+        font-family: 'GmarketSansBold';
+    }
+    @media screen and (max-width: 1300px) {
+        display: block;
+    }
+    img {
+        width: 63%;
     }
 `;
 

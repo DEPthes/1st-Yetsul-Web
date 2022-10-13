@@ -31,7 +31,7 @@ export interface DrinkDetailType {
     likeCount: number; // 술 찜 횟수
 }
 
-type ReviewType = {
+export type ReviewType = {
     // reviewsWithUserInfo : []
     id: number;
     title: string; // 리뷰 제목
@@ -57,7 +57,9 @@ const DrinkDetail: React.FC = () => {
 
     useEffect(() => {
         axios
-            .get(`https://depth-server.herokuapp.com/review/${id}/spec`)
+            .get(
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${id}/spec`,
+            )
             .then((res) => {
                 setDrinks(res.data.alcohol);
                 setReviews(res.data.reviewsWithUserInfo);
@@ -366,7 +368,10 @@ const DrinkDetail: React.FC = () => {
             {isModal && (
                 <ImageListModal
                     modal={handleModal}
-                    photoReview={PhotoReviewSrcArr()}
+                    id={id}
+                    photoReview={reviews.filter(
+                        (p) => p.reviewImgUrl.length > 0,
+                    )}
                 />
             )}
         </BackgroundTemplate>
@@ -482,6 +487,7 @@ const PhotoReviewWrapper = styled.div`
     }
 
     button {
+        cursor: pointer;
         width: 206px;
         height: 206px;
         background: #d9d9d9;

@@ -2,9 +2,11 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import styled from 'styled-components';
+import { setListModal } from '../../store/slices/listModalSlice';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import Star from '../common/Star';
 import ReviewDetailList from './ReviewDetailList';
@@ -50,11 +52,24 @@ const ReviewDetail: React.FC = () => {
     const [list, setList] = useState<listType[]>([]);
     const [drink, setdrink] = useState<drinkType>(Object);
     const [reviewCount, setReviewCount] = useState();
+    const dispatch = useDispatch();
 
     useEffect(() => {
+        const main = document.getElementById('listModalBack');
+        const head = document.getElementsByClassName('head')[0];
+        const nav = document.getElementById('fp-nav');
+        dispatch(setListModal(false));
+        $('body').css('overflow', 'scroll');
+        if (main) {
+            main.className = '';
+        }
+        head.className = 'head';
+        if (nav) {
+            nav.className = 'right';
+        }
         axios
             .get(
-                `https://depth-server.herokuapp.com/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
             )
             .then((res) => {
                 setReview(res.data);
@@ -64,7 +79,9 @@ const ReviewDetail: React.FC = () => {
             .catch((err) => console.log(err));
 
         axios
-            .get(`https://depth-server.herokuapp.com/review/${alcoholId}/spec`)
+            .get(
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${alcoholId}/spec`,
+            )
             .then((res) => {
                 setList(res.data.reviewsWithUserInfo);
                 setdrink(res.data.alcohol);
@@ -85,7 +102,9 @@ const ReviewDetail: React.FC = () => {
         }
     };
 
-    listSplice();
+    useEffect(() => {
+        listSplice();
+    }, [list]);
 
     return (
         <BackgroundTemplate heightValue="auto">
