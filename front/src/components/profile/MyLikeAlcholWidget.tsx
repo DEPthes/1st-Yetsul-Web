@@ -18,6 +18,7 @@ export const FavoriteAlcholWidget: React.FC<myliketype> = ({
     alcoholImage,
     id,
 }) => {
+    const StarValue = Math.round(star);
     return (
         <LinkWrap to={`/list/${id}/spec`}>
             <FavoriteAlcholBox>
@@ -32,7 +33,11 @@ export const FavoriteAlcholWidget: React.FC<myliketype> = ({
                         </FavoriteAlcholeABV>
                     </FavoriteAlcholNameABV>
                     <FavoriteAlchilStarDiv>
-                        <Star star={star} widthValue={15} heightValue={14} />
+                        <Star
+                            star={StarValue}
+                            widthValue={15}
+                            heightValue={14}
+                        />
                     </FavoriteAlchilStarDiv>
                 </FavoriteAlcholLower>
             </FavoriteAlcholBox>

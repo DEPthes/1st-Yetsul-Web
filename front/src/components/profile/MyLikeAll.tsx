@@ -12,11 +12,17 @@ export const MyLikeAll: React.FC = () => {
     const [limit] = useState(10); // 페이지 당 보여줄 게시물 수
     const [page, setPage] = useState(1); // 현재 페이지
     const offset = (page - 1) * limit; // 페이지 당 첫 게시물의 index
+
+    const getData = () => {
+        const JWT = localStorage.getItem('accessToken') || '';
+        return axios.create({
+            headers: { Authorization: `Bearer ${JWT}` },
+        });
+    };
+
     useEffect(() => {
-        axios
-            .post('https://depth-server.herokuapp.com/auth/myLikeAlcoholList', {
-                id: 1,
-            })
+        getData()
+            .post('https://depth-server.herokuapp.com/auth/myLikeAlcoholList')
             .then((res) => setMyLikeAlcholData(res.data))
             .catch((err) => console.log(err));
     }, []);

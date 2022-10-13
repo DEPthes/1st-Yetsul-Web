@@ -12,6 +12,13 @@ export const Profile: React.FC = () => {
     const [AlcholthatUserWrite, setAlcholthatUserWrite] = useState<DrinkType[]>(
         [],
     );
+    const [userData, setUserData] = useState<UserType>(Object);
+    const getData = () => {
+        const JWT = localStorage.getItem('accessToken') || '';
+        return axios.create({
+            headers: { Authorization: `Bearer ${JWT}` },
+        });
+    };
 
     const getdata = () => {
         const accessToken = localStorage.getItem('accessToken') || '';
@@ -39,6 +46,13 @@ export const Profile: React.FC = () => {
 
     const AlcholthatUserWriteforWidget = AlcholthatUserWrite.slice(0, 3);
 
+    useEffect(() => {
+        getData()
+            .get('https://depth-server.herokuapp.com/auth/user')
+            .then((res) => setUserData(res.data))
+            .catch((err) => console.log(err));
+    }, []);
+
     return (
         <BackgroundTemplate heightValue="auto">
             <Inner>
@@ -53,8 +67,7 @@ export const Profile: React.FC = () => {
                                     </ProfileFixImgBg>
                                 </ProfileFixImgBtn>
                             </ProfileImgBox>
-
-                            <ProfileName>옛술님</ProfileName>
+                            <ProfileName>{userData.nickname}</ProfileName>
                         </ProfileBox>
                     </ProfileImgSection>
                     <ProfileImformationSection>
@@ -71,7 +84,7 @@ export const Profile: React.FC = () => {
                                 </MyreviewArrayLi>
                                 <MyreviewArrayLi>
                                     <MyreviwArrayText>
-                                        평점 높은 순
+                                        오래된 순
                                     </MyreviwArrayText>
                                 </MyreviewArrayLi>
                             </MyreviewArray>
@@ -205,7 +218,7 @@ const ProfileName = styled.p`
 `;
 
 const Myreview = styled.div`
-    width: 1014px;
+    width: 907px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -229,6 +242,7 @@ const MyreviewHeadingCom = styled.p`
 
 const MyreviewArray = styled.ul`
     list-style: none;
+    margin-right: 95px;
 `;
 
 const MyreviewArrayLi = styled.li`
@@ -237,6 +251,7 @@ const MyreviewArrayLi = styled.li`
 `;
 const MyreviwArrayText = styled.p`
     font-size: 0.9375rem;
+    margin-top: 1.8px;
 `;
 
 const MyreviewArrayBar = styled.p`
@@ -276,6 +291,13 @@ const MyLikeWidgetContainer = styled.div`
     display: flex;
     margin-top: 15px;
 `;
+
+type UserType = {
+    id: number;
+    email: string;
+    nickname: string;
+    profileImag: string;
+};
 
 type DrinkType = {
     children: ReactNode;

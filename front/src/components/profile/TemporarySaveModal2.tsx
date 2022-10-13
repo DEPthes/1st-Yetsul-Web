@@ -19,11 +19,15 @@ export const TemporarySaveModal: React.FC<ModalType> = ({
     const [limit] = useState(4); // 페이지 당 보여줄 게시물 수
     const [page, setPage] = useState(1); // 현재 페이지
     const offset = (page - 1) * limit; // 페이지 당 첫 게시물의 index
+    const getData = () => {
+        const JWT = localStorage.getItem('accessToken') || '';
+        return axios.create({
+            headers: { Authorization: `Bearer ${JWT}` },
+        });
+    };
     useEffect(() => {
-        axios
-            .post('https://depth-server.herokuapp.com/review/user', {
-                user: 1,
-            })
+        getData()
+            .post('https://depth-server.herokuapp.com/review/user/temporary')
             .then((res) => setAlcholthatUserWrite(res.data))
             .catch((err) => console.log(err));
     }, []);
@@ -31,30 +35,34 @@ export const TemporarySaveModal: React.FC<ModalType> = ({
     return (
         <ModalInner>
             <Modal>
-                <CancleBtn
-                    width="32"
-                    height="32"
-                    viewBox="0 0 32 32"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    onClick={ChangeOpenModalShow}
-                >
-                    <path
-                        d="M9.34766 22.4608L21.8144 9.99404"
-                        stroke="black"
-                        strokeWidth="1.3"
-                        strokeLinecap="round"
-                    />
-                    <path
-                        d="M9.34766 9.99402L21.8144 22.4608"
-                        stroke="black"
-                        strokeWidth="1.3"
-                        strokeLinecap="round"
-                    />
-                </CancleBtn>
+                <ModalUpper>
+                    <ModalHeaderBox>
+                        <h1>리뷰 임시저장</h1>
+                        <p>내가 전에 썼던 글을 이어서 쓸 수 있어요!</p>
+                    </ModalHeaderBox>
+                    <CancleBtn
+                        width="32"
+                        height="32"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        onClick={ChangeOpenModalShow}
+                    >
+                        <path
+                            d="M9.34766 22.4608L21.8144 9.99404"
+                            stroke="black"
+                            strokeWidth="1.3"
+                            strokeLinecap="round"
+                        />
+                        <path
+                            d="M9.34766 9.99402L21.8144 22.4608"
+                            stroke="black"
+                            strokeWidth="1.3"
+                            strokeLinecap="round"
+                        />
+                    </CancleBtn>
+                </ModalUpper>
 
-                <h1>리뷰 임시저장</h1>
-                <p>내가 전에 썼던 글을 이어서 쓸 수 있어요!</p>
                 <WidgetContainer>
                     {AlcholthatUserWrite.slice(offset, offset + limit).map(
                         (myreview: {
@@ -89,8 +97,11 @@ const ModalInner = styled.div`
     height: 100vh;
     background: rgba(90, 90, 90, 0.5);
     backdrop-filter: blur(10px);
-    position: fixed;
     z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
 `;
 
 const WidgetContainer = styled.div`
@@ -99,10 +110,16 @@ const WidgetContainer = styled.div`
     align-items: center;
 `;
 
+const ModalUpper = styled.div`
+    display: flex;
+`;
+
+const ModalHeaderBox = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
 const Modal = styled.div`
-    position: absolute;
-    left: 578px;
-    top: 210px;
     width: 724px;
     height: 582px;
     padding: 40px;
@@ -114,7 +131,7 @@ const Modal = styled.div`
     h1 {
         font-size: 30px;
         color: #454038;
-        margin-bottom: 18px;
+        margin-bottom: 13px;
         margin-left: 10px;
     }
     p {
@@ -125,7 +142,7 @@ const Modal = styled.div`
     }
 `;
 const CancleBtn = styled.svg`
-    margin-top: -10px;
+    margin-left: 330px;
     margin-bottom: 30px;
     cursor: pointer;
 `;
