@@ -19,6 +19,8 @@ import KakaoLogin from './components/Login/KakaoLogin';
 import AllDrinkRecommend from './components/DrinkRecommend/AllDrinkRecommend';
 import RecommendSlot from './components/DrinkRecommend/RecommendSlot';
 import RecommendTicket from './components/DrinkRecommend/RecommendTicket';
+import SoolotMachine from './components/soolotmachine/SoolotMachine';
+import SoolotMachineResult from './components/soolotmachine/SoolotMachineResult';
 
 const Router: React.FC = () => {
     return (
@@ -58,6 +60,8 @@ const Router: React.FC = () => {
                 />
                 <Route path="/RecommendTicket" element={<RecommendTicket />} />
                 <Route path="/RecommendSlot" element={<RecommendSlot />} />
+                <Route path="/soolot" element={<SoolotMachine />} />
+                <Route path="/soolotres" element={<SoolotMachineResult />} />
             </Routes>
         </BrowserRouter>
     );

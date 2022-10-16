@@ -7,6 +7,8 @@ import listCategorySlice from './slices/listCategorySlice';
 import listModalSlice from './slices/listModalSlice';
 import mobileMenuSlice from './slices/mobileMenuSlice';
 import onModalSlice from './slices/onModalSlice';
+import slotMachineResultSlice from './slices/slotMachineResultSlice';
+import slotMachineSlice from './slices/slotMachineSlice';
 import updateBackgroundGradientSlice from './slices/updateBackgroundGradientSlice';
 
 const rootReducer = combineReducers({
@@ -17,6 +19,8 @@ const rootReducer = combineReducers({
     imageModal: imageModalSlice,
     formModal: formModalSlice,
     mobileMenu: mobileMenuSlice,
+    slotMachine: slotMachineSlice,
+    slotMachineResult: slotMachineResultSlice,
 });
 
 export const store = configureStore({

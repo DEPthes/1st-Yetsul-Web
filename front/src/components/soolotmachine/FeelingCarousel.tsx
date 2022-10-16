@@ -1,7 +1,7 @@
 import React from 'react';
 import CarouselTemplate from './CarouselTemplate';
 
-const feelingArr = [
+export const feelingArr = [
     {
         id: 0,
         img: (
@@ -46,7 +46,8 @@ const feelingArr = [
                 </defs>
             </svg>
         ),
-        name: 'joy',
+        name: '기쁨',
+        des: 'joy',
     },
     {
         id: 1,
@@ -92,7 +93,8 @@ const feelingArr = [
                 </defs>
             </svg>
         ),
-        name: 'excited',
+        name: '설렘',
+        des: 'flutter',
     },
     {
         id: 2,
@@ -144,7 +146,8 @@ const feelingArr = [
                 </defs>
             </svg>
         ),
-        name: 'sad',
+        name: '센치',
+        des: 'sentimental',
     },
     {
         id: 3,
@@ -190,7 +193,8 @@ const feelingArr = [
                 </defs>
             </svg>
         ),
-        name: 'gloom',
+        name: '슬픔',
+        des: 'sad',
     },
     {
         id: 4,
@@ -236,7 +240,8 @@ const feelingArr = [
                 </defs>
             </svg>
         ),
-        name: 'drink',
+        name: '신남',
+        des: 'excited',
     },
     {
         id: 5,
@@ -282,7 +287,8 @@ const feelingArr = [
                 </defs>
             </svg>
         ),
-        name: 'flutter',
+        name: '우울',
+        des: 'gloom',
     },
     {
         id: 6,
@@ -340,7 +346,8 @@ const feelingArr = [
                 </defs>
             </svg>
         ),
-        name: 'sentimental',
+        name: '취하고싶음',
+        des: 'drink',
     },
     {
         id: 7,
@@ -404,14 +411,15 @@ const feelingArr = [
                 </defs>
             </svg>
         ),
-        name: 'anger',
+        name: '화남',
+        des: 'anger',
     },
 ];
 
 const FeelingCarousel: React.FC = () => {
     return (
         <div>
-            <CarouselTemplate dataArr={feelingArr} />
+            <CarouselTemplate dataArr={feelingArr} type="mood" ref={null} />
         </div>
     );
 };

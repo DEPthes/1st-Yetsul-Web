@@ -1,9 +1,59 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useRef } from 'react';
+import $ from 'jquery';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { RootState } from '../../store/config';
+import { setSoolotResult } from '../../store/slices/slotMachineResultSlice';
 import BackgroundTemplate from '../common/BackgroundTemplate';
-import FeelingCarousel from './FeelingCarousel';
+import { feelingArr } from './FeelingCarousel';
+import { placeArr } from './PlaceCarousel';
+import { weatherArr } from './WeatherCarousel';
+import CarouselTemplate, { CallFn } from './CarouselTemplate';
 
 const SoolotMachine: React.FC = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const soolotMachineData = useSelector((state: RootState) => {
+        return state.slotMachine.request;
+    });
+
+    const ChildComponentRef1 = useRef<CallFn>(null);
+    const ChildComponentRef2 = useRef<CallFn>(null);
+    const ChildComponentRef3 = useRef<CallFn>(null);
+
+    const onClickRandom = () => {
+        $('#random-button').css('margin-top', '160px');
+        setTimeout(() => {
+            $('#random-button').css('margin-top', '24px');
+        }, 600);
+        if (ChildComponentRef1.current) {
+            ChildComponentRef1.current?.random();
+        }
+        if (ChildComponentRef2.current) {
+            ChildComponentRef2.current?.random();
+        }
+        if (ChildComponentRef3.current) {
+            ChildComponentRef3.current?.random();
+        }
+    };
+
+    const postSoolot = () => {
+        axios
+            .post(
+                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/slotMachine/total',
+                soolotMachineData,
+            )
+            .then((res) => {
+                dispatch(setSoolotResult(res.data));
+                navigate('/soolotres');
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
     return (
         <BackgroundTemplate heightValue="100%">
             <Inner>
@@ -26,18 +76,34 @@ const SoolotMachine: React.FC = () => {
                     <MachineContent>
                         <RectangleWrap>
                             <Rectangle>
-                                <FeelingCarousel />
+                                <CarouselTemplate
+                                    dataArr={weatherArr}
+                                    type="weather"
+                                    ref={ChildComponentRef1}
+                                />
                             </Rectangle>
                             <Rectangle>
-                                <div />
+                                <CarouselTemplate
+                                    dataArr={feelingArr}
+                                    type="mood"
+                                    ref={ChildComponentRef2}
+                                />
                             </Rectangle>
                             <Rectangle>
-                                <div />
+                                <CarouselTemplate
+                                    dataArr={placeArr}
+                                    type="situation"
+                                    ref={ChildComponentRef3}
+                                />
                             </Rectangle>
                         </RectangleWrap>
                         <MachineBtnWrap>
                             <div>
-                                <div />
+                                <div
+                                    onClick={onClickRandom}
+                                    aria-hidden
+                                    id="random-button"
+                                />
                             </div>
                         </MachineBtnWrap>
                     </MachineContent>
@@ -47,7 +113,9 @@ const SoolotMachine: React.FC = () => {
                         <p>2. 손잡이를 당겨 랜덤 조합하기</p>
                     </MachineText>
                 </MachineWrap>
-                <MachineResultBtn>결과확인</MachineResultBtn>
+                <MachineResultBtn onClick={postSoolot}>
+                    결과확인
+                </MachineResultBtn>
             </Inner>
         </BackgroundTemplate>
     );
@@ -56,7 +124,6 @@ const SoolotMachine: React.FC = () => {
 export default SoolotMachine;
 
 const Inner = styled.div`
-    margin-top: 57px;
     width: 100%;
     height: 100%;
     display: flex;
@@ -64,6 +131,10 @@ const Inner = styled.div`
     align-items: center;
     justify-content: center;
     zoom: 0.9;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 `;
 
 const MachineResultBtn = styled.div`
@@ -168,6 +239,15 @@ const LongCircle = styled.div`
 `;
 
 const Rectangle = styled.div`
+    .cls-1 {
+        fill: none;
+        stroke: #a9a09c;
+        stroke-miterlimit: 10;
+        stroke-width: 4px;
+    }
+    .cls-2 {
+        fill: none;
+    }
     box-sizing: border-box;
     width: 196.55px;
     height: 293.89px;
@@ -207,14 +287,16 @@ const MachineBtnWrap = styled.div`
         border: 1px solid #675b4f;
         border-radius: 47px;
         > div {
+            cursor: pointer;
             box-sizing: border-box;
             width: 72.07px;
             height: 73px;
             background: #675b4f;
             border: 1px solid #675b4f;
             border-radius: 50%;
-            margin-top: 160px;
+            margin-top: 24px;
             margin-left: -16.475px;
+            transition: all 1s ease-out;
         }
     }
 `;
