@@ -306,7 +306,6 @@ const Inner = styled.div`
     bottom: 0;
     display: flex;
     justify-content: center;
-    zoom: 1.3;
     @media (max-width: 767px) {
         height: 100%;
         zoom: 1;
@@ -353,6 +352,7 @@ const TicketText = styled.div`
     }
     > p {
         font-size: 1.5625em;
+        line-height: 175.2%;
     }
     font-family: 'GmarketSansMedium';
     font-weight: 400;
@@ -363,7 +363,6 @@ const TicketText = styled.div`
     span {
         font-family: 'GmarketSansBold';
         font-weight: 500;
-        line-height: 175.5%;
     }
     margin-bottom: 4.375em;
 `;

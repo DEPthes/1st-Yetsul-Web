@@ -271,25 +271,28 @@ const Slider = styled.div`
         align-items: center;
         height: 60%;
         transition: all 0.6s ease;
+        @media (max-width: 767px) {
+            zoom: 1.3;
+        }
         p {
             font-family: 'GmarketSansBold';
             font-style: normal;
             font-weight: 500;
-            font-size: 15px;
+            font-size: 0.938em;
             line-height: 175.5%;
             color: #a29b97;
             transition: all 0.6s ease;
         }
         svg {
-            margin-bottom: 30px;
-            width: 57px;
-            height: 57px;
+            margin-bottom: 1.875em;
+            width: 3.563em;
+            height: 3.563em;
             transition: all 0.2s ease;
         }
     }
     #temp {
         svg {
-            width: 83px;
+            width: 5.188em;
         }
     }
     .carousel-root {

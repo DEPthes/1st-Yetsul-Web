@@ -55,7 +55,6 @@ const Inner = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 3.6875em;
-    zoom: 0.9;
     @media (max-width: 767px) {
         margin-top: 0;
         zoom: 0;

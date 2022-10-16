@@ -128,22 +128,22 @@ const ResultInner = styled.div`
 
 const ResultHead = styled.div`
     border: 1px solid #8b7e6a;
-    border-radius: 18px;
-    width: 78.17px;
-    height: 32.92px;
+    border-radius: 1.125em;
+    width: 4.886em;
+    height: 2.058em;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 14.29px;
-    margin-bottom: 15px;
-    margin-top: 8px;
+    margin-left: 0.893em;
+    margin-bottom: 0.938em;
+    margin-top: 0.5em;
 `;
 
 const ResultContents = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: calc(100% - 34px);
+    height: calc(100% - 2.125em);
     justify-content: space-between;
 `;
 
@@ -152,14 +152,14 @@ const ResultImage = styled.div`
     flex-direction: column;
     align-items: center;
     > img {
-        width: 130px;
+        width: 8.125em;
     }
     > div {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 20px;
-        margin-bottom: 8px;
+        margin-top: 1.25em;
+        margin-bottom: 0.5em;
         > div:first-of-type {
             margin-right: 1em;
         }
@@ -173,27 +173,27 @@ const ResultName = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 0.75em;
     > h1 {
         font-family: 'GmarketSansMedium';
         font-style: normal;
         font-weight: 400;
-        font-size: 18px;
-        line-height: 18px;
+        font-size: 1.125em;
+        line-height: 100%;
         letter-spacing: -0.01em;
         color: #675b4f;
-        width: 142px;
+        width: 7.889em;
         display: flex;
         justify-content: center;
         white-space: normal;
     }
     > p {
-        margin-top: 12px;
+        margin-top: 0.923em;
         font-family: 'GmarketSansMedium';
         font-style: normal;
         font-weight: 400;
-        font-size: 13px;
-        line-height: 13px;
+        font-size: 0.813em;
+        line-height: 100%;
         letter-spacing: -0.01em;
 
         > a {
@@ -215,25 +215,38 @@ const Inner = styled.div`
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    @media (max-width: 767px) {
+        zoom: 1;
+        flex-direction: column;
+    }
 `;
 
 const MachineResultBtn = styled.div`
-    width: 157px;
-    height: 157px;
+    width: 9.813em;
+    height: 9.813em;
     cursor: pointer;
     border-radius: 50%;
     background: #ffffff;
     border: 1px solid #675b4f;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 35px;
-    line-height: 35px;
+    line-height: 100%;
     letter-spacing: -0.01em;
+    color: #8b7e6a;
     font-family: 'LABDigital';
     > a {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         color: #8b7e6a;
         text-decoration: none;
+        font-size: 1.944em;
+    }
+    @media (max-width: 767px) {
+        display: flex;
+        margin-left: 0;
+        zoom: 0.6;
+        margin-top: 4.188em;
     }
 `;
 
@@ -245,29 +258,35 @@ const MachineText = styled.div`
     justify-content: center;
     align-items: center;
     color: #675b4f;
-    font-size: 25px;
     line-height: 190%;
     h1 {
+        font-size: 1.563em;
         font-family: 'GmarketSansBold';
+    }
+    @media (max-width: 767px) {
+        zoom: 1.5;
     }
 `;
 
 const MachineWrap = styled.div`
-    width: 912px;
-    height: 721px;
+    width: 52.879em;
+    height: 44.411em;
     border: 1px solid #4f4941;
     border-radius: 47px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 60px;
+    margin-bottom: 3.75em;
+    @media (max-width: 767px) {
+        zoom: 0.4;
+    }
 `;
 
 const MachineHead = styled.div`
     width: 100%;
-    margin-top: 34px;
-    margin-bottom: 29px;
+    margin-top: 2.125em;
+    margin-bottom: 1.813em;
     display: flex;
     justify-content: center;
     #circleWrap {
@@ -294,8 +313,8 @@ type isblack = {
 
 const Circle = styled.div<isblack>`
     box-sizing: border-box;
-    width: 22.46px;
-    height: 21.53px;
+    width: 1.404em;
+    height: 1.346em;
     background: ${(props) => (props.black ? '#AAA39F' : '#FFFFFF')};
     border: 1px solid #cac2b7;
     border-radius: 50%;
@@ -306,38 +325,45 @@ const LongCircle = styled.div`
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    width: 637.49px;
-    height: 91.91px;
+    width: 36.125em;
+    height: 5.125em;
     background: #ffffff;
     border: 1px solid #c3baae;
     border-radius: 42.5px;
-    margin: 0 59.85px;
+    margin: 0 3.741em;
     h1 {
         font-family: 'LABDigital';
-        font-size: 50px;
+        font-size: 3.125em;
         line-height: 104%;
         color: #675b4f;
     }
 `;
-
 const Rectangle = styled.div`
+    .cls-1 {
+        fill: none;
+        stroke: #a9a09c;
+        stroke-miterlimit: 10;
+        stroke-width: 6px;
+    }
+    .cls-2 {
+        fill: none;
+    }
     box-sizing: border-box;
-    width: 219px;
-    height: 328px;
+    width: 12.284em;
+    height: 18.368em;
     background: #ffffff;
     border: 1px solid #675b4f;
-    border-radius: 47px;
+    border-radius: 2.938em;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     &:not(:nth-of-type(3)) {
-        margin-right: 26px;
+        margin-right: 1.471em;
     }
     > div {
         box-sizing: border-box;
-        height: 309.37px;
-        width: 176.85px;
+        height: 17.307em;
+        width: 9.828em;
         border-right: 1px solid #675b4f;
         border-left: 1px solid #675b4f;
     }
@@ -345,30 +371,32 @@ const Rectangle = styled.div`
 
 const MachineBtnWrap = styled.div`
     box-sizing: border-box;
-    width: 55.22px;
-    height: 293.89px;
+    width: 3.451em;
+    height: 18.368em;
     border: 1px solid #675b4f;
     border-radius: 47px;
-    margin-left: 36.29px;
+    margin-left: 2.268em;
     display: flex;
     align-items: center;
     justify-content: center;
     > div {
         box-sizing: border-box;
-        width: 42.12px;
-        height: 258.32px;
+        width: 2.632em;
+        height: 16.145em;
         background: #ffffff;
         border: 1px solid #675b4f;
         border-radius: 47px;
         > div {
+            cursor: pointer;
             box-sizing: border-box;
-            width: 72.07px;
-            height: 73px;
+            width: 4.504em;
+            height: 4.563em;
             background: #675b4f;
             border: 1px solid #675b4f;
             border-radius: 50%;
-            margin-top: 160px;
-            margin-left: -16.475px;
+            margin-top: 1.5em;
+            margin-left: -1.03em;
+            transition: all 1s ease-out;
         }
     }
 `;

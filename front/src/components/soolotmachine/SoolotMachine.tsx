@@ -114,7 +114,7 @@ const SoolotMachine: React.FC = () => {
                     </MachineText>
                 </MachineWrap>
                 <MachineResultBtn onClick={postSoolot}>
-                    결과확인
+                    <p>결과확인</p>
                 </MachineResultBtn>
             </Inner>
         </BackgroundTemplate>
@@ -135,24 +135,35 @@ const Inner = styled.div`
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    @media (max-width: 767px) {
+        zoom: 1;
+        flex-direction: column;
+    }
 `;
 
 const MachineResultBtn = styled.div`
-    width: 157px;
-    height: 157px;
+    width: 9.813em;
+    height: 9.813em;
     cursor: pointer;
-    margin-left: 151.43px;
+    margin-left: 9.464em;
     border-radius: 50%;
     background: #ffffff;
     border: 1px solid #675b4f;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 35px;
-    line-height: 35px;
     letter-spacing: -0.01em;
     color: #8b7e6a;
     font-family: 'LABDigital';
+    > p {
+        font-size: 2.188em;
+    }
+    @media (max-width: 767px) {
+        display: flex;
+        margin-left: 0;
+        zoom: 0.6;
+        margin-top: 4.188em;
+    }
 `;
 
 const MachineText = styled.div`
@@ -163,29 +174,35 @@ const MachineText = styled.div`
     justify-content: center;
     align-items: center;
     color: #675b4f;
-    font-size: 25px;
     line-height: 190%;
     h1 {
+        font-size: 1.563em;
         font-family: 'GmarketSansBold';
+    }
+    @media (max-width: 767px) {
+        zoom: 1.5;
     }
 `;
 
 const MachineWrap = styled.div`
-    width: 846.06px;
-    height: 710.58px;
+    width: 52.879em;
+    height: 44.411em;
     border: 1px solid #4f4941;
     border-radius: 47px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 60px;
+    margin-bottom: 3.75em;
+    @media (max-width: 767px) {
+        zoom: 0.4;
+    }
 `;
 
 const MachineHead = styled.div`
     width: 100%;
-    margin-top: 34px;
-    margin-bottom: 29px;
+    margin-top: 2.125em;
+    margin-bottom: 1.813em;
     display: flex;
     justify-content: center;
     #circleWrap {
@@ -212,8 +229,8 @@ type isblack = {
 
 const Circle = styled.div<isblack>`
     box-sizing: border-box;
-    width: 22.46px;
-    height: 21.53px;
+    width: 1.404em;
+    height: 1.346em;
     background: ${(props) => (props.black ? '#AAA39F' : '#FFFFFF')};
     border: 1px solid #cac2b7;
     border-radius: 50%;
@@ -224,46 +241,45 @@ const LongCircle = styled.div`
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    width: 578px;
-    height: 82px;
+    width: 36.125em;
+    height: 5.125em;
     background: #ffffff;
     border: 1px solid #c3baae;
     border-radius: 42.5px;
-    margin: 0 59.85px;
+    margin: 0 3.741em;
     h1 {
         font-family: 'LABDigital';
-        font-size: 50px;
+        font-size: 3.125em;
         line-height: 104%;
         color: #675b4f;
     }
 `;
-
 const Rectangle = styled.div`
     .cls-1 {
         fill: none;
         stroke: #a9a09c;
         stroke-miterlimit: 10;
-        stroke-width: 4px;
+        stroke-width: 6px;
     }
     .cls-2 {
         fill: none;
     }
     box-sizing: border-box;
-    width: 196.55px;
-    height: 293.89px;
+    width: 12.284em;
+    height: 18.368em;
     background: #ffffff;
     border: 1px solid #675b4f;
-    border-radius: 47px;
+    border-radius: 2.938em;
     display: flex;
     align-items: center;
     justify-content: center;
     &:not(:nth-of-type(3)) {
-        margin-right: 23.54px;
+        margin-right: 1.471em;
     }
     > div {
         box-sizing: border-box;
-        height: 276.91px;
-        width: 157.24px;
+        height: 17.307em;
+        width: 9.828em;
         border-right: 1px solid #675b4f;
         border-left: 1px solid #675b4f;
     }
@@ -271,31 +287,31 @@ const Rectangle = styled.div`
 
 const MachineBtnWrap = styled.div`
     box-sizing: border-box;
-    width: 55.22px;
-    height: 293.89px;
+    width: 3.451em;
+    height: 18.368em;
     border: 1px solid #675b4f;
     border-radius: 47px;
-    margin-left: 36.29px;
+    margin-left: 2.268em;
     display: flex;
     align-items: center;
     justify-content: center;
     > div {
         box-sizing: border-box;
-        width: 42.12px;
-        height: 258.32px;
+        width: 2.632em;
+        height: 16.145em;
         background: #ffffff;
         border: 1px solid #675b4f;
         border-radius: 47px;
         > div {
             cursor: pointer;
             box-sizing: border-box;
-            width: 72.07px;
-            height: 73px;
+            width: 4.504em;
+            height: 4.563em;
             background: #675b4f;
             border: 1px solid #675b4f;
             border-radius: 50%;
-            margin-top: 24px;
-            margin-left: -16.475px;
+            margin-top: 1.5em;
+            margin-left: -1.03em;
             transition: all 1s ease-out;
         }
     }
