@@ -29,6 +29,7 @@ export interface DrinkDetailType {
     star: number; // 술 별 점
     alcoholImage: string; // 술 사진
     likeCount: number; // 술 찜 횟수
+    reviewCount: number; // 리뷰 수
 }
 
 export type ReviewType = {
@@ -233,6 +234,7 @@ const DrinkDetail: React.FC = () => {
                         star={drinks.star}
                         alcoholImage={drinks.alcoholImage}
                         likeCount={drinks.likeCount}
+                        reviewCount={reviews.length}
                     />
                 </DrinkInfoWrapper>
                 <ReviewTitle>
