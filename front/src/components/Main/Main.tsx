@@ -318,7 +318,7 @@ const MainStyle = styled.div`
         float: right;
         @media (max-width: 767px) {
             border-bottom: none;
-            height: 6.0625em;
+            height: 11.3%;
             width: 100%;
         }
     }
@@ -331,7 +331,7 @@ type colorType = {
 const InnerLeft = styled.div`
     @media (max-width: 767px) {
         width: calc(100% - 4.4375em);
-        height: 19.1875em;
+        height: 49.8%;
         margin-bottom: 0;
         border: none;
         display: block;
@@ -349,7 +349,7 @@ const InnerLeft = styled.div`
 const InnerRight = styled.div`
     @media (max-width: 767px) {
         width: calc(100% - 4.4375em);
-        height: 20em;
+        height: 56.3%;
         margin-top: 0;
         border-top: 1px solid #bbb6a8;
         position: static;
@@ -366,7 +366,7 @@ const InnerRight = styled.div`
         right: 14.78125em;
         @media (max-width: 767px) {
             width: 4.375em;
-            right: 2.25em;
+            right: 7.7%;
             height: calc(100vh - 6.0625em);
             top: 6.0625em;
             #line:nth-of-type(1) {
@@ -439,7 +439,7 @@ const Inner = styled.div`
     display: flex;
     @media (max-width: 767px) {
         flex-direction: column;
-        height: 39.5em;
+        height: calc(100% - 13.6% - 11.3% + 2px);
     }
     & > #line:nth-of-type(2) {
         left: 50%;

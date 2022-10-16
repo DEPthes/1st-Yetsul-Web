@@ -104,7 +104,7 @@ export default FootBannerSwiper;
 const FootBanner = styled.div`
     @media (max-width: 767px) {
         height: 7.1875em;
-        width: calc(100% - 4.45em);
+        width: calc(100% - 16.6% - 1px);
         border-right: none;
     }
     position: absolute;
