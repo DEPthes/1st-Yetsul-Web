@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import BackgroundTemplate from '../common/BackgroundTemplate';
+import MonthBlock from './MonthBlock';
 
 const MonthDrink: React.FC = () => {
     return (
@@ -12,22 +13,15 @@ const MonthDrink: React.FC = () => {
                 </Head>
                 <Content>
                     <MonthList>
+                        <MonthBlock
+                            month="9"
+                            img="/images/septemberDrink.png"
+                        />
                         <div>
-                            <h1>9월</h1>
-                            <MonthContent>
-                                <DrinkImg
-                                    src="/images/septemberDrink.png"
-                                    alt="9Drink"
-                                />
-                                <AnimationBtnImg
-                                    src="/images/MonthDrinkAnimationBtn.png"
-                                    alt="9DrinkanimationBtn"
-                                />
-                            </MonthContent>
-                        </div>
-                        <div>
-                            <h1>10월</h1>
-                            <MonthContent>준비중</MonthContent>
+                            <MonthBlock
+                                month="10"
+                                img="/images/septemberDrink.png"
+                            />
                         </div>
                     </MonthList>
                 </Content>
@@ -44,11 +38,7 @@ const Inner = styled.div`
     height: auto;
     padding-top: 147px;
 `;
-const AnimationBtnImg = styled.img`
-    position: relative;
-    top: 65px;
-    left: -225px;
-`;
+
 const Head = styled.div`
     margin-top: 79px;
     width: 100%;
@@ -64,14 +54,6 @@ const Head = styled.div`
     span {
         font-size: 20px;
     }
-`;
-
-const DrinkImg = styled.img`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 35px;
-    position: absolute;
 `;
 
 const Content = styled.div`
@@ -90,17 +72,6 @@ const MonthList = styled.div`
         font-size: 25px;
         margin-bottom: 20px;
     }
-`;
-
-const MonthContent = styled.div`
-    background-color: #eae8e4;
-    width: 523px;
-    height: 205px;
-    border-radius: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 35px;
 `;
 
 export default MonthDrink;

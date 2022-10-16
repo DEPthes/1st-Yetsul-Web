@@ -19,6 +19,7 @@ const App: React.FC = () => {
             scrollingSpeed: 850,
             easingcss3: 'cubic-bezier(.61,.01,.13,.95)',
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
             afterLoad: (anchorLink: string, index: number) => {
                 if (isLoad) {
                     gsap.timeline().staggerFromTo(
@@ -41,8 +42,12 @@ const App: React.FC = () => {
                 destination: number,
                 direction: string,
             ) => {
-                if (anchorLink === 2) {
+                if (destination === 2) {
                     isLoad = true;
+                    $('#ticket').css('transform', 'translateY(0%)');
+                }
+                if (anchorLink === 2 && destination === 1) {
+                    $('#ticket').css('transform', 'translateY(90%)');
                 }
                 gsap.timeline().staggerFromTo(
                     $('header'),

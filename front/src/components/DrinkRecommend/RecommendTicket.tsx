@@ -4,7 +4,7 @@ import SecondMain from '../Main/SecondMain';
 
 const RecommendTicket = () => {
     return (
-        <BackgroundTemplate heightValue="">
+        <BackgroundTemplate heightValue="100%">
             <SecondMain />
         </BackgroundTemplate>
     );

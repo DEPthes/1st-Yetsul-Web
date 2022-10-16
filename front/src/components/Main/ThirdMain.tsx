@@ -19,27 +19,11 @@ const ThirdMain: React.FC = () => {
                         src={`${process.env.PUBLIC_URL}/images/soolot.png`}
                         alt="soolot"
                     />
-                    <Link to="/soolot">
-                        <svg
-                            width="157"
-                            height="157"
-                            viewBox="0 0 157 157"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <circle
-                                cx="78.5"
-                                cy="78.5"
-                                r="78"
-                                fill="white"
-                                stroke="#675B4F"
-                            />
-                            <path
-                                d="M58.76 95.04C68.12 95.04 75.32 88.4 75.32 78.96V77.52H58.08V81.16H70.84C70.36 86.96 65.48 91.28 58.92 91.28C51.44 91.28 46.16 85.84 46.16 78.28C46.16 70.76 51.44 65.36 58.84 65.36C64.32 65.36 68.84 68.36 70.16 72.4H74.72C73.04 66.28 66.92 61.52 58.76 61.52C48.96 61.52 41.96 68.6 41.96 78.28C41.96 87.96 48.96 95.04 58.76 95.04ZM95.7866 95.04C105.507 95.04 112.667 87.96 112.667 78.28C112.667 68.6 105.467 61.52 95.7466 61.52C86.0266 61.52 78.8666 68.6 78.8666 78.28C78.8666 87.96 86.0666 95.04 95.7866 95.04ZM95.7866 91.2C88.4666 91.2 83.0666 85.8 83.0666 78.28C83.0666 70.72 88.4266 65.36 95.7466 65.36C103.067 65.36 108.467 70.72 108.467 78.28C108.467 85.8 103.067 91.2 95.7866 91.2ZM118.036 85.44H121.076L122.116 62.28H117.036L118.036 85.44ZM119.556 94.96C121.236 94.96 122.516 93.68 122.516 92C122.516 90.36 121.236 89.08 119.556 89.08C117.876 89.08 116.596 90.36 116.596 92C116.596 93.68 117.876 94.96 119.556 94.96Z"
-                                fill="#8B7E6A"
-                            />
-                        </svg>
-                    </Link>
+                    <Circle>
+                        <Link to="/soolot">
+                            <div />
+                        </Link>
+                    </Circle>
                 </InnerLeft>
             </Inner>
         </BackgroundTemplate>
@@ -99,5 +83,77 @@ const MachineText = styled.div`
         p {
             font-size: 0.75em;
         }
+    }
+`;
+
+const Circle = styled.div`
+    @media (max-width: 767px) {
+        width: 4.1875em;
+        height: 4.1875em;
+        display: flex;
+        > a {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    width: 8.5em;
+    height: 8.5em;
+    border: 1px solid #8b7e6a;
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.67, 0.13, 0.1, 0.81),
+        transform 0.15s cubic-bezier(0.67, 0.13, 0.1, 0.81);
+    z-index: 1000;
+
+    div {
+        @media (max-width: 767px) {
+            zoom: 0.5;
+        }
+        width: 8.5em;
+        height: 8.5em;
+        position: absolute;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    div:before,
+    div:after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+        transition: all 0.3s cubic-bezier(0.67, 0.13, 0.1, 0.81);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #8b7e6a;
+        font-size: 2.5em;
+        font-family: 'LABDigital';
+        cursor: pointer;
+    }
+
+    div:before {
+        content: 'GO!';
+        opacity: 1;
+    }
+
+    div:after {
+        content: 'CLICK';
+        top: -1.1em;
+        opacity: 0;
+    }
+
+    div:hover:after {
+        top: 0;
+        opacity: 1;
+    }
+
+    div:hover:before {
+        top: 1.1em;
+        opacity: 0;
     }
 `;

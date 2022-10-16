@@ -5,6 +5,15 @@ import { Scrollspy } from '@makotot/ghostui';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 
 const Service: React.FC = () => {
+    $(window).scroll(() => {
+        const scroll = $(window).scrollTop() || 0;
+        if (scroll > 1) {
+            $('#service-nav').css('background', 'rgba(255, 255, 255, 0.6)');
+            $('#service-nav').css('backdrop-filter', 'blur(6px)');
+        } else {
+            $('#service-nav').css('background', 'rgba(0, 0, 0, 0)');
+        }
+    });
     const SIZE = 3;
     const list = new Array(SIZE).fill(0);
     const arr = ['서비스 소개', '옛술의 전당 구성', '서비스 비전'];
@@ -18,7 +27,7 @@ const Service: React.FC = () => {
             <Scrollspy sectionRefs={sectionRefs}>
                 {({ currentElementIndexInViewport }) => (
                     <div>
-                        <InnerNavUl>
+                        <InnerNavUl id="service-nav">
                             {list.map((_, i) => (
                                 <InnerNavLI key={i}>
                                     <a
@@ -191,6 +200,7 @@ const Inner = styled.div`
     z-index: 2;
     background-image: url('/images/introServiceBg.png');
     background-size: cover;
+    background-position: 0 -200px;
     @media screen and (max-width: 767px) {
         background-image: url('/images/introServiceMobileBg.png');
         background-position: 50% 150px;
@@ -209,14 +219,17 @@ const InnerNavUl = styled.ul`
     z-index: 3;
     list-style: none;
     position: fixed;
-    top: 13%;
+    top: 9.1875em;
     left: 50%;
     width: 100%;
+    height: 120px;
     transform: translate(-50%);
     display: flex;
     justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-out;
     @media screen and (max-width: 767px) {
-        top: 15%;
+        top: 6.0625em;
     }
 `;
 
@@ -301,7 +314,7 @@ const IntroImgAlcohole = styled.img`
     }
 `;
 
-const IntroParagraph = styled.p`
+const IntroParagraph = styled.div`
     text-align: center;
     line-height: 175.5%;
     font-size: 1.375em;

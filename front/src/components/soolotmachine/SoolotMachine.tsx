@@ -114,7 +114,7 @@ const SoolotMachine: React.FC = () => {
                     </MachineText>
                 </MachineWrap>
                 <MachineResultBtn onClick={postSoolot}>
-                    <p>결과확인</p>
+                    <div />
                 </MachineResultBtn>
             </Inner>
         </BackgroundTemplate>
@@ -155,8 +155,53 @@ const MachineResultBtn = styled.div`
     letter-spacing: -0.01em;
     color: #8b7e6a;
     font-family: 'LABDigital';
-    > p {
-        font-size: 2.188em;
+    transition: all 0.3s cubic-bezier(0.67, 0.13, 0.1, 0.81),
+        transform 0.15s cubic-bezier(0.67, 0.13, 0.1, 0.81);
+    div {
+        width: 8.5em;
+        height: 8.5em;
+        position: absolute;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    div:before,
+    div:after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+        transition: all 0.3s cubic-bezier(0.67, 0.13, 0.1, 0.81);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #8b7e6a;
+        font-size: 2.063em;
+        font-family: 'LABDigital';
+        cursor: pointer;
+    }
+
+    div:before {
+        content: '결과확인';
+        opacity: 1;
+    }
+
+    div:after {
+        content: 'CLICK';
+        top: -1.1em;
+        opacity: 0;
+    }
+
+    div:hover:after {
+        top: 0;
+        opacity: 1;
+    }
+
+    div:hover:before {
+        top: 1.1em;
+        opacity: 0;
     }
     @media (max-width: 767px) {
         display: flex;
@@ -175,6 +220,7 @@ const MachineText = styled.div`
     align-items: center;
     color: #675b4f;
     line-height: 190%;
+    zoom: 1.2;
     h1 {
         font-size: 1.563em;
         font-family: 'GmarketSansBold';

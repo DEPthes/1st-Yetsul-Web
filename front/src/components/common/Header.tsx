@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import $ from 'jquery';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
@@ -14,41 +14,60 @@ import { deleteAccessToken } from '../../services/tokenControl';
 import { setMobileMenu } from '../../store/slices/mobileMenuSlice';
 
 const Header: React.FC = () => {
-    $(window).scroll(() => {
-        const scroll = $(window).scrollTop() || 0;
-        if (scroll > 1) {
-            $('.head').css('background', '#fff');
-        } else {
-            $('.head').css('background', 'rgba(0, 0, 0, 0)');
-        }
-    });
-    if (window.innerWidth >= 768) {
+    useEffect(() => {
         $(window).scroll(() => {
             const scroll = $(window).scrollTop() || 0;
             if (scroll > 1) {
-                $('.head').css('background', '#fff');
+                $('.head').css('background', 'rgba(255, 255, 255, 0.6)');
+                $('.head').css('backdrop-filter', 'blur(6px)');
+            } else {
+                $('.head').css('background', 'rgba(0, 0, 0, 0)');
+                $('.head').css('backdrop-filter', 'none');
+            }
+        });
 
+        $(window).scroll(() => {
+            if (document.body.clientWidth >= 768) {
+                const scroll = $(window).scrollTop() || 0;
+                if (scroll > 1) {
+                    $('.logo_text').fadeOut();
+                    $('.logo_img').fadeOut();
+                    $('.logo_second').fadeIn();
+                } else {
+                    $('.logo_text').fadeIn();
+                    $('.logo_img').fadeIn();
+                    $('.logo_second').fadeOut();
+                }
+            } else {
+                $('.logo_text').fadeIn();
+                $('.logo_img').fadeOut();
+                $('.logo_second').fadeOut();
+            }
+        });
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    const handleResize = () => {
+        if (document.body.clientWidth >= 768) {
+            const scroll = $(window).scrollTop() || 0;
+            if (scroll > 1) {
                 $('.logo_text').fadeOut();
                 $('.logo_img').fadeOut();
                 $('.logo_second').fadeIn();
             } else {
-                $('.head').css('background', 'rgba(0, 0, 0, 0)');
-
                 $('.logo_text').fadeIn();
                 $('.logo_img').fadeIn();
                 $('.logo_second').fadeOut();
             }
-        });
-        $(document).ready(() => {
-            $('#submenu').css('display', 'none');
-            $('#serviceMenu').mouseover(() => {
-                $('#submenu').fadeIn(300);
-            });
-            $('#serviceMenu').mouseleave(() => {
-                $('#submenu').fadeOut(300);
-            });
-        });
-    }
+        } else {
+            $('.logo_text').fadeIn();
+            $('.logo_img').fadeOut();
+            $('.logo_second').fadeOut();
+        }
+    };
 
     const dispatch = useDispatch();
     const isModal = useSelector((state: RootState) => {
@@ -342,10 +361,22 @@ const Header: React.FC = () => {
                         <MenuLoginBlock>
                             {!localStorage.getItem('user') ? (
                                 <>
-                                    <button type="button" onClick={handleModal}>
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            handleModal();
+                                            closeMobileMenu();
+                                        }}
+                                    >
                                         <p>로그인</p>
                                     </button>
-                                    <button type="button" onClick={handleModal}>
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            handleModal();
+                                            closeMobileMenu();
+                                        }}
+                                    >
                                         <p>내정보</p>
                                     </button>
                                 </>

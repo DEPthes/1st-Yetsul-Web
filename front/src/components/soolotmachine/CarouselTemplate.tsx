@@ -254,7 +254,7 @@ const Slider = styled.div`
     overflow: hidden;
     button {
         cursor: pointer;
-        z-index: 99999;
+        z-index: 998;
         position: absolute;
         background-color: rgba(0, 0, 0, 0);
         border: none;
