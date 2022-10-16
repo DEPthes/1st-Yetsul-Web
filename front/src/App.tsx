@@ -20,7 +20,7 @@ const App: React.FC = () => {
             easingcss3: 'cubic-bezier(.61,.01,.13,.95)',
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
-            afterLoad: (anchorLink: string, index: number) => {
+            afterLoad: () => {
                 if (isLoad) {
                     gsap.timeline().staggerFromTo(
                         $('header'),
