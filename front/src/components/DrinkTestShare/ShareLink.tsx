@@ -13,7 +13,7 @@ export const clip = () => {
 const ShareGmail: React.FC = () => {
     return (
         <ShareBtn type="button" onClick={clip}>
-            <ShareImg src="/images/ShareGmail.png" alt="ShareLink" />
+            <ShareImg src="/images/ShareLink.svg" alt="ShareLink" />
         </ShareBtn>
     );
 };
@@ -22,16 +22,25 @@ export default ShareGmail;
 const ShareBtn = styled.button`
     background-color: transparent;
     border: none;
-    margin-top: 63px;
     margin-left: 20px;
     margin-right: 20px;
+
+    @media (max-width: 767px) {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
 `;
 
 const ShareImg = styled.img`
     width: 65px;
-    height: 65px;
+    //height: 65px;
 
     :hover {
         cursor: pointer;
+    }
+
+    @media (max-width: 767px) {
+        width: 26px;
+        //height: 26px;
     }
 `;

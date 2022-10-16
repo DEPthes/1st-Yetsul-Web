@@ -53,7 +53,7 @@ const ShareKakao: React.FC = () => {
 
     return (
         <ShareBtn type="button" id="kakao-link-btn">
-            <ShareImg src="/images/ShareKakaoTalk.png" alt="ShareKakaoTalk" />
+            <ShareImg src="/images/ShareKakaoTalk.svg" alt="ShareKakaoTalk" />
         </ShareBtn>
     );
 };
@@ -63,16 +63,25 @@ export default ShareKakao;
 const ShareBtn = styled.button`
     background-color: transparent;
     border: none;
-    margin-top: 63px;
     margin-left: 20px;
     margin-right: 20px;
+
+    @media (max-width: 767px) {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
 `;
 
 const ShareImg = styled.img`
     width: 65px;
-    height: 65px;
+    //height: 65px;
 
     :hover {
         cursor: pointer;
+    }
+
+    @media (max-width: 767px) {
+        width: 26px;
+        //height: 26px;
     }
 `;
