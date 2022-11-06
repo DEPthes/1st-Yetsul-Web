@@ -144,6 +144,7 @@ const MyReviewAllGridBox = styled.div`
     margin-bottom: 0.625em;
 `;
 
+
 type DrinkType = {
     children: ReactNode;
     id: number;
