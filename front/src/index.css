@@ -110,6 +110,11 @@ body {
     color: #8d837b;
     font-size: 100%;
 }
+_::-webkit-:not(:root:root),
+body {
+    color: #0000ff;
+    background-color: #cccccc;
+}
 @media (max-width: 1920px) and (min-width: 768px) {
     body {
         font-size: 80%;

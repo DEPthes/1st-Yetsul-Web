@@ -124,6 +124,10 @@ const DrinkList: React.FC = () => {
                                     ASC: (
                                         <>
                                             <svg
+                                                id="asc"
+                                                style={{
+                                                    transform: `rotate(0.5turn)`,
+                                                }}
                                                 width="25"
                                                 height="15"
                                                 viewBox="0 0 25 15"
@@ -137,12 +141,13 @@ const DrinkList: React.FC = () => {
                                                     strokeLinecap="round"
                                                 />
                                             </svg>
-                                            별점 높은 순
+                                            <p>별점 높은 순</p>
                                         </>
                                     ),
                                     DESC: (
                                         <>
                                             <svg
+                                                id="asc"
                                                 width="25"
                                                 height="15"
                                                 viewBox="0 0 25 15"
@@ -156,11 +161,47 @@ const DrinkList: React.FC = () => {
                                                     strokeLinecap="round"
                                                 />
                                             </svg>
-                                            별점 낮은 순
+                                            <p>별점 낮은 순</p>
                                         </>
                                     ),
                                 }[sort]
                             }
+
+                            <svg
+                                id="mobileAsc"
+                                width="32"
+                                height="20"
+                                viewBox="0 0 32 20"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M10.7146 16.3403L10.7146 4.40811"
+                                    stroke="#675B4F"
+                                    strokeWidth="1.3"
+                                    strokeLinecap="round"
+                                />
+                                <path
+                                    d="M6.35156 8.57068L10.7144 4.20782L15.0773 8.57068"
+                                    stroke="#675B4F"
+                                    strokeWidth="1.3"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    d="M21.2854 3.65967L21.2854 15.5919"
+                                    stroke="#675B4F"
+                                    strokeWidth="1.3"
+                                    strokeLinecap="round"
+                                />
+                                <path
+                                    d="M25.6484 11.4293L21.2856 15.7922L16.9227 11.4293"
+                                    stroke="#675B4F"
+                                    strokeWidth="1.3"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
                         </SortBtn>
                     </ContentHead>
 
@@ -206,6 +247,49 @@ const DrinkList: React.FC = () => {
                         setPage={setPage}
                     />
                 </PageScroller>
+                <PageUpButton>
+                    <div
+                        onClick={() =>
+                            window.scrollTo({
+                                top: 0,
+                                behavior: 'smooth',
+                            })
+                        }
+                        aria-hidden
+                    >
+                        <svg
+                            width="61"
+                            height="64"
+                            viewBox="0 0 61 64"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M0.999083 31.678C0.999082 48.6209 14.1496 62.3559 30.3716 62.3559C46.5936 62.3559 59.7441 48.6209 59.7441 31.678C59.7441 14.735 46.5936 0.999999 30.3716 0.999999C14.1496 0.999998 0.999084 14.735 0.999083 31.678Z"
+                                fill="#675B4F"
+                                stroke="white"
+                                strokeWidth="1.5"
+                                strokeMiterlimit="10"
+                            />
+                            <path
+                                d="M9.27478 30.0593L30.6589 10.474L52.043 30.0593"
+                                fill="#675B4F"
+                            />
+                            <path
+                                d="M9.27478 30.0593L30.6589 10.474L52.043 30.0593"
+                                stroke="white"
+                                strokeWidth="1.5"
+                                strokeMiterlimit="10"
+                            />
+                            <path
+                                d="M30.6592 10.474L30.6592 53.8216"
+                                stroke="white"
+                                strokeWidth="1.5"
+                                strokeMiterlimit="10"
+                            />
+                        </svg>
+                    </div>
+                </PageUpButton>
             </Inner>
         </BackgroundTemplate>
     );
@@ -213,60 +297,126 @@ const DrinkList: React.FC = () => {
 
 export default DrinkList;
 
+const PageUpButton = styled.div`
+    display: none;
+
+    svg {
+        cursor: pointer;
+    }
+    @media (max-width: 767px) {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 51.64px;
+    }
+`;
+
 const PageScroller = styled.button`
     background-color: inherit;
     border: none;
+    position: relative;
 `;
 
 const Inner = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 1124px;
+    width: 70.25em;
     height: auto;
-    padding-top: 147px;
+    padding-top: 9.188em;
+    @media (max-width: 767px) {
+        width: 332px;
+        padding-top: 140px;
+    }
 `;
 
 const Head = styled.div`
-    margin-top: 79px;
+    margin-top: 4.938em;
     width: 100%;
-    height: 69px;
+    height: 4.313em;
     border-bottom: 1px solid #bbb6a8;
-    padding-bottom: 33px;
+    padding-bottom: 2.063em;
     h1 {
-        font-size: 30px;
-        line-height: 30px;
+        font-size: 1.875em;
+        line-height: 1em;
         color: #454038;
-        margin-bottom: 18px;
+        margin-bottom: 0.6em;
     }
     span {
-        font-size: 20px;
+        font-size: 1.25em;
+    }
+    @media (max-width: 767px) {
+        margin-top: 0;
+        height: auto;
+        padding-bottom: 22px;
+        h1 {
+            margin-bottom: 18px;
+            font-size: 15px;
+        }
+        span {
+            font-size: 12px;
+            color: #8e8372;
+        }
     }
 `;
 
 const Content = styled.div`
-    margin-top: 33px;
+    margin-top: 2.063em;
     width: 100%;
     display: flex;
     flex-direction: column;
+    @media (max-width: 767px) {
+        margin-top: 22px;
+    }
 `;
 
 const ContentHead = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 62px;
+    margin-bottom: 3.875em;
     align-items: center;
+    @media (max-width: 767px) {
+        flex-direction: column;
+        align-items: flex-end;
+        margin-bottom: 24px;
+    }
 `;
 
 const SortBtn = styled.div`
     cursor: pointer;
+    position: relative;
     > svg {
-        margin-right: 16px;
+        position: absolute;
+        width: 1.25em;
+        right: 5.5em;
+        top: -2.5px;
     }
-    font-size: 20px;
-    line-height: 20px;
+    #mobileAsc {
+        display: none;
+    }
+    font-size: 1.25em;
+    line-height: 1em;
     letter-spacing: -0.01em;
+    @media (max-width: 767px) {
+        margin-top: 19px;
+        font-size: 12px;
+        #asc {
+            display: none;
+        }
+        #mobileAsc {
+            display: block;
+        }
+        > p {
+            margin-right: 32px;
+        }
+        > svg {
+            position: absolute;
+            right: 0;
+            width: 32px;
+            top: -6px;
+        }
+    }
 `;
 
 const Category = styled.div`
@@ -276,23 +426,49 @@ const Category = styled.div`
         flex-direction: row;
         list-style: none;
         li:not(:last-of-type) {
-            margin-right: 17px;
+            margin-right: 1.063em;
+        }
+    }
+    @media (max-width: 767px) {
+        border-bottom: 1px solid #bbb6a8;
+        padding-bottom: 10px;
+        ul {
+            flex-wrap: wrap;
+            li {
+                margin-right: 0 !important;
+                margin-bottom: 12px;
+            }
+            li:not(:nth-of-type(3n)) {
+                margin-right: 16px !important;
+            }
         }
     }
 `;
 
 const DrinkElList = styled.div`
-    margin-bottom: 114px;
+    margin-bottom: 7.125em;
     ul {
         list-style: none;
         display: flex;
         flex-wrap: wrap;
         li {
-            margin-right: 26.5px;
-            margin-bottom: 31px;
+            margin-right: 1.656em;
+            margin-bottom: 1.938em;
         }
         li:nth-of-type(3n) {
             margin-right: 0;
+        }
+    }
+    @media (max-width: 767px) {
+        margin-bottom: 33px;
+        ul {
+            li {
+                margin-right: 5px !important;
+                margin-bottom: 7px !important;
+            }
+            li:nth-of-type(2n) {
+                margin-right: 0 !important;
+            }
         }
     }
 `;
