@@ -27,7 +27,7 @@ export const MyReviewModalWidget: React.FC<myreviewtype> = ({
     useEffect(() => {
         getData()
             .get(
-                `https://depth-server.herokuapp.com/alcohol/description/${MyreviewAlcoholId}`,
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/alcohol/description/${MyreviewAlcoholId}`,
             )
             .then((res) => setMyreviewAlcoholData(res.data))
             .catch((err) => console.log(err));
