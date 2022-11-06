@@ -307,7 +307,7 @@ const PageUpButton = styled.div`
         width: 100%;
         display: flex;
         justify-content: flex-end;
-        margin-bottom: 51.64px;
+        margin-bottom: 3.228em;
     }
 `;
 
@@ -325,8 +325,8 @@ const Inner = styled.div`
     height: auto;
     padding-top: 9.188em;
     @media (max-width: 767px) {
-        width: 332px;
-        padding-top: 140px;
+        width: 20.75em;
+        padding-top: 8.75em;
     }
 `;
 
@@ -348,13 +348,13 @@ const Head = styled.div`
     @media (max-width: 767px) {
         margin-top: 0;
         height: auto;
-        padding-bottom: 22px;
+        padding-bottom: 1.375em;
         h1 {
-            margin-bottom: 18px;
-            font-size: 15px;
+            margin-bottom: 1.2em;
+            font-size: 0.938em;
         }
         span {
-            font-size: 12px;
+            font-size: 0.75em;
             color: #8e8372;
         }
     }
@@ -366,7 +366,7 @@ const Content = styled.div`
     display: flex;
     flex-direction: column;
     @media (max-width: 767px) {
-        margin-top: 22px;
+        margin-top: 1.375em;
     }
 `;
 
@@ -379,7 +379,7 @@ const ContentHead = styled.div`
     @media (max-width: 767px) {
         flex-direction: column;
         align-items: flex-end;
-        margin-bottom: 24px;
+        margin-bottom: 1.5em;
     }
 `;
 
@@ -399,8 +399,8 @@ const SortBtn = styled.div`
     line-height: 1em;
     letter-spacing: -0.01em;
     @media (max-width: 767px) {
-        margin-top: 19px;
-        font-size: 12px;
+        margin-top: 1.583em;
+        font-size: 0.75em;
         #asc {
             display: none;
         }
@@ -408,13 +408,13 @@ const SortBtn = styled.div`
             display: block;
         }
         > p {
-            margin-right: 32px;
+            margin-right: 2.667em;
         }
         > svg {
             position: absolute;
             right: 0;
-            width: 32px;
-            top: -6px;
+            width: 2.667em;
+            top: -0.5em;
         }
     }
 `;
@@ -431,15 +431,15 @@ const Category = styled.div`
     }
     @media (max-width: 767px) {
         border-bottom: 1px solid #bbb6a8;
-        padding-bottom: 10px;
+        padding-bottom: 0.625em;
         ul {
             flex-wrap: wrap;
             li {
                 margin-right: 0 !important;
-                margin-bottom: 12px;
+                margin-bottom: 0.75em;
             }
             li:not(:nth-of-type(3n)) {
-                margin-right: 16px !important;
+                margin-right: 1em !important;
             }
         }
     }
@@ -460,11 +460,11 @@ const DrinkElList = styled.div`
         }
     }
     @media (max-width: 767px) {
-        margin-bottom: 33px;
+        margin-bottom: 2.063em;
         ul {
             li {
-                margin-right: 5px !important;
-                margin-bottom: 7px !important;
+                margin-right: 0.313em !important;
+                margin-bottom: 0.438em !important;
             }
             li:nth-of-type(2n) {
                 margin-right: 0 !important;

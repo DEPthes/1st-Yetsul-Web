@@ -38,7 +38,7 @@ const Nav = styled.nav`
     gap: 0.313em;
     margin-bottom: 9.813em;
     @media (max-width: 767px) {
-        margin-bottom: 33px;
+        margin-bottom: 2.063em;
     }
 `;
 

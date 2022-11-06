@@ -52,16 +52,16 @@ const BtnWrap = styled.div<BtnType>`
         margin: 2 12px;
     }
     @media (max-width: 767px) {
-        width: 98px;
-        height: 42px;
+        width: 6.125em;
+        height: 2.625em;
         border: 1px solid #8b7e6a;
         background: ${(props) =>
             props.temp === props.category ? `#8B7E6A` : `rgba(0, 0, 0, 0)`};
         color: ${(props) =>
             props.temp === props.category ? `#fff` : `#8b7e6a`};
-        border-radius: 18px;
+        border-radius: 1.125em;
         p {
-            font-size: 15px;
+            font-size: 0.938em;
         }
     }
 `;

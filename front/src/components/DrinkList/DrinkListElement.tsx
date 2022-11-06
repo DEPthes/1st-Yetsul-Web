@@ -421,12 +421,12 @@ const DrinkElementWrap = styled.div`
     }
     cursor: pointer;
     @media (max-width: 767px) {
-        width: 163px;
-        height: 291px;
+        width: 10.188em;
+        height: 18.188em;
         border: 1px solid #675b4f;
-        border-radius: 10px;
+        border-radius: 0.625em;
         &:hover {
-            border-radius: 10px;
+            border-radius: 0.625em;
             background: none;
         }
     }
@@ -440,12 +440,12 @@ const DrinkCategory = styled.div`
     flex-direction: column;
     align-items: center;
     @media (max-width: 767px) {
-        width: 47px;
-        top: 9px;
-        left: 12px;
+        width: 2.938em;
+        top: 0.563em;
+        left: 0.75em;
         right: 0;
         h1 {
-            font-size: 12px;
+            font-size: 0.75em;
         }
     }
 `;
@@ -465,11 +465,11 @@ const CategoryIcon = styled.div`
         width: 2.25em;
     }
     @media (max-width: 767px) {
-        width: 35px;
-        height: 35px;
+        width: 2.188em;
+        height: 2.188em;
         > svg {
-            width: 25px;
-            height: 25px;
+            width: 1.563em;
+            height: 1.563em;
         }
     }
 `;
@@ -488,11 +488,11 @@ const ImageWrap = styled.div`
         object-fit: cover;
     }
     @media (max-width: 767px) {
-        height: 195px;
-        margin-bottom: 35px;
+        height: 12.188em;
+        margin-bottom: 2.188em;
         img {
-            height: 110px;
-            width: 90px;
+            height: 6.875em;
+            width: 5.625em;
         }
     }
 `;
@@ -503,8 +503,8 @@ const Info = styled.div`
     flex-direction: column;
     padding: 0 1.75em;
     @media (max-width: 767px) {
-        width: 128px;
-        padding: 0 17px;
+        width: 8em;
+        padding: 0 1.063em;
     }
 `;
 
@@ -520,13 +520,13 @@ const InfoHead = styled.div`
         font-size: 1.25em;
     }
     @media (max-width: 767px) {
-        height: 17px;
-        margin-bottom: 7px;
+        height: 1.063em;
+        margin-bottom: 0.438em;
         h1 {
-            font-size: 11px;
+            font-size: 0.688em;
         }
         h1:first-of-type {
-            width: 90px;
+            width: 8.625em;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -539,6 +539,6 @@ const InfoFoot = styled.div`
     color: #8b7e6a;
     font-size: 1.125em;
     @media (max-width: 767px) {
-        font-size: 12px;
+        font-size: 0.75em;
     }
 `;
