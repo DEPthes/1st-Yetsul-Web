@@ -109,8 +109,7 @@ body {
     font-weight: 400;
     color: #8d837b;
     font-size: 100%;
-}
-@media (max-width: 1920px) and (min-width: 768px) {
+}@media (max-width: 1920px) and (min-width: 768px) {
     body {
         font-size: 80%;
     }

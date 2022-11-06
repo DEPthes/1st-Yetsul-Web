@@ -30,7 +30,7 @@ export const Profile: React.FC = () => {
 
     useEffect(() => {
         getdata()
-            .post('https://depth-server.herokuapp.com/auth/myLikeAlcoholList')
+            .post('http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/myLikeAlcoholList')
             .then((res) => setMyLikeAlcholData(res.data))
             .catch((err) => console.log(err));
     }, []);
@@ -39,7 +39,7 @@ export const Profile: React.FC = () => {
 
     useEffect(() => {
         getdata()
-            .post('https://depth-server.herokuapp.com/review/user')
+            .post('http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/user')
             .then((res) => setAlcholthatUserWrite(res.data))
             .catch((err) => console.log(err));
     }, []);
@@ -48,7 +48,7 @@ export const Profile: React.FC = () => {
 
     useEffect(() => {
         getData()
-            .get('https://depth-server.herokuapp.com/auth/user')
+            .get('http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/user')
             .then((res) => setUserData(res.data))
             .catch((err) => console.log(err));
     }, []);
@@ -60,11 +60,16 @@ export const Profile: React.FC = () => {
                     <ProfileImgSection>
                         <ProfileBox>
                             <ProfileImgBox>
-                                <ProfileImg />
+                                <ProfileImg 
+                                    src={userData.profileImg}
+                                />
                                 <ProfileFixImgBtn to="/profile/fix">
-                                    <ProfileFixImgBg>
-                                        <ProfileFixImg src="images/profileFixIcon.png" />
-                                    </ProfileFixImgBg>
+                                        <ProfileFixSvg width="51" height="51" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/ProfileFixSvg">
+                                            <circle cx="25.5" cy="25.5" r="25" fill="white" stroke="#DEDEDE"/>
+                                            <path d="M24.0029 18.8264H16.9658V34.5764H32.7158V27.3923" stroke="black" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                                            <path fillRule="evenodd" clipRule="evenodd" d="M32.7539 14.2529L37.2996 18.7986L27.2991 28.7991H22.7534V24.2534L32.7539 14.2529Z" stroke="black" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                                            <path d="M30.3428 17.234L34.5379 21.4291" stroke="black" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                                        </ProfileFixSvg>
                                 </ProfileFixImgBtn>
                             </ProfileImgBox>
                             <ProfileName>{userData.nickname}</ProfileName>
@@ -147,6 +152,53 @@ export const Profile: React.FC = () => {
                         </MyfavoriteBox>
                     </ProfileImformationSection>
                 </ProfileContainer>
+                
+                <MobileConatiner>
+                    <MobileProfileBox>
+                        <MobileProfileImg  src={userData.profileImg}/>
+                        <p>
+                            옛술님
+                        </p>
+                        <ProfileFixImgBtn to="/profile/fix">
+                                        <MobileProfileFix width="51" height="51" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/ProfileFixSvg">
+                                            <circle cx="25.5" cy="25.5" r="25" fill="white" stroke="#DEDEDE"/>
+                                            <path d="M24.0029 18.8264H16.9658V34.5764H32.7158V27.3923" stroke="black" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                                            <path fillRule="evenodd" clipRule="evenodd" d="M32.7539 14.2529L37.2996 18.7986L27.2991 28.7991H22.7534V24.2534L32.7539 14.2529Z" stroke="black" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                                            <path d="M30.3428 17.234L34.5379 21.4291" stroke="black" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                                        </MobileProfileFix>
+                                </ProfileFixImgBtn>
+                    </MobileProfileBox>
+                    <MobileNavigationTable>
+                    <tr>
+                        <td>
+                        <MyReviewSeeFullLink to="/profile/MyReview">
+                        <div>
+                            <p className='heading'>
+                            나의 리뷰 모아보기
+                            </p>
+                            <p className='arrow'>
+                            &#62;
+                            </p>
+                            </div>
+                        </MyReviewSeeFullLink>
+                        </td>
+                    </tr>                      
+                    <tr>
+                        <td>
+                        <MyLikeSeeFullLink to="/profile/MyLikeAlcohole">
+                            <div>
+                            <p className='heading'>
+                            찜한 옛술 모아보기 
+                            </p>
+                            <p className='arrow'>
+                            &#62;
+                            </p>
+                            </div>
+                        </MyLikeSeeFullLink>
+                        </td>
+                    </tr>
+                </MobileNavigationTable>
+                </MobileConatiner>
             </Inner>
         </BackgroundTemplate>
     );
@@ -154,31 +206,41 @@ export const Profile: React.FC = () => {
 
 const Inner = styled.div`
     width: 100vw;
+    display: flex;
+    justify-content: flex-end;
+    @media screen and (max-width: 767px) {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       justify-content: flex-start;
+    }
 `;
 
 const ProfileContainer = styled.div`
-    margin-left: 13.958vw;
-    margin-top: 120px;
+    margin-top: 9.1875em;
     display: flex;
     border-top: 1.3px solid #bbb6a8;
     justify-content: flex-start;
+    width: 85.938vw;
+    @media screen and (max-width: 767px) {
+        display: none;
+    }
+    
 `;
 
 const ProfileImgSection = styled.section`
-    width: 20.104vw;
-    height: calc(100vh - 142px);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+
 `;
 
 const ProfileImformationSection = styled.section`
     border-left: 1.3px solid #bbb6a8;
+    width: 49.740vw;
 `;
 
 const ProfileBox = styled.div`
-    margin-top: 62px;
-    margin-right: 131px;
+    margin-right: 8.1875em;
+    margin-left: 7.25em;
+    margin-top: 3.875em;
 `;
 
 const ProfileImgBox = styled.div`
@@ -187,62 +249,53 @@ const ProfileImgBox = styled.div`
     align-items: flex-end;
 `;
 
-const ProfileImg = styled.div`
-    width: 139px;
-    height: 139px;
+const ProfileImg = styled.img`
+    width: 8.6875em;
+    height: 8.6875em;
     background: #d9d9d9;
     border-radius: 100%;
 `;
 
-const ProfileFixImg = styled.img`
-    position: relative;
-    left: 5px;
+const ProfileFixSvg = styled.svg`
+    position: absolute;
+    left: 30.4375em;
+    top: 13.375em;
+    width: 3.1875em;
     z-index: 200;
-`;
+`
 
-const ProfileFixImgBg = styled.div`
-    position: relative;
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
-    background-color: white;
-    top: -135px;
-`;
 
 const ProfileFixImgBtn = styled(Link)``;
 
 const ProfileName = styled.p`
     font-weight: 600;
-    font-size: 30px;
+    font-size: 1.875em;
     text-align: center;
 `;
 
 const Myreview = styled.div`
-    width: 907px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    padding-left: 48px;
-    padding-right: 130px;
+    margin-left: 3em;
+
 `;
 
 const MyreviewHeader = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    height: 60px;
-    width: 1014px;
-    margin-left: 48px;
+    padding-top: 2.875em;
+    margin-left: 3em;
 `;
 
 const MyreviewHeadingCom = styled.p`
-    font-size: 1.4375rem;
+    font-size: 1.5625em;
     color: #675b4f;
 `;
 
 const MyreviewArray = styled.ul`
     list-style: none;
-    margin-right: 95px;
 `;
 
 const MyreviewArrayLi = styled.li`
@@ -269,7 +322,7 @@ const MyLikeSeeFullLink = styled(Link)`
 `;
 
 const SeeFullOuter = styled.p`
-    margin-right: 20px;
+
 `;
 
 const SeeFullOuter2Container = styled.div`
@@ -282,21 +335,19 @@ const SeeFullOuter2 = styled.p`
 `;
 
 const MyfavoriteBox = styled.div`
-    display: inline-flex;
-    flex-direction: column;
-    margin-left: 48px;
+    margin-left: 3em;
+    margin-top: 1.625em;
 `;
 
 const MyLikeWidgetContainer = styled.div`
     display: flex;
-    margin-top: 15px;
 `;
 
 type UserType = {
     id: number;
     email: string;
     nickname: string;
-    profileImag: string;
+    profileImg: string;
 };
 
 type DrinkType = {
@@ -319,3 +370,81 @@ type DrinkType = {
     alcoholId: number;
     title: string;
 };
+
+
+const MobileConatiner = styled.div`
+    display: none;
+    @media screen and (max-width: 767px) {
+    width: 85.128vw;
+    margin-top: 6.0625em;
+    height: calc(100vh - 6.0625em);
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 50vw;
+    }
+    @media screen and (max-width: 550px) {
+    height: calc(100vh - 6.0625em);
+    padding-bottom: 0vw;
+    }
+
+`
+const MobileProfileBox = styled.div`
+    display: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 13.333vw;
+    p{
+     font-size: 6.410vw;
+     font-weight: 400;
+     margin-top: 7.179vw;
+    }
+`
+
+const MobileProfileImg = styled.img`
+    width: 26.923vw;
+    height: 26.923vw;
+    background-color: #D9D9D9;
+    border-radius: 100%;
+`
+
+const MobileProfileFix = styled.svg`
+    position: absolute;
+    top: calc( 6.0625em + 13vw);
+    left: 55vw;
+    width: 10vw;
+    height: 10vw;
+`
+const MobileNavigationTable = styled.table`
+    margin-top: 13.590vw;
+    width: 100%;
+    border: 1px solid red;
+    border-left: none;
+    border-right: none;
+    border-collapse: collapse;
+    th, td {
+    border: 1px solid #BBB6A8;
+    border-left: none;
+    border-right: none;
+    border-collapse: collapse;
+    color: #675B4F;
+    font-size: 3.846vw;
+    div{
+        display: flex;
+        justify-content: space-between;
+        padding: 5.2vw 0;
+        .arrow{
+            margin-right: 5.128vw;
+        }
+        .heading{
+            margin-left: 1.538vw;
+        }
+    }
+  }
+`
+
+
+

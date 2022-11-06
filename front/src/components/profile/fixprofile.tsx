@@ -23,7 +23,7 @@ export const FixProfile: React.FC = () => {
 
     useEffect(() => {
         getData()
-            .get('https://depth-server.herokuapp.com/auth/user')
+            .get('http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/user')
             .then((res) => setUserData(res.data))
             .catch((err) => console.log(err));
     }, []);
@@ -94,7 +94,7 @@ export const FixProfile: React.FC = () => {
                             className="imgBox"
                             // src="/images/depth.jpeg"
                             src={userData.profileImg}
-                            alt="dㅇㅁ퍛ㄴ우퍼ㅜㄴ어ㅜㅍㄴ어푸애누"
+                            alt="대체이미지"
                         />
                     </ProfileImgFrame>
 

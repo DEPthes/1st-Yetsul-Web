@@ -707,7 +707,7 @@ type StarScaleType = {
 const AlcoholStar = styled.div<StarScaleType>`
     display: inline-block;
     > svg {
-        margin-right: 5px;
+        margin-right: 1px;
         > path {
             transform: scale();
             ${(props) => `transform: scale(${props.width / 29})`}

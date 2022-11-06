@@ -222,7 +222,7 @@ const InnerNavUl = styled.ul`
     top: 9.1875em;
     left: 50%;
     width: 100%;
-    height: 120px;
+    height: 80px;
     transform: translate(-50%);
     display: flex;
     justify-content: center;

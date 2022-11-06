@@ -23,7 +23,7 @@ export const ProfileHeader: React.FC<headertype> = ({
 const ProfileHeaderInner = styled.div`
     display: flex;
     justify-content: space-between;
-    width: 1125px;
+    width: 58.073vw;
     border-bottom: 1px solid #bbb6a8;
 `;
 
@@ -33,13 +33,13 @@ const ProfileHeaderHeadingContainer = styled.div`
 `;
 
 const HeaderHeading = styled.h1`
-    font-size: 30px;
+    font-size: 1.5625em;
     color: #454038;
-    margin-bottom: 24px;
+    margin-bottom: 1.5em;
 `;
 
 const HeaderLittleHeading = styled.h2`
-    font-size: 20px;
+    font-size: 1.125em;
     color: #8e8372;
-    margin-bottom: 24px;
+    margin-bottom: 1.5em;
 `;
