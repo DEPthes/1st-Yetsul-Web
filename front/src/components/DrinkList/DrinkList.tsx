@@ -83,6 +83,7 @@ const DrinkList: React.FC = () => {
         }
     }, [sort, categoryNum]);
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [_, setRef] = useIntersect(async (entry, observer) => {
         setTimeout(() => {
             observer.unobserve(entry.target);
