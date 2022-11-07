@@ -370,7 +370,7 @@ const Header: React.FC = () => {
                                     >
                                         <p>로그인</p>
                                     </button>
-                                    <button
+                                    {/* <button
                                         type="button"
                                         onClick={() => {
                                             handleModal();
@@ -378,7 +378,7 @@ const Header: React.FC = () => {
                                         }}
                                     >
                                         <p>내정보</p>
-                                    </button>
+                                    </button> */}
                                 </>
                             ) : (
                                 <>
