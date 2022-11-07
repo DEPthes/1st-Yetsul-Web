@@ -22,6 +22,7 @@ const main: React.FC = () => {
     const [starCount, setStarCount] = useState<number>(0);
     const [title, setTitle] = useState<string>('');
     const [contents, setContents] = useState<string>('');
+    const [isWrite, setIsWrite] = useState<boolean>(false);
     let formData = new FormData();
     const { id } = useParams();
 
@@ -142,12 +143,25 @@ const main: React.FC = () => {
         setStarCount(star);
     };
 
+    useEffect(() => {
+        if (
+            title.length > 0 ||
+            contents.length > 0 ||
+            fileList ||
+            starCount !== 0
+        ) {
+            setIsWrite(true);
+        } else {
+            setIsWrite(false);
+        }
+    }, [title, contents, fileList, starCount]);
+
     return (
         <Main>
-            <MainMain>
-                <MainMainHead>
+            <MainMain write={isWrite}>
+                <MainMainHead write={isWrite}>
                     <div>
-                        <InputTextHead>
+                        <InputTextHead write={isWrite}>
                             <h1>제목</h1>
                         </InputTextHead>
                         <InputTextContent>
@@ -159,7 +173,7 @@ const main: React.FC = () => {
                         </InputTextContent>
                     </div>
                     <div>
-                        <InputTextHead>
+                        <InputTextHead write={isWrite}>
                             <h1>별점</h1>
                         </InputTextHead>
                         <InputStar>
@@ -178,7 +192,7 @@ const main: React.FC = () => {
                         </InputStar>
                     </div>
                 </MainMainHead>
-                <MainContentInput>
+                <MainContentInput isFile={!!fileList}>
                     {imgs.length > 0 && (
                         <ImageInsert>
                             <ImageInsertInsert>
@@ -212,7 +226,8 @@ const main: React.FC = () => {
                         </FilePrint>
                     </FootImageInputBox>
                     <FileUploadBtn htmlFor="file">
-                        찾아보기
+                        <h1>찾아보기</h1>
+
                         <input
                             type="file"
                             id="file"
@@ -249,45 +264,65 @@ const main: React.FC = () => {
     );
 };
 
+type writeType = {
+    write: boolean;
+};
+
 const Foot = styled.div`
-    margin-top: 269px;
-    margin-bottom: 360px;
+    margin-top: 10.563em;
+    margin-bottom: 10em;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     > button:first-of-type {
-        width: 159px;
-        height: 51px;
+        width: 9.938em;
+        height: 3.188em;
         background: #8b7e6a;
         border: 1px solid #8b7e6a;
-        border-radius: 18px;
-        margin-right: 19px;
+        border-radius: 1.125em;
+        margin-right: 1.188em;
         cursor: pointer;
         > p {
             font-family: 'GmarketSansLight';
             font-style: normal;
             font-weight: 400;
-            font-size: 18px;
-            line-height: 18px;
+            font-size: 1.125em;
+            line-height: 1em;
             letter-spacing: -0.01em;
             color: #ffffff;
         }
     }
     > button:nth-of-type(2) {
-        width: 159px;
-        height: 51px;
+        width: 9.938em;
+        height: 3.188em;
         border: 1px solid #8b7e6a;
-        border-radius: 18px;
+        border-radius: 1.125em;
         cursor: pointer;
         > p {
             font-family: 'GmarketSansLight';
             font-style: normal;
             font-weight: 400;
-            font-size: 18px;
-            line-height: 18px;
+            font-size: 1.125em;
+            line-height: 1em;
             letter-spacing: -0.01em;
             color: #675b4f;
+        }
+    }
+    @media (max-width: 767px) {
+        margin-top: 2.563em;
+        margin-bottom: 4.125em;
+        > button {
+            width: 5.409em !important;
+            height: 2.063em !important;
+            border-radius: 0.625em !important;
+            > p {
+                font-size: 0.813em !important;
+                line-height: 1em !important;
+            }
+        }
+        > button:first-of-type {
+            margin-right: 0.668em !important;
         }
     }
 `;
@@ -315,12 +350,21 @@ export default ReviewWrite;
 const Header = styled.div`
     width: 100%;
     border-bottom: 1px solid #bbb6a8;
+    margin-bottom: 1.938em;
     > h1 {
-        font-size: 30px;
-        line-height: 30px;
+        font-size: 1.563em;
+        line-height: 1em;
         letter-spacing: -0.01em;
         color: #675b4f;
-        margin-bottom: 40px;
+        margin-bottom: 1em;
+    }
+    @media (max-width: 767px) {
+        > h1 {
+            font-size: 0.938em;
+            margin-bottom: 1em;
+            line-height: 1em;
+        }
+        margin-bottom: 0.813em;
     }
 `;
 
@@ -328,80 +372,124 @@ const Main = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    margin-top: 31px;
+    margin-top: 1.938em;
     font-family: 'GmarketSansMedium';
+    @media (max-width: 767px) {
+        margin-top: 0.938em;
+    }
 `;
 
-const MainMain = styled.div`
+const MainMain = styled.div<writeType>`
     width: 100%;
-    height: 1134px;
-    border: 1px solid #bbb6a8;
-    border-radius: 18px;
+    height: 70.875em;
+    border: ${(props) =>
+        props.write ? '1px solid #675B4F' : '1px solid #bbb6a8'};
+    border-radius: 1.125em;
     display: flex;
     flex-direction: column;
+    @media (max-width: 767px) {
+        height: 28.188em;
+        border-radius: 0.75em;
+    }
 `;
 
-const MainMainHead = styled.div`
+const MainMainHead = styled.div<writeType>`
     width: 100%;
-    height: 197px;
+    height: 10.125em;
     display: flex;
     flex-direction: column;
     > div {
         width: 100%;
-        height: 97px;
-        border-bottom: 1px solid #bbb6a8;
+        height: 5.25em;
+        border-bottom: ${(props) =>
+            props.write ? '1px solid #675B4F' : '1px solid #bbb6a8'};
         display: flex;
         flex-direction: row;
         align-items: center;
         > div {
             font-weight: 400;
-            font-size: 25px;
-            line-height: 25px;
+            font-size: 1.25em;
+            line-height: 1em;
             letter-spacing: -0.01em;
             color: #675b4f;
         }
     }
+    @media (max-width: 767px) {
+        height: 5.78em;
+        > div {
+            height: 2.905em !important;
+            > div {
+                font-size: 0.813em !important;
+                line-height: 1em !important;
+            }
+        }
+    }
 `;
 
-const InputTextHead = styled.div`
-    width: 283px;
-    height: 66px;
-    border-right: 1px solid #bbb6a8;
+const InputTextHead = styled.div<writeType>`
+    width: 13.063em;
+    height: 2.75em;
+    border-right: ${(props) =>
+        props.write ? '1px solid #675B4F' : '1px solid #bbb6a8'};
     display: flex;
     justify-content: center;
     align-items: center;
+    @media (max-width: 767px) {
+        width: 4.938em;
+        height: 1.875em;
+    }
 `;
 
 const InputStar = styled.div`
-    margin-left: 43px;
-    width: 776px;
+    margin-left: 2.625em;
+    width: 25.688em;
     position: relative;
     > div:nth-of-type(2) {
         position: absolute;
         display: flex;
         flex-direction: row;
-        top: 0;
+        top: 0.1em;
         div {
             cursor: pointer;
-            width: 29px;
-            height: 29px;
-            margin-right: 5px;
+            width: 1.813em;
+            height: 1.813em;
+            margin-right: 1.1em;
+        }
+    }
+    @media (max-width: 767px) {
+        margin-left: 1.063em;
+        width: 14.313em;
+        > div {
+            > div {
+                > svg {
+                    width: 1.063em !important;
+                }
+            }
+        }
+        > div:nth-of-type(2) {
+            top: 0.375em;
+            > div {
+                width: 1.063em !important;
+                height: 1.063em !important;
+                margin-right: 0.375em;
+            }
         }
     }
 `;
 
 const InputTextContent = styled.div`
-    margin-left: 43px;
-    width: 776px;
+    margin-left: 2.625em;
+    width: 25.688em;
     input {
-        width: 776px;
+        position: relative;
+        width: 100%;
         margin: 0;
         padding: 0;
         border: none;
         background: rgba(0, 0, 0, 0);
         font-weight: 400;
-        font-size: 25px;
-        line-height: 25px;
+        font-size: 1.25em;
+        line-height: 1em;
         letter-spacing: -0.01em;
         color: #675b4f;
         &:focus {
@@ -411,17 +499,28 @@ const InputTextContent = styled.div`
             color: #bbb6a8;
         }
     }
+    @media (max-width: 767px) {
+        margin-left: 1.125em;
+        width: 14.688em;
+        input {
+            width: 13.438em;
+            font-size: 0.813em;
+            line-height: 1em;
+            overflow-y: hidden;
+        }
+    }
 `;
 
-const MainContentInput = styled.div`
-    height: calc(100% - 197px);
-    padding: 33px 42px;
+const MainContentInput = styled.div<{ isFile: boolean }>`
+    height: calc(100% - 10.125em);
+    padding: 2.688em 1.5em;
     > textarea {
         width: 100%;
-        height: 100%;
+
+        height: ${(props) => (props.isFile ? `calc(100% - 224px)` : `100%`)};
         font-weight: 400;
-        font-size: 25px;
-        line-height: 25px;
+        font-size: 1.85em;
+        line-height: 1em;
         letter-spacing: -0.01em;
         color: #675b4f;
         margin: 0;
@@ -436,13 +535,23 @@ const MainContentInput = styled.div`
             color: #bbb6a8;
         }
     }
+    @media (max-width: 767px) {
+        height: calc(100% - 5.25em);
+        padding: 1.25em 0.97em;
+        > textarea {
+            font-size: 0.938em;
+        }
+    }
 `;
 
 const MainFoot = styled.div`
-    margin-top: 37px;
+    margin-top: 2.313em;
     display: flex;
     flex-direction: column;
     width: 100%;
+    @media (max-width: 767px) {
+        margin-top: 0.688em;
+    }
 `;
 
 const FootImageInput = styled.div`
@@ -453,41 +562,62 @@ const FootImageInput = styled.div`
 `;
 
 const FootImageInputBox = styled.div`
-    width: 1000px;
-    height: 51px;
-    border-radius: 18px;
+    width: calc(100% - 9.938em - 1em);
+    height: 3.188em;
+    border-radius: 1.125em;
     border: 1px solid #aaa19d;
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-right: 24px;
+    margin-right: 0.875em;
+    @media (max-width: 767px) {
+        height: 2.313em;
+        width: calc(100% - 4.625em - 1em);
+        border-radius: 0.625em;
+        margin-right: 0;
+    }
 `;
 
 const InputTextFile = styled.div`
-    width: 263px;
-    height: 33px;
+    width: 12.438em;
+    height: 2.063em;
     border-right: 1px solid #bbb6a8;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: 400;
-    font-size: 25px;
-    line-height: 25px;
-    letter-spacing: -0.01em;
-    color: #675b4f;
+
+    h1 {
+        font-weight: 400;
+        font-size: 1.125em;
+        line-height: 1em;
+        letter-spacing: -0.01em;
+        color: #bbb6a8;
+    }
+
+    @media (max-width: 767px) {
+        h1 {
+            font-size: 0.75em;
+            line-height: 1em;
+        }
+
+        width: 4.688em;
+        height: 1.375em;
+    }
 `;
 
 const FileUploadBtn = styled.label`
     background: #8b7e6a;
     border: 1px solid #8b7e6a;
-    border-radius: 18px;
-    width: 159px;
-    height: 51px;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 20px;
-    letter-spacing: -0.01em;
-    color: #ffffff;
+    border-radius: 1.125em;
+    h1 {
+        font-weight: 400;
+        font-size: 0.938em;
+        line-height: 1em;
+        letter-spacing: -0.01em;
+        color: #ffffff;
+    }
+    width: 9.938em;
+    height: 3.188em;
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -500,43 +630,55 @@ const FileUploadBtn = styled.label`
         overflow: hidden;
         border: 0;
     }
-    &:nth-of-type(2) {
-        margin-left: 15px;
-        color: #8b7e6a;
-        background: rgba(0, 0, 0, 0);
-        border: 1px solid #8b7e6a;
+    @media (max-width: 767px) {
+        width: 4.625em;
+        height: 2.313em;
+
+        border-radius: 0.625em;
+        h1 {
+            font-size: 0.813em;
+            line-height: 1em;
+        }
     }
 `;
 
 const FilePrint = styled.div`
-    margin-left: 43px;
-    width: calc(100% - 263px);
+    margin-left: 2.688em;
+    width: calc(100% - 16.438em);
     > input {
-        width: calc(100% - 43px);
+        width: calc(100% - 2.389em);
         border: none;
         background: rgba(0, 0, 0, 0);
         font-weight: 400;
-        font-size: 20px;
-        line-height: 20px;
+        font-size: 1.125em;
+        line-height: 100%;
         letter-spacing: -0.01em;
         color: #bbb6a8;
         font-family: 'GmarketSansLight';
     }
+    @media (max-width: 767px) {
+        margin-left: 1.25em;
+        width: calc(100% - 7.5em);
+        > input {
+            font-size: 0.75em;
+            width: calc(100% - 1.667em);
+        }
+    }
 `;
 
 const ImageWrap = styled.div`
-    margin-top: 36px;
+    margin-top: 2.25em;
     display: flex;
     flex-direction: row;
     > div {
         box-sizing: border-box;
-        width: 162px;
-        height: 155px;
+        width: 3.24em;
+        height: 3.1em;
         border: 1px solid #aaa19d;
-        border-radius: 18px;
+        border-radius: 0.36em;
         font-weight: 400;
-        font-size: 50px;
-        line-height: 50px;
+        font-size: 3.125em;
+        line-height: 1em;
         letter-spacing: -0.01em;
         color: #bbb6a8;
         display: flex;
@@ -548,17 +690,27 @@ const ImageWrap = styled.div`
         justify-content: center;
         align-items: center;
     }
+    @media (max-width: 767px) {
+        margin-top: 0.688em;
+        > div {
+            border-radius: 0.4em;
+            width: 3.08em;
+            height: 2.96em;
+            font-size: 1.563em;
+            line-height: 1em;
+        }
+    }
 `;
 
 const ImageBox = styled.div`
     box-sizing: border-box;
-    width: 162px;
-    height: 155px;
+    width: 3.24em;
+    height: 3.1em;
     border: 1px solid #aaa19d;
-    border-radius: 18px;
+    border-radius: 0.36em;
     font-weight: 400;
-    font-size: 50px;
-    line-height: 50px;
+    font-size: 3.125em;
+    line-height: 1em;
     letter-spacing: -0.01em;
     color: #bbb6a8;
     display: flex;
@@ -566,7 +718,17 @@ const ImageBox = styled.div`
     align-items: center;
     cursor: default;
     &:not(:last-of-type) {
-        margin-right: 17px;
+        margin-right: calc((100% - (3.24em * 5)) / 4);
+    }
+    @media (max-width: 767px) {
+        border-radius: 0.4em;
+        width: 3.08em;
+        height: 2.96em;
+        font-size: 1.563em;
+        line-height: 1em;
+        &:not(:last-of-type) {
+            margin-right: calc((100% - (3.08em * 5)) / 4);
+        }
     }
 `;
 
@@ -576,26 +738,48 @@ const ImageInner = styled.img`
 `;
 
 const ImageInsert = styled.div`
-    height: 526px;
+    height: 29.063em;
+    margin-bottom: 3.938em;
+    @media (max-width: 767px) {
+        height: 12.5em;
+        margin-bottom: 1.5em;
+    }
 `;
 
 const ImageInsertInsert = styled.div`
     > img {
-        height: calc(100% - 36px);
+        height: 100%;
+        margin-bottom: 1.125em;
+        margin-right: 1.125em;
     }
     height: 100%;
     display: flex;
     align-items: center;
     flex-direction: row;
     overflow-x: scroll;
+    overflow-y: hidden;
     &::-webkit-scrollbar {
-        width: 6px; /* 스크롤바의 너비 */
-        height: 6px;
+        width: 0.375em; /* 스크롤바의 너비 */
+        height: 0.375em;
     }
     &::-webkit-scrollbar-thumb {
-        height: 6px;
+        height: 0.375em;
         background: #675b4f; /* 스크롤바의 색상 */
 
-        border-radius: 10px;
+        border-radius: 0.625em;
+    }
+    @media (max-width: 767px) {
+        > img {
+            margin-bottom: 0.5em;
+            margin-right: 0.5em;
+        }
+        &::-webkit-scrollbar {
+            width: 0.125em; /* 스크롤바의 너비 */
+            height: 0.125em;
+        }
+        &::-webkit-scrollbar-thumb {
+            height: 0.125em;
+            border-radius: 0.313em;
+        }
     }
 `;
