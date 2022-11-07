@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
@@ -7,19 +7,57 @@ import DrinkCategoryBtn from './DrinkCategoryBtn';
 import DrinkListElement from './DrinkListElement';
 import Pagination from './Pagination';
 import { RootState } from '../../store/config';
+import useIntersect from '../../utils/useIntersect';
 
 const DrinkList: React.FC = () => {
     const [drinks, setDrinks] = useState<DrinkType[]>([]);
+    const currentDrinks = useRef<DrinkType[]>([]);
+    const [sliceDrinksRender, setSliceDrinksRender] = useState<DrinkType[]>([]);
+    const sliceDrinks = useRef<DrinkType[]>([]);
     const [limit] = useState(12); // 페이지 당 보여줄 게시물 수
     const [page, setPage] = useState(1); // 현재 페이지
+    const pageRef = useRef(0);
+    const maxPage = useRef(0);
     const offset = (page - 1) * limit; // 페이지 당 첫 게시물의 index
     const [sort, setSort] = useState('ASC');
+    const [isMobile, setIsMobile] = useState<boolean>(false);
+    const [heightValue, setHeightValue] = useState('auto');
 
     const category = useSelector((state: RootState) => {
         return state.listCategory.category;
     });
 
     const [categoryNum, setCategoryNum] = useState('');
+
+    useEffect(() => {
+        if (isMobile) {
+            sliceDrinks.current = drinks.slice(offset, offset + limit);
+            setSliceDrinksRender(sliceDrinks.current);
+            currentDrinks.current = drinks;
+            pageRef.current = 1;
+            maxPage.current = Math.ceil(drinks.length / limit);
+            console.log(pageRef.current);
+            console.log(
+                drinks.slice(
+                    (pageRef.current - 1) * limit,
+                    (pageRef.current - 1) * limit + limit,
+                ),
+            );
+            if (drinks.length < 3) {
+                setHeightValue('100%');
+            } else {
+                setHeightValue('auto');
+            }
+        }
+    }, [drinks]);
+
+    useEffect(() => {
+        if (document.body.clientWidth <= 767) {
+            setIsMobile(true);
+        } else {
+            setIsMobile(false);
+        }
+    }, []);
 
     useEffect(() => {
         if (category === '전체') {
@@ -44,6 +82,31 @@ const DrinkList: React.FC = () => {
                 .catch((err) => console.log(err));
         }
     }, [sort, categoryNum]);
+
+    const [_, setRef] = useIntersect(async (entry, observer) => {
+        setTimeout(() => {
+            observer.unobserve(entry.target);
+            if (
+                sliceDrinks.current.length > 0 &&
+                maxPage.current > pageRef.current
+            ) {
+                pageRef.current += 1;
+
+                const newData = currentDrinks.current.slice(
+                    (pageRef.current - 1) * limit,
+                    (pageRef.current - 1) * limit + limit,
+                );
+
+                console.log('drinks slice:', newData, 'limit: ', limit);
+                console.log('current slice drinks: ', sliceDrinks.current);
+
+                sliceDrinks.current = sliceDrinks.current.concat(newData);
+                setSliceDrinksRender(sliceDrinks.current);
+                console.log(pageRef.current);
+            }
+            observer.observe(entry.target);
+        }, 1000);
+    }, {});
 
     useEffect(() => {
         switch (category) {
@@ -82,7 +145,7 @@ const DrinkList: React.FC = () => {
     };
 
     return (
-        <BackgroundTemplate heightValue="auto">
+        <BackgroundTemplate heightValue={heightValue}>
             <Inner>
                 <Head>
                     <h1>옛술 리스트</h1>
@@ -207,89 +270,134 @@ const DrinkList: React.FC = () => {
 
                     <DrinkElList>
                         <ul>
-                            {drinks
-                                .slice(offset, offset + limit)
-                                .map(
-                                    (drink: {
-                                        id: number;
-                                        category: number;
-                                        alcoholImage: string;
-                                        AlcoholName: string;
-                                        AlcoholByVolume: number;
-                                        star: number;
-                                    }) => {
-                                        return (
-                                            <li key={drink.id}>
-                                                <DrinkListElement
-                                                    id={drink.id}
-                                                    img={drink.alcoholImage}
-                                                    category={drink.category}
-                                                    name={drink.AlcoholName}
-                                                    abv={drink.AlcoholByVolume}
-                                                    star={drink.star}
-                                                />
-                                            </li>
-                                        );
-                                    },
-                                )}
+                            {!isMobile
+                                ? drinks
+                                      .slice(offset, offset + limit)
+                                      .map(
+                                          (drink: {
+                                              id: number;
+                                              category: number;
+                                              alcoholImage: string;
+                                              AlcoholName: string;
+                                              AlcoholByVolume: number;
+                                              star: number;
+                                          }) => {
+                                              return (
+                                                  <li key={drink.id}>
+                                                      <DrinkListElement
+                                                          id={drink.id}
+                                                          img={
+                                                              drink.alcoholImage
+                                                          }
+                                                          category={
+                                                              drink.category
+                                                          }
+                                                          name={
+                                                              drink.AlcoholName
+                                                          }
+                                                          abv={
+                                                              drink.AlcoholByVolume
+                                                          }
+                                                          star={drink.star}
+                                                      />
+                                                  </li>
+                                              );
+                                          },
+                                      )
+                                : sliceDrinksRender.map(
+                                      (drink: {
+                                          id: number;
+                                          category: number;
+                                          alcoholImage: string;
+                                          AlcoholName: string;
+                                          AlcoholByVolume: number;
+                                          star: number;
+                                      }) => {
+                                          return (
+                                              <li key={drink.id}>
+                                                  <DrinkListElement
+                                                      id={drink.id}
+                                                      img={drink.alcoholImage}
+                                                      category={drink.category}
+                                                      name={drink.AlcoholName}
+                                                      abv={
+                                                          drink.AlcoholByVolume
+                                                      }
+                                                      star={drink.star}
+                                                  />
+                                              </li>
+                                          );
+                                      },
+                                  )}
                         </ul>
+                        {isMobile && maxPage.current > pageRef.current && (
+                            <div
+                                ref={setRef as React.LegacyRef<HTMLDivElement>}
+                            >
+                                Loading...
+                            </div>
+                        )}
                     </DrinkElList>
                 </Content>
-                <PageScroller
-                    onClick={() => {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                >
-                    <Pagination
-                        total={drinks.length}
-                        limit={limit}
-                        page={page}
-                        setPage={setPage}
-                    />
-                </PageScroller>
-                <PageUpButton>
-                    <div
-                        onClick={() =>
-                            window.scrollTo({
-                                top: 0,
-                                behavior: 'smooth',
-                            })
-                        }
-                        aria-hidden
+                {!isMobile && (
+                    <PageScroller
+                        onClick={() => {
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
                     >
-                        <svg
-                            width="61"
-                            height="64"
-                            viewBox="0 0 61 64"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
+                        <Pagination
+                            total={drinks.length}
+                            limit={limit}
+                            page={page}
+                            setPage={setPage}
+                        />
+                    </PageScroller>
+                )}
+                {isMobile && heightValue === 'auto' && (
+                    <PageUpButton>
+                        <div
+                            onClick={() =>
+                                window.scrollTo({
+                                    top: 0,
+                                    behavior: 'smooth',
+                                })
+                            }
+                            aria-hidden
                         >
-                            <path
-                                d="M0.999083 31.678C0.999082 48.6209 14.1496 62.3559 30.3716 62.3559C46.5936 62.3559 59.7441 48.6209 59.7441 31.678C59.7441 14.735 46.5936 0.999999 30.3716 0.999999C14.1496 0.999998 0.999084 14.735 0.999083 31.678Z"
-                                fill="#675B4F"
-                                stroke="white"
-                                strokeWidth="1.5"
-                                strokeMiterlimit="10"
-                            />
-                            <path
-                                d="M9.27478 30.0593L30.6589 10.474L52.043 30.0593"
-                                fill="#675B4F"
-                            />
-                            <path
-                                d="M9.27478 30.0593L30.6589 10.474L52.043 30.0593"
-                                stroke="white"
-                                strokeWidth="1.5"
-                                strokeMiterlimit="10"
-                            />
-                            <path
-                                d="M30.6592 10.474L30.6592 53.8216"
-                                stroke="white"
-                                strokeWidth="1.5"
-                                strokeMiterlimit="10"
-                            />
-                        </svg>
-                    </div>
-                </PageUpButton>
+                            <svg
+                                width="61"
+                                height="64"
+                                viewBox="0 0 61 64"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M0.999083 31.678C0.999082 48.6209 14.1496 62.3559 30.3716 62.3559C46.5936 62.3559 59.7441 48.6209 59.7441 31.678C59.7441 14.735 46.5936 0.999999 30.3716 0.999999C14.1496 0.999998 0.999084 14.735 0.999083 31.678Z"
+                                    fill="#675B4F"
+                                    stroke="white"
+                                    strokeWidth="1.5"
+                                    strokeMiterlimit="10"
+                                />
+                                <path
+                                    d="M9.27478 30.0593L30.6589 10.474L52.043 30.0593"
+                                    fill="#675B4F"
+                                />
+                                <path
+                                    d="M9.27478 30.0593L30.6589 10.474L52.043 30.0593"
+                                    stroke="white"
+                                    strokeWidth="1.5"
+                                    strokeMiterlimit="10"
+                                />
+                                <path
+                                    d="M30.6592 10.474L30.6592 53.8216"
+                                    stroke="white"
+                                    strokeWidth="1.5"
+                                    strokeMiterlimit="10"
+                                />
+                            </svg>
+                        </div>
+                    </PageUpButton>
+                )}
             </Inner>
         </BackgroundTemplate>
     );
@@ -304,10 +412,13 @@ const PageUpButton = styled.div`
         cursor: pointer;
     }
     @media (max-width: 767px) {
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
-        margin-bottom: 3.228em;
+        position: fixed;
+        right: 1.563em;
+        display: block;
+        //display: flex;
+        // justify-content: flex-end;
+        // margin-bottom: 3.228em;
+        bottom: 3.188em;
     }
 `;
 
@@ -439,7 +550,9 @@ const Category = styled.div`
                 margin-bottom: 0.75em;
             }
             li:not(:nth-of-type(3n)) {
-                margin-right: 1em !important;
+                margin-right: calc(
+                    ((20.75em - (6.125em * 3)) / 2) - 3px
+                ) !important;
             }
         }
     }
@@ -461,6 +574,13 @@ const DrinkElList = styled.div`
     }
     @media (max-width: 767px) {
         margin-bottom: 2.063em;
+        > div {
+            width: 100%;
+            display: flex;
+            height: 200px;
+            align-items: center;
+            justify-content: center;
+        }
         ul {
             li {
                 margin-right: 0.313em !important;
