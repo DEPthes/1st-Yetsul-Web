@@ -27,7 +27,7 @@ export const TemporarySaveModal: React.FC<ModalType> = ({
     };
     useEffect(() => {
         getData()
-            .post('https://depth-server.herokuapp.com/review/user/temporary')
+            .post('http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/user/temporary')
             .then((res) => setAlcholthatUserWrite(res.data))
             .catch((err) => console.log(err));
     }, []);
@@ -120,30 +120,30 @@ const ModalHeaderBox = styled.div`
 `;
 
 const Modal = styled.div`
-    width: 724px;
-    height: 582px;
-    padding: 40px;
+    width: 37.708vw;
+    height: 32.396vw;
+    padding: 2.083vw;
     display: flex;
     flex-direction: column;
     border-radius: 18px;
     background-color: white;
 
     h1 {
-        font-size: 30px;
+        font-size: 1.302vw;
         color: #454038;
-        margin-bottom: 13px;
-        margin-left: 10px;
+        margin-bottom: 0.677vw;
+        margin-left: 0.521vw;
     }
     p {
-        font-size: 20px;
+        font-size: 0.938vw;
         color: #8e8372;
-        margin-left: 10px;
-        margin-bottom: 20px;
+        margin-left: 0.521vw;
+        margin-bottom: 1.042vw;
     }
 `;
 const CancleBtn = styled.svg`
-    margin-left: 330px;
-    margin-bottom: 30px;
+    margin-left: 17.188vw;
+    margin-bottom: 1.563vw;
     cursor: pointer;
 `;
 

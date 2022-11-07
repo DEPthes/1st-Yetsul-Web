@@ -275,7 +275,7 @@ const Header: React.FC = () => {
                             <p onClick={handleModal} onKeyDown={handleModal}>
                                 로그인
                             </p>
-                            <span id="centerBlock">ㅣ</span>
+                            {/* <span id="centerBlock">ㅣ</span>
                             <NavLink
                                 to="/profile"
                                 className={(navData) =>
@@ -283,7 +283,7 @@ const Header: React.FC = () => {
                                 }
                             >
                                 내정보
-                            </NavLink>
+                            </NavLink> */}
                         </div>
                     ) : (
                         <div>
