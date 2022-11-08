@@ -42,7 +42,8 @@ const FormModal: React.FC<{ modal: () => void }> = ({ modal }) => {
                             아래 구글폼으로 들어가서 저희
                             <br />
                             사이트에 대한 만족도 및 피드백을 남겨주시면
-                            <br /> 앞으로의 행보에 큰 도움이 될 것 같습니다
+                            <br /> 앞으로의 행보에 큰 도움이 될 것 같습니다.
+                            <br />
                             감사합니다 :)
                         </p>
                     </ModalContents>
@@ -76,14 +77,16 @@ const LoginWrap = styled.div`
     @media (max-width: 767px) {
         right: 4.3125em;
         bottom: 9.4375em;
+        width: 18.875em;
+        height: 21.5em;
     }
     position: absolute;
     bottom: 10.375em;
     right: 11.4375em;
     z-index: 1001;
     background: #fff;
-    width: 18.875em;
-    height: 21.5em;
+    width: 33.875em;
+    height: 32.5em;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -105,20 +108,36 @@ const CloseBtn = styled.div`
 `;
 
 const ModalContents = styled.div`
+    @media (max-width: 767px) {
+        height: 16.5625em;
+        > div {
+            margin-bottom: 1.54em !important;
+            margin-top: 0.7em !important;
+        }
+        > h1 {
+            font-size: 0.9375em !important;
+        }
+        > p {
+            font-size: 0.225em !important;
+            width: 70em;
+        }
+    }
     > div {
         margin-top: 1.875em;
-        margin-bottom: 1.54em;
+        margin-bottom: 2.54em;
     }
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    height: 16.5625em;
+    height: 25.5625em;
     font-family: 'GmarketSansMedium';
     font-style: normal;
     font-weight: 400;
     line-height: 175.5%;
     > h1 {
-        font-size: 0.9375em;
+        font-size: 1.2375em;
     }
 
     text-align: center;
@@ -131,7 +150,7 @@ const ModalContents = styled.div`
         font-family: 'GmarketSansMedium';
         font-style: normal;
         font-weight: 400;
-        font-size: 0.625em;
+        font-size: 0.825em;
         line-height: 175.5%;
         text-align: center;
         color: #8b7e6a;
@@ -139,20 +158,26 @@ const ModalContents = styled.div`
 `;
 
 const LogoWrap = styled.div`
+    @media (max-width: 767px) {
+        transform: scale(1.3);
+    }
     width: 100%;
     height: 3.585em;
-    transform: scale(1.3);
+    transform: scale(2);
     svg {
         height: 3.585em;
     }
 `;
 
 const ModalBottom = styled.div`
+    @media (max-width: 767px) {
+        height: calc(100% - 16.5625em);
+    }
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: calc(100% - 16.5625em);
+    height: calc(100% - 25.5625em);
 `;
 
 const Btn = styled.div`
