@@ -3,6 +3,7 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { Scrollspy } from '@makotot/ghostui';
 import BackgroundTemplate from '../common/BackgroundTemplate';
+import PageUpBtn from '../common/PageUpBtn';
 
 const Service: React.FC = () => {
     $(window).scroll(() => {
@@ -183,6 +184,7 @@ const Service: React.FC = () => {
                         </div>
                     </VisionIntroContainer>
                 </Vision>
+                <PageUpBtn />
             </Inner>
         </BackgroundTemplate>
     );
