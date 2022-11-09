@@ -55,7 +55,7 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
     useEffect(() => {
         getData()
             .post(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/alcohol/description/${id}/likeornot`,
+                `http://depth-server.herokuapp.com/alcohol/description/${id}/likeornot`,
             )
             .then((res) => {
                 if (res.data === 'LIKE') {
@@ -78,7 +78,7 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
         try {
             await getData()
                 .post(
-                    `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/alcohol/description/${id}`,
+                    `http://depth-server.herokuapp.com/alcohol/description/${id}`,
                 )
                 .then((res) => {
                     setLikes(res.data.likeCount);

@@ -33,21 +33,17 @@ const KakaoLogin: React.FC = () => {
     const getJwtToken = () => {
         axios
             .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/createjwttoken/${localStorage.getItem(
+                `http://depth-server.herokuapp.com/auth/createjwttoken/${localStorage.getItem(
                     'token',
                 )}`,
             )
-            .then((res) => {
+            .then(async (res) => {
                 console.log('accesstoken: ', res.data);
                 if (res.data) {
                     localStorage.setItem('accessToken', res.data);
-                    setTimeout(() => {
-                        userAPI();
-                    }, 100);
-
-                    setTimeout(() => {
+                    await userAPI().then(() => {
                         window.location.replace('/');
-                    }, 300);
+                    });
                 } else {
                     console.log('fail');
                     navigate('/');

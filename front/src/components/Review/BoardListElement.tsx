@@ -50,7 +50,7 @@ const BoardListElement: React.FC<reviewType> = ({
     useEffect(() => {
         getdata()
             .post(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+                `http://depth-server.herokuapp.com/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
             )
             .then((res) => {
                 setLikeCount(res.data.like);

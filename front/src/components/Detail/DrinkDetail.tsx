@@ -58,9 +58,7 @@ const DrinkDetail: React.FC = () => {
 
     useEffect(() => {
         axios
-            .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${id}/spec`,
-            )
+            .get(`http://depth-server.herokuapp.com/review/${id}/spec`)
             .then((res) => {
                 setDrinks(res.data.alcohol);
                 setReviews(res.data.reviewsWithUserInfo);

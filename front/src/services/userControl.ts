@@ -19,19 +19,17 @@ export const deleteUserLocalStorage = (): void => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const userAPI = () => {
+export const userAPI = async () => {
     const token = getAccessToken();
+    console.log(token);
     if (token) {
-        axios
-            .get(
-                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/user',
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
+        await axios
+            .get('http://depth-server.herokuapp.com/auth/user', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
                 },
-            )
-            .then((res) => {
+            })
+            .then(async (res) => {
                 console.log(res.data);
                 const stringifyUser = JSON.stringify(res.data);
 
