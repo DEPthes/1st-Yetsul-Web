@@ -12,6 +12,7 @@ export const Profile: React.FC = () => {
     const [AlcholthatUserWrite, setAlcholthatUserWrite] = useState<DrinkType[]>(
         [],
     );
+    const [AlcholthatUserWriteforWidget,setAlcholthatUserWriteforWidget] = useState<DrinkType[]>([]);
     const [userData, setUserData] = useState<UserType>(Object);
     const getData = () => {
         const JWT = localStorage.getItem('accessToken') || '';
@@ -22,7 +23,6 @@ export const Profile: React.FC = () => {
 
     const getdata = () => {
         const accessToken = localStorage.getItem('accessToken') || '';
-        console.log(accessToken);
         return axios.create({
             headers: { Authorization: `Bearer ${accessToken}` },
         });
@@ -30,25 +30,44 @@ export const Profile: React.FC = () => {
 
     useEffect(() => {
         getdata()
-            .post('http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/myLikeAlcoholList')
+            .post('https://depth-server.herokuapp.com/review/user')
+            .then((res) => setAlcholthatUserWrite(res.data))
+            .catch((err) => console.log(err));
+    }, []);
+    const [Reverse, setReverse] = useState(false);
+    const Recent = () => {
+        setReverse(false);
+    }
+    const Older = () => {
+        setReverse(true);
+    }
+    useEffect(() => {
+        setAlcholthatUserWrite(AlcholthatUserWrite.reverse());
+    }, [Reverse]);
+
+    useEffect(() => {
+        setAlcholthatUserWriteforWidget(AlcholthatUserWrite.slice(0, 3));
+    }, [AlcholthatUserWrite]);
+
+    useEffect(() => {
+        setAlcholthatUserWriteforWidget(AlcholthatUserWrite.slice(0, 3));
+    }, [Reverse]);
+
+    useEffect(() => {
+        getdata()
+            .post('https://depth-server.herokuapp.com/auth/myLikeAlcoholList')
             .then((res) => setMyLikeAlcholData(res.data))
             .catch((err) => console.log(err));
     }, []);
 
     const MyLikeAlcoholDataforWidget = MyLikeAlcholData.slice(0, 4);
 
-    useEffect(() => {
-        getdata()
-            .post('http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/user')
-            .then((res) => setAlcholthatUserWrite(res.data))
-            .catch((err) => console.log(err));
-    }, []);
 
-    const AlcholthatUserWriteforWidget = AlcholthatUserWrite.slice(0, 3);
+
 
     useEffect(() => {
         getData()
-            .get('http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/user')
+            .get('https://depth-server.herokuapp.com/auth/user')
             .then((res) => setUserData(res.data))
             .catch((err) => console.log(err));
     }, []);
@@ -82,13 +101,14 @@ export const Profile: React.FC = () => {
                             </MyreviewHeadingCom>
                             <MyreviewArray>
                                 <MyreviewArrayLi>
-                                    <MyreviwArrayText>최신순</MyreviwArrayText>
+                                    <MyreviwArrayText onClick={Recent}>
+                                        최신순</MyreviwArrayText>
                                 </MyreviewArrayLi>
                                 <MyreviewArrayLi>
                                     <MyreviewArrayBar>|</MyreviewArrayBar>
                                 </MyreviewArrayLi>
                                 <MyreviewArrayLi>
-                                    <MyreviwArrayText>
+                                    <MyreviwArrayText onClick={Older}>
                                         오래된 순
                                     </MyreviwArrayText>
                                 </MyreviewArrayLi>
@@ -104,6 +124,7 @@ export const Profile: React.FC = () => {
                                 }) => (
                                     <MyReviewWidget
                                         key={myreview.id}
+                                        id={myreview.id}
                                         alcoholId={myreview.alcoholId}
                                         title={myreview.title}
                                         star={myreview.star}
@@ -157,7 +178,7 @@ export const Profile: React.FC = () => {
                     <MobileProfileBox>
                         <MobileProfileImg  src={userData.profileImg}/>
                         <p>
-                            옛술님
+                        {userData.nickname}
                         </p>
                         <ProfileFixImgBtn to="/profile/fix">
                                         <MobileProfileFix width="51" height="51" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/ProfileFixSvg">
@@ -225,11 +246,9 @@ const ProfileContainer = styled.div`
     @media screen and (max-width: 767px) {
         display: none;
     }
-    
 `;
 
 const ProfileImgSection = styled.section`
-
 `;
 
 const ProfileImformationSection = styled.section`
@@ -263,8 +282,6 @@ const ProfileFixSvg = styled.svg`
     width: 3.1875em;
     z-index: 200;
 `
-
-
 const ProfileFixImgBtn = styled(Link)``;
 
 const ProfileName = styled.p`
@@ -299,16 +316,16 @@ const MyreviewArray = styled.ul`
 `;
 
 const MyreviewArrayLi = styled.li`
+    font-size: 0.938vw;
     float: left;
-    margin: 0 10px;
+    margin: 0 0.646vw;
 `;
 const MyreviwArrayText = styled.p`
-    font-size: 0.9375rem;
-    margin-top: 1.8px;
+    cursor: pointer;
+
 `;
 
 const MyreviewArrayBar = styled.p`
-    font-size: 19px;
 `;
 
 const MyReviewSeeFullLink = styled(Link)`

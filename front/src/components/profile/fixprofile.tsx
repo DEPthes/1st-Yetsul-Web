@@ -1,18 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState ,useRef} from 'react';
+
 import axios from 'axios';
 import styled from 'styled-components';
 import BackgroundTemplate from '../common/BackgroundTemplate';
+import { getAccessToken } from '../../services/tokenControl';
 import { ProfileHeader } from './profileHeader';
 
 export const FixProfile: React.FC = () => {
     const [userData, setUserData] = useState<UserType>(Object);
-
-    const onChange = useCallback((e: any) => {
-        setUserData(e.target.value);
-    }, []);
-
     const getData = () => {
         const JWT = localStorage.getItem('accessToken') || '';
         console.log('JWT :', JWT);
@@ -28,6 +25,41 @@ export const FixProfile: React.FC = () => {
             .catch((err) => console.log(err));
     }, []);
 
+    const [InputImage, setInputImage] = useState(String);
+    const [InputName, setInputName] = useState(String);
+
+    const PatchProfileData = () => {
+        useEffect(() => {
+            const formData = new FormData();
+            formData.append('nickname', InputName);
+            formData.append('file', InputImage);
+            axios
+                .patch(
+                    'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/edituser', 
+                    formData, 
+                    { 
+                        headers: { Authorization: `Bearer ${getAccessToken()}` },
+                    }
+                )
+                    .then(() => {
+                        // eslint-disable-next-line no-alert
+                        alert('변경되었습니다');
+                    });
+                }, [])
+             }
+
+    useEffect(()=>{
+        setInputImage(userData.profileImg);
+        setInputName(userData.nickname);
+    }, [userData])
+
+    const saveFileImage = (e : any) => {
+        setInputImage(URL.createObjectURL(e.target.files[0]));
+      };
+
+    const onChange = useCallback((e: any) => {
+        setInputName(e.target.value);
+    }, []);
     return (
         <BackgroundTemplate heightValue="100%">
             <form method="post">
@@ -39,61 +71,26 @@ export const FixProfile: React.FC = () => {
                     />
                     <ProfileImgUploadBtnContainer>
                         <label htmlFor="chooseFile">
-                            <FixProfileImgBtnBgSVG
-                                width="54"
-                                height="54"
-                                viewBox="0 0 54 54"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <circle
-                                    cx="27"
-                                    cy="27"
-                                    r="26.5"
-                                    fill="white"
-                                    stroke="#675B4F"
-                                />
-                            </FixProfileImgBtnBgSVG>
-
-                            <FixProfileImgBtnSVG
-                                width="42"
-                                height="42"
-                                viewBox="0 0 42 42"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    clipRule="evenodd"
-                                    d="M25.5 13.5H16.5L15.75 16.5H9V31.5H33V16.5H26.25L25.5 13.5Z"
-                                    fill="white"
-                                />
-                                <path
-                                    d="M16.5 13.5V12.85C16.2017 12.85 15.9417 13.053 15.8694 13.3424L16.5 13.5ZM25.5 13.5L26.1306 13.3424C26.0583 13.053 25.7983 12.85 25.5 12.85V13.5ZM15.75 16.5V17.15C16.0483 17.15 16.3083 16.947 16.3806 16.6576L15.75 16.5ZM9 16.5V15.85C8.64101 15.85 8.35 16.141 8.35 16.5H9ZM9 31.5H8.35C8.35 31.859 8.64101 32.15 9 32.15V31.5ZM33 31.5V32.15C33.359 32.15 33.65 31.859 33.65 31.5H33ZM33 16.5H33.65C33.65 16.141 33.359 15.85 33 15.85V16.5ZM26.25 16.5L25.6194 16.6576C25.6917 16.947 25.9517 17.15 26.25 17.15V16.5ZM16.5 14.15H25.5V12.85H16.5V14.15ZM16.3806 16.6576L17.1306 13.6576L15.8694 13.3424L15.1194 16.3424L16.3806 16.6576ZM9 17.15H15.75V15.85H9V17.15ZM9.65 31.5V16.5H8.35V31.5H9.65ZM33 30.85H9V32.15H33V30.85ZM32.35 16.5V31.5H33.65V16.5H32.35ZM26.25 17.15H33V15.85H26.25V17.15ZM24.8694 13.6576L25.6194 16.6576L26.8806 16.3424L26.1306 13.3424L24.8694 13.6576Z"
-                                    fill="black"
-                                />
-                                <circle
-                                    cx="21"
-                                    cy="23.25"
-                                    r="4.5"
-                                    stroke="black"
-                                    strokeWidth="1.3"
-                                />
-                            </FixProfileImgBtnSVG>
+                            <FixProfileIconSvg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="27" cy="27" r="26.5" fill="white" stroke="#675B4F"/>
+                            <path fillRule="evenodd" clipRule="evenodd" d="M32.5 18.5H23.5L22.75 21.5H16V36.5H40V21.5H33.25L32.5 18.5Z" fill="white"/>
+                            <path d="M23.5 18.5V17.85C23.2017 17.85 22.9417 18.053 22.8694 18.3424L23.5 18.5ZM32.5 18.5L33.1306 18.3424C33.0583 18.053 32.7983 17.85 32.5 17.85V18.5ZM22.75 21.5V22.15C23.0483 22.15 23.3083 21.947 23.3806 21.6576L22.75 21.5ZM16 21.5V20.85C15.641 20.85 15.35 21.141 15.35 21.5H16ZM16 36.5H15.35C15.35 36.859 15.641 37.15 16 37.15V36.5ZM40 36.5V37.15C40.359 37.15 40.65 36.859 40.65 36.5H40ZM40 21.5H40.65C40.65 21.141 40.359 20.85 40 20.85V21.5ZM33.25 21.5L32.6194 21.6576C32.6917 21.947 32.9517 22.15 33.25 22.15V21.5ZM23.5 19.15H32.5V17.85H23.5V19.15ZM23.3806 21.6576L24.1306 18.6576L22.8694 18.3424L22.1194 21.3424L23.3806 21.6576ZM16 22.15H22.75V20.85H16V22.15ZM16.65 36.5V21.5H15.35V36.5H16.65ZM40 35.85H16V37.15H40V35.85ZM39.35 21.5V36.5H40.65V21.5H39.35ZM33.25 22.15H40V20.85H33.25V22.15ZM31.8694 18.6576L32.6194 21.6576L33.8806 21.3424L33.1306 18.3424L31.8694 18.6576Z" fill="black"/>
+                            <circle cx="28" cy="28.25" r="4.5" stroke="black" strokeWidth="1.3"/>
+                            </FixProfileIconSvg>
                         </label>
                         <input
                             type="file"
                             id="chooseFile"
                             name="chooseFile"
                             accept="image/*"
+                            onChange={saveFileImage}
                             style={{ display: 'none' }}
                         />
                     </ProfileImgUploadBtnContainer>
                     <ProfileImgFrame>
                         <UserProfileImg
                             className="imgBox"
-                            // src="/images/depth.jpeg"
-                            src={userData.profileImg}
+                            src={InputImage} 
                             alt="대체이미지"
                         />
                     </ProfileImgFrame>
@@ -102,11 +99,11 @@ export const FixProfile: React.FC = () => {
                         <Name
                             type="text"
                             maxLength={12}
-                            value={userData.nickname}
+                            value={InputName}
                             onChange={onChange}
                         />
                     </NameBox>
-                    <Registration type="submit">등록하기</Registration>
+                    <Registration onClick={PatchProfileData}>등록하기</Registration>
                 </Inner>
             </form>
         </BackgroundTemplate>
@@ -145,15 +142,10 @@ const ProfileImgUploadBtnContainer = styled.div`
     }
 `;
 
-const FixProfileImgBtnSVG = styled.svg`
-    position: relative;
-    left: 6px;
-    top: 3px;
-`;
-
-const FixProfileImgBtnBgSVG = styled.svg`
-    position: absolute;
-`;
+const FixProfileIconSvg = styled.svg`
+    
+    
+`
 
 const NameBox = styled.div`
     height: 66px;

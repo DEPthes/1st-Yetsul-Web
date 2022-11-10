@@ -57,6 +57,7 @@ export const MyReviewAll: React.FC = () => {
                                 star: number;
                             }) => (
                                 <MyReviewWidget
+                                    id={myreview.id}
                                     key={myreview.id}
                                     alcoholId={myreview.alcoholId}
                                     title={myreview.title}
@@ -107,6 +108,7 @@ export const MyReviewAll: React.FC = () => {
                                 star: number;
                             }) => (
                                 <MyReviewWidget
+                                  id={myreview.id}
                                     key={myreview.id}
                                     alcoholId={myreview.alcoholId}
                                     title={myreview.title}

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 import Star from '../common/Star';
 
 type myreviewtype = {
     alcoholId: number;
+    id : number;
     title: string;
     star: number;
 };
@@ -13,8 +15,10 @@ export const MyReviewWidget: React.FC<myreviewtype> = ({
     alcoholId,
     title,
     star,
+    id,
 }) => {
     const MyreviewAlcoholId = alcoholId;
+    const reviewId = id;
     const [MyreviewAlcoholData, setMyreviewAlcoholData] = useState(Object);
     const getData = () => {
         const JWT = localStorage.getItem('accessToken') || '';
@@ -82,11 +86,19 @@ export const MyReviewWidget: React.FC<myreviewtype> = ({
                 <StarBox>
                     <Star star={star} widthValue={10} heightValue={14} />
                 </StarBox>
+                <LinkWrap to={`/review/alcohol${alcoholId}/review${reviewId}`}>
                 <SeeFull>전체보기 &#62;</SeeFull>
+                </LinkWrap>
             </MyreviewRightSection>
         </MyreviewBarInner>
+
     );
 };
+
+const LinkWrap = styled(Link)`
+    text-decoration: none;
+    color: #8b7e6a;
+`;
 
 const MyreviewBarInner = styled.div`
     height: 5.198vw;

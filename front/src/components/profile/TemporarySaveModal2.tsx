@@ -16,9 +16,6 @@ export const TemporarySaveModal: React.FC<ModalType> = ({
     const [AlcholthatUserWrite, setAlcholthatUserWrite] = useState<DrinkType[]>(
         [],
     );
-    const [limit] = useState(4); // 페이지 당 보여줄 게시물 수
-    const [page, setPage] = useState(1); // 현재 페이지
-    const offset = (page - 1) * limit; // 페이지 당 첫 게시물의 index
     const getData = () => {
         const JWT = localStorage.getItem('accessToken') || '';
         return axios.create({
@@ -64,7 +61,7 @@ export const TemporarySaveModal: React.FC<ModalType> = ({
                 </ModalUpper>
 
                 <WidgetContainer>
-                    {AlcholthatUserWrite.slice(offset, offset + limit).map(
+                    {AlcholthatUserWrite.map(
                         (myreview: {
                             id: number;
                             alcoholId: number;
@@ -80,13 +77,7 @@ export const TemporarySaveModal: React.FC<ModalType> = ({
                         ),
                     )}
                 </WidgetContainer>
-                <MyPagination
-                    total={AlcholthatUserWrite.length}
-                    limit={limit}
-                    page={page}
-                    setPage={setPage}
-                    marginValue={20}
-                />
+                <LowerShadowBox />
             </Modal>
         </ModalInner>
     );
@@ -99,35 +90,19 @@ const ModalInner = styled.div`
     backdrop-filter: blur(10px);
     z-index: 9999;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: fixed;
 `;
 
-const WidgetContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
-
-const ModalUpper = styled.div`
-    display: flex;
-`;
-
-const ModalHeaderBox = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
-
 const Modal = styled.div`
-    width: 37.708vw;
-    height: 32.396vw;
-    padding: 2.083vw;
+    width: 39.792vw;
+    height: 34.479vw;
     display: flex;
     flex-direction: column;
     border-radius: 18px;
     background-color: white;
-
     h1 {
         font-size: 1.302vw;
         color: #454038;
@@ -140,13 +115,79 @@ const Modal = styled.div`
         margin-left: 0.521vw;
         margin-bottom: 1.042vw;
     }
+    @media screen and (max-width: 767px) {
+        width: 85.128vw;
+        height: 125.897vw;
+        h1{ 
+            font-size: 3.846vw;
+            margin-bottom: 2.872vw;
+        }
+        p{
+            font-size: 3.077vw;
+            margin-left: 0;
+            margin-bottom: 5.042vw;
+        }
+    }
+`;
+
+const ModalUpper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin: 0 2.604vw;
+    margin-top: 1.302vw;
+    @media screen and (max-width: 767px) {
+        margin: 0 6.410vw;
+        margin-top: 8.205vw;
+    }
+`;
+
+const ModalHeaderBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    h1,p{
+        margin-left: 0px;
+    }
 `;
 const CancleBtn = styled.svg`
-    margin-left: 17.188vw;
     margin-bottom: 1.563vw;
     cursor: pointer;
 `;
 
+const WidgetContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin: 0 2.604vw;
+    overflow-y: scroll;
+    height: 26vw;
+    ::-webkit-scrollbar {
+    width: 6px;
+}
+
+    ::-webkit-scrollbar-thumb {
+    background: #675B4F; /* 스크롤바의 색상 */
+    background-clip: padding-box;
+}
+
+    ::-webkit-scrollbar-track {
+    background-color: white;
+}
+@media screen and (max-width: 767px) {
+    height: 91.538vw;
+    margin: 0 6.410vw;
+    }
+`;
+
+
+
+const LowerShadowBox = styled.div`
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    background: white;
+    z-index: 3333;
+    width: 39.792vw;
+    height: 3.073vw;
+    box-shadow: 0px -4px 14px rgba(0, 0, 0, 0.1);
+`
 type DrinkType = {
     children: ReactNode;
     id: number;

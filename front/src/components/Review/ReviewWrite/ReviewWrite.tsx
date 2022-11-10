@@ -53,7 +53,7 @@ const main: React.FC = () => {
 
         axios
             .post(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${id}`,
+                `https://depth-server.herokuapp.com/review/${id}`,
                 formData,
                 {
                     headers: { Authorization: `Bearer ${getAccessToken()}` },
@@ -77,7 +77,7 @@ const main: React.FC = () => {
 
         axios
             .post(
-                `http://depth-server.herokuapp.com/review/${id}/temporary`,
+                `https://depth-server.herokuapp.com/review/${id}/temporary`,
                 formData,
                 {
                     headers: { Authorization: `Bearer ${getAccessToken()}` },

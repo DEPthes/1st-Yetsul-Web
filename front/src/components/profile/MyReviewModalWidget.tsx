@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 import Star from '../common/Star';
@@ -89,76 +90,100 @@ export const MyReviewModalWidget: React.FC<myreviewtype> = ({
     );
 };
 
+const LinkWrap = styled(Link)`
+    text-decoration: none;
+    color: #8b7e6a;
+`;
+
 const MyreviewBarInner = styled.div`
-    width: 730px;
-    height: 73.39px;
+    width: 97%;
     border: 1px solid #675b4f;
     border-radius: 18px;
+    margin-bottom: 0.865vw;
     display: flex;
-    margin-bottom: 16.61px;
-    margin-top: 20px;
+    @media screen and (max-width: 767px) {
+    border-radius: 12px;
+    margin-bottom: 1.795vw;
+    }
+
 `;
 const MyreviewDrinkImgSection = styled.div`
-    margin-left: 60px;
+    margin-left: 3.125vw;
+    height: 3.822vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: red;
+    @media screen and (max-width: 767px) {
+        margin-left: 3.590vw;
+        height: 21.538vw;
+    }
 `;
 const MyreviewDrinkImg = styled.img`
-    height: 60px;
+    height: 70%;
 `;
 const MyreviewInformationSection = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    width: 60%;
+    @media screen and (max-width: 767px) {
+        width: 50%;
+    }
 `;
 const MyreviewInformationUpper = styled.div`
     display: flex;
     align-items: center;
-    margin-top: 6px;
-    margin-left: 80px;
 `;
 const MyreviewInformationLower = styled.div`
-    margin-left: 80px;
-    margin-top: 10px;
 `;
 const MyreviewDrinkKind = styled.div`
     color: #454038;
     border: 1px solid #454038;
     border-radius: 24px;
-    width: 43px;
-    padding: 2px 10px;
     display: flex;
     justify-content: center;
-    font-size: 13px;
+    font-size: 0.677vw;
+    width: 2.577vw;
+    padding: 0 0.3vw;
+    @media screen and (max-width: 767px) {
+        width: 10.256vw;
+        padding: 1vw 0.3vw;
+    }
 `;
 const MyreviewDrinkName = styled.div`
-    font-size: 18px;
-    line-height: 0;
-    margin-top: 3px;
-    margin-left: 11px;
+    font-size: 0.938vw;
+    margin-top: 0.156vw;
+    margin-left: 0.573vw;
     color: #675b4f;
+    @media screen and (max-width: 767px) {
+        font-size: 4.359vw;
+
+    }
 `;
 const MyreviewHeading = styled.div`
-    margin-top: 2.3px;
-    font-size: 13px;
-    margin-left: 7px;
+    margin-top: 0.120vw;
+    font-size: 0.677vw;
+    margin-left: 0.365vw;
 `;
 const MyreviewRightSection = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
-    margin-left: 200px;
+
 `;
 
 const SeeFull = styled.div`
-    font-size: 15px;
+    font-size: 0.573vw;
 `;
 
 const StarBox = styled.div`
     height: 30px;
     display: flex;
     justify-content: flex-end;
+    @media screen and (max-width: 767px) {
+        height: 30px;
+    }
 `;
