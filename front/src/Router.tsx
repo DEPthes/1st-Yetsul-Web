@@ -23,6 +23,7 @@ import AllDrinkRecommend from './components/DrinkRecommend/AllDrinkRecommend';
 import SecondMain from './components/Main/SecondMain';
 import RecommendSlot from './components/DrinkRecommend/RecommendSlot';
 import RecommendTicket from './components/DrinkRecommend/RecommendTicket';
+import DrinkTradition from './components/Tradition/DrinkTradition';
 
 const Router: React.FC = () => {
     return (
@@ -35,6 +36,7 @@ const Router: React.FC = () => {
                         path="/auth/:service/callback"
                         element={<KakaoLogin />}
                     />
+                    <Route path="/tradition" element={<DrinkTradition />} />
                     <Route path="/auth/*" element={<KakaoLogin />} />
                     <Route path="/depth" element={<Depth />} />
                     <Route path="/service" element={<Service />} />

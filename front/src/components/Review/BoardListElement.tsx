@@ -66,8 +66,6 @@ const BoardListElement: React.FC<reviewType> = ({
             )
             .then((res) => {
                 setLikeCount(res.data.like);
-
-                console.log(`like${likeCount}`);
             })
             .catch((err) => console.log(err));
     }, []);
