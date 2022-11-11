@@ -569,11 +569,13 @@ const Intro = styled.div`
 const Contents = styled.div``;
 
 const DrinkWrapper = styled.div`
+    margin-bottom: 246px;
     width: 962px;
     // height: 622px;
     display: flex;
     text-align: left;
     align-items: center;
+    justify-content: space-between;
 
     @media (max-width: 767px) {
         width: 340px;
