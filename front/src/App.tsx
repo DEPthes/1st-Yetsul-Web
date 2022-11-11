@@ -8,6 +8,7 @@ import './App.css';
 import Main from './components/Main/Main';
 import SecondMain from './components/Main/SecondMain';
 import ThirdMain from './components/Main/ThirdMain';
+import Footer from './components/Main/Footer';
 
 const App: React.FC = () => {
     $(() => {
@@ -18,7 +19,8 @@ const App: React.FC = () => {
             scrollingSpeed: 850,
             easingcss3: 'cubic-bezier(.61,.01,.13,.95)',
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            afterLoad: (anchorLink: string, index: number) => {
+
+            afterLoad: () => {
                 if (isLoad) {
                     gsap.timeline().staggerFromTo(
                         $('header'),
@@ -40,8 +42,12 @@ const App: React.FC = () => {
                 destination: number,
                 direction: string,
             ) => {
-                if (anchorLink === 2) {
+                if (destination === 2) {
                     isLoad = true;
+                    $('#ticket').css('transform', 'translateY(0%)');
+                }
+                if (anchorLink === 2 && destination === 1) {
+                    $('#ticket').css('transform', 'translateY(90%)');
                 }
                 gsap.timeline().staggerFromTo(
                     $('header'),
@@ -55,7 +61,15 @@ const App: React.FC = () => {
                     { opacity: 0, x: '0%' },
                     { opacity: 0, x: '%', ease: 'easeInOut' },
                 );
-                if (anchorLink === 3 && direction === 'down') {
+                if (
+                    (anchorLink === 3 && direction === 'down') ||
+                    (anchorLink === 1 &&
+                        direction === 'down' &&
+                        destination === 4) ||
+                    (anchorLink === 2 &&
+                        direction === 'down' &&
+                        destination === 4)
+                ) {
                     $('header').fadeOut();
                     $('.section:nth-last-child(2)').addClass('fadeout');
                 }
@@ -92,6 +106,9 @@ const App: React.FC = () => {
                 </div>
                 <div className="section" id="section3">
                     <ThirdMain />
+                </div>
+                <div className="section fp-auto-height" id="section4">
+                    <Footer />
                 </div>
             </div>
         </div>

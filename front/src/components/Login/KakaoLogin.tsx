@@ -1,6 +1,9 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { userAPI } from '../../services/userControl';
+import BackgroundTemplate from '../common/BackgroundTemplate';
 
 const KakaoLogin: React.FC = () => {
     const location = useLocation();
@@ -30,15 +33,17 @@ const KakaoLogin: React.FC = () => {
     const getJwtToken = () => {
         axios
             .get(
-                `https://depth-server.herokuapp.com/auth/createjwttoken/${localStorage.getItem(
+                `http://depth-server.herokuapp.com/auth/createjwttoken/${localStorage.getItem(
                     'token',
                 )}`,
             )
-            .then((res) => {
+            .then(async (res) => {
                 console.log('accesstoken: ', res.data);
                 if (res.data) {
                     localStorage.setItem('accessToken', res.data);
-                    console.log('success');
+                    await userAPI().then(() => {
+                        window.location.replace('/');
+                    });
                 } else {
                     console.log('fail');
                     navigate('/');
@@ -48,11 +53,22 @@ const KakaoLogin: React.FC = () => {
     };
 
     useEffect(() => {
-        if (!location.search) return;
         getKakaoToken();
     }, []);
 
-    return <div>KakaoLogin</div>;
+    return (
+        <BackgroundTemplate heightValue="100%">
+            <LOADING>로그인 중...</LOADING>
+        </BackgroundTemplate>
+    );
 };
 
 export default KakaoLogin;
+
+const LOADING = styled.div`
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+`;

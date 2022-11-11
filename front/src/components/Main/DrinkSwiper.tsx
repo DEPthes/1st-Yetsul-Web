@@ -13,7 +13,7 @@ const drinkinformation = [
     {
         id: 0,
         img: 'images/AlcoholImg.png',
-        name: '이강주',
+        name: '담은',
         abv: 6.5,
     },
     {
@@ -25,7 +25,7 @@ const drinkinformation = [
     {
         id: 2,
         img: 'images/AlcoholImg3.png',
-        name: '이감주',
+        name: '이강주',
         abv: 19,
     },
 ];
@@ -147,15 +147,24 @@ const DrinkSwiper = forwardRef((props, ref) => {
 export default DrinkSwiper;
 
 const Slider = styled.div`
-    width: calc(100% - 300px);
+    @media (max-width: 767px) {
+        width: 100%;
+        .slider-wrap {
+            margin-top: 0 !important;
+            height: 15.4375em !important;
+            .drink-info {
+            }
+        }
+    }
+    width: calc(100% - 18.75em);
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     .slider-wrap {
         width: 100%;
-        height: 717.083px;
-        margin-top: 162px;
+        height: 44.8176875em;
+        margin-top: 10.125em;
         overflow: hidden;
         .drink-info {
             width: 400%;

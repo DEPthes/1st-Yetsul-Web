@@ -20,6 +20,7 @@ export interface DrinkDetailElementType {
     star: number; // 술 별 점
     alcoholImage: string; // 술 사진
     likeCount: number; // 술 찜 횟수
+    reviewCount: number; // 리뷰 수
 }
 
 const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
@@ -38,17 +39,23 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
     star,
     alcoholImage,
     likeCount,
+    reviewCount,
 }) => {
     const { id } = useParams();
     const [like, setLike] = useState(false);
 
+    const getData = () => {
+        const accessToken = localStorage.getItem('accessToken') || '';
+        console.log(accessToken);
+        return axios.create({
+            headers: { Authorization: `Bearer ${accessToken}` },
+        });
+    };
+
     useEffect(() => {
-        axios
+        getData()
             .post(
-                `https://depth-server.herokuapp.com/alcohol/description/${id}/likeornot`,
-                {
-                    userEmail: 'er196725@googlemail.com',
-                },
+                `http://depth-server.herokuapp.com/alcohol/description/${id}/likeornot`,
             )
             .then((res) => {
                 if (res.data === 'LIKE') {
@@ -67,23 +74,30 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
         setLike(!like);
     };
 
-    const DrinkLikeN = async () => {
+    const DrinkLikeClick = async () => {
         try {
-            await axios
+            await getData()
                 .post(
-                    `https://depth-server.herokuapp.com/alcohol/description/${id}`,
-                    {
-                        userEmail: 'er196725@googlemail.com',
-                    },
+                    `http://depth-server.herokuapp.com/alcohol/description/${id}`,
                 )
                 .then((res) => {
                     setLikes(res.data.likeCount);
-                    setLoading(false);
                     DrinkLike();
+                    setLoading(false);
                 });
         } catch (err) {
             console.log(err);
         }
+    };
+
+    const DrinkLikeNum = () => {
+        if (likeCount >= 0) {
+            if (loading === true) {
+                return likeCount;
+            }
+            return likes;
+        }
+        return 0;
     };
 
     return (
@@ -99,14 +113,15 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
                         {category === 5 ? '증류주' : null}
                         {category === 6 ? '리큐르주' : null}
                     </DrinkCategory>
-                    <DrinkLikeCount>
-                        {loading === true ? likeCount : likes}
-                    </DrinkLikeCount>
-                    <DrinkLikeBtn type="button" onClick={() => DrinkLikeN()}>
+                    <DrinkLikeCount>{DrinkLikeNum()}</DrinkLikeCount>
+                    <DrinkLikeBtn
+                        type="button"
+                        onClick={() => DrinkLikeClick()}
+                    >
                         {like === true ? (
-                            <img src="/images/HeartFill.png" alt="하트" />
+                            <img src="/images/HeartFill.svg" alt="하트" />
                         ) : (
-                            <img src="/images/Heart.png" alt="빈 하트" />
+                            <img src="/images/Heart.svg" alt="빈 하트" />
                         )}
                     </DrinkLikeBtn>
                     <h1>{AlcoholName}</h1>
@@ -119,7 +134,8 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
                             });
                         }}
                     >
-                        (리뷰 +100) &gt;
+                        (리뷰&nbsp;
+                        {reviewCount < 100 ? `${reviewCount}건` : '+100'}) &gt;
                     </SeeReview>
                     <Star star={star} widthValue={15} heightValue={14} />
                     <Line margintop={18} marginbottom={27} width={511} />
@@ -169,10 +185,10 @@ const DrinkExplain = styled.div`
 
     h1 {
         margin-top: 47px;
-        margin-bottom: 25px;
-        width: 330px;
+        margin-bottom: 20px;
+        width: 382px;
         font-size: 40px;
-        line-height: 40px;
+        line-height: 53px;
         letter-spacing: -0.01em;
         color: #675b4f;
         word-break: keep-all;
@@ -193,7 +209,7 @@ const DrinkImg = styled.img`
     margin-right: 114px;
 
     width: 526px;
-    height: 631px;
+    //height: 631px;
 `;
 
 const DrinkCategory = styled.div`
@@ -213,7 +229,7 @@ const DrinkCategory = styled.div`
 
 const DrinkLikeCount = styled.div`
     margin-right: 30px;
-    margin-top: 65px;
+    margin-top: 66px;
 
     font-size: 20px;
     line-height: 20px;

@@ -35,8 +35,11 @@ const Nav = styled.nav`
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
-    margin-bottom: 157px;
+    gap: 0.313em;
+    margin-bottom: 9.813em;
+    @media (max-width: 767px) {
+        margin-bottom: 2.063em;
+    }
 `;
 
 const Button = styled.button`
@@ -44,14 +47,14 @@ const Button = styled.button`
     background-color: transparent;
     margin: 0;
     color: #8b7e6a;
-    font-size: 18px;
+    font-size: 1.125em;
     &:hover {
         cursor: pointer;
     }
     &[aria-current] {
         background: #8b7e6a;
-        width: 27px;
-        height: 27px;
+        width: 1.5em;
+        height: 1.5em;
         border-radius: 50%;
         color: #fff;
     }

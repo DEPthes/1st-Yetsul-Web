@@ -16,10 +16,18 @@ export const MyReviewModalWidget: React.FC<myreviewtype> = ({
 }) => {
     const MyreviewAlcoholId = alcoholId;
     const [MyreviewAlcoholData, setMyreviewAlcoholData] = useState(Object);
+
+    const getData = () => {
+        const JWT = localStorage.getItem('accessToken') || '';
+        return axios.create({
+            headers: { Authorization: `Bearer ${JWT}` },
+        });
+    };
+
     useEffect(() => {
-        axios
+        getData()
             .get(
-                `https://depth-server.herokuapp.com/alcohol/description/${MyreviewAlcoholId}`,
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/alcohol/description/${MyreviewAlcoholId}`,
             )
             .then((res) => setMyreviewAlcoholData(res.data))
             .catch((err) => console.log(err));
@@ -75,19 +83,20 @@ export const MyReviewModalWidget: React.FC<myreviewtype> = ({
                 <StarBox>
                     <Star star={star} widthValue={10} heightValue={14} />
                 </StarBox>
-                <SeeFull>전체보기 &#62;</SeeFull>
+                <SeeFull>이어쓰기 &#62;</SeeFull>
             </MyreviewRightSection>
         </MyreviewBarInner>
     );
 };
 
 const MyreviewBarInner = styled.div`
-    width: 687px;
+    width: 730px;
     height: 73.39px;
     border: 1px solid #675b4f;
     border-radius: 18px;
     display: flex;
     margin-bottom: 16.61px;
+    margin-top: 20px;
 `;
 const MyreviewDrinkImgSection = styled.div`
     margin-left: 60px;
@@ -118,8 +127,8 @@ const MyreviewDrinkKind = styled.div`
     color: #454038;
     border: 1px solid #454038;
     border-radius: 24px;
-    width: 29px;
-    padding: 1px 10px;
+    width: 43px;
+    padding: 2px 10px;
     display: flex;
     justify-content: center;
     font-size: 13px;
@@ -129,6 +138,7 @@ const MyreviewDrinkName = styled.div`
     line-height: 0;
     margin-top: 3px;
     margin-left: 11px;
+    color: #675b4f;
 `;
 const MyreviewHeading = styled.div`
     margin-top: 2.3px;
@@ -140,7 +150,7 @@ const MyreviewRightSection = styled.div`
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
-    margin-left: 80px;
+    margin-left: 200px;
 `;
 
 const SeeFull = styled.div`

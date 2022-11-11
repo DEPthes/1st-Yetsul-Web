@@ -14,7 +14,9 @@ const DrinkTicketBox: React.FC = () => {
 
     useEffect(() => {
         axios
-            .get(`https://depth-server.herokuapp.com/ticketbox/test`)
+            .get(
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/ticketbox/test`,
+            )
             .then((res) => setQuestions(res.data))
             .catch((err) => console.log(err));
     }, []);
@@ -97,32 +99,32 @@ const DrinkTicketBox: React.FC = () => {
                                         type="button"
                                         margin={
                                             data.selection3 === null
-                                                ? 23.3333
-                                                : 21.2037
+                                                ? 15.75
+                                                : 14.3125
                                         }
                                         onClick={() => PrevClick()}
                                     >
                                         <PrevImg
-                                            src="/images/Prev.png"
+                                            src="/images/Prev.svg"
                                             alt="prev"
                                         />
                                     </PrevButton>
                                     <Question
                                         margin={
                                             data.selection3 === null
-                                                ? 2.3148
-                                                : 1.8519
+                                                ? 1.5625
+                                                : 1.25
                                         }
                                     >
                                         <QuestionText
                                             width={(() => {
                                                 if (data.questionID === 5) {
-                                                    return 42;
+                                                    return 850;
                                                 }
                                                 if (data.questionID === 6) {
-                                                    return 44;
+                                                    return 930;
                                                 }
-                                                return 59.7396;
+                                                return 1140;
                                             })()}
                                         >
                                             Q{num}. {data.question}
@@ -130,22 +132,36 @@ const DrinkTicketBox: React.FC = () => {
                                     </Question>
                                     <Selection
                                         type="button"
-                                        margin={
-                                            data.selection3 === null
-                                                ? 7.963
-                                                : 8.1481
+                                        margintop={
+                                            data.selection3 === null ? 4.3 : 4.4
                                         }
+                                        marginleft={0}
+                                        marginright={0.78125}
+                                        width={28.1}
+                                        padding={(() => {
+                                            if (data.questionID === 2) {
+                                                return 0;
+                                            }
+                                            return 0.5;
+                                        })()}
                                         onClick={() => SelectionClick(1)}
                                     >
                                         A1. {data.selection1}
                                     </Selection>
                                     <Selection
                                         type="button"
-                                        margin={
-                                            data.selection3 === null
-                                                ? 7.963
-                                                : 8.1481
+                                        margintop={
+                                            data.selection3 === null ? 4.3 : 4.4
                                         }
+                                        marginleft={0.78125}
+                                        marginright={0}
+                                        width={28}
+                                        padding={(() => {
+                                            if (data.questionID === 2) {
+                                                return 0;
+                                            }
+                                            return 0.5;
+                                        })()}
                                         onClick={() => SelectionClick(2)}
                                     >
                                         A2. {data.selection2}
@@ -163,23 +179,24 @@ const DrinkTicketBox: React.FC = () => {
                                     </Selection3>
                                     <Progress>
                                         <GlassImg
-                                            src="/images/Glass.png"
+                                            src="/images/Glass.svg"
                                             alt="glass"
                                             margin={
                                                 data.selection3 === null
-                                                    ? 5.5556
-                                                    : 3.5185
+                                                    ? 3.8125
+                                                    : 2.625
                                             }
                                         />
                                         <ProgressBar
                                             margin={
                                                 data.selection3 === null
-                                                    ? 7.6852
-                                                    : 5.5556
+                                                    ? 5.1875
+                                                    : 4
                                             }
                                         >
                                             <ProgressBarFill
-                                                width={num * 7.8906}
+                                                width={num * 8.4375}
+                                                mediawidth={num * 2.3125}
                                             />
                                         </ProgressBar>
                                     </Progress>
@@ -200,10 +217,10 @@ const Center = styled.div`
 `;
 
 const PrevButton = styled.button<{ margin: number }>`
-    margin-top: ${(props) => props.margin}vh;
-    margin-right: 58.3333vw;
-    width: 3.0208vw;
-    height: 4.5vh;
+    margin-top: ${(props) => props.margin}em;
+    margin-right: 875px;
+    width: 3.625em;
+    height: 2.6875em;
 
     background-color: transparent;
     border: none;
@@ -211,49 +228,84 @@ const PrevButton = styled.button<{ margin: number }>`
     :hover {
         cursor: pointer;
     }
+
+    @media (max-width: 767px) {
+        margin-top: 9.375em;
+        margin-right: 22em;
+        width: 2.4375em;
+        height: 1.8125em;
+    }
 `;
 
 const PrevImg = styled.img`
-    width: 3.0208vw;
-    height: 4.5vh;
+    width: 3.625em;
+    height: 2.6875em;
+
+    @media (max-width: 767px) {
+        width: 2.4375em;
+        height: 1.8125em;
+    }
 `;
 
 const Question = styled.div<{ margin: number }>`
+    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: ${(props) => props.margin}vh;
-    width: 59.7396vw;
-    height: 15.6481vh;
+    margin-top: ${(props) => props.margin}em;
+    width: 71.6875em;
+    height: 10.5625em;
 
     background: #fbfbfa;
     border: 1px solid #675b4f;
     border-radius: 18px;
+
+    @media (max-width: 767px) {
+        margin-top: 0.8125em;
+        margin-bottom: 2.9375em;
+        width: 20.9375em;
+        height: 7.625em;
+    }
 `;
 
 const QuestionText = styled.div<{ width: number }>`
-    width: ${(props) => props.width}vw;
+    width: ${(props) => props.width}px;
+    text-align: center;
     font-family: 'GmarketSansBold';
     font-style: normal;
     font-weight: 500;
-    font-size: 2rem;
+    font-size: 2.1875em;
     color: #675b4f;
+    word-break: keep-all;
+
+    @media (max-width: 767px) {
+        font-size: 1.125em;
+        width: 251px;
+    }
 `;
 
-const Selection = styled.button<{ margin: number }>`
-    margin-top: ${(props) => props.margin}vh;
-    margin-right: 1.4021vw;
-    width: 28.924vw;
-    height: 13.0556vh;
+const Selection = styled.button<{
+    margintop: number;
+    marginleft: number;
+    marginright: number;
+    width: number;
+    padding: number;
+}>`
+    margin-top: ${(props) => props.margintop}em;
+    margin-left: ${(props) => props.marginleft}em;
+    margin-right: ${(props) => props.marginright}em;
+    width: ${(props) => props.width}em;
+    height: 7.05em;
 
     border: 1px solid #675b4f;
+    padding: ${(props) => props.padding}em;
     border-radius: 18px;
     background-color: transparent;
 
     font-family: 'GmarketSansMedium';
     font-style: normal;
     font-weight: 400;
-    font-size: 1.25rem;
+    font-size: 1.25em;
     letter-spacing: 0.01em;
     color: #675b4f;
     word-break: keep-all;
@@ -263,6 +315,15 @@ const Selection = styled.button<{ margin: number }>`
         background: #675b4f;
         color: #ffffff;
         border: 3px solid #675b4f;
+    }
+
+    @media (max-width: 767px) {
+        display: block;
+        margin: auto;
+        margin-bottom: 0.9375em;
+        width: 22.466666666666665em;
+        height: 6.333333333333333em;
+        font-size: 0.9375em;
     }
 `;
 
@@ -273,9 +334,9 @@ const Selection3 = styled.button<{ display: string }>`
     align-items: center;
     left: 50%;
     transform: translateX(-50%);
-    margin-top: 2.7778vh;
-    width: 28.924vw;
-    height: 13.0556vh;
+    margin-top: 1.15em;
+    width: 28em;
+    height: 7.05em;
     border: 1px solid #675b4f;
     border-radius: 18px;
     background-color: transparent;
@@ -283,7 +344,7 @@ const Selection3 = styled.button<{ display: string }>`
     font-family: 'GmarketSansMedium';
     font-style: normal;
     font-weight: 400;
-    font-size: 1.25rem;
+    font-size: 1.25em;
     letter-spacing: 0.01em;
     color: #675b4f;
     word-break: keep-all;
@@ -294,39 +355,66 @@ const Selection3 = styled.button<{ display: string }>`
         color: #ffffff;
         border: 3px solid #675b4f;
     }
+
+    @media (max-width: 767px) {
+        margin-bottom: 0.9375em;
+        width: 22.466666666666665em;
+        height: 6.333333333333333em;
+        font-size: 0.9375em;
+    }
 `;
 
 const Progress = styled.div`
     position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 `;
 
 const ProgressBar = styled.div<{ margin: number }>`
-    margin-top: ${(props) => props.margin}vh;
-    width: 59.7396vw;
-    height: 3.4259vh;
+    margin-top: ${(props) => props.margin}em;
+    width: 71.6875em;
+    height: 2.3125em;
 
     background: #ffffff;
     border: 1px solid #675b4f;
     border-radius: 18px;
+
+    @media (max-width: 767px) {
+        margin-top: 2.9375em;
+        width: 21.0625em;
+        height: 1.4375em;
+    }
 `;
 
-const ProgressBarFill = styled.div<{ width: number }>`
-    margin-top: 0.9259vh;
-    margin-left: 0.9896vw;
-    width: ${(props) => props.width}vw;
-    height: 1.3889vh;
+const ProgressBarFill = styled.div<{ width: number; mediawidth: number }>`
+    margin-top: 0.625em;
+    margin-left: 1.1875em;
+    width: ${(props) => props.width}em;
+    height: 0.9375em;
 
     background: #675b4f;
     border: 1px solid #675b4f;
     border-radius: 18px;
+
+    @media (max-width: 767px) {
+        margin-top: 0.375em;
+        margin-left: 0.5625em;
+        width: ${(props) => props.mediawidth}em;
+        height: 0.5625em;
+    }
 `;
 
 const GlassImg = styled.img<{ margin: number }>`
     position: absolute;
-    width: 4.1167vw;
-    height: 8.4074vh;
-    margin-top: ${(props) => props.margin}vh;
-    margin-left: 26.0417vw;
+    width: 4.94em;
+    margin-top: ${(props) => props.margin}em;
+    margin-left: 31.25em;
+
+    @media (max-width: 767px) {
+        margin-top: 2.1875em;
+        margin-left: 7.375em;
+        width: 3.2725em;
+    }
 `;
 
 type DrinkTicketBoxType = {

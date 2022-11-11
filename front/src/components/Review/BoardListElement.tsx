@@ -23,17 +23,6 @@ type reviewType = {
     alcoholId: number;
 };
 
-type reviewLikeType = {
-    id: number;
-    title: string;
-    content: string;
-    star: number;
-    reviewImgUrl: string;
-    date: number;
-    like: number;
-    userId: number;
-};
-
 const BoardListElement: React.FC<reviewType> = ({
     userImg,
     nickname,
@@ -47,7 +36,6 @@ const BoardListElement: React.FC<reviewType> = ({
     reviewId,
     alcoholId,
 }) => {
-    const [likeType, setLikeType] = useState<reviewLikeType[]>([]);
     let [likeCount, setLikeCount] = useState(0);
     let [isLiked, setIsLiked] = useState(false);
 
@@ -62,7 +50,7 @@ const BoardListElement: React.FC<reviewType> = ({
     useEffect(() => {
         getdata()
             .post(
-                `https://depth-server.herokuapp.com/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+                `http://depth-server.herokuapp.com/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
             )
             .then((res) => {
                 setLikeCount(res.data.like);

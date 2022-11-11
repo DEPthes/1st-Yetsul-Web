@@ -18,6 +18,7 @@ export const FavoriteAlcholWidget: React.FC<myliketype> = ({
     alcoholImage,
     id,
 }) => {
+    const StarValue = Math.round(star);
     return (
         <LinkWrap to={`/list/${id}/spec`}>
             <FavoriteAlcholBox>
@@ -26,13 +27,17 @@ export const FavoriteAlcholWidget: React.FC<myliketype> = ({
                 </FavoriteAlcoholImgBox>
                 <FavoriteAlcholLower>
                     <FavoriteAlcholNameABV>
-                        <FavoriteAlcholName>{AlcoholName}</FavoriteAlcholName>
-                        <FavoriteAlcholeABV>
+                        <p>{AlcoholName}</p>
+                        <p>
                             {AlcoholByVolume}%
-                        </FavoriteAlcholeABV>
+                        </p>
                     </FavoriteAlcholNameABV>
                     <FavoriteAlchilStarDiv>
-                        <Star star={star} widthValue={15} heightValue={14} />
+                        <Star
+                            star={StarValue}
+                            widthValue={10}
+                            heightValue={10}
+                        />
                     </FavoriteAlchilStarDiv>
                 </FavoriteAlcholLower>
             </FavoriteAlcholBox>
@@ -46,16 +51,19 @@ const LinkWrap = styled(Link)`
 `;
 
 const FavoriteAlcholBox = styled.div`
-    width: 205px;
-    height: 293px;
+    width: 10.677vw;
+    height: 15.260vw;
     border: 1px solid #675b4f;
     border-radius: 18px;
-    margin-right: 27px;
-    margin-bottom: 10px;
-
+    margin-right: 0.706vw;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    @media screen and (max-width: 767px) {
+        width: auto;
+        height: 59.231vw;
+    }
 `;
 
 const FavoriteAlcoholImgBox = styled.div`
@@ -72,19 +80,24 @@ const FavoriteAlcholImg = styled.img`
 
 const FavoriteAlcholLower = styled.div`
     width: 79.51%;
+
 `;
 
 const FavoriteAlcholNameABV = styled.div`
-    display: flex;
-    justify-content: space-between;
     border-bottom: 1px solid #bbb6a8;
-    margin-bottom: 9px;
-    padding-bottom: 9px;
-    margin-top: 39px;
+    margin-bottom: 0.5em;
+    padding-bottom: 0.5em;
+    @media screen and (max-width: 767px) {
+        display: flex;
+        align-items: flex-end;
+        font-size: 2.821vw;
+    }
 `;
 
-const FavoriteAlcholName = styled.p``;
 
-const FavoriteAlcholeABV = styled.p``;
+const FavoriteAlchilStarDiv = styled.div`
+    @media screen and (max-width: 767px) {
+        margin-bottom: 3.103vw;
+    }
 
-const FavoriteAlchilStarDiv = styled.div``;
+`;

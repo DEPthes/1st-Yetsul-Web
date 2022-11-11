@@ -2,12 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { RootState } from '../../store/config';
+import { setFormModal } from '../../store/slices/formModalSlice';
 import {
     setColor1,
     setColor2,
 } from '../../store/slices/updateBackgroundGradientSlice';
 import DrinkSwiper from './DrinkSwiper';
 import FootBannerSwiper from './FootBannerSwiper';
+import FormModal from './FormModal';
 
 // useRef 사용시 함수 type 선언
 type refType = {
@@ -87,6 +89,33 @@ const Main: React.FC = () => {
         }
     }, []);
 
+    const isModal = useSelector((state: RootState) => {
+        return state.formModal.modal;
+    });
+
+    const handleModal = () => {
+        const head = document.getElementsByClassName('head')[0];
+        const nav = document.getElementById('fp-nav');
+        dispatch(setFormModal(!isModal));
+        if (!isModal) {
+            $('body').on('scroll mousewheel', (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                return false;
+            });
+            head.className = 'head is-blurred';
+            if (nav) {
+                nav.className = 'right is-blurred';
+            }
+        } else {
+            $('body').off('scroll mousewheel');
+            head.className = 'head';
+            if (nav) {
+                nav.className = 'right';
+            }
+        }
+    };
+
     return (
         <MainStyle className="tableCellInner">
             <div id="line" />
@@ -94,18 +123,21 @@ const Main: React.FC = () => {
                 <InnerLeft>
                     <InnerText>
                         <div>
-                            <h1>9月,</h1>
+                            <h1>10月,</h1>
                         </div>
                         <div>
-                            <h1>전통주와 함께하는</h1>
+                            <h1>
+                                왜 벌써 <span>중간고사인건데,</span>
+                            </h1>
                         </div>
                         <div>
-                            <h1>개강파티</h1>
-                            <img
-                                src={`${process.env.PUBLIC_URL}/images/underbar.png`}
-                                alt="underbar"
-                            />
-                            <h1>어때요?</h1>
+                            <div>
+                                <h1>날 위로해줄 한 잔, </h1>
+                            </div>
+
+                            <div>
+                                <h1>이 술 어때요?</h1>
+                            </div>
                         </div>
                         <div>
                             <p>이달의 술 한눈에 보기</p>
@@ -178,13 +210,77 @@ const Main: React.FC = () => {
                     </div>
                 </InnerRight>
             </Inner>
+            <FormBtn onClick={handleModal}>
+                <div>
+                    <svg
+                        width="32"
+                        height="40"
+                        viewBox="0 0 32 40"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <rect
+                            x="0.5"
+                            y="0.5"
+                            width="31"
+                            height="39"
+                            stroke="white"
+                        />
+                        <path d="M6 8H25" stroke="white" />
+                        <path d="M6 8H25" stroke="white" />
+                        <path d="M6 8H25" stroke="white" />
+                        <path d="M6 14H25" stroke="white" />
+                        <path d="M6 14H25" stroke="white" />
+                        <path d="M6 14H25" stroke="white" />
+                        <path d="M6 20H25" stroke="white" />
+                        <path d="M6 20H25" stroke="white" />
+                        <path d="M6 20H25" stroke="white" />
+                    </svg>
+                </div>
+            </FormBtn>
+            {isModal && <FormModal modal={handleModal} />}
         </MainStyle>
     );
 };
 
 export default Main;
 
+const FormBtn = styled.div`
+    z-index: 1001;
+    cursor: pointer;
+    position: absolute;
+    bottom: 5.3125em;
+    right: 5.3125em;
+    box-sizing: border-box;
+    width: 5.25em;
+    height: 5.25em;
+
+    background: #8b7e6a;
+    border: 1px solid #675b4f;
+    border-radius: 50%;
+    @media (max-width: 767px) {
+        top: 80%;
+        right: 1.0625em;
+        width: 2.375em;
+        height: 2.375em;
+    }
+    > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        > svg {
+            height: 2.5em;
+            @media (max-width: 767px) {
+                height: 1.125em;
+            }
+        }
+    }
+`;
+
 const MainStyle = styled.div`
+    position: relative;
     @property --first-color {
         syntax: '<color>';
         initial-value: #e2dfda;
@@ -210,7 +306,6 @@ const MainStyle = styled.div`
     --first-color: #e2dfda;
     --second-color: #fff;
     transition: --first-color 0.3s, --second-color 0.3s;
-    zoom: 0.9;
 
     #line {
         display: block;
@@ -219,8 +314,13 @@ const MainStyle = styled.div`
     & > #line {
         border-bottom: 1px solid #bbb6a8;
         width: 85%;
-        height: 162px;
+        height: 9.1875em;
         float: right;
+        @media (max-width: 767px) {
+            border-bottom: none;
+            height: 11.3%;
+            width: 100%;
+        }
     }
 `;
 
@@ -229,41 +329,68 @@ type colorType = {
 };
 
 const InnerLeft = styled.div`
+    @media (max-width: 767px) {
+        width: calc(100% - 4.4375em);
+        height: 49.8%;
+        margin-bottom: 0;
+        border: none;
+        display: block;
+    }
     width: 50%;
-    height: calc(100% - 282px);
+    height: calc(100% - 17.625em);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-right: 1px solid #bbb6a8;
-    margin-bottom: 282.1px;
+    margin-bottom: 17.63125em;
 `;
 
 const InnerRight = styled.div`
+    @media (max-width: 767px) {
+        width: calc(100% - 4.4375em);
+        height: 56.3%;
+        margin-top: 0;
+        border-top: 1px solid #bbb6a8;
+        position: static;
+        padding-right: 4.4375em;
+    }
     width: 50%;
-    height: calc(100% + 162px);
-    margin-top: -162px;
+    height: calc(100% + 10.125em);
+    margin-top: -10.125em;
     display: flex;
     position: relative;
 
     .leftLine {
         position: absolute;
-        right: 236.5px;
+        right: 14.78125em;
+        @media (max-width: 767px) {
+            width: 4.375em;
+            right: 7.7%;
+            height: calc(100vh - 6.0625em);
+            top: 6.0625em;
+            #line:nth-of-type(1) {
+                height: 21.875em !important;
+            }
+            #line:not(:first-of-type) {
+                height: calc(100% - 21.875em - 4.375em - 0.125em) !important;
+            }
+        }
         z-index: 1000;
         display: flex;
         flex-direction: column;
-        height: calc(100% + 4px);
-        width: 127px;
+        height: calc(100% + 0.25em);
+        width: 7.9375em;
         display: flex;
         align-items: center;
         #line:nth-of-type(1) {
             z-index: 1000;
-            height: 268px;
+            height: 16.75em;
             width: 1px;
             border-left: 1px solid #bbb6a8;
         }
         #line:not(:first-of-type) {
-            height: calc(100% - 268px - 127px);
+            height: calc(100% - 16.75em - 7.9375em);
             bottom: 0;
             width: auto;
             border-left: 1px solid #bbb6a8;
@@ -272,8 +399,18 @@ const InnerRight = styled.div`
 `;
 
 const SojuBtn = styled.div<colorType>`
-    width: 127px;
-    height: 127px;
+    @media (max-width: 767px) {
+        width: 4.375em;
+        height: 4.375em;
+        #svgIcon {
+            height: 1.356875em !important;
+            > svg {
+                height: 1.356875em !important;
+            }
+        }
+    }
+    width: 7.9375em;
+    height: 7.9375em;
     z-index: 999;
     border: 1px solid #8b7e6a;
     border-radius: 50%;
@@ -288,70 +425,143 @@ const SojuBtn = styled.div<colorType>`
     }
     #svgIcon {
         z-index: 1000;
-        margin-top: 5px;
-        height: 35px;
+        margin-top: 0.3125em;
+        height: 2.1875em;
+        > svg {
+            height: 2.1875em;
+        }
     }
 `;
 
 const Inner = styled.div`
     width: 100%;
-    height: calc(100% - 162px);
+    height: calc(100% - 9.1875em);
     display: flex;
+    @media (max-width: 767px) {
+        flex-direction: column;
+        height: calc(100% - 13.6% - 11.3% + 2px);
+    }
     & > #line:nth-of-type(2) {
         left: 50%;
         transform: translateX(-50%);
         top: 1px;
-        height: calc(100% - 1px);
+        height: calc(100% - 0.0625em);
         width: auto;
         border-left: 1px solid #bbb6a8;
     }
 `;
 
 const InnerText = styled.div`
-    margin-left: 100px;
+    @media (max-width: 767px) {
+        margin-top: 2.5em;
+        margin-left: 1.625em;
+        > div:first-of-type {
+            margin-bottom: 1.4375em !important;
+            > h1 {
+                font-size: 2.1875em !important;
+            }
+        }
+
+        > div:nth-of-type(2) {
+            line-height: 1.375em !important;
+            > h1 {
+                font-size: 1.375em !important;
+            }
+        }
+
+        > div:nth-of-type(3) {
+            line-height: 1.375em !important;
+            > div > h1 {
+                font-size: 1.365em !important;
+            }
+            > div:nth-of-type(2) {
+                line-height: 1.875em !important;
+                margin-top: 0.85em !important;
+            }
+            > div:nth-of-type(2) > h1 {
+                font-size: 1.875em !important;
+            }
+        }
+
+        > div:nth-of-type(4) {
+            float: right;
+            margin-right: 1.125em;
+            margin-top: 2.9375em !important;
+            width: 9.25em !important;
+            line-height: 0.8125em !important;
+            > svg {
+                width: 0.5em;
+            }
+            > p {
+                font-size: 0.8125em !important;
+                height: 0.625em;
+            }
+        }
+    }
+    margin-left: 6.25em;
     font-family: 'GmarketSansLight';
     > div:first-of-type {
-        font-size: 60px;
         font-family: 'GmarketSansMedium';
-        line-height: 60px;
+
         color: #8b7e6a;
         font-weight: 400;
-        margin-bottom: 43px;
+        margin-bottom: 2.6875em;
+        > h1 {
+            font-size: 3.75em;
+        }
     }
-    div:nth-of-type(2) {
-        font-size: 58px;
-        line-height: 58px;
+    > div:nth-of-type(2) {
+        line-height: 3.625em;
         letter-spacing: -0.01em;
         font-weight: 300;
-        margin-bottom: 20px;
-    }
-    div:nth-of-type(3) {
-        font-size: 85px;
-        font-family: 'GmarketSansLight';
-        line-height: 85px;
-        display: flex;
-        position: relative;
-        h1:first-of-type {
-            margin-right: 20px;
+        margin-bottom: 1.25em;
+        font-style: normal;
+        color: #8b7e6a;
+        > h1 {
+            font-size: 3.625em;
+        }
+        > h1 > span {
             font-family: 'GmarketSansMedium';
         }
-        img {
-            position: absolute;
-            width: 433px;
-            height: 433px;
-            top: -95px;
-            left: -60px;
+    }
+    div:nth-of-type(3) {
+        font-family: 'GmarketSansLight';
+
+        display: flex;
+        flex-direction: column;
+        position: relative;
+
+        font-style: normal;
+        font-weight: 300;
+
+        line-height: 3.125em;
+        letter-spacing: -0.01em;
+
+        color: #8b7e6a;
+        > div > h1 {
+            font-size: 3.125em;
+        }
+        > div:nth-of-type(2) {
+            line-height: 5.3125em;
+            margin-top: 1.25em;
+        }
+        > div:nth-of-type(2) > h1 {
+            font-size: 5.3125em;
+
+            font-family: 'GmarketSansMedium';
         }
     }
     div:nth-of-type(4) {
-        width: 210px;
+        width: 13.125em;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-top: 61px;
+        margin-top: 3.8125em;
         font-family: 'GmarketSansMedium';
-        font-size: 20px;
         letter-spacing: -0.01em;
         color: #8b7e6a;
+        > p {
+            font-size: 1.25em;
+        }
     }
 `;
