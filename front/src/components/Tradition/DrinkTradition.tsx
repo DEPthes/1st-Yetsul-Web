@@ -100,8 +100,8 @@ const DrinkTradition: React.FC = () => {
 
                 {isMobile ? (
                     <Contents>
-                        {' '}
-                        <DrinkWrapper ref={sectionRefs[0]} id="section-0">
+                        <ToFocus ref={sectionRefs[0]} id="section-0" />
+                        <DrinkWrapper>
                             <DrinkEx>
                                 <h1>탁주</h1>
                                 <img src="images/Tradition/Tak.png" alt="Tak" />
@@ -137,7 +137,8 @@ const DrinkTradition: React.FC = () => {
                                 </h4>
                             </DrinkEx>
                         </DrinkWrapper>
-                        <DrinkWrapper ref={sectionRefs[1]} id="section-1">
+                        <ToFocus ref={sectionRefs[1]} id="section-1" />
+                        <DrinkWrapper>
                             <DrinkEx>
                                 <h1>과실주</h1>
                                 <img src="images/Tradition/Gwa.png" alt="Gwa" />
@@ -170,7 +171,8 @@ const DrinkTradition: React.FC = () => {
                                 </h4>
                             </DrinkEx>
                         </DrinkWrapper>
-                        <DrinkWrapper ref={sectionRefs[2]} id="section-2">
+                        <ToFocus ref={sectionRefs[2]} id="section-2" />
+                        <DrinkWrapper>
                             <DrinkEx>
                                 <h1>약주</h1>
                                 <img src="images/Tradition/Yak.png" alt="Yak" />
@@ -198,7 +200,8 @@ const DrinkTradition: React.FC = () => {
                                 </h4>
                             </DrinkEx>
                         </DrinkWrapper>
-                        <DrinkWrapper ref={sectionRefs[3]} id="section-3">
+                        <ToFocus ref={sectionRefs[3]} id="section-3" />
+                        <DrinkWrapper>
                             <DrinkEx>
                                 <h1>청주</h1>
                                 <img
@@ -223,7 +226,8 @@ const DrinkTradition: React.FC = () => {
                                 </h4>
                             </DrinkEx>
                         </DrinkWrapper>
-                        <DrinkWrapper ref={sectionRefs[4]} id="section-4">
+                        <ToFocus ref={sectionRefs[4]} id="section-4" />
+                        <DrinkWrapper>
                             <DrinkEx>
                                 <h1>증류주</h1>
                                 <img
@@ -262,11 +266,12 @@ const DrinkTradition: React.FC = () => {
                                 <h4>[출처 : 기록으로 만나는 대한민국]</h4>
                             </DrinkEx>
                         </DrinkWrapper>
+                        <ToFocus />
                     </Contents>
                 ) : (
                     <Contents>
-                        {' '}
-                        <DrinkWrapper ref={sectionRefs[0]} id="section-0">
+                        <ToFocus ref={sectionRefs[0]} id="section-0" />
+                        <DrinkWrapper>
                             <DrinkEx>
                                 <h1>탁주</h1>
                                 <h2>
@@ -302,7 +307,8 @@ const DrinkTradition: React.FC = () => {
                             </DrinkEx>
                             <img src="images/Tradition/Tak.png" alt="Tak" />
                         </DrinkWrapper>
-                        <DrinkWrapper ref={sectionRefs[1]} id="section-1">
+                        <ToFocus ref={sectionRefs[1]} id="section-1" />
+                        <DrinkWrapper>
                             <img src="images/Tradition/Gwa.png" alt="Gwa" />
                             <DrinkEx>
                                 <h1>과실주</h1>
@@ -335,7 +341,8 @@ const DrinkTradition: React.FC = () => {
                                 </h4>
                             </DrinkEx>
                         </DrinkWrapper>
-                        <DrinkWrapper ref={sectionRefs[2]} id="section-2">
+                        <ToFocus ref={sectionRefs[2]} id="section-2" />
+                        <DrinkWrapper>
                             <DrinkEx>
                                 <h1>약주</h1>
                                 <h2>“술밑을 여과하여 만든 맑은 술, 약주”</h2>
@@ -363,7 +370,8 @@ const DrinkTradition: React.FC = () => {
                             </DrinkEx>
                             <img src="images/Tradition/Yak.png" alt="Yak" />
                         </DrinkWrapper>
-                        <DrinkWrapper ref={sectionRefs[3]} id="section-3">
+                        <ToFocus ref={sectionRefs[3]} id="section-3" />
+                        <DrinkWrapper>
                             <img
                                 src="images/Tradition/Cheong.png"
                                 alt="Cheong"
@@ -388,7 +396,8 @@ const DrinkTradition: React.FC = () => {
                                 </h4>
                             </DrinkEx>
                         </DrinkWrapper>
-                        <DrinkWrapper ref={sectionRefs[4]} id="section-4">
+                        <ToFocus ref={sectionRefs[4]} id="section-4" />
+                        <DrinkWrapper>
                             <DrinkEx>
                                 <h1>증류주</h1>
                                 <h2>“발효주를 증류하여 만든 술, 증류주"</h2>
@@ -424,6 +433,7 @@ const DrinkTradition: React.FC = () => {
                             </DrinkEx>
                             <img src="images/Tradition/Jeung.png" alt="Jeung" />
                         </DrinkWrapper>
+                        <ToFocus />
                     </Contents>
                 )}
                 <PageUpBtn />
@@ -433,6 +443,13 @@ const DrinkTradition: React.FC = () => {
 };
 
 export default DrinkTradition;
+
+const ToFocus = styled.div`
+    height: 246px;
+    @media (max-width: 767px) {
+        height: 140px;
+    }
+`;
 
 const InnerNavUl = styled.ul`
     z-index: 3;
@@ -473,6 +490,10 @@ const Inner = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
+
+    @media (max-width: 767px) {
+        margin-top: 183px;
+    }
 `;
 
 const Intro = styled.div`
@@ -555,12 +576,12 @@ const Intro = styled.div`
 
     div {
         width: 840px;
-        height: 558px;
+
         flex-wrap: nowrap;
 
         @media (max-width: 767px) {
             width: 336px;
-            height: 558px;
+
             flex-wrap: nowrap;
         }
     }
@@ -569,7 +590,7 @@ const Intro = styled.div`
 const Contents = styled.div``;
 
 const DrinkWrapper = styled.div`
-    margin-bottom: 246px;
+    /* margin-bottom: 246px; */
 
     width: 962px;
     // height: 622px;
@@ -579,7 +600,6 @@ const DrinkWrapper = styled.div`
     justify-content: space-between;
 
     @media (max-width: 767px) {
-        margin-bottom: 30px;
         width: 340px;
         display: flex;
         flex-direction: column;
@@ -630,6 +650,7 @@ const DrinkWrapper = styled.div`
 
     h3 {
         color: #989088;
+        font-size: 16px;
         @media (max-width: 767px) {
             font-weight: 400;
             font-size: 13px;
@@ -640,6 +661,7 @@ const DrinkWrapper = styled.div`
     h5 {
         color: #989088;
         margin-top: 30px;
+        font-size: 16px;
         @media (max-width: 767px) {
             font-weight: 400;
             font-size: 13px;
