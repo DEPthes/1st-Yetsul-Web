@@ -570,6 +570,7 @@ const Contents = styled.div``;
 
 const DrinkWrapper = styled.div`
     margin-bottom: 246px;
+
     width: 962px;
     // height: 622px;
     display: flex;
@@ -578,6 +579,7 @@ const DrinkWrapper = styled.div`
     justify-content: space-between;
 
     @media (max-width: 767px) {
+        margin-bottom: 30px;
         width: 340px;
         display: flex;
         flex-direction: column;

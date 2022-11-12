@@ -2,27 +2,29 @@ import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import styled from 'styled-components';
 
-const MonthBlock: React.FC<{ month: string; img: string }> = ({
-    month,
-    img,
-}) => {
+const RecommentBlock: React.FC<{
+    contentName: string;
+    img: string;
+    contentNumber: number;
+}> = ({ contentName, img, contentNumber }) => {
     const isMobile = useMediaQuery({
         query: '(max-width:767px)',
     });
+
     const onMouseOver = () => {
-        $(`#hover-button-${month}`).css('transform', 'scale(2)');
-        $(`#hover-icon-${month}`).css('opacity', '1');
+        $(`#hover-button-${contentNumber}`).css('transform', 'scale(2)');
+        $(`#hover-icon-${contentNumber}`).css('opacity', '1');
     };
     const onMouseOut = () => {
-        $(`#hover-button-${month}`).css('transform', 'scale(1)');
-        $(`#hover-icon-${month}`).css('opacity', '0');
+        $(`#hover-button-${contentNumber}`).css('transform', 'scale(1)');
+        $(`#hover-icon-${contentNumber}`).css('opacity', '0');
     };
     return (
         <div>
-            <h1>{month}월</h1>
-            <MonthContent onMouseEnter={onMouseOver} onMouseLeave={onMouseOut}>
-                <DrinkImg src={img} alt="9Drink" />
-                <AnimationBtnImg id={`hover-button-${month}`}>
+            <h1>{contentName}</h1>
+            <Content onMouseEnter={onMouseOver} onMouseLeave={onMouseOut}>
+                <ContentImg src={img} alt="9Drink" />
+                <AnimationBtnImg id={`hover-button-${contentNumber}`}>
                     <svg
                         width={isMobile ? '15' : '23'}
                         height={isMobile ? '15' : '23'}
@@ -33,7 +35,7 @@ const MonthBlock: React.FC<{ month: string; img: string }> = ({
                         <circle cx="11.5" cy="11.5" r="11.5" fill="#EDEBE8" />
                     </svg>
                 </AnimationBtnImg>
-                <AnimationBtnImg id={`hover-icon-${month}`}>
+                <AnimationBtnImg id={`hover-icon-${contentNumber}`}>
                     <svg
                         width={isMobile ? '30' : '48'}
                         height={isMobile ? '30' : '48'}
@@ -47,12 +49,12 @@ const MonthBlock: React.FC<{ month: string; img: string }> = ({
                         />
                     </svg>
                 </AnimationBtnImg>
-            </MonthContent>
+            </Content>
         </div>
     );
 };
 
-export default MonthBlock;
+export default RecommentBlock;
 
 const AnimationBtnImg = styled.div`
     position: absolute;
@@ -69,7 +71,7 @@ const AnimationBtnImg = styled.div`
     }
 `;
 
-const MonthContent = styled.div`
+const Content = styled.div`
     cursor: pointer;
     position: relative;
     background-color: #eae8e4;
@@ -80,6 +82,7 @@ const MonthContent = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 35px;
+
     @media (max-width: 767px) {
         width: 337px;
         height: 133px;
@@ -95,6 +98,7 @@ const MonthContent = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
+
         @media (max-width: 767px) {
             display: flex;
             align-items: center;
@@ -111,6 +115,7 @@ const MonthContent = styled.div`
         position: absolute;
         bottom: 15px;
         left: 15px;
+
         @media (max-width: 767px) {
             position: relative;
             left: -145px;
@@ -119,7 +124,7 @@ const MonthContent = styled.div`
     }
 `;
 
-const DrinkImg = styled.img`
+const ContentImg = styled.img`
     display: flex;
     justify-content: center;
     align-items: center;
