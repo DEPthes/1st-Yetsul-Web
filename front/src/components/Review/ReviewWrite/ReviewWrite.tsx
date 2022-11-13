@@ -43,6 +43,11 @@ const main: React.FC = () => {
     };
 
     const postReview = () => {
+        if (title === '' || contents === '' || starCount === 0) {
+            // eslint-disable-next-line no-alert
+            alert('제목, 별점, 내용을 모두 입력해주세요.');
+            return;
+        }
         if (formData) {
             formData = new FormData();
         }
@@ -63,6 +68,11 @@ const main: React.FC = () => {
     };
 
     const temporarySave = () => {
+        if (title === '' || contents === '' || starCount === 0) {
+            // eslint-disable-next-line no-alert
+            alert('제목, 별점, 내용을 모두 입력해주세요.');
+            return;
+        }
         if (formData) {
             formData = new FormData();
         }
@@ -385,19 +395,26 @@ const Foot = styled.div`
 const ReviewWrite: React.FC = () => {
     const { id } = useParams();
     const [drinks, setDrinks] = useState<DrinkDetailType>(Object); // 술 상세 정보
+    const [reviewCount, setReviewCount] = useState<number>(0);
 
     useEffect(() => {
         axios
-            .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${id}/spec`,
-            )
+            .get(`https://depth-server.herokuapp.com/review/${id}/spec`)
             .then((res) => {
                 setDrinks(res.data.alcohol);
+                setReviewCount(res.data.reviewsWithUserInfo.length);
             })
 
             .catch((err) => console.log(err));
     }, []);
-    return <ReviewTemplate Head={head} Main={main} drinkInfo={drinks} />;
+    return (
+        <ReviewTemplate
+            Head={head}
+            Main={main}
+            drinkInfo={drinks}
+            reviewCount={reviewCount}
+        />
+    );
 };
 
 export default ReviewWrite;

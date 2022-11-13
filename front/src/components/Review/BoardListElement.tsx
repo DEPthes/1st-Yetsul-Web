@@ -1,8 +1,7 @@
 /* eslint-disable prefer-const */
 /* eslint-disable react/button-has-type */
 import axios from 'axios';
-import { letterSpacing } from 'html2canvas/dist/types/css/property-descriptors/letter-spacing';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 /* eslint-disable no-nested-ternary */
 
@@ -37,9 +36,6 @@ const BoardListElement: React.FC<reviewType> = ({
     reviewId,
     alcoholId,
 }) => {
-    let [likeCount, setLikeCount] = useState(0);
-    let [isLiked, setIsLiked] = useState(false);
-
     const getdata = () => {
         const accessToken = localStorage.getItem('accessToken') || '';
         return axios.create({
