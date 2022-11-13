@@ -73,7 +73,7 @@ const main: React.FC = () => {
 
         axios
             .post(
-                `http://depth-server.herokuapp.com/review/${id}/temporary`,
+                `https://depth-server.herokuapp.com/review/${id}/temporary`,
                 formData,
                 {
                     headers: { Authorization: `Bearer ${getAccessToken()}` },
