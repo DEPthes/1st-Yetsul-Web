@@ -33,11 +33,7 @@ const KakaoLogin: React.FC = () => {
     const getJwtToken = () => {
         axios
             .get(
-<<<<<<< HEAD
-                `https://depth-server.herokuapp.com/auth/createjwttoken/${localStorage.getItem(
-=======
                 `http://depth-server.herokuapp.com/auth/createjwttoken/${localStorage.getItem(
->>>>>>> df3b274d2448b31a0710b12ac67d68919867052a
                     'token',
                 )}`,
             )
