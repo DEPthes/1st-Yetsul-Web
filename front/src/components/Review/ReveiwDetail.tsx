@@ -119,6 +119,10 @@ const ReviewDetail: React.FC = () => {
         navigate(`/list/${alcoholId}/spec`);
     };
 
+    const goToAlcohol = () => {
+        navigate(`/list/${alcoholId}/spec`);
+    };
+
     return (
         <BackgroundTemplate heightValue="auto">
             <Inner>
@@ -145,7 +149,9 @@ const ReviewDetail: React.FC = () => {
                                 {drink.category === 5 ? '증류주' : null}
                                 {drink.category === 6 ? '리큐르주' : null}
                             </span>
-                            <h1>{drink.AlcoholName}</h1>
+                            <h1 onClick={goToAlcohol} aria-hidden>
+                                {drink.AlcoholName}
+                            </h1>
                         </div>
                     </DrinkEl>
 
@@ -308,6 +314,7 @@ const DrinkEl = styled.div`
     }
 
     h1 {
+        cursor: pointer;
         font-size: 25px;
         color: #675b4f;
     }
