@@ -23,7 +23,9 @@ export const FixProfile: React.FC = () => {
 
     useEffect(() => {
         getData()
-            .get('http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/user')
+            .get(
+                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/user',
+            )
             .then((res) => setUserData(res.data))
             .catch((err) => console.log(err));
     }, []);
