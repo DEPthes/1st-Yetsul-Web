@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Star from '../common/Star';
 
@@ -22,9 +22,15 @@ const ReviewDetailList: React.FC<ReviewType> = ({
     date,
     like,
 }) => {
+    const navigate = useNavigate();
     return (
         <ListWrapper>
-            <Link to={`/review/alcohol${alcoholId}/review${id}`}>
+            <div
+                onClick={async () => {
+                    navigate(`/review/alcohol${alcoholId}/review${id}`);
+                }}
+                aria-hidden
+            >
                 <BoardList>
                     <Star star={star} widthValue={28} heightValue={28} />
                     <div>{title}</div>
@@ -32,14 +38,18 @@ const ReviewDetailList: React.FC<ReviewType> = ({
                     <div>{date.slice(0, 10)}</div>
                     <div>👍 {like}</div>
                 </BoardList>
-            </Link>
+            </div>
         </ListWrapper>
     );
 };
 
 export default ReviewDetailList;
 
-const ListWrapper = styled.div``;
+const ListWrapper = styled.div`
+    > div {
+        cursor: pointer;
+    }
+`;
 
 const BoardList = styled.div`
     width: 1153px;

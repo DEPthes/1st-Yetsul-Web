@@ -1,9 +1,9 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useReducer, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import styled from 'styled-components';
 import { getUserLocalStorage } from '../../services/userControl';
@@ -118,6 +118,43 @@ const ReviewDetail: React.FC = () => {
         alert('리뷰가 삭제되었습니다.');
         navigate(`/list/${alcoholId}/spec`);
     };
+
+    const location = useLocation();
+
+    React.useEffect(() => {
+        const main = document.getElementById('listModalBack');
+        const head = document.getElementsByClassName('head')[0];
+        const nav = document.getElementById('fp-nav');
+        dispatch(setListModal(false));
+        $('body').css('overflow', 'scroll');
+        if (main) {
+            main.className = '';
+        }
+        head.className = 'head';
+        if (nav) {
+            nav.className = 'right';
+        }
+        axios
+            .get(
+                `http://depth-server.herokuapp.com/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+            )
+            .then((res) => {
+                setReview(res.data);
+                setReviewImg(res.data.reviewImgUrl);
+            })
+
+            .catch((err) => console.log(err));
+
+        axios
+            .get(`http://depth-server.herokuapp.com/review/${alcoholId}/spec`)
+            .then((res) => {
+                setList(res.data.reviewsWithUserInfo);
+                setdrink(res.data.alcohol);
+                setReviewCount(res.data.totalReviewCount);
+            })
+
+            .catch((err) => console.log(err));
+    }, [location]);
 
     const goToAlcohol = () => {
         navigate(`/list/${alcoholId}/spec`);
@@ -379,6 +416,7 @@ const DrinkWrapper = styled.div`
             font-family: inherit;
             font-weight: inherit;
             color: #8b7e6a;
+            background: rgba(0, 0, 0, 0);
         }
     }
 
