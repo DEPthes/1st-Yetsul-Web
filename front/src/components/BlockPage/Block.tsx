@@ -85,7 +85,7 @@ const MonthContent = styled.div`
         width: 337px;
         height: 133px;
         font-weight: 400;
-        font-size: 20px;
+        font-size: 20px; // ddddddd
         line-height: 20px;
         margin-bottom: 34px;
     }
