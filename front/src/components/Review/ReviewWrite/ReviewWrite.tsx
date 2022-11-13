@@ -52,13 +52,9 @@ const main: React.FC = () => {
         formData.append('star', starCount.toString());
 
         axios
-            .post(
-                `https://depth-server.herokuapp.com/review/${id}`,
-                formData,
-                {
-                    headers: { Authorization: `Bearer ${getAccessToken()}` },
-                },
-            )
+            .post(`http://depth-server.herokuapp.com/review/${id}`, formData, {
+                headers: { Authorization: `Bearer ${getAccessToken()}` },
+            })
             .then(() => {
                 // eslint-disable-next-line no-alert
                 alert('리뷰작성이 완료되었습니다.');

@@ -63,18 +63,15 @@ const DrinkList: React.FC = () => {
     useEffect(() => {
         if (category === '전체') {
             axios
-                .post(
-                    `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/alcohol/list`,
-                    {
-                        filter: sort,
-                    },
-                )
+                .post(`http://depth-server.herokuapp.com/alcohol/list`, {
+                    filter: sort,
+                })
                 .then((res) => setDrinks(res.data))
                 .catch((err) => console.log(err));
         } else {
             axios
                 .post(
-                    `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/alcohol/list/${categoryNum}`,
+                    `http://depth-server.herokuapp.com/alcohol/list/${categoryNum}`,
                     {
                         filter: sort,
                     },
