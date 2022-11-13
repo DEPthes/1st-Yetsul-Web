@@ -21,10 +21,12 @@ import RecommendSlot from './components/DrinkRecommend/RecommendSlot';
 import RecommendTicket from './components/DrinkRecommend/RecommendTicket';
 import SoolotMachine from './components/soolotmachine/SoolotMachine';
 import SoolotMachineResult from './components/soolotmachine/SoolotMachineResult';
+import ScrollToTop from './utils/scrollToTop';
 
 const Router: React.FC = () => {
     return (
         <BrowserRouter>
+            <ScrollToTop />
             <Header />
             <Routes>
                 <Route path="/" element={<App />} />
