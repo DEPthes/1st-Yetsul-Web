@@ -1,12 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import axios from 'axios';
 import styled from 'styled-components';
+import axios from 'axios';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import { getAccessToken } from '../../services/tokenControl';
 import { ProfileHeader } from './profileHeader';
+import { userAPI } from '../../services/userControl';
 
 export const FixProfile: React.FC = () => {
     const [userData, setUserData] = useState<UserType>(Object);
@@ -20,36 +21,40 @@ export const FixProfile: React.FC = () => {
 
     useEffect(() => {
         getData()
-            .get(
-                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/user',
-            )
+            .get('https://depth-server.herokuapp.com/auth/user')
             .then((res) => setUserData(res.data))
             .catch((err) => console.log(err));
     }, []);
 
     const [InputImage, setInputImage] = useState(String);
+    const [pushImage, setPushImage] = useState<File>();
     const [InputName, setInputName] = useState(String);
 
+    const navigate = useNavigate();
+
     const PatchProfileData = () => {
-        useEffect(() => {
-            const formData = new FormData();
-            formData.append('nickname', InputName);
-            formData.append('file', InputImage);
-            axios
-                .patch(
-                    'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/edituser',
-                    formData,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${getAccessToken()}`,
-                        },
+        const formData = new FormData();
+        formData.append('nickname', InputName);
+        if (pushImage) {
+            formData.append('file', pushImage);
+        }
+
+        axios
+            .patch(
+                'https://depth-server.herokuapp.com/auth/edituser',
+                formData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${getAccessToken()}`,
                     },
-                )
-                .then(() => {
-                    // eslint-disable-next-line no-alert
-                    alert('변경되었습니다');
-                });
-        }, []);
+                },
+            )
+            .then(async () => {
+                // eslint-disable-next-line no-alert
+                alert('변경되었습니다');
+                await userAPI();
+                navigate('/profile');
+            });
     };
 
     useEffect(() => {
@@ -57,16 +62,19 @@ export const FixProfile: React.FC = () => {
         setInputName(userData.nickname);
     }, [userData]);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const saveFileImage = (e: any) => {
         setInputImage(URL.createObjectURL(e.target.files[0]));
+        setPushImage(e.target.files[0]);
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const onChange = useCallback((e: any) => {
         setInputName(e.target.value);
     }, []);
     return (
         <BackgroundTemplate heightValue="100%">
-            <form method="post">
+            <div>
                 <Inner>
                     <ProfileHeader
                         BigHeader="나의 프로필 변경하기
@@ -137,7 +145,7 @@ export const FixProfile: React.FC = () => {
                         등록하기
                     </Registration>
                 </Inner>
-            </form>
+            </div>
         </BackgroundTemplate>
     );
 };

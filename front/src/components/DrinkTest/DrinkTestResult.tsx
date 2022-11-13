@@ -19,12 +19,9 @@ const DrinkTicketBoxResult: React.FC = () => {
 
     useEffect(() => {
         axios
-            .post(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/ticketbox/result`,
-                {
-                    resultCombination: params.resultStr,
-                },
-            )
+            .post(`http://depth-server.herokuapp.com/ticketbox/result`, {
+                resultCombination: params.resultStr,
+            })
             .then((res) => {
                 setTicket(res.data);
                 if (ticket.length > 0) {
@@ -54,54 +51,56 @@ const DrinkTicketBoxResult: React.FC = () => {
                                 alt="LogoText"
                             />
                             <div>
-                                <TicketText margin={19}>TICKET</TicketText>
+                                <TicketText margin={25.36} mediamargin={3.64}>
+                                    TICKET
+                                </TicketText>
                                 <div>
                                     <FlavorText>FLAVOR</FlavorText>
-                                    <DottedLine margin={3} mediamargin={0} />
+                                    <DottedLine margin={0} mediamargin={5} />
                                     <Flavors>
                                         <Flavor
-                                            marginleft={0}
-                                            marginright={17}
+                                            marginleft={-4}
+                                            marginright={14}
                                             mediamarginleft={0}
                                             mediamarginright={5}
                                         >
                                             달달함
                                         </Flavor>
                                         <Flavor
-                                            marginleft={16}
-                                            marginright={17}
+                                            marginleft={11}
+                                            marginright={12}
                                             mediamarginleft={5}
                                             mediamarginright={5}
                                         >
                                             쓴 맛
                                         </Flavor>
                                         <Flavor
-                                            marginleft={17}
-                                            marginright={15}
+                                            marginleft={13}
+                                            marginright={10}
                                             mediamarginleft={3}
                                             mediamarginright={4}
                                         >
                                             상큼함
                                         </Flavor>
                                         <Flavor
-                                            marginleft={14}
-                                            marginright={14}
+                                            marginleft={10}
+                                            marginright={9}
                                             mediamarginleft={4}
                                             mediamarginright={5}
                                         >
                                             깔끔함
                                         </Flavor>
                                         <Flavor
-                                            marginleft={14}
-                                            marginright={17}
+                                            marginleft={10}
+                                            marginright={12}
                                             mediamarginleft={2}
                                             mediamarginright={4}
                                         >
                                             청량함
                                         </Flavor>
                                         <Flavor
-                                            marginleft={17}
-                                            marginright={3}
+                                            marginleft={10}
+                                            marginright={0}
                                             mediamarginleft={3}
                                             mediamarginright={3}
                                         >
@@ -132,7 +131,7 @@ const DrinkTicketBoxResult: React.FC = () => {
                                     </div>
                                 </div>
                                 <Title>TITLE : {movie.title}</Title>
-                                <DottedLine margin={10} mediamargin={3} />
+                                <DottedLine margin={4.34} mediamargin={3} />
                                 <CircleDottedLine>
                                     <CircleMovieImg
                                         src={movie.image}
@@ -142,7 +141,7 @@ const DrinkTicketBoxResult: React.FC = () => {
                                 <ImgSource>
                                     <Source title={movie.title} />
                                 </ImgSource>
-                                <DottedLine margin={2} mediamargin={1} />
+                                <DottedLine margin={12.28} mediamargin={1} />
                                 <Drinks margin={0} mediamargin={220}>
                                     <DrinkImg
                                         src={drink.alcoholImage}
@@ -185,48 +184,25 @@ const DrinkTicketBoxResult: React.FC = () => {
                                         </DrinkDetail>
                                         <DetailLink
                                             to={`/list/${drink.id}/spec`}
-                                            margin={175}
+                                            margin={150}
                                         >
                                             상세페이지 &gt;
                                         </DetailLink>
                                     </Drink>
-                                    <Rating>RATING : </Rating>
-                                    {drink.star === '0' ? (
-                                        <TicketStar>
-                                            <TicketStarImg
-                                                src="/images/TicketStar.svg"
-                                                alt="TicketStar"
-                                            />
-                                            <TicketStarImg
-                                                src="/images/TicketStar.svg"
-                                                alt="TicketStar"
-                                            />
-                                            <TicketStarImg
-                                                src="/images/TicketStar.svg"
-                                                alt="TicketStar"
-                                            />
-                                            <TicketStarImg
-                                                src="/images/TicketStar.svg"
-                                                alt="TicketStar"
-                                            />
-                                            <TicketStarImg
-                                                src="/images/TicketStar.svg"
-                                                alt="TicketStar"
-                                            />
-                                        </TicketStar>
-                                    ) : null}
                                 </Drinks>
                             </div>
-                            <TicketText margin={572}>TICKET</TicketText>
-                            <DottedLine margin={26} mediamargin={5} />
+                            <TicketText margin={750} mediamargin={420}>
+                                TICKET
+                            </TicketText>
+                            <DottedLine margin={22.94} mediamargin={5} />
                             <Plus>이런 술도 있어요!</Plus>
                             <DottedLinex />
                             {drinks.map((data) => {
                                 return (
                                     <Drinks
                                         key={data.id}
-                                        margin={60}
-                                        mediamargin={140}
+                                        margin={24.48}
+                                        mediamargin={180}
                                     >
                                         <DrinkImg
                                             src={data.alcoholImage}
@@ -289,31 +265,6 @@ const DrinkTicketBoxResult: React.FC = () => {
                                     </Drinks>
                                 );
                             })}
-                            <Ratings>RATING : </Ratings>
-                            {drink.star === '0' ? (
-                                <TicketStars>
-                                    <TicketStarImg
-                                        src="/images/TicketStar.svg"
-                                        alt="TicketStar"
-                                    />
-                                    <TicketStarImg
-                                        src="/images/TicketStar.svg"
-                                        alt="TicketStar"
-                                    />
-                                    <TicketStarImg
-                                        src="/images/TicketStar.svg"
-                                        alt="TicketStar"
-                                    />
-                                    <TicketStarImg
-                                        src="/images/TicketStar.svg"
-                                        alt="TicketStar"
-                                    />
-                                    <TicketStarImg
-                                        src="/images/TicketStar.svg"
-                                        alt="TicketStar"
-                                    />
-                                </TicketStars>
-                            ) : null}
                         </Ticket>
                         <TicketImg src="/images/Ticket.svg" alt="Ticket" />
                     </ImgDiv>
@@ -355,14 +306,15 @@ const ImgDiv = styled.div`
 
 const ResultText = styled.div`
     margin: auto;
-    margin-top: 237px;
+    margin-top: 240px;
     width: 375px;
     height: 77px;
 
     border: 1px solid #675b4f;
     border-radius: 18px;
 
-    font-size: 25px;
+    font-family: 'GmarketSansBold';
+    font-size: 20px;
     line-height: 83px;
     text-align: center;
     letter-spacing: 0.01em;
@@ -388,32 +340,31 @@ const Ticket = styled.div`
 
 const TicketImg = styled.img`
     position: relative;
-    width: 618px;
-    //height: 3100px;
+    width: 539.71px;
     left: 50%;
     transform: translateX(-50%);
-    margin-top: 64px;
+    margin-top: 90px;
     margin-bottom: 30px;
     filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.25));
 
     @media (max-width: 767px) {
         margin-top: 29px;
-        width: 245px;
+        width: 278px;
     }
 `;
 
 const Date = styled.div`
-    margin-top: 105px;
-    margin-right: 400px;
+    margin-top: 125.81px;
+    margin-right: 390px;
 
-    font-size: 20px;
+    font-size: 15px;
     line-height: 175.5%;
     text-align: center;
 
     color: #675b4f;
 
     @media (max-width: 767px) {
-        margin-top: 50px;
+        margin-top: 55px;
         margin-right: 150px;
         font-size: 10px;
         transform: scale(0.9);
@@ -423,43 +374,39 @@ const Date = styled.div`
 const LogoImg = styled.img`
     display: flex;
     margin: auto;
-    margin-top: 7px;
-    width: 71px;
-    //height: 61px;
+    width: 59.5px;
 
     @media (max-width: 767px) {
         margin-top: -10px;
         width: 27.27px;
-        //height: 23.64px;
     }
 `;
 
 const LogoText = styled.img`
-    margin-top: 8px;
-    width: 105px;
-    //height: 26px;
+    margin-top: 6.83px;
+    width: 87.79px;
 
     @media (max-width: 767px) {
-        margin-top: 3px;
+        margin-top: 2.73px;
         width: 40px;
-        //height: 10px;
     }
 `;
 
-const TicketText = styled.div<{ margin: number }>`
+const TicketText = styled.div<{ margin: number; mediamargin: number }>`
     margin-top: ${(props) => props.margin}px;
-    font-size: 40px;
+    font-size: 35px;
     line-height: 175.5%;
     color: #675b4f;
 
     @media (max-width: 767px) {
-        margin-top: 2px;
+        margin-top: ${(props) => props.mediamargin}px;
         font-size: 20px;
         line-height: 140%;
     }
 `;
 
 const FlavorText = styled.div`
+    margin-top: 5.07px;
     font-family: 'InterMedium';
     font-size: 20px;
     line-height: 175.5%;
@@ -467,6 +414,7 @@ const FlavorText = styled.div`
     color: #675b4f;
 
     @media (max-width: 767px) {
+        margin-top: 0px;
         font-size: 12px;
         line-height: 140%;
     }
@@ -475,7 +423,7 @@ const FlavorText = styled.div`
 const DottedLine = styled.div<{ margin: number; mediamargin: number }>`
     margin: auto;
     margin-top: ${(props) => props.margin}px;
-    width: 497px;
+    width: 434.04px;
     height: 0px;
 
     border-bottom: 1px dashed #000000;
@@ -487,10 +435,10 @@ const DottedLine = styled.div<{ margin: number; mediamargin: number }>`
 `;
 
 const Flavors = styled.div`
-    margin-top: 11px;
+    margin-top: 9.61px;
 
     @media (max-width: 767px) {
-        margin-top: 4px;
+        margin-top: 5px;
     }
 `;
 
@@ -517,10 +465,10 @@ const Flavor = styled.span<{
 
 const FlavorBox = styled.div`
     display: inline-block;
-    margin-left: 18px;
-    margin-right: 18px;
-    width: 34px;
-    height: 35px;
+    margin-left: 16px;
+    margin-right: 16px;
+    width: 29.69px;
+    height: 30.57px;
 
     border: 1px solid #675b4f;
 
@@ -535,9 +483,9 @@ const FlavorBox = styled.div`
 const Circle = styled.div`
     position: absolute;
     margin-top: 7px;
-    margin-left: 7px;
-    width: 20px;
-    height: 20px;
+    margin-left: 6px;
+    width: 17.47px;
+    height: 17.47px;
     border-radius: 50%;
 
     background: #8b7e6a;
@@ -566,36 +514,37 @@ const Title = styled.div`
 
 const CircleDottedLine = styled.div`
     margin: auto;
-    margin-top: 15px;
-    width: 179px;
-    height: 179px;
+    margin-top: 24.45px;
+    width: 156.32px;
+    height: 156.32px;
 
     border-radius: 50%;
     border: 1px dashed #675b4f;
 
     @media (max-width: 767px) {
-        margin-top: 7px;
+        margin-top: 15px;
         width: 57px;
         height: 57px;
     }
 `;
 
 const CircleMovieImg = styled.img`
-    margin-top: 8px;
-    width: 163px;
-    //height: 163px;
+    margin-top: 6.99px;
+    width: 142.35px;
 
     @media (max-width: 767px) {
-        width: 57px;
-        //height: 57px;
+        margin-top: 3px;
+        width: 51px;
     }
 `;
 
 const ImgSource = styled.div`
     text-align: right;
+    margin-top: 2.11px;
     margin-right: 15px;
 
     @media (max-width: 767px) {
+        margin-top: 0px;
         margin-right: 0px;
     }
 `;
@@ -613,11 +562,14 @@ const Drinks = styled.div<{ margin: number; mediamargin: number }>`
 
 const DrinkImg = styled.img`
     position: absolute;
-    margin-top: 23px;
-    width: 252px;
-    //height: 252px;
+    margin-top: 42.35px;
+    margin-left: 20px;
+    width: 173.63px;
+    height: 170.71px;
 
     @media (max-width: 767px) {
+        margin-top: 39px;
+        margin-left: 0px;
         width: 89px;
         height: 87px;
     }
@@ -625,7 +577,7 @@ const DrinkImg = styled.img`
 
 const Drink = styled.div`
     position: absolute;
-    margin-left: 234px;
+    margin-left: 230.93px;
 
     @media (max-width: 767px) {
         margin-left: 96px;
@@ -633,15 +585,15 @@ const Drink = styled.div`
 `;
 
 const DrinkType = styled.div`
-    margin-top: 56px;
-    width: 76px;
-    height: 32px;
+    margin-top: 43.81px;
+    width: 68.04px;
+    height: 28.65px;
 
     border: 1px solid #8b7e6a;
     border-radius: 18px;
 
     @media (max-width: 767px) {
-        margin-top: 10px;
+        margin-top: 14px;
         width: 29.31px;
         height: 12.34px;
     }
@@ -654,15 +606,15 @@ const DrinkTypeText = styled.div`
     color: #8b7e6a;
 
     @media (max-width: 767px) {
-        font-size: 10px;
-        transform: scale(0.7);
-        line-height: 14px;
+        font-size: 7.5px;
+        zoom: 0.75;
+        line-height: 19px;
     }
 `;
 
 const DrinkVolume = styled.div`
     position: absolute;
-    margin-top: 62px;
+    margin-top: 50.69px;
     right: 5%;
 
     font-size: 18px;
@@ -671,29 +623,30 @@ const DrinkVolume = styled.div`
     color: #8b7e6a;
 
     @media (max-width: 767px) {
-        margin-top: 9px;
+        margin-top: 13px;
         font-size: 10px;
     }
 `;
 
 const DrinkName = styled.div`
-    margin-top: 17px;
+    margin-top: 13.23px;
 
     font-size: 20px;
-    line-height: 20px;
+    line-height: 23px;
     letter-spacing: -0.01em;
     text-align: left;
     color: #675b4f;
+    word-break: keep-all;
 
     @media (max-width: 767px) {
-        margin-top: 6px;
-        line-height: 16px;
-        font-size: 13px;
+        margin-top: 9.72px;
+        line-height: 118.5%;
+        font-size: 15px;
     }
 `;
 
 const DrinkDetail = styled.div`
-    margin-top: 24px;
+    margin-top: 13.38px;
 
     font-size: 15px;
     line-height: 151.5%;
@@ -702,9 +655,11 @@ const DrinkDetail = styled.div`
     color: #8e8372;
 
     @media (max-width: 767px) {
-        margin-top: 4px;
-        font-size: 8px;
-        line-height: 140%;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        font-size: 9px;
+        zoom: 0.95;
+        line-height: 136%;
         color: #bbb6a8;
     }
 `;
@@ -713,109 +668,47 @@ const DetailLink = styled(Link)<{ margin: number }>`
     text-decoration: none;
     margin-left: ${(props) => props.margin}px;
 
-    font-size: 15px;
-    line-height: 70px;
+    font-size: 13px;
+    line-height: 45px;
     letter-spacing: -0.01em;
     color: #675b4f;
 
     @media (max-width: 767px) {
-        margin-left: 60px;
-        font-size: 8px;
-        line-height: 25px;
-    }
-`;
-
-const Rating = styled.div`
-    margin-top: 293px;
-    margin-left: 95px;
-
-    font-size: 20px;
-    line-height: 175.5%;
-    text-align: center;
-
-    color: #675b4f;
-
-    @media (max-width: 767px) {
-        margin-top: 115px;
-        margin-left: 40px;
-        font-size: 12px;
-    }
-`;
-
-const TicketStar = styled.div`
-    margin-top: 290px;
-    margin-left: 19px;
-
-    @media (max-width: 767px) {
-        margin-top: 119px;
-        margin-left: 7px;
-    }
-`;
-
-const TicketStarImg = styled.img`
-    margin-right: 10px;
-    width: 36px;
-    //height: 36px;
-
-    @media (max-width: 767px) {
-        margin-right: 5px;
-        width: 11px;
-        //height: 10px;
+        margin-left: 55px;
+        font-size: 10px;
+        line-height: 10px;
     }
 `;
 
 const Plus = styled.div`
-    margin-top: 24px;
+    margin-top: 36.37px;
 
-    font-size: 30px;
-    line-height: 30px;
+    font-size: 25px;
+    line-height: 25px;
     text-align: center;
     letter-spacing: 0.01em;
     color: #675b4f;
 
     @media (max-width: 767px) {
-        margin-top: 7px;
-        font-size: 15px;
+        margin-top: 13px;
+        font-size: 13px;
+        line-height: 13px;
     }
 `;
 
 const DottedLinex = styled.div`
     position: absolute;
-    margin-top: 370px;
-    width: 497px;
+    margin-top: 315px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 434.04px;
     height: 0px;
 
     border-bottom: 1px dashed #000000;
 
     @media (max-width: 767px) {
-        margin-top: 140px;
+        margin-top: 180px;
         width: 212px;
-    }
-`;
-
-const Ratings = styled.div`
-    position: absolute;
-    margin-top: 3px;
-    margin-left: 96px;
-
-    font-size: 20px;
-    line-height: 175.5%;
-    text-align: center;
-
-    color: #675b4f;
-
-    @media (max-width: 767px) {
-        margin-top: -3px;
-        margin-left: 40px;
-        font-size: 12px;
-    }
-`;
-
-const TicketStars = styled.div`
-    margin-left: 140px;
-
-    @media (max-width: 767px) {
-        margin-left: 80px;
     }
 `;
 
@@ -825,7 +718,7 @@ const Restart = styled.div`
     justify-content: center;
 
     @media (max-width: 767px) {
-        margin-top: 5px;
+        margin-top: 0px;
     }
 `;
 
@@ -853,11 +746,11 @@ const RestartLink = styled(Link)`
     }
 
     @media (max-width: 767px) {
-        width: 60.55px;
-        height: 60.55px;
+        width: 66px;
+        height: 67px;
 
         font-size: 13px;
-        line-height: 65px;
+        line-height: 70px;
     }
 `;
 
@@ -880,9 +773,9 @@ const ShareText = styled.div`
     }
 
     @media (max-width: 767px) {
-        margin-top: 40px;
+        margin-top: 30px;
         font-size: 15px;
-        line-height: 20px;
+        line-height: 170%;
     }
 `;
 
@@ -895,7 +788,7 @@ const ShareBtn = styled.div`
 
     @media (max-width: 767px) {
         margin-top: 40px;
-        margin-bottom: 100px;
+        margin-bottom: 78.77px;
     }
 `;
 

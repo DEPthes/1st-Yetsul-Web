@@ -7,7 +7,7 @@ import DrinkList from './components/DrinkList/DrinkList';
 // `import SoolotMachine from './components/soolotmachine/SoolotMachine';`
 import DrinkTestBox from './components/DrinkTest/DrinkTest';
 import DrinkTestResult from './components/DrinkTest/DrinkTestResult';
-import MonthDrink from './components/MonthDrink/MonthDrink';
+import MonthDrink from './components/BlockPage/MonthDrinkBlocks';
 import DrinkDetail from './components/Detail/DrinkDetail';
 import ReviewDetail from './components/Review/ReveiwDetail';
 import { Profile } from './components/profile/Profile';
@@ -16,15 +16,19 @@ import { MyReviewAll } from './components/profile/MyReviewAll';
 import { MyLikeAll } from './components/profile/MyLikeAll';
 import ReviewWrite from './components/Review/ReviewWrite/ReviewWrite';
 import KakaoLogin from './components/Login/KakaoLogin';
-import AllDrinkRecommend from './components/DrinkRecommend/AllDrinkRecommend';
-import RecommendSlot from './components/DrinkRecommend/RecommendSlot';
-import RecommendTicket from './components/DrinkRecommend/RecommendTicket';
+import AllDrinkRecommend from './components/BlockPage/Recommend';
+import RecommendSlot from './components/BlockPage/RecommendSlot';
+import RecommendTicket from './components/BlockPage/RecommendTicket';
+import DrinkTradition from './components/Tradition/DrinkTradition';
 import SoolotMachine from './components/soolotmachine/SoolotMachine';
 import SoolotMachineResult from './components/soolotmachine/SoolotMachineResult';
+import ScrollToTop from './utils/scrollToTop';
+import ReviewEdit from './components/Review/ReviewWrite/ReviewEdit';
 
 const Router: React.FC = () => {
     return (
         <BrowserRouter>
+            <ScrollToTop />
             <Header />
             <Routes>
                 <Route path="/" element={<App />} />
@@ -32,6 +36,7 @@ const Router: React.FC = () => {
                     path="/auth/:service/callback"
                     element={<KakaoLogin />}
                 />
+                <Route path="/tradition" element={<DrinkTradition />} />
                 <Route path="/auth/*" element={<KakaoLogin />} />
                 <Route path="/service" element={<Service />} />
                 <Route path="/list/:id/spec" element={<DrinkDetail />} />
@@ -52,6 +57,10 @@ const Router: React.FC = () => {
                 <Route
                     path="/review/alcohol:alcoholId/review:reviewId"
                     element={<ReviewDetail />}
+                />
+                <Route
+                    path="/review/alcohol:alcoholId/review:reviewId/edit"
+                    element={<ReviewEdit />}
                 />
                 <Route path="/list/:id/write" element={<ReviewWrite />} />
                 <Route

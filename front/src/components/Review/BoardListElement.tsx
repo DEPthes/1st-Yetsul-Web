@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 /* eslint-disable react/button-has-type */
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 /* eslint-disable no-nested-ternary */
 
@@ -36,53 +36,25 @@ const BoardListElement: React.FC<reviewType> = ({
     reviewId,
     alcoholId,
 }) => {
-    let [likeCount, setLikeCount] = useState(0);
-    let [isLiked, setIsLiked] = useState(false);
-
     const getdata = () => {
         const accessToken = localStorage.getItem('accessToken') || '';
-        console.log(accessToken);
         return axios.create({
             headers: { Authorization: `Bearer ${accessToken}` },
         });
     };
 
-    useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         getdata()
             .post(
                 `http://depth-server.herokuapp.com/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
             )
             .then((res) => {
-                setLikeCount(res.data.like);
-
-                console.log(`like${likeCount}`);
+                console.log(res.data.review);
+                console.log(res.data.review.like);
             })
             .catch((err) => console.log(err));
-    }, []);
-
-    useEffect(() => {
-        if (isLiked === true) {
-            setLikeCount((likeCount += 1));
-        } else {
-            setLikeCount((likeCount -= 1));
-        }
-    }, [isLiked]);
-
-    const likeBtnHandler = () => {
-        setIsLiked(!isLiked);
     };
-
-    // useEffect(() => {
-    //     console.log(reviewLike);
-    //     console.log('reviewLike값 업데이트 될 때만 실행');
-    // }, [reviewLike]);
-
-    // const LikeBtnHandler = () => {
-    //     setReviewLike(!reviewLike);
-    //     if (reviewLike === true) {
-    //         setLikeCount((likeCount += 1));
-    //     } else setLikeCount((likeCount -= 1));
-    // };
 
     return (
         <>
@@ -116,11 +88,7 @@ const BoardListElement: React.FC<reviewType> = ({
                             </ReviewLink>
                         </ReviewBoxContentNoImg>
                     </ReviewBox>
-                    <LikeBtn
-                    // onClick={() => {
-                    //     setReviewLike((reviewLike += 1));
-                    // }}
-                    >
+                    <LikeBtn onClick={handleClick}>
                         👍
                         <span>{like}</span>
                     </LikeBtn>
@@ -171,11 +139,8 @@ const BoardListElement: React.FC<reviewType> = ({
                             <img src={reviewImg[0]} alt={userImg} />
                         )}
                     </ReviewImgWrap>
-                    <LikeBtn
-                        onClick={() => {
-                            likeBtnHandler();
-                        }}
-                    >
+
+                    <LikeBtn onClick={handleClick}>
                         👍
                         <span>{like}</span>
                     </LikeBtn>

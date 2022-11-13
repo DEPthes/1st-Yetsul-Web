@@ -9,12 +9,14 @@ type ReviewTemplateType = {
     Head: React.FC;
     Main: React.FC;
     drinkInfo: DrinkDetailElementType;
+    reviewCount: number;
 };
 
 const ReviewTemplate: React.FC<ReviewTemplateType> = ({
     Head,
     Main,
     drinkInfo,
+    reviewCount,
 }) => {
     return (
         <BackgroundTemplate heightValue="auto">
@@ -57,8 +59,10 @@ const ReviewTemplate: React.FC<ReviewTemplateType> = ({
                                     />
                                 </div>
 
-                                <SeeReviewLink to="/">
-                                    (리뷰 +100) &gt;
+                                <SeeReviewLink
+                                    to={`/list/${drinkInfo.id}/spec`}
+                                >
+                                    {`(리뷰 +${reviewCount})`} &gt;
                                 </SeeReviewLink>
                             </InfoBottom>
                         </MainInfo>
