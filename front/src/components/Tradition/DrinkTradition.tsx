@@ -492,7 +492,7 @@ const Inner = styled.div`
     flex-direction: column;
 
     @media (max-width: 767px) {
-        margin-top: 183px;
+        margin-top: 190px;
     }
 `;
 
