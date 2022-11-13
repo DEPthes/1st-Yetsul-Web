@@ -22,6 +22,7 @@ import RecommendTicket from './components/DrinkRecommend/RecommendTicket';
 import SoolotMachine from './components/soolotmachine/SoolotMachine';
 import SoolotMachineResult from './components/soolotmachine/SoolotMachineResult';
 import ScrollToTop from './utils/scrollToTop';
+import ReviewEdit from './components/Review/ReviewWrite/ReviewEdit';
 
 const Router: React.FC = () => {
     return (
@@ -54,6 +55,10 @@ const Router: React.FC = () => {
                 <Route
                     path="/review/alcohol:alcoholId/review:reviewId"
                     element={<ReviewDetail />}
+                />
+                <Route
+                    path="/review/alcohol:alcoholId/review:reviewId/edit"
+                    element={<ReviewEdit />}
                 />
                 <Route path="/list/:id/write" element={<ReviewWrite />} />
                 <Route
