@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useCallback, useEffect, useState } from 'react';
-
-import axios from 'axios';
 import styled from 'styled-components';
+import axios from 'axios';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import { getAccessToken } from '../../services/tokenControl';
 import { ProfileHeader } from './profileHeader';
