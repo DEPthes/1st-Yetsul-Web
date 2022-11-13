@@ -1,7 +1,6 @@
 import React, { useState, useEffect, ReactNode } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import MyPagination from './MypagePagination';
 import { MyReviewModalWidget } from './MyReviewModalWidget';
 
 type ModalType = {
@@ -24,7 +23,9 @@ export const TemporarySaveModal: React.FC<ModalType> = ({
     };
     useEffect(() => {
         getData()
-            .post('http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/user/temporary')
+            .post(
+                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/user/temporary',
+            )
             .then((res) => setAlcholthatUserWrite(res.data))
             .catch((err) => console.log(err));
     }, []);
@@ -118,11 +119,11 @@ const Modal = styled.div`
     @media screen and (max-width: 767px) {
         width: 85.128vw;
         height: 125.897vw;
-        h1{ 
+        h1 {
             font-size: 3.846vw;
             margin-bottom: 2.872vw;
         }
-        p{
+        p {
             font-size: 3.077vw;
             margin-left: 0;
             margin-bottom: 5.042vw;
@@ -136,7 +137,7 @@ const ModalUpper = styled.div`
     margin: 0 2.604vw;
     margin-top: 1.302vw;
     @media screen and (max-width: 767px) {
-        margin: 0 6.410vw;
+        margin: 0 6.41vw;
         margin-top: 8.205vw;
     }
 `;
@@ -144,7 +145,8 @@ const ModalUpper = styled.div`
 const ModalHeaderBox = styled.div`
     display: flex;
     flex-direction: column;
-    h1,p{
+    h1,
+    p {
         margin-left: 0px;
     }
 `;
@@ -160,24 +162,22 @@ const WidgetContainer = styled.div`
     overflow-y: scroll;
     height: 26vw;
     ::-webkit-scrollbar {
-    width: 6px;
-}
+        width: 6px;
+    }
 
     ::-webkit-scrollbar-thumb {
-    background: #675B4F; /* 스크롤바의 색상 */
-    background-clip: padding-box;
-}
+        background: #675b4f; /* 스크롤바의 색상 */
+        background-clip: padding-box;
+    }
 
     ::-webkit-scrollbar-track {
-    background-color: white;
-}
-@media screen and (max-width: 767px) {
-    height: 91.538vw;
-    margin: 0 6.410vw;
+        background-color: white;
+    }
+    @media screen and (max-width: 767px) {
+        height: 91.538vw;
+        margin: 0 6.41vw;
     }
 `;
-
-
 
 const LowerShadowBox = styled.div`
     border-bottom-left-radius: 18px;
@@ -187,7 +187,7 @@ const LowerShadowBox = styled.div`
     width: 39.792vw;
     height: 3.073vw;
     box-shadow: 0px -4px 14px rgba(0, 0, 0, 0.1);
-`
+`;
 type DrinkType = {
     children: ReactNode;
     id: number;

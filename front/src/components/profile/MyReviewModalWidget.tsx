@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 import Star from '../common/Star';
@@ -90,11 +89,6 @@ export const MyReviewModalWidget: React.FC<myreviewtype> = ({
     );
 };
 
-const LinkWrap = styled(Link)`
-    text-decoration: none;
-    color: #8b7e6a;
-`;
-
 const MyreviewBarInner = styled.div`
     width: 97%;
     border: 1px solid #675b4f;
@@ -102,10 +96,9 @@ const MyreviewBarInner = styled.div`
     margin-bottom: 0.865vw;
     display: flex;
     @media screen and (max-width: 767px) {
-    border-radius: 12px;
-    margin-bottom: 1.795vw;
+        border-radius: 12px;
+        margin-bottom: 1.795vw;
     }
-
 `;
 const MyreviewDrinkImgSection = styled.div`
     margin-left: 3.125vw;
@@ -115,7 +108,7 @@ const MyreviewDrinkImgSection = styled.div`
     align-items: center;
     background-color: red;
     @media screen and (max-width: 767px) {
-        margin-left: 3.590vw;
+        margin-left: 3.59vw;
         height: 21.538vw;
     }
 `;
@@ -136,8 +129,7 @@ const MyreviewInformationUpper = styled.div`
     display: flex;
     align-items: center;
 `;
-const MyreviewInformationLower = styled.div`
-`;
+const MyreviewInformationLower = styled.div``;
 const MyreviewDrinkKind = styled.div`
     color: #454038;
     border: 1px solid #454038;
@@ -159,11 +151,10 @@ const MyreviewDrinkName = styled.div`
     color: #675b4f;
     @media screen and (max-width: 767px) {
         font-size: 4.359vw;
-
     }
 `;
 const MyreviewHeading = styled.div`
-    margin-top: 0.120vw;
+    margin-top: 0.12vw;
     font-size: 0.677vw;
     margin-left: 0.365vw;
 `;
@@ -172,7 +163,6 @@ const MyreviewRightSection = styled.div`
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
-
 `;
 
 const SeeFull = styled.div`
