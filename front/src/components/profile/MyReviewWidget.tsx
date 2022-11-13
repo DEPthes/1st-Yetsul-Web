@@ -6,7 +6,7 @@ import Star from '../common/Star';
 
 type myreviewtype = {
     alcoholId: number;
-    id : number;
+    id: number;
     title: string;
     star: number;
 };
@@ -87,11 +87,10 @@ export const MyReviewWidget: React.FC<myreviewtype> = ({
                     <Star star={star} widthValue={10} heightValue={14} />
                 </StarBox>
                 <LinkWrap to={`/review/alcohol${alcoholId}/review${reviewId}`}>
-                <SeeFull>전체보기 &#62;</SeeFull>
+                    <SeeFull>전체보기 &#62;</SeeFull>
                 </LinkWrap>
             </MyreviewRightSection>
         </MyreviewBarInner>
-
     );
 };
 
@@ -123,9 +122,9 @@ const MyreviewDrinkImgSection = styled.div`
     }
 `;
 const MyreviewDrinkImg = styled.img`
-    width: 3.750vw;
+    width: 3.75vw;
     @media screen and (max-width: 767px) {
-         width: 11.282vw;
+        width: 11.282vw;
     }
 `;
 
@@ -148,9 +147,7 @@ const MyreviewInformationUpper = styled.div`
         width: 90%;
     }
 `;
-const MyreviewInformationLower = styled.div`
-
-`;
+const MyreviewInformationLower = styled.div``;
 const MyreviewDrinkKind = styled.div`
     color: #454038;
     border: 1px solid #454038;
@@ -160,13 +157,12 @@ const MyreviewDrinkKind = styled.div`
     @media screen and (max-width: 767px) {
         height: 3.103vw;
         width: 9.6vw;
-        font-size: 2.564vw ;
+        font-size: 2.564vw;
         display: flex;
         justify-content: center;
         align-items: center;
         padding-top: 0.6vw;
-
-}
+    }
 `;
 const MyreviewDrinkName = styled.p`
     color: #675b4f;
@@ -178,7 +174,6 @@ const MyreviewDrinkName = styled.p`
         font-size: 3.615vw;
         margin-top: -0.5vw;
     }
-
 `;
 const MyreviewHeading = styled.p`
     margin-left: 0.9375em;
@@ -188,7 +183,6 @@ const MyreviewHeading = styled.p`
         margin-left: 0vw;
         margin-top: 0vw;
         font-size: 3.077vw;
-
     }
 `;
 const MyreviewRightSection = styled.div`
@@ -198,22 +192,22 @@ const MyreviewRightSection = styled.div`
     justify-content: center;
     margin-right: 2.42875em;
     @media screen and (max-width: 767px) {
-        margin-right : 5.641vw;
+        margin-right: 5.641vw;
     }
 `;
 
 const SeeFull = styled.p`
     margin-top: 1.02vw;
     @media screen and (max-width: 767px) {
-    font-size: 3.077vw;
-    margin-top: 2.128vw;
+        font-size: 3.077vw;
+        margin-top: 2.128vw;
     }
 `;
 
 const StarBox = styled.div`
     width: 8em;
     @media screen and (max-width: 767px) {
-    width: 15vw;
+        width: 15vw;
     }
     display: flex;
     justify-content: flex-end;

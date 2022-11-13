@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import axios from 'axios';
 import styled from 'styled-components';
+import axios from 'axios';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import { getAccessToken } from '../../services/tokenControl';
 import { ProfileHeader } from './profileHeader';
@@ -61,11 +60,13 @@ export const FixProfile: React.FC = () => {
         setInputName(userData.nickname);
     }, [userData]);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const saveFileImage = (e: any) => {
         setInputImage(URL.createObjectURL(e.target.files[0]));
         setPushImage(e.target.files[0]);
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const onChange = useCallback((e: any) => {
         setInputName(e.target.value);
     }, []);

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
 import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { RootState } from '../../store/config';
@@ -48,6 +49,10 @@ export type ReviewType = {
 };
 
 const DrinkDetail: React.FC = () => {
+    const isMobile = useMediaQuery({
+        query: '(max-width:767px)',
+    });
+
     const { id } = useParams();
 
     const [drinks, setDrinks] = useState<DrinkDetailType>(Object); // 술 상세 정보
@@ -158,7 +163,7 @@ const DrinkDetail: React.FC = () => {
     };
 
     const sortByLikeAsc = () => {
-        // 평점 높은 순 정렬
+        // 좋아요 많은 순 정렬
         if (isSelected[3] === false) {
             const sortedByStarReviews = reviewForSort
                 .slice(0)
@@ -303,39 +308,43 @@ const DrinkDetail: React.FC = () => {
                 <ReviewTitle>
                     <h1>리뷰 ({reviews.length})개</h1>
                 </ReviewTitle>
-                <ReviewSort>
-                    <button
-                        type="button"
-                        onClick={sortByDate}
-                        style={{ color: isSelected[0] ? '#8B7E6A' : '' }}
-                    >
-                        최신순
-                    </button>
-                    |
-                    <button
-                        type="button"
-                        onClick={sortByStarAsc}
-                        style={{ color: isSelected[1] ? '#8B7E6A' : '' }}
-                    >
-                        평점 높은 순
-                    </button>
-                    |
-                    <button
-                        type="button"
-                        onClick={sortByStarDes}
-                        style={{ color: isSelected[2] ? '#8B7E6A' : '' }}
-                    >
-                        평점 낮은 순
-                    </button>
-                    |
-                    <button
-                        type="button"
-                        onClick={sortByLikeAsc}
-                        style={{ color: isSelected[3] ? '#8B7E6A' : '' }}
-                    >
-                        추천 많은 순
-                    </button>
-                </ReviewSort>
+                {isMobile ? (
+                    '모바일화면'
+                ) : (
+                    <ReviewSort>
+                        <button
+                            type="button"
+                            onClick={sortByDate}
+                            style={{ color: isSelected[0] ? '#8B7E6A' : '' }}
+                        >
+                            최신순
+                        </button>
+                        |
+                        <button
+                            type="button"
+                            onClick={sortByStarAsc}
+                            style={{ color: isSelected[1] ? '#8B7E6A' : '' }}
+                        >
+                            평점 높은 순
+                        </button>
+                        |
+                        <button
+                            type="button"
+                            onClick={sortByStarDes}
+                            style={{ color: isSelected[2] ? '#8B7E6A' : '' }}
+                        >
+                            평점 낮은 순
+                        </button>
+                        |
+                        <button
+                            type="button"
+                            onClick={sortByLikeAsc}
+                            style={{ color: isSelected[3] ? '#8B7E6A' : '' }}
+                        >
+                            추천 많은 순
+                        </button>
+                    </ReviewSort>
+                )}
 
                 {reviews.length === 0 ? (
                     <NoReview>작성된 리뷰가 없습니다.</NoReview>
@@ -389,6 +398,7 @@ const ReviewSort = styled.div`
     color: #bbb6a8;
     font-family: inherit;
     width: 1153px;
+    background-color: yellow;
 
     button {
         background: none;
@@ -396,6 +406,7 @@ const ReviewSort = styled.div`
         font-family: inherit;
         color: #bbb6a8;
         margin: 0 28px;
+        background-color: pink;
     }
 
     button:hover {
@@ -411,10 +422,22 @@ const ReviewTitle = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 1153px;
+    background-color: green;
+    @media (max-width: 767px) {
+        width: 315px;
+        padding-bottom: 24px;
+    }
+
     h1 {
         font-size: 1.875rem;
         color: #675b4f;
         width: 1153px;
+        background-color: slategray;
+        @media (max-width: 767px) {
+            width: 315px;
+            font-weight: 400;
+            font-size: 15px;
+        }
     }
 `;
 
@@ -435,6 +458,14 @@ const ReviewWriteLink = styled(Link)`
     align-items: center;
 
     text-decoration-line: none;
+
+    @media (max-width: 767px) {
+        width: 75px;
+        height: 24px;
+        border-radius: 8px;
+        font-weight: 400;
+        font-size: 13px;
+    }
 `;
 
 const Inner = styled.div`
@@ -445,6 +476,7 @@ const Inner = styled.div`
     li {
         border-top: 1px solid #bbb6a8;
         margin-top: 58px;
+        background-color: #ff9500;
     }
 
     li:first-child {
@@ -465,8 +497,15 @@ const NoReview = styled.div`
     align-items: center;
     width: 1153px;
     height: 287px;
+    background-color: purple;
 
     color: #bbb6a8;
+
+    @media (max-width: 767px) {
+        width: 315px;
+        font-weight: 400;
+        font-size: 15px;
+    }
 `;
 
 const PhotoReviewWrapper = styled.div`
