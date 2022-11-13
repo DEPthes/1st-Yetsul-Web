@@ -110,6 +110,19 @@ const ReviewDetail: React.FC = () => {
         navigate(`/review/alcohol${alcoholId}/review${reviewId}/edit`);
     };
 
+    const onClickDelete = async () => {
+        await axios.delete(
+            `https://depth-server.herokuapp.com/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+        );
+        // eslint-disable-next-line no-alert
+        alert('리뷰가 삭제되었습니다.');
+        navigate(`/list/${alcoholId}/spec`);
+    };
+
+    const goToAlcohol = () => {
+        navigate(`/list/${alcoholId}/spec`);
+    };
+
     return (
         <BackgroundTemplate heightValue="auto">
             <Inner>
@@ -136,7 +149,9 @@ const ReviewDetail: React.FC = () => {
                                 {drink.category === 5 ? '증류주' : null}
                                 {drink.category === 6 ? '리큐르주' : null}
                             </span>
-                            <h1>{drink.AlcoholName}</h1>
+                            <h1 onClick={goToAlcohol} aria-hidden>
+                                {drink.AlcoholName}
+                            </h1>
                         </div>
                     </DrinkEl>
 
@@ -209,6 +224,9 @@ const ReviewDetail: React.FC = () => {
                     {review.userId === getUserLocalStorage().id && (
                         <EditWrap>
                             <EditBtn onClick={onClickEdit}>수정하기</EditBtn>
+                            <DeleteBtn onClick={onClickDelete}>
+                                삭제하기
+                            </DeleteBtn>
                         </EditWrap>
                     )}
                 </ReviewWrapper>
@@ -252,6 +270,24 @@ const EditWrap = styled.div`
     margin: 1.25em 0px 0px 0px;
 `;
 
+const DeleteBtn = styled.button`
+    width: 7.95em;
+    height: 2.55em;
+    background: #ba0707;
+    border: 1px solid #8b7e6a;
+    border-radius: 0.9em;
+    margin-left: 2em;
+    cursor: pointer;
+
+    font-family: 'Gmarket Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25em;
+    line-height: 1em;
+    letter-spacing: -0.01em;
+    color: #ffffff;
+`;
+
 const EditBtn = styled.button`
     width: 7.95em;
     height: 2.55em;
@@ -278,6 +314,7 @@ const DrinkEl = styled.div`
     }
 
     h1 {
+        cursor: pointer;
         font-size: 25px;
         color: #675b4f;
     }
