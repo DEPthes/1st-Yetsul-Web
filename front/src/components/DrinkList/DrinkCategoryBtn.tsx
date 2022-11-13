@@ -52,7 +52,7 @@ const BtnWrap = styled.div<BtnType>`
         margin: 2 12px;
     }
     @media (max-width: 767px) {
-        width: 6.125em;
+        width: 100%;
         height: 2.625em;
         border: 1px solid #8b7e6a;
         background: ${(props) =>

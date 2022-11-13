@@ -29,7 +29,10 @@ export const MyReviewAll: React.FC = () => {
 
     useEffect(() => {
         getData()
-            .post('http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/user', {})
+            .post(
+                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/user',
+                {},
+            )
             .then((res) => setAlcholthatUserWrite(res.data))
             .catch((err) => console.log(err));
     }, []);
@@ -57,6 +60,7 @@ export const MyReviewAll: React.FC = () => {
                                 star: number;
                             }) => (
                                 <MyReviewWidget
+                                    id={myreview.id}
                                     key={myreview.id}
                                     alcoholId={myreview.alcoholId}
                                     title={myreview.title}
@@ -78,12 +82,9 @@ export const MyReviewAll: React.FC = () => {
                     OpenModal={OpenModal}
                 />
 
-                
                 <MobileContainer>
                     <MobileBackButtonLink to="/profile">
-                        <MobileBackButton>
-                        &#60;	
-                        </MobileBackButton>
+                        <MobileBackButton>&#60;</MobileBackButton>
                     </MobileBackButtonLink>
                     <MobileHeader>
                         <MobileHeaderTextContainer>
@@ -94,7 +95,9 @@ export const MyReviewAll: React.FC = () => {
                                 내가 쓴 리뷰를 한 번에 볼 수 있어요
                             </MobileHeaderDescription>
                         </MobileHeaderTextContainer>
-                        <MobileHeaderTemporarySaveButton onClick={ChangeOpenModalShow}>
+                        <MobileHeaderTemporarySaveButton
+                            onClick={ChangeOpenModalShow}
+                        >
                             임시저장
                         </MobileHeaderTemporarySaveButton>
                     </MobileHeader>
@@ -107,6 +110,7 @@ export const MyReviewAll: React.FC = () => {
                                 star: number;
                             }) => (
                                 <MyReviewWidget
+                                    id={myreview.id}
                                     key={myreview.id}
                                     alcoholId={myreview.alcoholId}
                                     title={myreview.title}
@@ -167,7 +171,7 @@ type DrinkType = {
 const ProfileHeaderInner = styled.div`
     display: flex;
     justify-content: space-between;
-    width: 58.016vw;;
+    width: 58.016vw;
     border-bottom: 1px solid #bbb6a8;
 `;
 
@@ -179,13 +183,13 @@ const ProfileHeaderHeadingContainer = styled.div`
 const HeaderHeading = styled.h1`
     font-size: 1.302vw;
     color: #454038;
-    margin-bottom: 1.250vw;
+    margin-bottom: 1.25vw;
 `;
 
 const HeaderLittleHeading = styled.h2`
     font-size: 0.938vw;
     color: #8e8372;
-    margin-bottom: 1.250vw;
+    margin-bottom: 1.25vw;
 `;
 
 const ModalBtn = styled.button`
@@ -209,25 +213,24 @@ const MobileContainer = styled.div`
     height: calc(100vh - 6.0625em);
     align-items: flex-start;
     @media screen and (max-width: 767px) {
-    display: flex;
+        display: flex;
     }
-`
+`;
 const MobileBackButtonLink = styled(Link)`
     text-decoration: none;
-`
+`;
 
 const MobileBackButton = styled.div`
     margin-top: 11.026vw;
     padding: 0 3.077vw;
     height: 7.436vw;
-    border: 1px solid #8B7E6A;
+    border: 1px solid #8b7e6a;
     border-radius: 9px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #8B7E6A;
-    
-`
+    color: #8b7e6a;
+`;
 
 const MobileHeader = styled.div`
     margin-top: 6.923vw;
@@ -235,33 +238,33 @@ const MobileHeader = styled.div`
     justify-content: space-between;
     width: 100%;
     padding-bottom: 5.128vw;
-    border-bottom: 1px solid #BBB6A8;;
-`
+    border-bottom: 1px solid #bbb6a8; ;
+`;
 
 const MobileHeaderTextContainer = styled.div`
     display: flex;
     flex-direction: column;
-`
+`;
 
 const MobileHeaderHeading = styled.h1`
-    color: #675B4F;
+    color: #675b4f;
     font-size: 3.846vw;
     font-weight: 400;
     margin-bottom: 3.846vw;
-`
+`;
 const MobileHeaderDescription = styled.h2`
     font-weight: 400;
     font-size: 3.077vw;
-    color: #8E8372;
-`
+    color: #8e8372;
+`;
 const MobileHeaderTemporarySaveButton = styled.button`
     width: 86.31px;
     height: 33px;
-    border: 1px solid #8B7E6A;
+    border: 1px solid #8b7e6a;
     border-radius: 10px;
     outline: 0;
     margin-top: 3.846vw;
     background: none;
-    color: #675B4F;
+    color: #675b4f;
     font-size: 3.333vw;
-`
+`;

@@ -354,6 +354,7 @@ const AHref = styled.a`
 
     @media (max-width: 767px) {
         font-size: 7px;
+        zoom: 0.7;
         line-height: 7px;
     }
 `;
@@ -367,7 +368,8 @@ const AHrefLong = styled.a`
     color: #bbb6a8;
 
     @media (max-width: 767px) {
-        font-size: 5px;
+        font-size: 6px;
+        zoom: 0.57;
         line-height: 5px;
     }
 `;

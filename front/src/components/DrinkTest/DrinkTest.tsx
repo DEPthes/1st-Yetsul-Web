@@ -14,9 +14,7 @@ const DrinkTicketBox: React.FC = () => {
 
     useEffect(() => {
         axios
-            .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/ticketbox/test`,
-            )
+            .get(`http://depth-server.herokuapp.com/ticketbox/test`)
             .then((res) => setQuestions(res.data))
             .catch((err) => console.log(err));
     }, []);
@@ -97,17 +95,12 @@ const DrinkTicketBox: React.FC = () => {
                                 <div>
                                     <PrevButton
                                         type="button"
-                                        margin={
-                                            data.selection3 === null
-                                                ? 15.75
-                                                : 14.3125
-                                        }
                                         onClick={() => PrevClick()}
+                                        margin={
+                                            data.selection3 === null ? 1.437 : 0
+                                        }
                                     >
-                                        <PrevImg
-                                            src="/images/Prev.svg"
-                                            alt="prev"
-                                        />
+                                        <PrevText>&lt;</PrevText>
                                     </PrevButton>
                                     <Question
                                         margin={
@@ -119,12 +112,12 @@ const DrinkTicketBox: React.FC = () => {
                                         <QuestionText
                                             width={(() => {
                                                 if (data.questionID === 5) {
-                                                    return 850;
+                                                    return 53.125;
                                                 }
                                                 if (data.questionID === 6) {
-                                                    return 930;
+                                                    return 58.125;
                                                 }
-                                                return 1140;
+                                                return 71.25;
                                             })()}
                                         >
                                             Q{num}. {data.question}
@@ -213,38 +206,47 @@ const DrinkTicketBox: React.FC = () => {
 export default DrinkTicketBox;
 
 const Center = styled.div`
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-top: 14.313em;
+
+    @media (max-width: 767px) {
+        margin-top: 8.75em;
+    }
 `;
 
 const PrevButton = styled.button<{ margin: number }>`
     margin-top: ${(props) => props.margin}em;
-    margin-right: 875px;
+    box-sizing: border-box;
     width: 3.625em;
     height: 2.6875em;
-
     background-color: transparent;
-    border: none;
+    border: 1px solid #8b7e6a;
+    border-radius: 1.125em;
 
     :hover {
         cursor: pointer;
     }
 
     @media (max-width: 767px) {
-        margin-top: 9.375em;
-        margin-right: 22em;
-        width: 2.4375em;
-        height: 1.8125em;
+        margin-top: 0em;
+        width: 2.93em;
+        height: 2.2em;
+        border: 1px solid #8b7e6a;
+        border-radius: 0.563em;
     }
 `;
 
-const PrevImg = styled.img`
-    width: 3.625em;
-    height: 2.6875em;
-
-    @media (max-width: 767px) {
-        width: 2.4375em;
-        height: 1.8125em;
-    }
+const PrevText = styled.div`
+    font-family: 'GmarketSansMedium';
+    font-size: 0.938em;
+    color: #3a3d40;
+    padding: 1px 1px 0 0;
 `;
 
 const Question = styled.div<{ margin: number }>`
@@ -256,9 +258,9 @@ const Question = styled.div<{ margin: number }>`
     width: 71.6875em;
     height: 10.5625em;
 
-    background: #fbfbfa;
+    background-color: #fbfbfa;
     border: 1px solid #675b4f;
-    border-radius: 18px;
+    border-radius: 1.125em;
 
     @media (max-width: 767px) {
         margin-top: 0.8125em;
@@ -269,12 +271,12 @@ const Question = styled.div<{ margin: number }>`
 `;
 
 const QuestionText = styled.div<{ width: number }>`
-    width: ${(props) => props.width}px;
+    width: ${(props) => props.width}em;
     text-align: center;
     font-family: 'GmarketSansBold';
     font-style: normal;
     font-weight: 500;
-    font-size: 2.1875em;
+    font-size: 2em;
     color: #675b4f;
     word-break: keep-all;
 
@@ -299,7 +301,7 @@ const Selection = styled.button<{
 
     border: 1px solid #675b4f;
     padding: ${(props) => props.padding}em;
-    border-radius: 18px;
+    border-radius: 1.125em;
     background-color: transparent;
 
     font-family: 'GmarketSansMedium';
@@ -338,7 +340,7 @@ const Selection3 = styled.button<{ display: string }>`
     width: 28em;
     height: 7.05em;
     border: 1px solid #675b4f;
-    border-radius: 18px;
+    border-radius: 1.125em;
     background-color: transparent;
 
     font-family: 'GmarketSansMedium';
@@ -377,7 +379,7 @@ const ProgressBar = styled.div<{ margin: number }>`
 
     background: #ffffff;
     border: 1px solid #675b4f;
-    border-radius: 18px;
+    border-radius: 1.125em;
 
     @media (max-width: 767px) {
         margin-top: 2.9375em;
@@ -394,7 +396,7 @@ const ProgressBarFill = styled.div<{ width: number; mediawidth: number }>`
 
     background: #675b4f;
     border: 1px solid #675b4f;
-    border-radius: 18px;
+    border-radius: 1.125em;
 
     @media (max-width: 767px) {
         margin-top: 0.375em;
@@ -408,11 +410,10 @@ const GlassImg = styled.img<{ margin: number }>`
     position: absolute;
     width: 4.94em;
     margin-top: ${(props) => props.margin}em;
-    margin-left: 31.25em;
+    right: 0%;
 
     @media (max-width: 767px) {
         margin-top: 2.1875em;
-        margin-left: 7.375em;
         width: 3.2725em;
     }
 `;

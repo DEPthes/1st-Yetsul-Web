@@ -65,6 +65,10 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
                 }
             })
             .catch((err) => console.log(err));
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
     }, []);
 
     const [likes, setLikes] = useState(likeCount);
@@ -100,8 +104,28 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
         return 0;
     };
 
+    const [windowSize, setWindowSize] = useState({
+        width: window.innerWidth,
+    });
+
+    const handleResize = () => {
+        setWindowSize({
+            width: window.innerWidth,
+        });
+    };
+
     return (
-        <div>
+        <Center>
+            <PrevButton
+                type="button"
+                display={windowSize.width >= 768 ? 'none' : 'flex'}
+                onClick={() => {
+                    // eslint-disable-next-line no-restricted-globals
+                    history.go(-1);
+                }}
+            >
+                <PrevText>&lt;</PrevText>
+            </PrevButton>
             <DrinkExplain>
                 <DrinkImg src={alcoholImage} alt={AlcoholName} />
                 <div>
@@ -113,17 +137,25 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
                         {category === 5 ? '증류주' : null}
                         {category === 6 ? '리큐르주' : null}
                     </DrinkCategory>
-                    <DrinkLikeCount>{DrinkLikeNum()}</DrinkLikeCount>
-                    <DrinkLikeBtn
-                        type="button"
-                        onClick={() => DrinkLikeClick()}
-                    >
-                        {like === true ? (
-                            <img src="/images/HeartFill.svg" alt="하트" />
-                        ) : (
-                            <img src="/images/Heart.svg" alt="빈 하트" />
-                        )}
-                    </DrinkLikeBtn>
+                    <DrinkLikeDiv>
+                        <DrinkLikeCount>{DrinkLikeNum()}</DrinkLikeCount>
+                        <DrinkLikeBtn
+                            type="button"
+                            onClick={() => DrinkLikeClick()}
+                        >
+                            {like === true ? (
+                                <DrinkLikeImg
+                                    src="/images/HeartFill.svg"
+                                    alt="하트"
+                                />
+                            ) : (
+                                <DrinkLikeImg
+                                    src="/images/Heart.svg"
+                                    alt="빈 하트"
+                                />
+                            )}
+                        </DrinkLikeBtn>
+                    </DrinkLikeDiv>
                     <h1>{AlcoholName}</h1>
                     <SeeReview
                         type="button"
@@ -137,19 +169,51 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
                         (리뷰&nbsp;
                         {reviewCount < 100 ? `${reviewCount}건` : '+100'}) &gt;
                     </SeeReview>
-                    <Star star={star} widthValue={15} heightValue={14} />
-                    <Line margintop={18} marginbottom={27} width={511} />
+                    <Star
+                        star={star}
+                        widthValue={windowSize.width >= 768 ? 15 : 13}
+                        heightValue={windowSize.width >= 768 ? 14 : 12}
+                    />
+                    <Line
+                        margintop={1.125}
+                        marginbottom={1.563}
+                        width={31.938}
+                        mediamargintop={0.875}
+                        mediamarginbottom={0.875}
+                        mediawidth={17}
+                    />
                     <h2>{AlcoholByVolume}%</h2>
-                    <Line margintop={23} marginbottom={32} width={511} />
+                    <Line
+                        margintop={1.563}
+                        marginbottom={2}
+                        width={31.938}
+                        mediamargintop={0.75}
+                        mediamarginbottom={1.033}
+                        mediawidth={17}
+                    />
                     <h2>&#8361; {price}원대</h2>
-                    <Line margintop={30} marginbottom={38} width={511} />
+                    <Line
+                        margintop={2.063}
+                        marginbottom={2.375}
+                        width={31.938}
+                        mediamargintop={1.033}
+                        mediamarginbottom={2}
+                        mediawidth={17}
+                    />
                     <DrinkBrewery>{brewery}</DrinkBrewery>
                     <DrinkDescription>{description}</DrinkDescription>
                 </div>
             </DrinkExplain>
             <DrinkTaste>
                 <h1>맛 그래프</h1>
-                <Line margintop={40} marginbottom={79} width={1153} />
+                <Line
+                    margintop={2.5}
+                    marginbottom={4.938}
+                    width={72.063}
+                    mediamargintop={0.938}
+                    mediamarginbottom={2.5}
+                    mediawidth={19.688}
+                />
                 <TasteText>
                     <h2>달달함</h2>
                     <h3>ㅣ</h3>
@@ -165,105 +229,215 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
                 </TasteText>
                 <TasteBox>
                     <Box>
-                        {sweet ? <Circle marginleft={45} /> : null}
-                        {bitter ? <Circle marginleft={165} /> : null}
-                        {refreshing ? <Circle marginleft={288} /> : null}
-                        {clean ? <Circle marginleft={417} /> : null}
-                        {cool ? <Circle marginleft={547} /> : null}
-                        {sour ? <Circle marginleft={670} /> : null}
+                        {sweet ? (
+                            <Circle
+                                marginleft={2.813}
+                                mediamarginleft={0.563}
+                            />
+                        ) : null}
+                        {bitter ? (
+                            <Circle
+                                marginleft={10.313}
+                                mediamarginleft={3.938}
+                            />
+                        ) : null}
+                        {refreshing ? (
+                            <Circle marginleft={18} mediamarginleft={7.375} />
+                        ) : null}
+                        {clean ? (
+                            <Circle marginleft={26.063} mediamarginleft={11} />
+                        ) : null}
+                        {cool ? (
+                            <Circle
+                                marginleft={34.188}
+                                mediamarginleft={14.75}
+                            />
+                        ) : null}
+                        {sour ? (
+                            <Circle
+                                marginleft={41.875}
+                                mediamarginleft={18.125}
+                            />
+                        ) : null}
                     </Box>
                 </TasteBox>
             </DrinkTaste>
-        </div>
+        </Center>
     );
 };
 export default DrinkDetailElement;
 
+const Center = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-top: 19.064em;
+
+    @media (max-width: 767px) {
+        margin-top: 8.75em;
+    }
+`;
+
+const PrevButton = styled.button<{ display: string }>`
+    display: ${(props) => props.display};
+    justify-content: center;
+    align-items: center;
+    width: 2.6em;
+    height: 1.933em;
+    background-color: transparent;
+    border: 1px solid #8b7e6a;
+    border-radius: 0.563em;
+
+    :hover {
+        cursor: pointer;
+    }
+`;
+
+const PrevText = styled.div`
+    font-family: 'GmarketSansMedium';
+    font-size: 0.938em;
+    color: #3a3d40;
+    padding: 0.1em 0.1em 0 0;
+`;
+
 const DrinkExplain = styled.div`
     display: flex;
     justify-content: center;
+    align-items: center;
 
     h1 {
-        margin-top: 47px;
-        margin-bottom: 20px;
-        width: 382px;
-        font-size: 40px;
-        line-height: 53px;
+        margin-top: 1.175em;
+        margin-bottom: 0.625em;
+        width: 10em;
+        font-size: 2.5em;
+        line-height: 135%;
         letter-spacing: -0.01em;
         color: #675b4f;
         word-break: keep-all;
     }
 
     h2 {
-        margin-left: 11px;
-
-        font-size: 25px;
-        line-height: 25px;
+        margin-left: 0.5em;
+        font-size: 1.563em;
         letter-spacing: -0.01em;
         color: #8b7e6a;
+    }
+
+    @media (max-width: 767px) {
+        flex-direction: column;
+        h1 {
+            margin-top: 2.24em;
+            margin-bottom: 0.6em;
+            font-size: 1.563em;
+            width: 9.12em;
+        }
+
+        h2 {
+            margin-left: 0.188em;
+            font-size: 0.938em;
+        }
     }
 `;
 
 const DrinkImg = styled.img`
-    margin-top: 253.03px;
-    margin-right: 114px;
+    margin-right: 7.125em;
+    width: 32.875em;
 
-    width: 526px;
-    //height: 631px;
+    @media (max-width: 767px) {
+        margin-top: 0.75em;
+        margin-right: 0em;
+        width: 12em;
+        border: 1px solid #000;
+    }
 `;
 
 const DrinkCategory = styled.div`
-    margin-top: 305.03px;
-
-    width: 76px;
-    height: 34px;
+    width: 5.067em;
+    height: 2.267em;
     border: 1px solid #454038;
-    border-radius: 24px;
+    border-radius: 1.5em;
 
     text-align: center;
-    font-size: 15px;
-    line-height: 36px;
+    font-size: 0.938em;
+    line-height: 2.65em;
     letter-spacing: -0.01em;
     color: #454038;
+
+    @media (max-width: 767px) {
+        display: none;
+    }
 `;
 
-const DrinkLikeCount = styled.div`
-    margin-right: 30px;
-    margin-top: 66px;
+const DrinkLikeDiv = styled.div`
+    display: block;
+    margin-top: 3.136em;
+    float: right;
 
-    font-size: 20px;
-    line-height: 20px;
+    @media (max-width: 767px) {
+        margin-top: 3.8em;
+    }
+`;
+
+const DrinkLikeCount = styled.span`
+    font-size: 1.25em;
+    line-height: 2em;
     letter-spacing: -0.01em;
     color: #8b7e6a;
-    float: right;
+    float: left;
+
+    @media (max-width: 767px) {
+        font-size: 0.813em;
+        line-height: 1.7em;
+    }
+
+    @media (max-width: 419px) {
+        font-size: 0.813em;
+        line-height: 2.3em;
+    }
 `;
 
 const DrinkLikeBtn = styled.button`
-    position: absolute;
-    margin-top: 56px;
-    margin-left: 480px;
     background-color: transparent;
     border: none;
+    float: right;
+    padding-left: 0.05em;
 
     :hover {
         cursor: pointer;
+    }
+`;
+
+const DrinkLikeImg = styled.img`
+    width: 1.7em;
+
+    @media (max-width: 767px) {
+        width: 1.692em;
     }
 `;
 
 const SeeReview = styled.button`
     position: absolute;
-    margin-left: 103px;
+    margin-left: 6.438em;
     background-color: transparent;
     border: none;
 
     font-family: 'GmarketSansLight';
     font-weight: bold;
-    font-size: 15px;
-    line-height: 18px;
+    font-size: 0.938em;
+    line-height: 1.2em;
     color: #8b7e6a;
 
     :hover {
         cursor: pointer;
+    }
+
+    @media (max-width: 767px) {
+        font-size: 0.813em;
+        line-height: 1.3em;
     }
 `;
 
@@ -271,43 +445,73 @@ const Line = styled.div<{
     margintop: number;
     marginbottom: number;
     width: number;
+    mediamargintop: number;
+    mediamarginbottom: number;
+    mediawidth: number;
 }>`
-    margin-top: ${(props) => props.margintop}px;
-    margin-bottom: ${(props) => props.marginbottom}px;
-    width: ${(props) => props.width}px;
+    margin-top: ${(props) => props.margintop}em;
+    margin-bottom: ${(props) => props.marginbottom}em;
+    width: ${(props) => props.width}em;
     border-bottom: 1px solid #bbb6a8;
+
+    @media (max-width: 767px) {
+        margin-top: ${(props) => props.mediamargintop}em;
+        margin-bottom: ${(props) => props.mediamarginbottom}em;
+        width: ${(props) => props.mediawidth}em;
+    }
 `;
 
 const DrinkBrewery = styled.div`
-    font-size: 18px;
-    line-height: 18px;
+    font-size: 1.125em;
+    line-height: 1.125em;
     letter-spacing: -0.01em;
     color: #8b7e6a;
+
+    @media (max-width: 767px) {
+        font-size: 0.938em;
+        line-height: 0.938em;
+    }
 `;
 
 const DrinkDescription = styled.div`
-    margin-top: 20px;
-    margin-bottom: 50px;
-    width: 511px;
+    margin-top: 1.438em;
+    margin-bottom: 3.125em;
+    width: 28em;
 
     font-family: 'GmarketSansLight';
     font-weight: 300;
-    font-size: 18px;
-    line-height: 31px;
+    font-size: 1.125em;
+    line-height: 1.938em;
     color: #8b7e6a;
-    word-break: keep-all;
+
+    @media (max-width: 767px) {
+        margin-top: 1.25em;
+        margin-bottom: 0em;
+        width: 18.3em;
+        font-size: 0.938em;
+        line-height: 172.5%;
+    }
 `;
 
 const DrinkTaste = styled.div`
-    margin-top: 237.97px;
+    margin-top: 15.373em;
 
     h1 {
-        margin-left: 7px;
+        margin-left: 0.438em;
 
-        font-size: 30px;
-        line-height: 30px;
+        font-size: 1.563em;
+        line-height: 1.563em;
         letter-spacing: -0.01em;
         color: #675b4f;
+    }
+    @media (max-width: 767px) {
+        margin-top: 8.75em;
+
+        h1 {
+            margin-left: 0em;
+            font-size: 0.938em;
+            line-height: 0.938em;
+        }
     }
 `;
 
@@ -316,17 +520,30 @@ const TasteText = styled.div`
     justify-content: center;
 
     h2 {
-        margin-right: 20px;
+        margin-right: 1.25em;
 
-        font-size: 25px;
-        line-height: 25px;
+        font-size: 1.563em;
+        line-height: 1.563em;
         letter-spacing: -0.01em;
         color: #8b7e6a;
     }
-
     h3 {
-        margin-right: 20px;
-        font-size: 18px;
+        margin-right: 1.25em;
+        font-size: 1.125em;
+    }
+
+    @media (max-width: 767px) {
+        h2 {
+            margin-right: 0.438em;
+            font-size: 0.719em;
+            line-height: 0.75em;
+        }
+
+        h3 {
+            margin-right: 0.438em;
+            font-size: 0.75em;
+            line-height: 0.75em;
+        }
     }
 `;
 
@@ -334,23 +551,39 @@ const TasteBox = styled.div`
     display: flex;
     justify-content: center;
 
-    margin-top: 55px;
-    margin-bottom: 184px;
+    margin-top: 3.438em;
+    margin-bottom: 12em;
+
+    @media (max-width: 767px) {
+        margin-top: 1.438em;
+        margin-bottom: 3.875em;
+    }
 `;
 
 const Box = styled.div`
-    width: 750px;
-    height: 65px;
+    width: 46.875em;
+    height: 4.063em;
     border: 1px solid #8b7e6a;
-    border-radius: 18px;
+    border-radius: 1.125em;
+    @media (max-width: 767px) {
+        width: 19.688em;
+        height: 1.813em;
+        border-radius: 0.625em;
+    }
 `;
 
-const Circle = styled.div<{ marginleft: number }>`
+const Circle = styled.div<{ marginleft: number; mediamarginleft: number }>`
     position: absolute;
-    width: 27px;
-    height: 27px;
-    margin-left: ${(props) => props.marginleft}px;
-    margin-top: 19px;
+    width: 1.688em;
+    height: 1.688em;
+    margin-left: ${(props) => props.marginleft}em;
+    margin-top: 1.188em;
     background: #8b7e6a;
-    border-radius: 100px;
+    border-radius: 50%;
+    @media (max-width: 767px) {
+        width: 0.875em;
+        height: 0.875em;
+        margin-left: ${(props) => props.mediamarginleft}em;
+        margin-top: 0.438em;
+    }
 `;

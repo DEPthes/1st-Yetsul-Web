@@ -24,7 +24,7 @@ const main: React.FC = () => {
     const [contents, setContents] = useState<string>('');
     const [isWrite, setIsWrite] = useState<boolean>(false);
     let formData = new FormData();
-    const { id } = useParams();
+    const { alcoholId, reviewId } = useParams();
 
     const titleChange = (e: React.FormEvent<HTMLInputElement>): void => {
         const target = e.target as HTMLTextAreaElement;
@@ -52,28 +52,8 @@ const main: React.FC = () => {
         formData.append('star', starCount.toString());
 
         axios
-            .post(`http://depth-server.herokuapp.com/review/${id}`, formData, {
-                headers: { Authorization: `Bearer ${getAccessToken()}` },
-            })
-            .then(() => {
-                // eslint-disable-next-line no-alert
-                alert('리뷰작성이 완료되었습니다.');
-                window.location.replace(`/list/${id}/spec`);
-            });
-    };
-
-    const temporarySave = () => {
-        if (formData) {
-            formData = new FormData();
-        }
-        appendFormData();
-        formData.append('title', title);
-        formData.append('content', contents);
-        formData.append('star', starCount.toString());
-
-        axios
             .post(
-                `https://depth-server.herokuapp.com/review/${id}/temporary`,
+                `http://depth-server.herokuapp.com/review/${alcoholId}/update/${reviewId}`,
                 formData,
                 {
                     headers: { Authorization: `Bearer ${getAccessToken()}` },
@@ -81,10 +61,12 @@ const main: React.FC = () => {
             )
             .then(() => {
                 // eslint-disable-next-line no-alert
-                alert('임시저장 되었습니다.');
+                alert('리뷰수정이 완료되었습니다.');
+                window.location.replace(
+                    `/review/alcohol${alcoholId}/review${reviewId}`,
+                );
             });
     };
-
     useEffect(() => {
         const input = document.querySelector(
             '.upload-name',
@@ -127,7 +109,6 @@ const main: React.FC = () => {
     }, [fileList]);
 
     const onLoadFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.files);
         if (e.target.files) {
             const fileArr: FileList = e.target.files;
             const newArr: File[] = [];
@@ -146,6 +127,52 @@ const main: React.FC = () => {
     const setStar = (star: number) => {
         setStarCount(star);
     };
+
+    const convertURLtoFile = async (url: string) => {
+        const response = await fetch(
+            `https://accountercors.herokuapp.com/${url}`,
+            {
+                mode: 'cors',
+            },
+        );
+        const data = await response.blob();
+        const filename = 'uploadImg'; // url 구조에 맞게 수정할 것
+        const metadata = { type: `image/jpeg` };
+        return new File([data], filename, metadata);
+    };
+
+    const [loading, setLoading] = useState<boolean>(false);
+
+    const updateReview = async () => {
+        const fileArr: File[] = [];
+        await axios
+            .get(
+                `http://depth-server.herokuapp.com/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+            )
+            .then(async (res) => {
+                setLoading(true);
+                // eslint-disable-next-line no-restricted-syntax
+                for (const url of res.data.reviewImgUrl) {
+                    // eslint-disable-next-line no-await-in-loop
+                    await convertURLtoFile(url).then(async (res) => {
+                        console.log(res);
+                        fileArr.push(res);
+                    });
+                }
+                console.log(fileArr);
+
+                setFileList(fileList ? fileList.concat(fileArr) : fileArr);
+                setLoading(false);
+
+                setContents(res.data.content);
+                setTitle(res.data.title);
+                setStarCount(res.data.star);
+            });
+    };
+
+    useEffect(() => {
+        updateReview();
+    }, []);
 
     useEffect(() => {
         if (
@@ -172,6 +199,7 @@ const main: React.FC = () => {
                             <input
                                 type="text"
                                 placeholder="제목을 입력해주세요"
+                                value={title}
                                 onChange={titleChange}
                             />
                         </InputTextContent>
@@ -213,10 +241,15 @@ const main: React.FC = () => {
                             </ImageInsertInsert>
                         </ImageInsert>
                     )}
-                    <textarea
-                        placeholder="내용을 입력해주세요"
-                        onChange={contentsChange}
-                    />
+                    {loading ? (
+                        <div>Loading</div>
+                    ) : (
+                        <textarea
+                            placeholder="내용을 입력해주세요"
+                            onChange={contentsChange}
+                            value={contents}
+                        />
+                    )}
                 </MainContentInput>
             </MainMain>
             <MainFoot>
@@ -294,10 +327,7 @@ const main: React.FC = () => {
             </MainFoot>
             <Foot>
                 <button type="button" onClick={postReview}>
-                    <p>등록하기</p>
-                </button>
-                <button type="button" onClick={temporarySave}>
-                    <p>임시저장</p>
+                    <p>수정하기</p>
                 </button>
             </Foot>
         </Main>
@@ -382,15 +412,13 @@ const Foot = styled.div`
     }
 `;
 
-const ReviewWrite: React.FC = () => {
-    const { id } = useParams();
+const ReviewEdit: React.FC = () => {
+    const { alcoholId } = useParams();
     const [drinks, setDrinks] = useState<DrinkDetailType>(Object); // 술 상세 정보
 
     useEffect(() => {
         axios
-            .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${id}/spec`,
-            )
+            .get(`https://depth-server.herokuapp.com/review/${alcoholId}/spec`)
             .then((res) => {
                 setDrinks(res.data.alcohol);
             })
@@ -400,7 +428,7 @@ const ReviewWrite: React.FC = () => {
     return <ReviewTemplate Head={head} Main={main} drinkInfo={drinks} />;
 };
 
-export default ReviewWrite;
+export default ReviewEdit;
 
 const Header = styled.div`
     width: 100%;

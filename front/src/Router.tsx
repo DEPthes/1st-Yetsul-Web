@@ -16,16 +16,19 @@ import { MyReviewAll } from './components/profile/MyReviewAll';
 import { MyLikeAll } from './components/profile/MyLikeAll';
 import ReviewWrite from './components/Review/ReviewWrite/ReviewWrite';
 import KakaoLogin from './components/Login/KakaoLogin';
-import AllDrinkRecommend from './components/BlockPage/RecommendBlocks';
+import AllDrinkRecommend from './components/BlockPage/Recommend';
 import RecommendSlot from './components/BlockPage/RecommendSlot';
 import RecommendTicket from './components/BlockPage/RecommendTicket';
+import DrinkTradition from './components/Tradition/DrinkTradition';
 import SoolotMachine from './components/soolotmachine/SoolotMachine';
 import SoolotMachineResult from './components/soolotmachine/SoolotMachineResult';
-import DrinkTradition from './components/Tradition/DrinkTradition';
+import ScrollToTop from './utils/scrollToTop';
+import ReviewEdit from './components/Review/ReviewWrite/ReviewEdit';
 
 const Router: React.FC = () => {
     return (
         <BrowserRouter>
+            <ScrollToTop />
             <Header />
             <Routes>
                 <Route path="/" element={<App />} />
@@ -33,12 +36,12 @@ const Router: React.FC = () => {
                     path="/auth/:service/callback"
                     element={<KakaoLogin />}
                 />
+                <Route path="/tradition" element={<DrinkTradition />} />
                 <Route path="/auth/*" element={<KakaoLogin />} />
                 <Route path="/service" element={<Service />} />
                 <Route path="/list/:id/spec" element={<DrinkDetail />} />
                 <Route path="/list" element={<DrinkList />} />
                 <Route path="/month" element={<MonthDrink />} />
-                <Route path="/Tradition" element={<DrinkTradition />} />
                 {/* <Route path="/soolot" element={<SoolotMachine />} /> */}
                 <Route path="/ticketbox" element={<DrinkTestBox />} />
                 <Route path="/profile" element={<Profile />} />
@@ -54,6 +57,10 @@ const Router: React.FC = () => {
                 <Route
                     path="/review/alcohol:alcoholId/review:reviewId"
                     element={<ReviewDetail />}
+                />
+                <Route
+                    path="/review/alcohol:alcoholId/review:reviewId/edit"
+                    element={<ReviewEdit />}
                 />
                 <Route path="/list/:id/write" element={<ReviewWrite />} />
                 <Route
