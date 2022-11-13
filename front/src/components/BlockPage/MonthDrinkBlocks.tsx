@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import BackgroundTemplate from '../common/BackgroundTemplate';
-import RecommentBlock from './RecommentBlock';
+import MonthBlock from './Block';
 
-const AllDrinkRecommend = () => {
+const MonthDrink: React.FC = () => {
     const [hv, setHv] = useState('100%');
     useEffect(() => {
         if (
@@ -24,25 +23,23 @@ const AllDrinkRecommend = () => {
         <BackgroundTemplate heightValue={hv}>
             <Inner>
                 <Head>
-                    <h1>옛술 추천</h1>
-                    <span>* 취향에 맞는 다양한 전통주를 추천해드립니다!</span>
+                    <h1>이달의 전통주</h1>
+                    <span>전통주 이야기와 함께하는 이달의 전통주 추천!</span>
                 </Head>
                 <Content>
                     <MonthList>
-                        <MonthContent to="/RecommendTicket">
-                            <RecommentBlock
-                                contentName="옛술의 전당"
-                                img="/images/Recommend_Ticket.png"
-                                contentNumber={1}
-                            />
-                        </MonthContent>
-                        <MonthContent to="/RecommendTicket">
-                            <RecommentBlock
-                                contentName="슬롯머신"
-                                img="/images/Recommend_Slot.png"
+                        <MonthBlock
+                            contentName="9월"
+                            img="/images/septemberDrink.png"
+                            contentNumber={1}
+                        />
+                        <div>
+                            <MonthBlock
+                                contentName="10월"
+                                img="/images/septemberDrink.png"
                                 contentNumber={2}
                             />
-                        </MonthContent>
+                        </div>
                     </MonthList>
                 </Content>
             </Inner>
@@ -76,7 +73,6 @@ const Head = styled.div`
     @media (max-width: 767px) {
         margin-top: 43px;
         padding-bottom: 25px;
-        margin-bottom: 30px;
     }
     h1 {
         font-size: 30px;
@@ -99,12 +95,12 @@ const Head = styled.div`
         }
     }
 `;
-
 const Content = styled.div`
     margin-top: 44px;
     width: 100%;
     display: flex;
     flex-direction: column;
+
     @media (max-width: 767px) {
         margin-top: 30px;
     }
@@ -115,11 +111,9 @@ const MonthList = styled.div`
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-
     h1 {
         font-size: 25px;
         margin-bottom: 20px;
-
         @media (max-width: 767px) {
             font-weight: 400;
             font-size: 18px;
@@ -129,24 +123,4 @@ const MonthList = styled.div`
     }
 `;
 
-const MonthContent = styled(Link)`
-    width: 523px;
-    height: 205px;
-    border-radius: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 35px;
-    text-decoration: none;
-    color: #8e8372;
-
-    @media (max-width: 767px) {
-        width: 337px;
-        height: 133px;
-        font-weight: 400;
-        font-size: 20px;
-        line-height: 20px;
-        margin-bottom: 70px;
-    }
-`;
-export default AllDrinkRecommend;
+export default MonthDrink;

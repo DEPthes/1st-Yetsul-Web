@@ -2,7 +2,7 @@ import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import styled from 'styled-components';
 
-const RecommentBlock: React.FC<{
+const MonthBlock: React.FC<{
     contentName: string;
     img: string;
     contentNumber: number;
@@ -10,7 +10,6 @@ const RecommentBlock: React.FC<{
     const isMobile = useMediaQuery({
         query: '(max-width:767px)',
     });
-
     const onMouseOver = () => {
         $(`#hover-button-${contentNumber}`).css('transform', 'scale(2)');
         $(`#hover-icon-${contentNumber}`).css('opacity', '1');
@@ -22,8 +21,8 @@ const RecommentBlock: React.FC<{
     return (
         <div>
             <h1>{contentName}</h1>
-            <Content onMouseEnter={onMouseOver} onMouseLeave={onMouseOut}>
-                <ContentImg src={img} alt="9Drink" />
+            <MonthContent onMouseEnter={onMouseOver} onMouseLeave={onMouseOut}>
+                <DrinkImg src={img} alt="9Drink" />
                 <AnimationBtnImg id={`hover-button-${contentNumber}`}>
                     <svg
                         width={isMobile ? '15' : '23'}
@@ -49,12 +48,12 @@ const RecommentBlock: React.FC<{
                         />
                     </svg>
                 </AnimationBtnImg>
-            </Content>
+            </MonthContent>
         </div>
     );
 };
 
-export default RecommentBlock;
+export default MonthBlock;
 
 const AnimationBtnImg = styled.div`
     position: absolute;
@@ -71,7 +70,7 @@ const AnimationBtnImg = styled.div`
     }
 `;
 
-const Content = styled.div`
+const MonthContent = styled.div`
     cursor: pointer;
     position: relative;
     background-color: #eae8e4;
@@ -82,7 +81,6 @@ const Content = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 35px;
-
     @media (max-width: 767px) {
         width: 337px;
         height: 133px;
@@ -98,7 +96,6 @@ const Content = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-
         @media (max-width: 767px) {
             display: flex;
             align-items: center;
@@ -115,7 +112,6 @@ const Content = styled.div`
         position: absolute;
         bottom: 15px;
         left: 15px;
-
         @media (max-width: 767px) {
             position: relative;
             left: -145px;
@@ -124,7 +120,7 @@ const Content = styled.div`
     }
 `;
 
-const ContentImg = styled.img`
+const DrinkImg = styled.img`
     display: flex;
     justify-content: center;
     align-items: center;
