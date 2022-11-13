@@ -1,8 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Star from '../common/Star';
 
 type ReviewType = {
+    alcoholId: number;
+    id: number;
     star: number;
     title: string;
     nickname: string;
@@ -11,6 +14,8 @@ type ReviewType = {
 };
 
 const ReviewDetailList: React.FC<ReviewType> = ({
+    alcoholId,
+    id,
     star,
     title,
     nickname,
@@ -19,13 +24,15 @@ const ReviewDetailList: React.FC<ReviewType> = ({
 }) => {
     return (
         <ListWrapper>
-            <BoardList>
-                <Star star={star} widthValue={28} heightValue={28} />
-                <div>{title}</div>
-                <div>{nickname}</div>
-                <div>{date.slice(0, 10)}</div>
-                <div>👍 {like}</div>
-            </BoardList>
+            <Link to={`/review/alcohol${alcoholId}/review${id}`}>
+                <BoardList>
+                    <Star star={star} widthValue={28} heightValue={28} />
+                    <div>{title}</div>
+                    <div>{nickname}</div>
+                    <div>{date.slice(0, 10)}</div>
+                    <div>👍 {like}</div>
+                </BoardList>
+            </Link>
         </ListWrapper>
     );
 };
@@ -42,6 +49,8 @@ const BoardList = styled.div`
     display: flex;
     align-items: center;
     position: relative;
+    color: #8d837b;
+    text-decoration: none;
 
     div {
         position: absolute;

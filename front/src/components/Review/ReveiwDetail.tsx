@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import styled from 'styled-components';
+import { getUserLocalStorage } from '../../services/userControl';
 import { setListModal } from '../../store/slices/listModalSlice';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import Star from '../common/Star';
@@ -41,6 +42,7 @@ type drinkType = {
     star: number;
     AlcoholByVolume: string;
     alcoholImage: string;
+    id: number;
 };
 
 const ReviewDetail: React.FC = () => {
@@ -103,6 +105,10 @@ const ReviewDetail: React.FC = () => {
     useEffect(() => {
         listSplice();
     }, [list]);
+
+    const onClickEdit = () => {
+        navigate(`/review/alcohol${alcoholId}/review${reviewId}/edit`);
+    };
 
     return (
         <BackgroundTemplate heightValue="auto">
@@ -187,18 +193,24 @@ const ReviewDetail: React.FC = () => {
                     </ContentHeader>
                     <Content>
                         <ImgWrapper>
-                            {reviewImg.map((i, index) => {
-                                // eslint-disable-next-line react/jsx-key
-                                return (
-                                    // eslint-disable-next-line react/no-array-index-key
-                                    <li key={index}>
-                                        <img src={i} alt="reviewImgUrl" />
-                                    </li>
-                                );
-                            })}
+                            {reviewImg &&
+                                reviewImg.map((i, index) => {
+                                    // eslint-disable-next-line react/jsx-key
+                                    return (
+                                        // eslint-disable-next-line react/no-array-index-key
+                                        <li key={index}>
+                                            <img src={i} alt="reviewImgUrl" />
+                                        </li>
+                                    );
+                                })}
                         </ImgWrapper>
                         {review.content}
                     </Content>
+                    {review.userId === getUserLocalStorage().id && (
+                        <EditWrap>
+                            <EditBtn onClick={onClickEdit}>수정하기</EditBtn>
+                        </EditWrap>
+                    )}
                 </ReviewWrapper>
 
                 <Header id="headerScroll">
@@ -214,6 +226,8 @@ const ReviewDetail: React.FC = () => {
                         // eslint-disable-next-line react/no-array-index-key
                         <li key={index}>
                             <ReviewDetailList
+                                alcoholId={drink.id}
+                                id={list.id}
                                 star={list.star}
                                 title={list.title}
                                 nickname={list.nickname}
@@ -229,6 +243,31 @@ const ReviewDetail: React.FC = () => {
 };
 
 export default ReviewDetail;
+
+const EditWrap = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1.25em 0px 0px 0px;
+`;
+
+const EditBtn = styled.button`
+    width: 7.95em;
+    height: 2.55em;
+    background: #8b7e6a;
+    border: 1px solid #8b7e6a;
+    border-radius: 0.9em;
+    cursor: pointer;
+
+    font-family: 'Gmarket Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25em;
+    line-height: 1em;
+    letter-spacing: -0.01em;
+    color: #ffffff;
+`;
 
 const DrinkEl = styled.div`
     position: absolute;
