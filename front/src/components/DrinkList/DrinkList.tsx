@@ -374,7 +374,7 @@ const Inner = styled.div`
     height: auto;
     padding-top: 9.188em;
     @media (max-width: 767px) {
-        width: 20.75em;
+        width: calc(100% - 5em); //20.75em;
         padding-top: 8.75em;
     }
 `;
@@ -481,16 +481,17 @@ const Category = styled.div`
     @media (max-width: 767px) {
         border-bottom: 1px solid #bbb6a8;
         padding-bottom: 0.625em;
+        width: 100%;
         ul {
+            width: 100%;
             flex-wrap: wrap;
             li {
                 margin-right: 0 !important;
                 margin-bottom: 0.75em;
+                width: 30%;
             }
             li:not(:nth-of-type(3n)) {
-                margin-right: calc(
-                    ((20.75em - (6.125em * 3)) / 2) - 3px
-                ) !important;
+                margin-right: 5% !important;
             }
         }
     }
@@ -512,6 +513,7 @@ const DrinkElList = styled.div`
     }
     @media (max-width: 767px) {
         margin-bottom: 2.063em;
+        width: 100%;
         > div {
             width: 100%;
             display: flex;
@@ -520,9 +522,13 @@ const DrinkElList = styled.div`
             justify-content: center;
         }
         ul {
+            width: 100%;
+
             li {
+                position: relative;
                 margin-right: 0.313em !important;
                 margin-bottom: 0.438em !important;
+                width: calc(50% - 0.1565em);
             }
             li:nth-of-type(2n) {
                 margin-right: 0 !important;
