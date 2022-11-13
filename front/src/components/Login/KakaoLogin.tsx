@@ -14,7 +14,7 @@ const KakaoLogin: React.FC = () => {
         fetch('https://kauth.kakao.com/oauth/token', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `grant_type=authorization_code&client_id=301680b168fe30cd27fdafb039d82a6a&redirect_uri=http://localhost:3000/auth/kakaologin&code=${KAKAO_CODE}`,
+            body: `grant_type=authorization_code&client_id=e2d1c7ba92ca798e88509878ae8f44ee&redirect_uri=http://localhost:3000/auth/kakaologin&code=${KAKAO_CODE}`,
         })
             .then((res) => res.json())
             .then((data) => {
@@ -33,7 +33,7 @@ const KakaoLogin: React.FC = () => {
     const getJwtToken = () => {
         axios
             .get(
-                `http://depth-server.herokuapp.com/auth/createjwttoken/${localStorage.getItem(
+                `https://depth-server.herokuapp.com/auth/createjwttoken/${localStorage.getItem(
                     'token',
                 )}`,
             )
