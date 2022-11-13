@@ -274,6 +274,7 @@ const DrinkList: React.FC = () => {
                                       .slice(offset, offset + limit)
                                       .map(
                                           (drink: {
+                                              alcoholOfMonth: boolean;
                                               id: number;
                                               category: number;
                                               alcoholImage: string;
@@ -284,6 +285,9 @@ const DrinkList: React.FC = () => {
                                               return (
                                                   <li key={drink.id}>
                                                       <DrinkListElement
+                                                          alcoholOfMonth={
+                                                              drink.alcoholOfMonth
+                                                          }
                                                           id={drink.id}
                                                           img={
                                                               drink.alcoholImage
@@ -305,6 +309,7 @@ const DrinkList: React.FC = () => {
                                       )
                                 : sliceDrinksRender.map(
                                       (drink: {
+                                          alcoholOfMonth: boolean;
                                           id: number;
                                           category: number;
                                           alcoholImage: string;
@@ -315,6 +320,9 @@ const DrinkList: React.FC = () => {
                                           return (
                                               <li key={drink.id}>
                                                   <DrinkListElement
+                                                      alcoholOfMonth={
+                                                          drink.alcoholOfMonth
+                                                      }
                                                       id={drink.id}
                                                       img={drink.alcoholImage}
                                                       category={drink.category}
@@ -538,6 +546,7 @@ const DrinkElList = styled.div`
 `;
 
 type DrinkType = {
+    alcoholOfMonth: boolean;
     children: ReactNode;
     id: number;
     AlcoholName: string;
