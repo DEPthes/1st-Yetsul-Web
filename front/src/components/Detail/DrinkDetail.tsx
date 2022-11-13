@@ -222,6 +222,7 @@ const DrinkDetail: React.FC = () => {
             <Inner id="listModalBack">
                 <DrinkInfoWrapper>
                     <DrinkDetailElement
+                        id={drinks.id}
                         AlcoholName={drinks.AlcoholName}
                         category={drinks.category}
                         brewery={drinks.brewery}

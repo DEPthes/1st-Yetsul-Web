@@ -7,6 +7,7 @@ import axios from 'axios';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import { getAccessToken } from '../../services/tokenControl';
 import { ProfileHeader } from './profileHeader';
+import { userAPI } from '../../services/userControl';
 
 export const FixProfile: React.FC = () => {
     const [userData, setUserData] = useState<UserType>(Object);
@@ -48,9 +49,10 @@ export const FixProfile: React.FC = () => {
                     },
                 },
             )
-            .then(() => {
+            .then(async () => {
                 // eslint-disable-next-line no-alert
                 alert('변경되었습니다');
+                await userAPI();
                 navigate('/profile');
             });
     };

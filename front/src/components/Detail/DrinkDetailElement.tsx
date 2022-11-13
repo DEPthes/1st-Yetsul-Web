@@ -1,10 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Star from '../common/Star';
 
 export interface DrinkDetailElementType {
+    id: number;
     AlcoholName: string; // 술 이름
     category: number; // 주종
     brewery: string; // 양조장
@@ -24,6 +24,7 @@ export interface DrinkDetailElementType {
 }
 
 const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
+    id,
     AlcoholName,
     category,
     brewery,
@@ -41,7 +42,6 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
     likeCount,
     reviewCount,
 }) => {
-    const { id } = useParams();
     const [like, setLike] = useState(false);
 
     const getData = () => {
