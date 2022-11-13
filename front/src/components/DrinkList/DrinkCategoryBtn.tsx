@@ -43,7 +43,7 @@ const BtnWrap = styled.div<BtnType>`
     justify-content: center;
     cursor: pointer;
     background: ${(props) =>
-        props.temp === props.category ? `#454038` : `rgba(0, 0, 0, 0)`};
+        props.temp === props.category ? `#8b7e6a` : `rgba(0, 0, 0, 0)`};
     color: ${(props) => (props.temp === props.category ? `#fff` : `#8b7e6a`)};
     p {
         font-size: 0.938em;

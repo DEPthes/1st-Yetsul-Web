@@ -4,20 +4,24 @@ import axios from 'axios';
 import Star from '../common/Star';
 
 type myreviewtype = {
+    id: number;
     alcoholId: number;
     title: string;
     star: number;
+    getData: () => Promise<void>;
 };
 
 export const MyReviewModalWidget: React.FC<myreviewtype> = ({
+    id,
     alcoholId,
     title,
     star,
+    getData,
 }) => {
     const MyreviewAlcoholId = alcoholId;
     const [MyreviewAlcoholData, setMyreviewAlcoholData] = useState(Object);
 
-    const getData = () => {
+    const getData2 = () => {
         const JWT = localStorage.getItem('accessToken') || '';
         return axios.create({
             headers: { Authorization: `Bearer ${JWT}` },
@@ -25,7 +29,7 @@ export const MyReviewModalWidget: React.FC<myreviewtype> = ({
     };
 
     useEffect(() => {
-        getData()
+        getData2()
             .get(
                 `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/alcohol/description/${MyreviewAlcoholId}`,
             )
@@ -63,6 +67,18 @@ export const MyReviewModalWidget: React.FC<myreviewtype> = ({
         }
     }, [MyreviewAlcoholCategoryNum]);
 
+    const deleteTemporary = async () => {
+        // eslint-disable-next-line no-restricted-globals, no-alert
+        if (confirm('정말 삭제하시겠습니까??') === true) {
+            await axios.delete(
+                `https://depth-server.herokuapp.com/review?alcoholId=${alcoholId}&reviewId=${id}`,
+            );
+            // eslint-disable-next-line no-alert
+            alert('리뷰가 삭제되었습니다.');
+            getData();
+        }
+    };
+
     return (
         <MyreviewBarInner>
             <MyreviewDrinkImgSection>
@@ -85,9 +101,57 @@ export const MyReviewModalWidget: React.FC<myreviewtype> = ({
                 </StarBox>
                 <SeeFull>이어쓰기 &#62;</SeeFull>
             </MyreviewRightSection>
+            <RightRightSection>
+                <CloseBtn>
+                    <svg
+                        width="38"
+                        height="39"
+                        viewBox="0 0 38 39"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        onClick={() => {
+                            deleteTemporary();
+                        }}
+                    >
+                        <path
+                            d="M11.1003 26.6909L25.9046 11.8866"
+                            stroke="black"
+                            strokeWidth="1.3"
+                            strokeLinecap="round"
+                        />
+                        <path
+                            d="M11.1003 11.8862L25.9046 26.6905"
+                            stroke="black"
+                            strokeWidth="1.3"
+                            strokeLinecap="round"
+                        />
+                    </svg>
+                </CloseBtn>
+            </RightRightSection>
         </MyreviewBarInner>
     );
 };
+
+const RightRightSection = styled.div`
+    position: relative;
+    display: flex;
+    height: 100%;
+    width: 1.75em;
+`;
+
+const CloseBtn = styled.div`
+    position: absolute;
+    cursor: pointer;
+    top: 0.388em;
+    right: 0.388em;
+    > svg {
+        width: 1.75em;
+        height: 1.75em;
+        > path {
+            stroke-width: 2.3;
+        }
+    }
+`;
 
 const MyreviewBarInner = styled.div`
     width: 97%;
@@ -95,6 +159,7 @@ const MyreviewBarInner = styled.div`
     border-radius: 18px;
     margin-bottom: 0.865vw;
     display: flex;
+    justify-content: space-around;
     @media screen and (max-width: 767px) {
         border-radius: 12px;
         margin-bottom: 1.795vw;
