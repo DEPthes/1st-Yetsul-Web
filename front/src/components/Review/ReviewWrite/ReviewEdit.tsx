@@ -15,21 +15,6 @@ const head: React.FC = () => {
     );
 };
 
-type ReviewDetailElType = {
-    id: number;
-    title: string;
-    content: string;
-    star: number;
-    reviewImgUrl: [];
-    date: string;
-    like: number;
-    userId: number;
-    alcoholId: number;
-    viewCount: number;
-    profileImg: string;
-    nickname: string;
-};
-
 const main: React.FC = () => {
     const [fileList, setFileList] = useState<File[]>();
     const [imgs, setImgs] = useState<Array<string | ArrayBuffer>>([]);
@@ -82,30 +67,6 @@ const main: React.FC = () => {
                 );
             });
     };
-
-    const temporarySave = () => {
-        if (formData) {
-            formData = new FormData();
-        }
-        appendFormData();
-        formData.append('title', title);
-        formData.append('content', contents);
-        formData.append('star', starCount.toString());
-
-        axios
-            .post(
-                `http://depth-server.herokuapp.com/review/${alcoholId}/temporary`,
-                formData,
-                {
-                    headers: { Authorization: `Bearer ${getAccessToken()}` },
-                },
-            )
-            .then(() => {
-                // eslint-disable-next-line no-alert
-                alert('임시저장 되었습니다.');
-            });
-    };
-
     useEffect(() => {
         const input = document.querySelector(
             '.upload-name',
