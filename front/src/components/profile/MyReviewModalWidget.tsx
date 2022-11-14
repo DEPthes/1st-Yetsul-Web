@@ -97,7 +97,7 @@ export const MyReviewModalWidget: React.FC<myreviewtype> = ({
             </MyreviewInformationSection>
             <MyreviewRightSection>
                 <StarBox>
-                    <Star star={star} widthValue={10} heightValue={14} />
+                    <Star star={star} widthValue={0.625} />
                 </StarBox>
                 <SeeFull>이어쓰기 &#62;</SeeFull>
             </MyreviewRightSection>

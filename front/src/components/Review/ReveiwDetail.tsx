@@ -1,7 +1,7 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import axios from 'axios';
-import React, { useCallback, useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
@@ -194,11 +194,7 @@ const ReviewDetail: React.FC = () => {
 
                     <DrinkEl>
                         <div>
-                            <Star
-                                star={drink.star}
-                                widthValue={15}
-                                heightValue={15}
-                            />
+                            <Star star={drink.star} widthValue={0.938} />
 
                             <button
                                 onClick={() => {
@@ -225,11 +221,7 @@ const ReviewDetail: React.FC = () => {
                             <h3>{review.nickname}</h3>
                         </HeaderLeft>
 
-                        <Star
-                            star={review.star}
-                            widthValue={38.63}
-                            heightValue={39}
-                        />
+                        <Star star={review.star} widthValue={2.438} />
                     </ReviewHeader>
 
                     <ContentHeader>
@@ -269,11 +261,21 @@ const ReviewDetail: React.FC = () => {
                 </ReviewWrapper>
 
                 <Header id="headerScroll">
-                    <div>평점</div>
-                    <div>제목</div>
-                    <div>닉네임</div>
-                    <div>작성일</div>
-                    <div>추천수</div>
+                    <div>
+                        <p>평점</p>
+                    </div>
+                    <div>
+                        <p>제목</p>
+                    </div>
+                    <div>
+                        <p>닉네임</p>
+                    </div>
+                    <div>
+                        <p>작성일</p>
+                    </div>
+                    <div>
+                        <p>추천수</p>
+                    </div>
                 </Header>
 
                 {list.map((list, index) => {
@@ -352,67 +354,67 @@ const DrinkEl = styled.div`
 
     h1 {
         cursor: pointer;
-        font-size: 25px;
+        font-size: 1.563em;
         color: #675b4f;
     }
 
     h3 {
-        font-size: 20px;
+        font-size: 1.25em;
         color: #8b7e6a;
     }
 
     span {
-        width: 76px;
-        height: 34px;
-        font-size: 15px;
+        width: 5.067em;
+        height: 2.267em;
+        font-size: 0.938em;
         color: #454038;
 
         border: 1px solid #454038;
-        border-radius: 24px;
+        border-radius: 1.6em;
 
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-right: 17px;
+        margin-right: 1.133em;
     }
 `;
 
 const DrinkWrapper = styled.div`
-    width: 1145px;
-    height: 163px;
+    width: 71.563em;
+    height: 10.188em;
     border: 1px solid #675b4f;
-    border-radius: 18px;
+    border-radius: 1.125em;
     position: relative;
 
-    margin-bottom: 28px;
+    margin-bottom: 1.75em;
 
     img {
-        width: 90px;
-        height: 108px;
+        width: 5.625em;
+        height: 6.75em;
         object-fit: cover;
     }
 
     div:first-child {
-        top: 26px;
-        left: 101px;
+        top: 1.625em;
+        left: 6.313em;
     }
 
     div:nth-child(2) {
-        left: 452px;
-        top: 46px;
+        left: 28.25em;
+        top: 2.875em;
     }
 
     div:nth-child(3) {
-        left: 452px;
-        top: 102px;
+        left: 30.133em;
+        top: 6.8em;
 
-        font-size: 15px;
+        font-size: 0.938em;
         color: #8b7e6a;
 
         button {
-            margin-left: 10px;
+            margin-left: 0.667em;
             border: none;
-            font-size: 15px;
+            font-size: 1em;
             font-family: inherit;
             font-weight: inherit;
             color: #8b7e6a;
@@ -421,8 +423,13 @@ const DrinkWrapper = styled.div`
     }
 
     div:nth-child(4) {
-        right: 99px;
-        top: 51px;
+        right: 6.188em;
+        top: 3.188em;
+    }
+
+    @media (max-width: 767px) {
+        width: 20.75em;
+        height: 5.25em;
     }
 `;
 
@@ -430,10 +437,10 @@ const Inner = styled.div`
     display: flex;
     flex-direction: column;
 
-    width: 1129px;
+    width: 70.563em;
     height: auto;
-    padding-top: 147px;
-    padding-bottom: 100px;
+    padding-top: 9.188em;
+    padding-bottom: 6.25em;
 
     li {
         list-style: none;
@@ -441,18 +448,18 @@ const Inner = styled.div`
 `;
 
 const PrevBtn = styled.button`
-    padding: 2px 12px;
+    padding: 0.133em 0.8em;
 
-    width: 58px;
-    height: 43px;
-    font-size: 15px;
+    width: 3.867em;
+    height: 2.867em;
+    font-size: 0.938em;
     color: #3a3d40;
     background-color: inherit;
 
     border: 1px solid #675b4f;
-    border-radius: 18px;
-    margin-top: 100px;
-    margin-bottom: 16px;
+    border-radius: 1.2em;
+    margin-top: 6.667em;
+    margin-bottom: 1.067em;
 
     :hover {
         cursor: pointer;
@@ -462,17 +469,17 @@ const ImgWrapper = styled.div`
     display: flex;
     justify-content: flex-start;
     overflow-x: scroll;
-    margin-bottom: 44px;
+    margin-bottom: 2.75em;
     img {
-        width: 582px;
-        height: 465px;
+        width: 36.375em;
+        height: 29.063em;
         object-fit: contain;
-        margin-right: 22px;
-        margin-bottom: 19px;
+        margin-right: -1.375em;
+        margin-bottom: 1.188em;
     }
 
     ::-webkit-scrollbar {
-        height: 6px;
+        height: 0.375em;
     } /* 스크롤 바 */
 
     ::-webkit-scrollbar-thumb {
@@ -493,16 +500,16 @@ const ImgWrapper = styled.div`
 `;
 
 const Content = styled.div`
-    font-size: 25px;
+    font-size: 1.563em;
     color: #675b4f;
-    padding: 42px 28px;
+    padding: 1.68em 1.12em;
 `;
 
 const ContentHeader = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 32px;
+    padding: 1em 2em;
     div {
         display: flex;
         justify-content: center;
@@ -510,21 +517,21 @@ const ContentHeader = styled.div`
     }
 
     h3 {
-        font-size: 15px;
+        font-size: 0.938em;
         color: #8b7e6a;
-        margin-left: 15px;
+        margin-left: 1em;
     }
 `;
 
 const LikeBanner = styled.div`
-    width: 153px;
-    height: 32px;
+    width: 12.2em;
+    height: 2.967em;
     background: #675b4f;
-    border-radius: 18px;
+    border-radius: 1.2em;
 
-    margin-left: 32px;
+    margin-left: 2.133em;
 
-    font-size: 15px;
+    font-size: 0.938em;
 
     color: #ffffff;
 `;
@@ -532,72 +539,81 @@ const LikeBanner = styled.div`
 const LikeBtn = styled.button`
     box-sizing: border-box;
 
-    width: 107px;
-    height: 56px;
+    width: 5.688em;
+    height: 2.5em;
     background-color: inherit;
     border: 1px solid #675b4f;
-    border-radius: 52px;
+    border-radius: 3.25em;
 `;
 
 const ReviewHeader = styled.div`
-    height: 138px;
+    height: 8.625em;
     border-bottom: 1px solid #bbb6a8;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 45px;
+    padding: 0 2.813em;
 `;
 
 const HeaderLeft = styled.div`
     h1 {
-        font-size: 28px;
+        font-size: 1.75em;
 
         color: #675b4f;
-        margin-bottom: 14px;
+        margin-bottom: 0.5em;
     }
 
     h3 {
-        font-size: 15px;
+        font-size: 0.938em;
         color: #8b7e6a;
     }
 `;
 
 const ReviewWrapper = styled.div`
-    width: 1145px;
-    padding-bottom: 60px;
+    width: 71.563em;
+    padding-bottom: 3.75em;
 
     border: 1px solid #b8b8b8;
-    border-radius: 18px;
+    border-radius: 1.125em;
 `;
 const Header = styled.div`
-    margin-top: 50px;
+    margin-top: 3.125em;
     // 지우기
-    width: 1153px;
-    height: 72px;
+    width: 72.063em;
+    height: 4.5em;
     border-top: 1px solid #bbb6a8;
     border-bottom: 1px solid #bbb6a8;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 
     div {
-        font-size: 18px;
+        > p {
+            font-size: 1.125em;
+        }
         color: #8b7e6a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     div:first-child {
-        margin-right: 359px;
+        width: 11.438em;
     }
 
     div:nth-child(2) {
-        margin-right: 284px;
+        width: 17.75em;
     }
 
     div:nth-child(3) {
-        margin-right: 93px;
+        width: 7.813em;
+    }
+
+    div:nth-child(4) {
+        width: 8.813em;
     }
 
     div:last-child {
-        margin-left: 76px;
+        width: 4.75em;
     }
 `;

@@ -28,16 +28,10 @@ export const FavoriteAlcholWidget: React.FC<myliketype> = ({
                 <FavoriteAlcholLower>
                     <FavoriteAlcholNameABV>
                         <p>{AlcoholName}</p>
-                        <p>
-                            {AlcoholByVolume}%
-                        </p>
+                        <p>{AlcoholByVolume}%</p>
                     </FavoriteAlcholNameABV>
                     <FavoriteAlchilStarDiv>
-                        <Star
-                            star={StarValue}
-                            widthValue={10}
-                            heightValue={10}
-                        />
+                        <Star star={StarValue} widthValue={0.625} />
                     </FavoriteAlchilStarDiv>
                 </FavoriteAlcholLower>
             </FavoriteAlcholBox>
@@ -52,7 +46,7 @@ const LinkWrap = styled(Link)`
 
 const FavoriteAlcholBox = styled.div`
     width: 10.677vw;
-    height: 15.260vw;
+    height: 15.26vw;
     border: 1px solid #675b4f;
     border-radius: 18px;
     margin-right: 0.706vw;
@@ -80,7 +74,6 @@ const FavoriteAlcholImg = styled.img`
 
 const FavoriteAlcholLower = styled.div`
     width: 79.51%;
-
 `;
 
 const FavoriteAlcholNameABV = styled.div`
@@ -94,10 +87,8 @@ const FavoriteAlcholNameABV = styled.div`
     }
 `;
 
-
 const FavoriteAlchilStarDiv = styled.div`
     @media screen and (max-width: 767px) {
         margin-bottom: 3.103vw;
     }
-
 `;
