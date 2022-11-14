@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { getAccessToken } from '../../services/tokenControl';
 import Star from '../common/Star';
 
 export interface DrinkDetailElementType {
@@ -46,16 +47,30 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
 
     const getData = () => {
         const accessToken = localStorage.getItem('accessToken') || '';
-        console.log(accessToken);
         return axios.create({
             headers: { Authorization: `Bearer ${accessToken}` },
         });
     };
 
-    useEffect(() => {
+    const likeornot = async () => {
+        let alcolid;
+        await axios
+            .get(
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${id}/spec`,
+            )
+            .then((res) => {
+                alcolid = res.data.alcohol.id;
+            });
+
         getData()
             .post(
-                `http://depth-server.herokuapp.com/alcohol/description/${id}/likeornot`,
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/alcohol/description/${alcolid}/likeornot`,
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${getAccessToken()}`,
+                    },
+                },
             )
             .then((res) => {
                 if (res.data === 'LIKE') {
@@ -65,6 +80,10 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
                 }
             })
             .catch((err) => console.log(err));
+    };
+
+    useEffect(() => {
+        likeornot();
         window.addEventListener('resize', handleResize);
         return () => {
             window.removeEventListener('resize', handleResize);
@@ -82,7 +101,7 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
         try {
             await getData()
                 .post(
-                    `http://depth-server.herokuapp.com/alcohol/description/${id}`,
+                    `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/alcohol/description/${id}`,
                 )
                 .then((res) => {
                     setLikes(res.data.likeCount);
@@ -170,7 +189,7 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
                         {reviewCount < 100 ? `${reviewCount}건` : '+100'}) &gt;
                     </SeeReview>
                     <Star
-                        star={star}
+                        star={+star}
                         widthValue={windowSize.width >= 768 ? 0.9375 : 0.8125}
                     />
                     <Line
@@ -350,7 +369,6 @@ const DrinkImg = styled.img`
         margin-top: 0.75em;
         margin-right: 0em;
         width: 12em;
-        border: 1px solid #000;
     }
 `;
 

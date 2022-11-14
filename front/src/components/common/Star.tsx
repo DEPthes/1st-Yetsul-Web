@@ -26,7 +26,6 @@ const Star: React.FC<StarType> = ({ star, widthValue }) => {
     } else if (star === 5) {
         // setStarCount(5);
         starCounted = 5;
-        console.log(star);
     }
 
     return (

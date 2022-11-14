@@ -58,7 +58,7 @@ const main: React.FC = () => {
 
         axios
             .post(
-                `http://depth-server.herokuapp.com/review/${alcoholId}/update/${reviewId}`,
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${alcoholId}/update/${reviewId}`,
                 formData,
                 {
                     headers: { Authorization: `Bearer ${getAccessToken()}` },
@@ -152,7 +152,7 @@ const main: React.FC = () => {
         const fileArr: File[] = [];
         await axios
             .get(
-                `http://depth-server.herokuapp.com/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
             )
             .then(async (res) => {
                 setLoading(true);
@@ -345,8 +345,8 @@ const CloseBtn = styled.div`
     top: 0.188em;
     right: 0.188em;
     > svg {
-        width: 1.75em;
-        height: 1.75em;
+        width: 0.75em;
+        height: 0.75em;
         > path {
             stroke: #fff;
             stroke-width: 2.3;
@@ -420,7 +420,9 @@ const ReviewEdit: React.FC = () => {
 
     useEffect(() => {
         axios
-            .get(`https://depth-server.herokuapp.com/review/${alcoholId}/spec`)
+            .get(
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${alcoholId}/spec`,
+            )
             .then((res) => {
                 setDrinks(res.data.alcohol);
                 setReviewCount(res.data.reviewsWithUserInfo.length);
