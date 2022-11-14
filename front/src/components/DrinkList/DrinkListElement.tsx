@@ -537,7 +537,7 @@ const ImageWrap = styled.div`
     position: relative;
     height: 20.188em;
     width: 100%;
-    overflow: hidden;
+    // overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: flex-end;
@@ -549,9 +549,10 @@ const ImageWrap = styled.div`
     @media (max-width: 767px) {
         height: 75%;
         margin-bottom: 0;
+        align-items: center;
         img {
-            height: 6.875em;
-            width: 5.625em;
+            height: 75%;
+            // width: 5.625em;
         }
     }
 `;
