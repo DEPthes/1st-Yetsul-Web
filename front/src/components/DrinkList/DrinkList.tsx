@@ -20,7 +20,7 @@ const DrinkList: React.FC = () => {
     const pageRef = useRef(0);
     const maxPage = useRef(0);
     const offset = (page - 1) * limit; // 페이지 당 첫 게시물의 index
-    const [sort, setSort] = useState('ASC');
+    const [sort, setSort] = useState('DESC');
     const [isMobile, setIsMobile] = useState<boolean>(false);
     const [heightValue, setHeightValue] = useState('auto');
 
@@ -49,6 +49,10 @@ const DrinkList: React.FC = () => {
             } else {
                 setHeightValue('auto');
             }
+        } else if (drinks.length < 3) {
+            setHeightValue('100%');
+        } else {
+            setHeightValue('auto');
         }
     }, [drinks]);
 

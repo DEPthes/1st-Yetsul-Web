@@ -58,8 +58,8 @@ const SoolotMachineResult: React.FC = () => {
                                                     <div>
                                                         <div>
                                                             <svg
-                                                                width="14"
-                                                                height="14"
+                                                                width="13"
+                                                                height="13"
                                                                 viewBox="0 0 14 14"
                                                                 fill="none"
                                                                 xmlns="http://www.w3.org/2000/svg"
@@ -77,8 +77,8 @@ const SoolotMachineResult: React.FC = () => {
                                                             </p>
                                                         </div>
                                                         <div>
+                                                            <p>👍</p>
                                                             <p>
-                                                                👍{' '}
                                                                 {el.likeCount}
                                                             </p>
                                                         </div>
@@ -154,7 +154,7 @@ const ResultImage = styled.div`
     flex-direction: column;
     align-items: center;
     > img {
-        width: 8.125em;
+        height: 8.125em;
     }
     > div {
         display: flex;
@@ -164,9 +164,24 @@ const ResultImage = styled.div`
         margin-bottom: 0.5em;
         > div:first-of-type {
             margin-right: 1em;
+            align-items: center;
+            > p:first-of-type {
+                margin-top: 5px;
+            }
         }
         > div {
             display: flex;
+            align-items: center;
+            > p:first-of-type {
+                margin-top: 2px;
+            }
+            > p {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-left: 2px;
+                margin-top: 5px;
+            }
         }
     }
 `;
@@ -177,17 +192,19 @@ const ResultName = styled.div`
     align-items: center;
     margin-bottom: 0.75em;
     > h1 {
+        display: block;
         font-family: 'GmarketSansMedium';
         font-style: normal;
         font-weight: 400;
         font-size: 1.125em;
-        line-height: 100%;
+        line-height: 1.2em;
         letter-spacing: -0.01em;
         color: #675b4f;
         width: 7.889em;
-        display: flex;
-        justify-content: center;
-        white-space: normal;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     > p {
         margin-top: 0.923em;
