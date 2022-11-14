@@ -402,7 +402,7 @@ const DrinkListElement: React.FC<drinkInfoType> = ({
                         <h1>{abv}%</h1>
                     </InfoHead>
                     <InfoFoot>
-                        <Star star={star} widthValue={15} heightValue={14} />
+                        <Star star={star} widthValue={0.95} />
                     </InfoFoot>
                 </Info>
             </DrinkElementWrap>
@@ -540,10 +540,10 @@ const ImageWrap = styled.div`
     overflow: hidden;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     margin-bottom: 3.25em;
     img {
-        height: 100%;
+        height: 85%;
         object-fit: cover;
     }
     @media (max-width: 767px) {

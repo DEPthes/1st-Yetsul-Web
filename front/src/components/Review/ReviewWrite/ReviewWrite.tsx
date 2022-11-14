@@ -191,11 +191,7 @@ const main: React.FC = () => {
                             <h1>별점</h1>
                         </InputTextHead>
                         <InputStar>
-                            <Star
-                                star={starCount}
-                                widthValue={29}
-                                heightValue={27}
-                            />
+                            <Star star={starCount} widthValue={1.8125} />
                             <div>
                                 <div onClick={() => setStar(1)} aria-hidden />
                                 <div onClick={() => setStar(2)} aria-hidden />

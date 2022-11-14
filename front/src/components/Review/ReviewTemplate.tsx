@@ -54,8 +54,7 @@ const ReviewTemplate: React.FC<ReviewTemplateType> = ({
                                 <div>
                                     <Star
                                         star={drinkInfo.star}
-                                        widthValue={15}
-                                        heightValue={14}
+                                        widthValue={0.9375}
                                     />
                                 </div>
 

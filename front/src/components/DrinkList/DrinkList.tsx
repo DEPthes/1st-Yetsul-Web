@@ -280,7 +280,7 @@ const DrinkList: React.FC = () => {
                                               alcoholImage: string;
                                               AlcoholName: string;
                                               AlcoholByVolume: number;
-                                              star: number;
+                                              star: string;
                                           }) => {
                                               return (
                                                   <li key={drink.id}>
@@ -301,7 +301,7 @@ const DrinkList: React.FC = () => {
                                                           abv={
                                                               drink.AlcoholByVolume
                                                           }
-                                                          star={drink.star}
+                                                          star={+drink.star}
                                                       />
                                                   </li>
                                               );
@@ -315,7 +315,7 @@ const DrinkList: React.FC = () => {
                                           alcoholImage: string;
                                           AlcoholName: string;
                                           AlcoholByVolume: number;
-                                          star: number;
+                                          star: string;
                                       }) => {
                                           return (
                                               <li key={drink.id}>
@@ -330,7 +330,7 @@ const DrinkList: React.FC = () => {
                                                       abv={
                                                           drink.AlcoholByVolume
                                                       }
-                                                      star={drink.star}
+                                                      star={+drink.star}
                                                   />
                                               </li>
                                           );
@@ -561,6 +561,6 @@ type DrinkType = {
     cool: boolean;
     sour: boolean;
     description: string;
-    star: number;
+    star: string;
     alcoholImage: string;
 };

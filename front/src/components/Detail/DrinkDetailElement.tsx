@@ -171,8 +171,7 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
                     </SeeReview>
                     <Star
                         star={star}
-                        widthValue={windowSize.width >= 768 ? 15 : 13}
-                        heightValue={windowSize.width >= 768 ? 14 : 12}
+                        widthValue={windowSize.width >= 768 ? 0.9375 : 0.8125}
                     />
                     <Line
                         margintop={1.125}
