@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import styled from 'styled-components';
+import { getAccessToken } from '../../services/tokenControl';
 import { getUserLocalStorage } from '../../services/userControl';
 import { setListModal } from '../../store/slices/listModalSlice';
 import BackgroundTemplate from '../common/BackgroundTemplate';
@@ -39,7 +40,7 @@ type listType = {
 type drinkType = {
     AlcoholName: string;
     category: number;
-    star: number;
+    star: string;
     AlcoholByVolume: string;
     alcoholImage: string;
     id: number;
@@ -71,7 +72,7 @@ const ReviewDetail: React.FC = () => {
         }
         axios
             .get(
-                `http://depth-server.herokuapp.com/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
             )
             .then((res) => {
                 setReview(res.data);
@@ -81,7 +82,9 @@ const ReviewDetail: React.FC = () => {
             .catch((err) => console.log(err));
 
         axios
-            .get(`http://depth-server.herokuapp.com/review/${alcoholId}/spec`)
+            .get(
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${alcoholId}/spec`,
+            )
             .then((res) => {
                 setList(res.data.reviewsWithUserInfo);
                 setdrink(res.data.alcohol);
@@ -112,11 +115,32 @@ const ReviewDetail: React.FC = () => {
 
     const onClickDelete = async () => {
         await axios.delete(
-            `https://depth-server.herokuapp.com/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+            `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
         );
         // eslint-disable-next-line no-alert
         alert('리뷰가 삭제되었습니다.');
         navigate(`/list/${alcoholId}/spec`);
+    };
+
+    const onClickLike = async () => {
+        await axios.post(
+            `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${getAccessToken()}`,
+                },
+            },
+        );
+        axios
+            .get(
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+            )
+            .then((res) => {
+                setReview(res.data);
+            })
+
+            .catch((err) => console.log(err));
     };
 
     const location = useLocation();
@@ -136,7 +160,7 @@ const ReviewDetail: React.FC = () => {
         }
         axios
             .get(
-                `http://depth-server.herokuapp.com/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
             )
             .then((res) => {
                 setReview(res.data);
@@ -146,7 +170,9 @@ const ReviewDetail: React.FC = () => {
             .catch((err) => console.log(err));
 
         axios
-            .get(`http://depth-server.herokuapp.com/review/${alcoholId}/spec`)
+            .get(
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${alcoholId}/spec`,
+            )
             .then((res) => {
                 setList(res.data.reviewsWithUserInfo);
                 setdrink(res.data.alcohol);
@@ -194,7 +220,7 @@ const ReviewDetail: React.FC = () => {
 
                     <DrinkEl>
                         <div>
-                            <Star star={drink.star} widthValue={0.938} />
+                            <Star star={+drink.star} widthValue={0.938} />
 
                             <button
                                 onClick={() => {
@@ -226,7 +252,9 @@ const ReviewDetail: React.FC = () => {
 
                     <ContentHeader>
                         <div>
-                            <LikeBtn>👍 {review.like} </LikeBtn>
+                            <LikeBtn onClick={onClickLike}>
+                                👍 {review.like}{' '}
+                            </LikeBtn>
                             <LikeBanner>추천을 눌러주세요</LikeBanner>
                         </div>
                         <div>
@@ -538,6 +566,7 @@ const LikeBanner = styled.div`
 
 const LikeBtn = styled.button`
     box-sizing: border-box;
+    cursor: pointer;
 
     width: 5.688em;
     height: 2.5em;

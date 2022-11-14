@@ -47,7 +47,7 @@ const BoardListElement: React.FC<reviewType> = ({
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         getdata()
             .post(
-                `http://depth-server.herokuapp.com/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
             )
             .then((res) => {
                 console.log(res.data.review);
