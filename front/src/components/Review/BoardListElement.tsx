@@ -1,8 +1,10 @@
 /* eslint-disable prefer-const */
 /* eslint-disable react/button-has-type */
 import axios from 'axios';
+import { read } from 'fs';
 import { letterSpacing } from 'html2canvas/dist/types/css/property-descriptors/letter-spacing';
 import React, { useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 /* eslint-disable no-nested-ternary */
 
@@ -37,8 +39,9 @@ const BoardListElement: React.FC<reviewType> = ({
     reviewId,
     alcoholId,
 }) => {
-    let [likeCount, setLikeCount] = useState(0);
+    let [likeCount, setLikeCount] = useState(like);
     let [isLiked, setIsLiked] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const getdata = () => {
         const accessToken = localStorage.getItem('accessToken') || '';
@@ -48,107 +51,143 @@ const BoardListElement: React.FC<reviewType> = ({
     };
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        getdata()
-            .post(
-                `http://depth-server.herokuapp.com/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
-            )
-            .then((res) => {
-                console.log(res.data.review);
-                console.log(res.data.review.like);
-            })
-            .catch((err) => console.log(err));
+    const reviewLikeClick = async () => {
+        try {
+            await getdata()
+                .post(
+                    `http://depth-server.herokuapp.com/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+                )
+                .then((res) => {
+                    setLikeCount(res.data.review.like);
+                    setIsLiked(!isLiked);
+                    setLoading(!loading);
+                });
+        } catch (err) {
+            console.log(err);
+        }
     };
 
+    const reviewLike = () => {
+        if (like >= 0) {
+            if (loading === true) {
+                return like;
+            }
+            return likeCount;
+        }
+        return 0;
+    };
+    const isMobile = useMediaQuery({
+        query: '(max-width:767px)',
+    });
     return (
         <>
-            {reviewImg.length < 1 ? (
-                <ReviewsWrapper>
-                    <UserImgWrap>
-                        <img src={userImg} alt={userImg} />
-                    </UserImgWrap>
-
-                    <ReviewBox>
-                        <h1>{title}</h1>
-                        <StarWrap>
-                            <Star
-                                star={starCount}
-                                widthValue={29}
-                                heightValue={27}
-                            />
-                            <h3>{starCount}개</h3>
-                        </StarWrap>
-                        <ReviewBoxHeadInfo>
-                            <h3>{nickname}</h3>
-                            <h3>{date.slice(0, 10)}</h3>
-                        </ReviewBoxHeadInfo>
-
-                        <ReviewBoxContentNoImg>
-                            <h3>{content}</h3>
-                            <ReviewLink
-                                to={`/review/alcohol${alcoholId}/review${reviewId}`}
-                            >
-                                전체보기 {'>'}
-                            </ReviewLink>
-                        </ReviewBoxContentNoImg>
-                    </ReviewBox>
-                    <LikeBtn onClick={handleClick}>
-                        👍
-                        <span>{like}</span>
-                    </LikeBtn>
-                </ReviewsWrapper>
+            {' '}
+            {isMobile ? (
+                '모바일 화면'
             ) : (
-                <ReviewsWrapper>
-                    {userImg === '' || null || undefined ? (
-                        <UserImgWrap>
-                            <img
-                                src="/images/userDefaultProfileImg.png"
-                                alt={userImg}
-                            />
-                        </UserImgWrap>
+                <>
+                    {' '}
+                    {reviewImg.length < 1 ? (
+                        <ReviewsWrapper>
+                            <UserImgWrap>
+                                <img src={userImg} alt={userImg} />
+                            </UserImgWrap>
+
+                            <ReviewBox>
+                                <h1>{title}</h1>
+                                <StarWrap>
+                                    <Star
+                                        star={starCount}
+                                        widthValue={29}
+                                        heightValue={27}
+                                    />
+                                    <h3>{starCount}개</h3>
+                                </StarWrap>
+                                <ReviewBoxHeadInfo>
+                                    <h3>{nickname}</h3>
+                                    <h3>{date.slice(0, 10)}</h3>
+                                </ReviewBoxHeadInfo>
+
+                                <ReviewBoxContentNoImg>
+                                    <h3>
+                                        {content.length >= 60 ? (
+                                            <>{content.slice(0, 60)}...</>
+                                        ) : (
+                                            content
+                                        )}
+                                    </h3>
+                                    <ReviewLink
+                                        to={`/review/alcohol${alcoholId}/review${reviewId}`}
+                                    >
+                                        전체보기 {'>'}
+                                    </ReviewLink>
+                                </ReviewBoxContentNoImg>
+                            </ReviewBox>
+                            <LikeBtn onClick={() => reviewLikeClick()}>
+                                👍
+                                <span>{reviewLike()}</span>
+                            </LikeBtn>
+                        </ReviewsWrapper>
                     ) : (
-                        <UserImgWrap>
-                            <img src={userImg} alt={userImg} />
-                        </UserImgWrap>
+                        <ReviewsWrapper>
+                            {userImg === '' || null || undefined ? (
+                                <UserImgWrap>
+                                    <img
+                                        src="/images/userDefaultProfileImg.png"
+                                        alt={userImg}
+                                    />
+                                </UserImgWrap>
+                            ) : (
+                                <UserImgWrap>
+                                    <img src={userImg} alt={userImg} />
+                                </UserImgWrap>
+                            )}
+
+                            <ReviewBox>
+                                <h1>{title}</h1>
+                                <StarWrap>
+                                    <Star
+                                        star={starCount}
+                                        widthValue={29}
+                                        heightValue={27}
+                                    />
+                                    <h3>{starCount}개</h3>
+                                </StarWrap>
+                                <ReviewBoxHeadInfo>
+                                    <h3>{nickname}</h3>
+                                    <h3>{date.slice(0, 10)}</h3>
+                                </ReviewBoxHeadInfo>
+
+                                <ReviewBoxContent>
+                                    <h3>
+                                        {content.length >= 60 ? (
+                                            <>{content.slice(0, 60)}...</>
+                                        ) : (
+                                            content
+                                        )}
+                                    </h3>
+                                    <ReviewLink
+                                        to={`/review/alcohol${alcoholId}/review${reviewId}`}
+                                    >
+                                        전체보기 {'>'}
+                                    </ReviewLink>
+                                </ReviewBoxContent>
+                            </ReviewBox>
+                            <ReviewImgWrap>
+                                {reviewImg.length < 2 ? (
+                                    <img src={reviewImg} alt={userImg} />
+                                ) : (
+                                    <img src={reviewImg[0]} alt={userImg} />
+                                )}
+                            </ReviewImgWrap>
+
+                            <LikeBtn onClick={reviewLikeClick}>
+                                👍
+                                <span>{likeCount}</span>
+                            </LikeBtn>
+                        </ReviewsWrapper>
                     )}
-
-                    <ReviewBox>
-                        <h1>{title}</h1>
-                        <StarWrap>
-                            <Star
-                                star={starCount}
-                                widthValue={29}
-                                heightValue={27}
-                            />
-                            <h3>{starCount}개</h3>
-                        </StarWrap>
-                        <ReviewBoxHeadInfo>
-                            <h3>{nickname}</h3>
-                            <h3>{date.slice(0, 10)}</h3>
-                        </ReviewBoxHeadInfo>
-
-                        <ReviewBoxContent>
-                            <h3>{content}</h3>
-                            <ReviewLink
-                                to={`/review/alcohol${alcoholId}/review${reviewId}`}
-                            >
-                                전체보기 {'>'}
-                            </ReviewLink>
-                        </ReviewBoxContent>
-                    </ReviewBox>
-                    <ReviewImgWrap>
-                        {reviewImg.length < 2 ? (
-                            <img src={reviewImg} alt={userImg} />
-                        ) : (
-                            <img src={reviewImg[0]} alt={userImg} />
-                        )}
-                    </ReviewImgWrap>
-
-                    <LikeBtn onClick={handleClick}>
-                        👍
-                        <span>{like}</span>
-                    </LikeBtn>
-                </ReviewsWrapper>
+                </>
             )}
         </>
     );
@@ -267,6 +306,7 @@ const ReviewBoxContent = styled.div`
         font-size: 15px;
         color: #8b7e6a;
         margin: 20px 13px;
+        background-color: red;
     }
 `;
 
