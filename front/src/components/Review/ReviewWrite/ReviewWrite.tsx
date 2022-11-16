@@ -83,7 +83,7 @@ const main: React.FC = () => {
 
         axios
             .post(
-                `https://depth-server.herokuapp.com/review/${id}/temporary`,
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${id}/temporary`,
                 formData,
                 {
                     headers: { Authorization: `Bearer ${getAccessToken()}` },
@@ -191,11 +191,7 @@ const main: React.FC = () => {
                             <h1>별점</h1>
                         </InputTextHead>
                         <InputStar>
-                            <Star
-                                star={starCount}
-                                widthValue={29}
-                                heightValue={27}
-                            />
+                            <Star star={starCount} widthValue={1.8125} />
                             <div>
                                 <div onClick={() => setStar(1)} aria-hidden />
                                 <div onClick={() => setStar(2)} aria-hidden />
@@ -399,7 +395,9 @@ const ReviewWrite: React.FC = () => {
 
     useEffect(() => {
         axios
-            .get(`https://depth-server.herokuapp.com/review/${id}/spec`)
+            .get(
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${id}/spec`,
+            )
             .then((res) => {
                 setDrinks(res.data.alcohol);
                 setReviewCount(res.data.reviewsWithUserInfo.length);

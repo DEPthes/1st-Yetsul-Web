@@ -21,7 +21,9 @@ export const FixProfile: React.FC = () => {
 
     useEffect(() => {
         getData()
-            .get('https://depth-server.herokuapp.com/auth/user')
+            .get(
+                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/user',
+            )
             .then((res) => setUserData(res.data))
             .catch((err) => console.log(err));
     }, []);
@@ -41,7 +43,7 @@ export const FixProfile: React.FC = () => {
 
         axios
             .patch(
-                'https://depth-server.herokuapp.com/auth/edituser',
+                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/edituser',
                 formData,
                 {
                     headers: {

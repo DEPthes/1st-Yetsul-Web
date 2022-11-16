@@ -84,7 +84,7 @@ export const MyReviewWidget: React.FC<myreviewtype> = ({
             </MyreviewInformationSection>
             <MyreviewRightSection>
                 <StarBox>
-                    <Star star={star} widthValue={10} heightValue={14} />
+                    <Star star={star} widthValue={0.625} />
                 </StarBox>
                 <LinkWrap to={`/review/alcohol${alcoholId}/review${reviewId}`}>
                     <SeeFull>전체보기 &#62;</SeeFull>

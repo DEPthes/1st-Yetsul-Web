@@ -21,7 +21,7 @@ const DrinkInfo: React.FC<DrinkInfoType> = ({ id, img, name, abv }) => {
                     <p>{abv}%</p>
                 </div>
                 <div>
-                    <Link to="#!">
+                    <Link to={`/list/${id}/spec`}>
                         <p>자세히 보기</p>
                         <svg
                             width="15"

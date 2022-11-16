@@ -36,8 +36,15 @@ export const Profile: React.FC = () => {
 
     useEffect(() => {
         getdata()
+<<<<<<< HEAD
             .post('https://depth-server.herokuapp.com/review/user')
             .then((res) => setAlcoholReviewData(res.data))
+=======
+            .post(
+                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/user',
+            )
+            .then((res) => setAlcholthatUserWrite(res.data))
+>>>>>>> bdac5001a4eb2b52e300dca373c3c2d361104ae9
             .catch((err) => console.log(err));
     }, []);
     const [NoReviewData, setNoReviewData] = useState(true);
@@ -66,7 +73,9 @@ export const Profile: React.FC = () => {
 
     useEffect(() => {
         getdata()
-            .post('https://depth-server.herokuapp.com/auth/myLikeAlcoholList')
+            .post(
+                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/myLikeAlcoholList',
+            )
             .then((res) => setMyLikeAlcholData(res.data))
             .catch((err) => console.log(err));
     }, []);
@@ -80,7 +89,9 @@ export const Profile: React.FC = () => {
 
     useEffect(() => {
         getData()
-            .get('https://depth-server.herokuapp.com/auth/user')
+            .get(
+                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/user',
+            )
             .then((res) => setUserData(res.data))
             .catch((err) => console.log(err));
     }, []);

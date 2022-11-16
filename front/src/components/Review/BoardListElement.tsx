@@ -47,7 +47,7 @@ const BoardListElement: React.FC<reviewType> = ({
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         getdata()
             .post(
-                `http://depth-server.herokuapp.com/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
             )
             .then((res) => {
                 console.log(res.data.review);
@@ -67,11 +67,7 @@ const BoardListElement: React.FC<reviewType> = ({
                     <ReviewBox>
                         <h1>{title}</h1>
                         <StarWrap>
-                            <Star
-                                star={starCount}
-                                widthValue={29}
-                                heightValue={27}
-                            />
+                            <Star star={starCount} widthValue={1.8125} />
                             <h3>{starCount}개</h3>
                         </StarWrap>
                         <ReviewBoxHeadInfo>
@@ -111,11 +107,7 @@ const BoardListElement: React.FC<reviewType> = ({
                     <ReviewBox>
                         <h1>{title}</h1>
                         <StarWrap>
-                            <Star
-                                star={starCount}
-                                widthValue={29}
-                                heightValue={27}
-                            />
+                            <Star star={starCount} widthValue={1.8125} />
                             <h3>{starCount}개</h3>
                         </StarWrap>
                         <ReviewBoxHeadInfo>

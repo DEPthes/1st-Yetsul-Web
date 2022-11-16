@@ -19,9 +19,12 @@ const DrinkTicketBoxResult: React.FC = () => {
 
     useEffect(() => {
         axios
-            .post(`http://depth-server.herokuapp.com/ticketbox/result`, {
-                resultCombination: params.resultStr,
-            })
+            .post(
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/ticketbox/result`,
+                {
+                    resultCombination: params.resultStr,
+                },
+            )
             .then((res) => {
                 setTicket(res.data);
                 if (ticket.length > 0) {

@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { RootState } from '../../store/config';
 import { setListModal } from '../../store/slices/listModalSlice';
@@ -63,7 +63,9 @@ const DrinkDetail: React.FC = () => {
 
     useEffect(() => {
         axios
-            .get(`http://depth-server.herokuapp.com/review/${id}/spec`)
+            .get(
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${id}/spec`,
+            )
             .then((res) => {
                 setDrinks(res.data.alcohol);
                 setReviews(res.data.reviewsWithUserInfo);
@@ -85,17 +87,17 @@ const DrinkDetail: React.FC = () => {
         return starPercentArr;
     };
 
-    const PhotoReviewSrcArr = (): string[] => {
+    const PhotoReviewSrcArr = (): Array<(string | number)[]> => {
         // 해당 리뷰에 달린 포토 url 가져오고 빈 값 제외한 배열 생성
-        const photoArr: string[] = [];
+        const photoArr: Array<(string | number)[]> = [];
 
-        reviews.map((p) => {
-            return photoArr.push(p.reviewImgUrl[0]); // 사진이 2개 이상인거 있을 때, 그냥일 때 첫 번째 사진만 보여줌
+        reviews.forEach((p) => {
+            return photoArr.push([p.reviewImgUrl[0], p.id]); // 사진이 2개 이상인거 있을 때, 그냥일 때 첫 번째 사진만 보여줌
         });
 
         const newArr = photoArr.filter(
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            (element, i) => element !== undefined || null || '',
+            (element, i) => element[0] !== undefined || null || '',
         );
         newArr.reverse(); // 최신순으로 보여줌
 
@@ -175,6 +177,12 @@ const DrinkDetail: React.FC = () => {
         }
     };
 
+    const navigate = useNavigate();
+
+    const gotoReview = (drinkId: number) => {
+        navigate(`/review/alcohol${id}/review${drinkId}`);
+    };
+
     const dispatch = useDispatch();
     const isModal = useSelector((state: RootState) => {
         return state.listModal.modal;
@@ -235,7 +243,7 @@ const DrinkDetail: React.FC = () => {
                         cool={drinks.cool}
                         sour={drinks.sour}
                         description={drinks.description}
-                        star={drinks.star}
+                        star={+drinks.star}
                         alcoholImage={drinks.alcoholImage}
                         likeCount={drinks.likeCount}
                         reviewCount={reviews.length}
@@ -273,10 +281,10 @@ const DrinkDetail: React.FC = () => {
                                         .map((p, index) => {
                                             return (
                                                 <img
-                                                    src={p}
+                                                    src={p[0].toString()}
                                                     // eslint-disable-next-line react/no-array-index-key
                                                     key={index}
-                                                    alt={p}
+                                                    alt={p[0].toString()}
                                                 />
                                             );
                                         })}
@@ -292,10 +300,14 @@ const DrinkDetail: React.FC = () => {
                                             .map((p, index) => {
                                                 return (
                                                     <img
-                                                        src={p}
+                                                        onClick={() =>
+                                                            gotoReview(+p[1])
+                                                        }
+                                                        aria-hidden
+                                                        src={p[0].toString()}
                                                         // eslint-disable-next-line react/no-array-index-key
                                                         key={index}
-                                                        alt={p}
+                                                        alt={p[0].toString()}
                                                     />
                                                 );
                                             })}
@@ -516,6 +528,7 @@ const PhotoReviewWrapper = styled.div`
     align-items: center;
 
     img {
+        cursor: pointer;
         width: 206px;
         height: 206px;
         background: #d9d9d9;
