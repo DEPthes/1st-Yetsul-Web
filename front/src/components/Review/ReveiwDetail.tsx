@@ -276,7 +276,7 @@ const ReviewDetail: React.FC = () => {
                                     );
                                 })}
                         </ImgWrapper>
-                        {review.content}
+                        <p>{review.content}</p>
                     </Content>
                     {review.userId === getUserLocalStorage().id && (
                         <EditWrap>
@@ -335,6 +335,10 @@ const EditWrap = styled.div`
     align-items: center;
     justify-content: center;
     margin: 1.25em 0px 0px 0px;
+    @media (max-width: 767px) {
+        bottom: -86px;
+        position: absolute;
+    }
 `;
 
 const DeleteBtn = styled.button`
@@ -353,6 +357,12 @@ const DeleteBtn = styled.button`
     line-height: 1em;
     letter-spacing: -0.01em;
     color: #ffffff;
+    @media (max-width: 767px) {
+        width: 86.54px;
+        height: 33px;
+        font-size: 13px;
+        margin-left: 10px;
+    }
 `;
 
 const EditBtn = styled.button`
@@ -370,6 +380,12 @@ const EditBtn = styled.button`
     line-height: 1em;
     letter-spacing: -0.01em;
     color: #ffffff;
+
+    @media (max-width: 767px) {
+        width: 86.54px;
+        height: 33px;
+        font-size: 13px;
+    }
 `;
 
 const DrinkEl = styled.div`
@@ -384,15 +400,21 @@ const DrinkEl = styled.div`
         cursor: pointer;
         font-size: 1.563em;
         color: #675b4f;
+        @media (max-width: 767px) {
+            font-size: 18px;
+        }
     }
 
     h3 {
         font-size: 1.25em;
         color: #8b7e6a;
+        @media (max-width: 767px) {
+            font-size: 13px;
+        }
     }
 
     span {
-        width: 5.067em;
+        width: 5.867em;
         height: 2.267em;
         font-size: 0.938em;
         color: #454038;
@@ -404,6 +426,13 @@ const DrinkEl = styled.div`
         justify-content: center;
         align-items: center;
         margin-right: 1.133em;
+        @media (max-width: 767px) {
+            width: 40px;
+            height: 16px;
+            font-size: 10px;
+            border-radius: 24px;
+            margin-right: 13px;
+        }
     }
 `;
 
@@ -456,8 +485,46 @@ const DrinkWrapper = styled.div`
     }
 
     @media (max-width: 767px) {
-        width: 20.75em;
+        width: 100%;
         height: 5.25em;
+        img {
+            width: 30px;
+            height: 46px;
+            object-fit: cover;
+        }
+
+        div:first-child {
+            top: 21px;
+            left: 25px;
+        }
+
+        div:nth-child(2) {
+            left: 82px;
+            top: 20px;
+        }
+
+        div:nth-child(3) {
+            left: 82px;
+            top: 51px;
+
+            font-size: 12px;
+            color: #8b7e6a;
+
+            button {
+                margin-left: 7.6px;
+                border: none;
+                font-size: 12px;
+                font-family: inherit;
+                font-weight: inherit;
+                color: #8b7e6a;
+                background: rgba(0, 0, 0, 0);
+            }
+        }
+
+        div:nth-child(4) {
+            right: 16px;
+            top: 24px;
+        }
     }
 `;
 
@@ -472,6 +539,12 @@ const Inner = styled.div`
 
     li {
         list-style: none;
+    }
+
+    @media (max-width: 767px) {
+        width: calc(100% - 5em);
+        padding-top: 99px;
+        padding-bottom: 139px;
     }
 `;
 
@@ -492,7 +565,16 @@ const PrevBtn = styled.button`
     :hover {
         cursor: pointer;
     }
+    @media (max-width: 767px) {
+        margin-top: 43px;
+        margin-bottom: 27px;
+        border-radius: 9px;
+        width: 39px;
+        height: 29px;
+        font-size: 15px;
+    }
 `;
+
 const ImgWrapper = styled.div`
     display: flex;
     justify-content: flex-start;
@@ -525,12 +607,55 @@ const ImgWrapper = styled.div`
     ::-webkit-scrollbar-button {
         display: none;
     } /* 스크롤 바 상 하단 버튼 */
+    @media (max-width: 767px) {
+        margin-bottom: 19px;
+        img {
+            width: 160px !important;
+            height: 171px !important;
+            margin-right: 0.5em;
+            margin-bottom: 0;
+        }
+        ::-webkit-scrollbar {
+            height: 0.2em;
+        } /* 스크롤 바 */
+    }
 `;
 
 const Content = styled.div`
     font-size: 1.563em;
     color: #675b4f;
     padding: 1.68em 1.12em;
+    > p {
+        width: 100%;
+        height: 150px;
+        word-break: break-all;
+        overflow-y: scroll;
+        ::-webkit-scrollbar {
+            // width: 0.375em;
+            width: 0.2em;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ddd;
+            height: 2.5em;
+        } /* 실질적 스크롤 바 */
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #675b4f;
+        } /* 실질적 스크롤 바 위에 마우스를 올려다 둘 때 */
+
+        ::-webkit-scrollbar-thumb:active {
+            background: #808080;
+        } /* 실질적 스크롤 바를 클릭할 때 */
+
+        ::-webkit-scrollbar-button {
+            display: none;
+        }
+        // height: 150px;
+    }
+    @media (max-width: 767px) {
+        font-size: 13px;
+        padding: 14px 14px 28px 14px;
+    }
 `;
 
 const ContentHeader = styled.div`
@@ -545,9 +670,14 @@ const ContentHeader = styled.div`
     }
 
     h3 {
-        font-size: 0.938em;
         color: #8b7e6a;
         margin-left: 1em;
+    }
+    @media (max-width: 767px) {
+        padding: 15px 15px;
+        h3 {
+            font-size: 10px;
+        }
     }
 `;
 
@@ -562,6 +692,15 @@ const LikeBanner = styled.div`
     font-size: 0.938em;
 
     color: #ffffff;
+    @media (max-width: 767px) {
+        font-size: 11px;
+        width: 90px;
+        height: 13px;
+        border-radius: 24px;
+        margin-left: 1em;
+        padding: 10px 10px;
+        display: none !important;
+    }
 `;
 
 const LikeBtn = styled.button`
@@ -573,6 +712,10 @@ const LikeBtn = styled.button`
     background-color: inherit;
     border: 1px solid #675b4f;
     border-radius: 3.25em;
+    @media (max-width: 767px) {
+        width: 54px;
+        height: 26px;
+    }
 `;
 
 const ReviewHeader = styled.div`
@@ -582,6 +725,15 @@ const ReviewHeader = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 0 2.813em;
+    @media (max-width: 767px) {
+        height: 78.48px;
+        padding: 0 23px;
+        > div:nth-of-type(2) {
+            svg {
+                width: 0.8em;
+            }
+        }
+    }
 `;
 
 const HeaderLeft = styled.div`
@@ -590,20 +742,43 @@ const HeaderLeft = styled.div`
 
         color: #675b4f;
         margin-bottom: 0.5em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 360px;
     }
 
     h3 {
         font-size: 0.938em;
         color: #8b7e6a;
+        width: 360px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 0.938em;
+    }
+    @media (max-width: 767px) {
+        h1 {
+            font-size: 15px;
+            width: 180px;
+        }
+        h3 {
+            font-size: 12px;
+            width: 160px;
+        }
     }
 `;
 
 const ReviewWrapper = styled.div`
     width: 71.563em;
-    padding-bottom: 3.75em;
 
     border: 1px solid #b8b8b8;
     border-radius: 1.125em;
+    @media (max-width: 767px) {
+        width: 100%;
+        border-radius: 12px;
+        position: relative;
+    }
 `;
 const Header = styled.div`
     margin-top: 3.125em;
@@ -644,5 +819,8 @@ const Header = styled.div`
 
     div:last-child {
         width: 4.75em;
+    }
+    @media (max-width: 767px) {
+        display: none;
     }
 `;

@@ -90,4 +90,7 @@ const BoardList = styled.div`
     div:nth-child(5) {
         width: 4.75em;
     }
+    @media (max-width: 767px) {
+        display: none;
+    }
 `;

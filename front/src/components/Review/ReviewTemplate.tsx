@@ -53,7 +53,7 @@ const ReviewTemplate: React.FC<ReviewTemplateType> = ({
                             <InfoBottom>
                                 <div>
                                     <Star
-                                        star={drinkInfo.star}
+                                        star={+drinkInfo.star}
                                         widthValue={0.9375}
                                     />
                                 </div>
@@ -163,7 +163,7 @@ const AlcoholType = styled.div`
     color: #454038;
     font-size: 0.938em;
     @media (max-width: 767px) {
-        width: 3.5em;
+        width: 4.5em;
         height: 1.6em;
         line-height: 2em;
         font-size: 0.625em;
@@ -186,7 +186,7 @@ const AlcoholNames = styled.div`
         margin-top: 0.167em;
         font-size: 1.125em;
         line-height: 1em;
-        width: 5.556em;
+        width: 6.756em;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
