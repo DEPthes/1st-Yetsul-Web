@@ -56,13 +56,29 @@ const ReviewDetail: React.FC = () => {
     const [drink, setdrink] = useState<drinkType>(Object);
     const [reviewCount, setReviewCount] = useState();
     const dispatch = useDispatch();
+    const [heightValue, setHeightValue] = useState('auto');
+
+    window.onload = async () => {
+        setHeightValue('auto');
+        console.log(document.getElementById('reviewDetail')!.clientHeight);
+        if (
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            document.getElementById('reviewDetail')!.clientHeight <=
+            document.body.clientHeight
+        ) {
+            setHeightValue('100%');
+            console.log('check');
+        } else {
+            setHeightValue('auto');
+        }
+    };
 
     useEffect(() => {
         const main = document.getElementById('listModalBack');
         const head = document.getElementsByClassName('head')[0];
         const nav = document.getElementById('fp-nav');
         dispatch(setListModal(false));
-        $('body').css('overflow', 'scroll');
+        $('body').css('overflow', 'auto');
         if (main) {
             main.className = '';
         }
@@ -98,9 +114,11 @@ const ReviewDetail: React.FC = () => {
         // eslint-disable-next-line no-plusplus
         for (let i = 0; i < list.length; i++) {
             if (list[i].id === review.id) {
-                list.splice(i, 1);
+                console.log(list[i].id, i, review.id);
+
+                // setList(list.splice(i, 1));
                 // eslint-disable-next-line no-plusplus
-                i--;
+                break;
             }
         }
     };
@@ -150,7 +168,7 @@ const ReviewDetail: React.FC = () => {
         const head = document.getElementsByClassName('head')[0];
         const nav = document.getElementById('fp-nav');
         dispatch(setListModal(false));
-        $('body').css('overflow', 'scroll');
+        $('body').css('overflow', 'auto');
         if (main) {
             main.className = '';
         }
@@ -180,15 +198,34 @@ const ReviewDetail: React.FC = () => {
             })
 
             .catch((err) => console.log(err));
+
+        setHeightValue('auto');
+        setTimeout(() => {
+            console.log(document.getElementById('reviewDetail')!.clientHeight);
+            if (
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                document.getElementById('reviewDetail')!.clientHeight <=
+                document.body.clientHeight
+            ) {
+                setHeightValue('100%');
+                console.log('check');
+            } else {
+                setHeightValue('auto');
+            }
+        }, 100);
     }, [location]);
+
+    useEffect(() => {
+        console.log(list);
+    }, [list]);
 
     const goToAlcohol = () => {
         navigate(`/list/${alcoholId}/spec`);
     };
 
     return (
-        <BackgroundTemplate heightValue="auto">
-            <Inner>
+        <BackgroundTemplate heightValue={heightValue}>
+            <Inner id="reviewDetail">
                 <PrevBtn
                     onClick={() => {
                         navigate(-1);
@@ -264,9 +301,9 @@ const ReviewDetail: React.FC = () => {
                         </div>
                     </ContentHeader>
                     <Content>
-                        <ImgWrapper>
-                            {reviewImg &&
-                                reviewImg.map((i, index) => {
+                        {reviewImg.length > 0 && (
+                            <ImgWrapper>
+                                {reviewImg.map((i, index) => {
                                     // eslint-disable-next-line react/jsx-key
                                     return (
                                         // eslint-disable-next-line react/no-array-index-key
@@ -275,7 +312,9 @@ const ReviewDetail: React.FC = () => {
                                         </li>
                                     );
                                 })}
-                        </ImgWrapper>
+                            </ImgWrapper>
+                        )}
+
                         <p>{review.content}</p>
                     </Content>
                     {review.userId === getUserLocalStorage().id && (
@@ -334,7 +373,7 @@ const EditWrap = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 1.25em 0px 0px 0px;
+    margin: 1.25em 0px 3.25em 0px;
     @media (max-width: 767px) {
         bottom: -86px;
         position: absolute;
