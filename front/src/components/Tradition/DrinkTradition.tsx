@@ -451,6 +451,7 @@ const InnerNavUl = styled.ul`
     z-index: 3;
     list-style: none;
     position: fixed;
+    top: 9.1875em;
     left: 50%;
     width: 100%;
     height: 60px;
@@ -476,6 +477,12 @@ const InnerNavLI = styled.li`
         @media screen and (max-width: 767px) {
             font-size: 0.8125em;
         }
+    }
+    @media screen and (min-width: 767px) {
+        padding-left: 3.77vw;
+        padding-right: 3.77vw;
+        width: auto;
+        float: left;
     }
 `;
 
