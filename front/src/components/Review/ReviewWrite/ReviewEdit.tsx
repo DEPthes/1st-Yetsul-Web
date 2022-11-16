@@ -43,6 +43,11 @@ const main: React.FC = () => {
     };
 
     const postReview = () => {
+        if (title === '' || contents === '' || starCount === 0) {
+            // eslint-disable-next-line no-alert
+            alert('제목, 별점, 내용을 모두 입력해주세요.');
+            return;
+        }
         if (formData) {
             formData = new FormData();
         }
@@ -53,7 +58,7 @@ const main: React.FC = () => {
 
         axios
             .post(
-                `http://depth-server.herokuapp.com/review/${alcoholId}/update/${reviewId}`,
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${alcoholId}/update/${reviewId}`,
                 formData,
                 {
                     headers: { Authorization: `Bearer ${getAccessToken()}` },
@@ -147,7 +152,7 @@ const main: React.FC = () => {
         const fileArr: File[] = [];
         await axios
             .get(
-                `http://depth-server.herokuapp.com/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
             )
             .then(async (res) => {
                 setLoading(true);
@@ -209,11 +214,7 @@ const main: React.FC = () => {
                             <h1>별점</h1>
                         </InputTextHead>
                         <InputStar>
-                            <Star
-                                star={starCount}
-                                widthValue={29}
-                                heightValue={27}
-                            />
+                            <Star star={starCount} widthValue={1.8125} />
                             <div>
                                 <div onClick={() => setStar(1)} aria-hidden />
                                 <div onClick={() => setStar(2)} aria-hidden />
@@ -344,8 +345,8 @@ const CloseBtn = styled.div`
     top: 0.188em;
     right: 0.188em;
     > svg {
-        width: 1.75em;
-        height: 1.75em;
+        width: 0.75em;
+        height: 0.75em;
         > path {
             stroke: #fff;
             stroke-width: 2.3;
@@ -415,17 +416,28 @@ const Foot = styled.div`
 const ReviewEdit: React.FC = () => {
     const { alcoholId } = useParams();
     const [drinks, setDrinks] = useState<DrinkDetailType>(Object); // 술 상세 정보
+    const [reviewCount, setReviewCount] = useState<number>(0);
 
     useEffect(() => {
         axios
-            .get(`https://depth-server.herokuapp.com/review/${alcoholId}/spec`)
+            .get(
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${alcoholId}/spec`,
+            )
             .then((res) => {
                 setDrinks(res.data.alcohol);
+                setReviewCount(res.data.reviewsWithUserInfo.length);
             })
 
             .catch((err) => console.log(err));
     }, []);
-    return <ReviewTemplate Head={head} Main={main} drinkInfo={drinks} />;
+    return (
+        <ReviewTemplate
+            Head={head}
+            Main={main}
+            drinkInfo={drinks}
+            reviewCount={reviewCount}
+        />
+    );
 };
 
 export default ReviewEdit;
@@ -777,8 +789,8 @@ const ImageWrap = styled.div`
         margin-top: 0.688em;
         > div {
             border-radius: 0.4em;
-            width: 3.08em;
-            height: 2.96em;
+            width: calc((100% - 1.25em) / 5);
+            height: calc(((100vw - 3.125em) - 0.5em) / 5);
             font-size: 1.563em;
             line-height: 1em;
         }
@@ -806,12 +818,10 @@ const ImageBox = styled.div`
     }
     @media (max-width: 767px) {
         border-radius: 0.4em;
-        width: 3.08em;
-        height: 2.96em;
         font-size: 1.563em;
         line-height: 1em;
         &:not(:last-of-type) {
-            margin-right: calc((100% - (3.08em * 5)) / 4);
+            margin-right: 5px;
         }
     }
 `;

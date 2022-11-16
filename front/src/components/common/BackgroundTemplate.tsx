@@ -18,8 +18,14 @@ const BackgroundTemplate: React.FC<BackgroudChidType> = ({
     const temp2 = useSelector((state: RootState) => {
         return state.updateBackgroundGradient.color2;
     });
+
     return (
-        <Background color1={temp} color2={temp2} height={heightValue}>
+        <Background
+            color1={temp}
+            color2={temp2}
+            height={heightValue}
+            id="background-template"
+        >
             {children}
         </Background>
     );

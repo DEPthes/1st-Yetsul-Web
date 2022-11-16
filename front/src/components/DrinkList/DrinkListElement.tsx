@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Star from '../common/Star';
 
 type drinkInfoType = {
+    alcoholOfMonth: boolean;
     id: number;
     img: string; // 술 이미지
     name: string; // 술 이름
@@ -13,6 +14,7 @@ type drinkInfoType = {
 };
 
 const DrinkListElement: React.FC<drinkInfoType> = ({
+    alcoholOfMonth,
     id,
     img,
     name,
@@ -23,7 +25,7 @@ const DrinkListElement: React.FC<drinkInfoType> = ({
     return (
         <LinkWrap to={`/list/${id}/spec`}>
             <DrinkElementWrap>
-                <DrinkCategory>
+                <DrinkCategory isMonth={alcoholOfMonth}>
                     <CategoryIcon>
                         {
                             {
@@ -369,6 +371,28 @@ const DrinkListElement: React.FC<drinkInfoType> = ({
                         }
                     </h1>
                 </DrinkCategory>
+                {alcoholOfMonth && (
+                    <MonthOfDrinksDiv>
+                        <MonthOfDrinks
+                            width="51"
+                            height="85"
+                            viewBox="0 0 51 85"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M25.1867 64.1103L0.5 83.9565V0.5H50.5V83.9565L25.8133 64.1103L25.5 63.8585L25.1867 64.1103Z"
+                                fill="#8E8372"
+                                stroke="#675B4F"
+                            />
+                        </MonthOfDrinks>
+                        <MonthOfDrinksText>
+                            11월
+                            <br />
+                            pick
+                        </MonthOfDrinksText>
+                    </MonthOfDrinksDiv>
+                )}
                 <ImageWrap>
                     <img src={img} alt={name} />
                 </ImageWrap>
@@ -378,7 +402,7 @@ const DrinkListElement: React.FC<drinkInfoType> = ({
                         <h1>{abv}%</h1>
                     </InfoHead>
                     <InfoFoot>
-                        <Star star={star} widthValue={15} heightValue={14} />
+                        <Star star={star} widthValue={0.95} />
                     </InfoFoot>
                 </Info>
             </DrinkElementWrap>
@@ -387,6 +411,51 @@ const DrinkListElement: React.FC<drinkInfoType> = ({
 };
 
 export default DrinkListElement;
+
+const MonthOfDrinksDiv = styled.div`
+    width: 3.125em;
+    height: 5.216em;
+    position: absolute;
+    top: 0;
+    right: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media (max-width: 767px) {
+        right: 0.625em;
+        width: 2.125em;
+        height: 3.625em;
+    }
+`;
+
+const MonthOfDrinksText = styled.p`
+    z-index: 10;
+    color: #fff;
+    font-family: 'Gmarket Sans';
+    font-style: normal;
+    font-weight: 550;
+    font-size: 0.9375em;
+    line-height: 1.333em;
+    text-align: center;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.8em;
+    @media (max-width: 767px) {
+        font-size: 0.625em;
+        line-height: 1em;
+        margin-bottom: 0.8em;
+    }
+`;
+
+const MonthOfDrinks = styled.svg`
+    width: 3.125em;
+    height: 5.216em;
+    position: absolute;
+    z-index: 9;
+    @media (max-width: 767px) {
+        width: 2.125em;
+        height: 3.625em;
+    }
+`;
 
 const LinkWrap = styled(Link)`
     text-decoration: none;
@@ -422,10 +491,10 @@ const DrinkElementWrap = styled.div`
     }
 `;
 
-const DrinkCategory = styled.div`
+const DrinkCategory = styled.div<{ isMonth: boolean }>`
     position: absolute;
-    top: 1.563em;
-    right: 1.688em;
+    top: ${(props) => (props.isMonth ? `6.779em` : `1.563em`)};
+    right: ${(props) => (props.isMonth ? `1.8em` : `1.688em`)};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -468,21 +537,22 @@ const ImageWrap = styled.div`
     position: relative;
     height: 20.188em;
     width: 100%;
-    overflow: hidden;
+    // overflow: hidden;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     margin-bottom: 3.25em;
     img {
-        height: 100%;
+        height: 85%;
         object-fit: cover;
     }
     @media (max-width: 767px) {
         height: 75%;
         margin-bottom: 0;
+        align-items: center;
         img {
-            height: 6.875em;
-            width: 5.625em;
+            height: 75%;
+            // width: 5.625em;
         }
     }
 `;

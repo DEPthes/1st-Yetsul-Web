@@ -503,11 +503,21 @@ const MenuLoginBlock = styled.div`
         background: #675b4f;
         border: 0.7px solid #8b7e6a;
         border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         &:first-of-type {
             background: #fff;
             margin-right: 0.5625em;
             > p {
                 color: #8b7e6a;
+                width: 5em;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
         }
         line-height: 0.75em;

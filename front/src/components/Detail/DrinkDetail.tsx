@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { RootState } from '../../store/config';
 import { setListModal } from '../../store/slices/listModalSlice';
@@ -27,7 +27,7 @@ export interface DrinkDetailType {
     cool: boolean; // 청량함
     sour: boolean; // 신 맛
     description: string; // 술 설명
-    star: number; // 술 별 점
+    star: string; // 술 별 점
     alcoholImage: string; // 술 사진
     likeCount: number; // 술 찜 횟수
     reviewCount: number; // 리뷰 수
@@ -63,7 +63,9 @@ const DrinkDetail: React.FC = () => {
 
     useEffect(() => {
         axios
-            .get(`http://depth-server.herokuapp.com/review/${id}/spec`)
+            .get(
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${id}/spec`,
+            )
             .then((res) => {
                 setDrinks(res.data.alcohol);
                 setReviews(res.data.reviewsWithUserInfo);
@@ -85,17 +87,17 @@ const DrinkDetail: React.FC = () => {
         return starPercentArr;
     };
 
-    const PhotoReviewSrcArr = (): string[] => {
+    const PhotoReviewSrcArr = (): Array<(string | number)[]> => {
         // 해당 리뷰에 달린 포토 url 가져오고 빈 값 제외한 배열 생성
-        const photoArr: string[] = [];
+        const photoArr: Array<(string | number)[]> = [];
 
-        reviews.map((p) => {
-            return photoArr.push(p.reviewImgUrl[0]); // 사진이 2개 이상인거 있을 때, 그냥일 때 첫 번째 사진만 보여줌
+        reviews.forEach((p) => {
+            return photoArr.push([p.reviewImgUrl[0], p.id]); // 사진이 2개 이상인거 있을 때, 그냥일 때 첫 번째 사진만 보여줌
         });
 
         const newArr = photoArr.filter(
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            (element, i) => element !== undefined || null || '',
+            (element, i) => element[0] !== undefined || null || '',
         );
         newArr.reverse(); // 최신순으로 보여줌
 
@@ -187,15 +189,11 @@ const DrinkDetail: React.FC = () => {
             setSelected([false, false, false, true]);
         }
     };
-    const [sort, setSort] = useState('ASC');
-    const changeSort = () => {
-        if (sort === 'ASC') {
-            sortByDateDesc();
-            setSort('DESC');
-        } else {
-            sortByDate();
-            setSort('ASC');
-        }
+
+    const navigate = useNavigate();
+
+    const gotoReview = (drinkId: number) => {
+        navigate(`/review/alcohol${id}/review${drinkId}`);
     };
 
     const dispatch = useDispatch();
@@ -217,7 +215,7 @@ const DrinkDetail: React.FC = () => {
                 nav.className = 'right is-blurred';
             }
         } else {
-            $('body').css('overflow', 'scroll');
+            $('body').css('overflow', 'auto');
             if (main) {
                 main.className = '';
             }
@@ -245,6 +243,7 @@ const DrinkDetail: React.FC = () => {
             <Inner id="listModalBack">
                 <DrinkInfoWrapper>
                     <DrinkDetailElement
+                        id={drinks.id}
                         AlcoholName={drinks.AlcoholName}
                         category={drinks.category}
                         brewery={drinks.brewery}
@@ -278,53 +277,59 @@ const DrinkDetail: React.FC = () => {
                     mostStars={EachStarCount()}
                 />
 
-                <ReviewTitle>
-                    <h1>포토후기 ({PhotoReviewSrcArr().length})개</h1>
-                </ReviewTitle>
-                {PhotoReviewSrcArr().length === 0 ? (
-                    <NoReview>
-                        <h1>포토후기가 없습니다.</h1>
-                    </NoReview>
-                ) : (
-                    <>
-                        {PhotoReviewSrcArr().length >= 5 ? (
-                            <PhotoReviewWrapper>
-                                {PhotoReviewSrcArr()
-                                    .slice(0, 4)
-                                    .map((p, index) => {
-                                        return (
-                                            <img
-                                                src={p}
-                                                // eslint-disable-next-line react/no-array-index-key
-                                                key={index}
-                                                alt={p}
-                                            />
-                                        );
-                                    })}
-                                <button type="button" onClick={handleModal}>
-                                    <h1>더보기</h1>
-                                </button>
-                            </PhotoReviewWrapper>
-                        ) : (
-                            <>
+                <div>
+                    <ReviewTitle>
+                        <h1>포토후기 ({PhotoReviewSrcArr().length})개</h1>
+                    </ReviewTitle>
+                    {PhotoReviewSrcArr().length === 0 ? (
+                        <>
+                            <NoReview>포토후기가 없습니다.</NoReview>
+                        </>
+                    ) : (
+                        <>
+                            {PhotoReviewSrcArr().length >= 5 ? (
                                 <PhotoReviewWrapper>
                                     {PhotoReviewSrcArr()
-                                        .slice(0, 5)
+                                        .slice(0, 4)
                                         .map((p, index) => {
                                             return (
                                                 <img
-                                                    src={p}
+                                                    src={p[0].toString()}
                                                     // eslint-disable-next-line react/no-array-index-key
                                                     key={index}
-                                                    alt={p}
+                                                    alt={p[0].toString()}
                                                 />
                                             );
                                         })}
+                                    <button type="button" onClick={handleModal}>
+                                        <h1>더보기</h1>
+                                    </button>
                                 </PhotoReviewWrapper>
-                            </>
-                        )}
-                    </>
-                )}
+                            ) : (
+                                <>
+                                    <PhotoReviewWrapper>
+                                        {PhotoReviewSrcArr()
+                                            .slice(0, 5)
+                                            .map((p, index) => {
+                                                return (
+                                                    <img
+                                                        onClick={() =>
+                                                            gotoReview(+p[1])
+                                                        }
+                                                        aria-hidden
+                                                        src={p[0].toString()}
+                                                        // eslint-disable-next-line react/no-array-index-key
+                                                        key={index}
+                                                        alt={p[0].toString()}
+                                                    />
+                                                );
+                                            })}
+                                    </PhotoReviewWrapper>
+                                </>
+                            )}
+                        </>
+                    )}
+                </div>
 
                 <ReviewTitle>
                     <h1>리뷰 ({reviews.length})개</h1>
@@ -664,6 +669,7 @@ const PhotoReviewWrapper = styled.div`
     align-items: center;
 
     img {
+        cursor: pointer;
         width: 206px;
         height: 206px;
         background: #d9d9d9;

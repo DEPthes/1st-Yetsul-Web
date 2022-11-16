@@ -20,7 +20,7 @@ const DrinkList: React.FC = () => {
     const pageRef = useRef(0);
     const maxPage = useRef(0);
     const offset = (page - 1) * limit; // 페이지 당 첫 게시물의 index
-    const [sort, setSort] = useState('ASC');
+    const [sort, setSort] = useState('DESC');
     const [isMobile, setIsMobile] = useState<boolean>(false);
     const [heightValue, setHeightValue] = useState('auto');
 
@@ -49,6 +49,10 @@ const DrinkList: React.FC = () => {
             } else {
                 setHeightValue('auto');
             }
+        } else if (drinks.length < 3) {
+            setHeightValue('100%');
+        } else {
+            setHeightValue('auto');
         }
     }, [drinks]);
 
@@ -63,15 +67,18 @@ const DrinkList: React.FC = () => {
     useEffect(() => {
         if (category === '전체') {
             axios
-                .post(`http://depth-server.herokuapp.com/alcohol/list`, {
-                    filter: sort,
-                })
+                .post(
+                    `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/alcohol/list`,
+                    {
+                        filter: sort,
+                    },
+                )
                 .then((res) => setDrinks(res.data))
                 .catch((err) => console.log(err));
         } else {
             axios
                 .post(
-                    `http://depth-server.herokuapp.com/alcohol/list/${categoryNum}`,
+                    `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/alcohol/list/${categoryNum}`,
                     {
                         filter: sort,
                     },
@@ -274,16 +281,20 @@ const DrinkList: React.FC = () => {
                                       .slice(offset, offset + limit)
                                       .map(
                                           (drink: {
+                                              alcoholOfMonth: boolean;
                                               id: number;
                                               category: number;
                                               alcoholImage: string;
                                               AlcoholName: string;
                                               AlcoholByVolume: number;
-                                              star: number;
+                                              star: string;
                                           }) => {
                                               return (
                                                   <li key={drink.id}>
                                                       <DrinkListElement
+                                                          alcoholOfMonth={
+                                                              drink.alcoholOfMonth
+                                                          }
                                                           id={drink.id}
                                                           img={
                                                               drink.alcoholImage
@@ -297,7 +308,7 @@ const DrinkList: React.FC = () => {
                                                           abv={
                                                               drink.AlcoholByVolume
                                                           }
-                                                          star={drink.star}
+                                                          star={+drink.star}
                                                       />
                                                   </li>
                                               );
@@ -305,16 +316,20 @@ const DrinkList: React.FC = () => {
                                       )
                                 : sliceDrinksRender.map(
                                       (drink: {
+                                          alcoholOfMonth: boolean;
                                           id: number;
                                           category: number;
                                           alcoholImage: string;
                                           AlcoholName: string;
                                           AlcoholByVolume: number;
-                                          star: number;
+                                          star: string;
                                       }) => {
                                           return (
                                               <li key={drink.id}>
                                                   <DrinkListElement
+                                                      alcoholOfMonth={
+                                                          drink.alcoholOfMonth
+                                                      }
                                                       id={drink.id}
                                                       img={drink.alcoholImage}
                                                       category={drink.category}
@@ -322,7 +337,7 @@ const DrinkList: React.FC = () => {
                                                       abv={
                                                           drink.AlcoholByVolume
                                                       }
-                                                      star={drink.star}
+                                                      star={+drink.star}
                                                   />
                                               </li>
                                           );
@@ -538,6 +553,7 @@ const DrinkElList = styled.div`
 `;
 
 type DrinkType = {
+    alcoholOfMonth: boolean;
     children: ReactNode;
     id: number;
     AlcoholName: string;
@@ -552,6 +568,6 @@ type DrinkType = {
     cool: boolean;
     sour: boolean;
     description: string;
-    star: number;
+    star: string;
     alcoholImage: string;
 };

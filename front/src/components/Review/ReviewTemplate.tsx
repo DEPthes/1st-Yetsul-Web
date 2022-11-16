@@ -9,12 +9,14 @@ type ReviewTemplateType = {
     Head: React.FC;
     Main: React.FC;
     drinkInfo: DrinkDetailElementType;
+    reviewCount: number;
 };
 
 const ReviewTemplate: React.FC<ReviewTemplateType> = ({
     Head,
     Main,
     drinkInfo,
+    reviewCount,
 }) => {
     return (
         <BackgroundTemplate heightValue="auto">
@@ -51,14 +53,15 @@ const ReviewTemplate: React.FC<ReviewTemplateType> = ({
                             <InfoBottom>
                                 <div>
                                     <Star
-                                        star={drinkInfo.star}
-                                        widthValue={15}
-                                        heightValue={14}
+                                        star={+drinkInfo.star}
+                                        widthValue={0.9375}
                                     />
                                 </div>
 
-                                <SeeReviewLink to="/">
-                                    (리뷰 +100) &gt;
+                                <SeeReviewLink
+                                    to={`/list/${drinkInfo.id}/spec`}
+                                >
+                                    {`(리뷰 +${reviewCount})`} &gt;
                                 </SeeReviewLink>
                             </InfoBottom>
                         </MainInfo>
@@ -151,7 +154,7 @@ const InfoBottom = styled.div`
 `;
 
 const AlcoholType = styled.div`
-    width: 5.067em;
+    width: 6.067em;
     height: 2.267em;
     line-height: 2.4em;
     text-align: center;
@@ -160,7 +163,7 @@ const AlcoholType = styled.div`
     color: #454038;
     font-size: 0.938em;
     @media (max-width: 767px) {
-        width: 3.5em;
+        width: 4.5em;
         height: 1.6em;
         line-height: 2em;
         font-size: 0.625em;
@@ -183,7 +186,7 @@ const AlcoholNames = styled.div`
         margin-top: 0.167em;
         font-size: 1.125em;
         line-height: 1em;
-        width: 5.556em;
+        width: 6.756em;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;

@@ -31,7 +31,9 @@ export const Profile: React.FC = () => {
 
     useEffect(() => {
         getdata()
-            .post('https://depth-server.herokuapp.com/review/user')
+            .post(
+                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/user',
+            )
             .then((res) => setAlcholthatUserWrite(res.data))
             .catch((err) => console.log(err));
     }, []);
@@ -56,7 +58,9 @@ export const Profile: React.FC = () => {
 
     useEffect(() => {
         getdata()
-            .post('https://depth-server.herokuapp.com/auth/myLikeAlcoholList')
+            .post(
+                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/myLikeAlcoholList',
+            )
             .then((res) => setMyLikeAlcholData(res.data))
             .catch((err) => console.log(err));
     }, []);
@@ -65,7 +69,9 @@ export const Profile: React.FC = () => {
 
     useEffect(() => {
         getData()
-            .get('https://depth-server.herokuapp.com/auth/user')
+            .get(
+                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/user',
+            )
             .then((res) => setUserData(res.data))
             .catch((err) => console.log(err));
     }, []);

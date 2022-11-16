@@ -11,19 +11,19 @@ import DrinkInfo from './DrinkInfo';
 
 const drinkinformation = [
     {
-        id: 0,
+        id: 41,
         img: 'images/AlcoholImg.png',
         name: '담은',
         abv: 6.5,
     },
     {
-        id: 1,
+        id: 223,
         img: 'images/AlcoholImg2.png',
         name: '도원결의',
         abv: 15,
     },
     {
-        id: 2,
+        id: 377,
         img: 'images/AlcoholImg3.png',
         name: '이강주',
         abv: 19,

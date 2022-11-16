@@ -26,7 +26,7 @@ const ReviewStar: React.FC<ReviewStarType> = ({
                 <Box>
                     <h1>사용자 총 평점</h1>
                     <ImgBox>
-                        <Star star={0} widthValue={29} heightValue={27} />
+                        <Star star={0} widthValue={1.8125} />
                     </ImgBox>
                     <div>
                         <h2>0 / 5</h2>
@@ -36,11 +36,7 @@ const ReviewStar: React.FC<ReviewStarType> = ({
                 <Box>
                     <h1>사용자 총 평점</h1>
                     <ImgBox>
-                        <Star
-                            star={starAvg}
-                            widthValue={windowSize.width >= 768 ? 29 : 14}
-                            heightValue={windowSize.width >= 768 ? 27 : 13}
-                        />
+                        <Star star={starAvg} widthValue={1.8125} />
                     </ImgBox>
                     <div>
                         <h2>{starAvg} / 5</h2>

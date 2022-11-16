@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Star from '../common/Star';
 
@@ -22,62 +22,75 @@ const ReviewDetailList: React.FC<ReviewType> = ({
     date,
     like,
 }) => {
+    const navigate = useNavigate();
     return (
         <ListWrapper>
-            <Link to={`/review/alcohol${alcoholId}/review${id}`}>
+            <div
+                onClick={async () => {
+                    navigate(`/review/alcohol${alcoholId}/review${id}`);
+                }}
+                aria-hidden
+            >
                 <BoardList>
-                    <Star star={star} widthValue={28} heightValue={28} />
+                    <Star star={star} widthValue={1.75} />
                     <div>{title}</div>
                     <div>{nickname}</div>
                     <div>{date.slice(0, 10)}</div>
                     <div>👍 {like}</div>
                 </BoardList>
-            </Link>
+            </div>
         </ListWrapper>
     );
 };
 
 export default ReviewDetailList;
 
-const ListWrapper = styled.div``;
+const ListWrapper = styled.div`
+    > div {
+        cursor: pointer;
+    }
+`;
 
 const BoardList = styled.div`
-    width: 1153px;
-    height: 69px;
+    width: 72.063em;
+    height: 4.313em;
     white-space: nowrap;
     border-bottom: 1px solid #bbb6a8;
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
     position: relative;
     color: #8d837b;
     text-decoration: none;
 
     div {
-        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     div:first-child {
-        top: 13px;
-        left: 10px;
+        width: 11.438em;
     }
 
     div:nth-child(2) {
-        left: 300px;
-        width: 350px;
+        width: 17.75em;
         text-align: center;
     }
 
     div:nth-child(3) {
-        width: 100px;
-        left: 750px;
+        width: 7.813em;
         text-align: center;
     }
 
     div:nth-child(4) {
-        left: 896px;
+        width: 8.813em;
     }
 
     div:nth-child(5) {
-        left: 1050px;
+        width: 4.75em;
+    }
+    @media (max-width: 767px) {
+        display: none;
     }
 `;

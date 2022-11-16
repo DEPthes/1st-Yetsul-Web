@@ -17,17 +17,18 @@ export const TemporarySaveModal: React.FC<ModalType> = ({
     );
     const getData = () => {
         const JWT = localStorage.getItem('accessToken') || '';
-        return axios.create({
-            headers: { Authorization: `Bearer ${JWT}` },
-        });
-    };
-    useEffect(() => {
-        getData()
+        return axios
+            .create({
+                headers: { Authorization: `Bearer ${JWT}` },
+            })
             .post(
                 'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/user/temporary',
             )
             .then((res) => setAlcholthatUserWrite(res.data))
             .catch((err) => console.log(err));
+    };
+    useEffect(() => {
+        getData();
     }, []);
     if (!OpenModal) return null;
     return (
@@ -70,7 +71,9 @@ export const TemporarySaveModal: React.FC<ModalType> = ({
                             star: number;
                         }) => (
                             <MyReviewModalWidget
+                                getData={() => getData()}
                                 key={myreview.id}
+                                id={myreview.id}
                                 alcoholId={myreview.alcoholId}
                                 title={myreview.title}
                                 star={myreview.star}
