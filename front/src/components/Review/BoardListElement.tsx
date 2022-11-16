@@ -1,19 +1,14 @@
 /* eslint-disable prefer-const */
 /* eslint-disable react/button-has-type */
 import axios from 'axios';
-<<<<<<< HEAD
-import { read } from 'fs';
-import { letterSpacing } from 'html2canvas/dist/types/css/property-descriptors/letter-spacing';
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-=======
-import React from 'react';
->>>>>>> 14203910703b91343de0301538e644a6ba3e9724
 
 /* eslint-disable no-nested-ternary */
 
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { getAccessToken } from '../../services/tokenControl';
 import Star from '../common/Star';
 
 type reviewType = {
@@ -43,100 +38,36 @@ const BoardListElement: React.FC<reviewType> = ({
     reviewId,
     alcoholId,
 }) => {
-<<<<<<< HEAD
-    let [likeCount, setLikeCount] = useState(like);
-    let [isLiked, setIsLiked] = useState(false);
-    const [loading, setLoading] = useState(true);
+    const [reviewLike, setReviewLike] = useState(like);
 
-=======
->>>>>>> 14203910703b91343de0301538e644a6ba3e9724
-    const getdata = () => {
-        const accessToken = localStorage.getItem('accessToken') || '';
-        return axios.create({
-            headers: { Authorization: `Bearer ${accessToken}` },
-        });
-    };
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-<<<<<<< HEAD
-    const reviewLikeClick = async () => {
-        try {
-            await getdata()
-                .post(
-                    `http://depth-server.herokuapp.com/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
-                )
-                .then((res) => {
-                    setLikeCount(res.data.review.like);
-                    setIsLiked(!isLiked);
-                    setLoading(!loading);
-                });
-        } catch (err) {
-            console.log(err);
-        }
-=======
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        getdata()
-            .post(
+    const onClickLike = async () => {
+        await axios.post(
+            `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${getAccessToken()}`,
+                },
+            },
+        );
+        axios
+            .get(
                 `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
             )
             .then((res) => {
-                console.log(res.data.review);
-                console.log(res.data.review.like);
+                setReviewLike(res.data.like);
             })
+
             .catch((err) => console.log(err));
->>>>>>> 14203910703b91343de0301538e644a6ba3e9724
     };
 
-    const reviewLike = () => {
-        if (like >= 0) {
-            if (loading === true) {
-                return like;
-            }
-            return likeCount;
-        }
-        return 0;
-    };
     const isMobile = useMediaQuery({
         query: '(max-width:767px)',
     });
     return (
         <>
-<<<<<<< HEAD
             {isMobile ? (
                 '모바일 화면'
-=======
-            {reviewImg.length < 1 ? (
-                <ReviewsWrapper>
-                    <UserImgWrap>
-                        <img src={userImg} alt={userImg} />
-                    </UserImgWrap>
-
-                    <ReviewBox>
-                        <h1>{title}</h1>
-                        <StarWrap>
-                            <Star star={starCount} widthValue={1.8125} />
-                            <h3>{starCount}개</h3>
-                        </StarWrap>
-                        <ReviewBoxHeadInfo>
-                            <h3>{nickname}</h3>
-                            <h3>{date.slice(0, 10)}</h3>
-                        </ReviewBoxHeadInfo>
-
-                        <ReviewBoxContentNoImg>
-                            <h3>{content}</h3>
-                            <ReviewLink
-                                to={`/review/alcohol${alcoholId}/review${reviewId}`}
-                            >
-                                전체보기 {'>'}
-                            </ReviewLink>
-                        </ReviewBoxContentNoImg>
-                    </ReviewBox>
-                    <LikeBtn onClick={handleClick}>
-                        👍
-                        <span>{like}</span>
-                    </LikeBtn>
-                </ReviewsWrapper>
->>>>>>> 14203910703b91343de0301538e644a6ba3e9724
             ) : (
                 <>
                     {reviewImg.length < 1 ? (
@@ -150,8 +81,7 @@ const BoardListElement: React.FC<reviewType> = ({
                                 <StarWrap>
                                     <Star
                                         star={starCount}
-                                        widthValue={29}
-                                        heightValue={27}
+                                        widthValue={1.8125}
                                     />
                                     <h3>{starCount}개</h3>
                                 </StarWrap>
@@ -175,9 +105,9 @@ const BoardListElement: React.FC<reviewType> = ({
                                     </ReviewLink>
                                 </ReviewBoxContentNoImg>
                             </ReviewBox>
-                            <LikeBtn onClick={() => reviewLikeClick()}>
+                            <LikeBtn onClick={onClickLike}>
                                 👍
-                                <span>{reviewLike()}</span>
+                                <span>{reviewLike}</span>
                             </LikeBtn>
                         </ReviewsWrapper>
                     ) : (
@@ -200,8 +130,7 @@ const BoardListElement: React.FC<reviewType> = ({
                                 <StarWrap>
                                     <Star
                                         star={starCount}
-                                        widthValue={29}
-                                        heightValue={27}
+                                        widthValue={1.8125}
                                     />
                                     <h3>{starCount}개</h3>
                                 </StarWrap>
@@ -233,50 +162,13 @@ const BoardListElement: React.FC<reviewType> = ({
                                 )}
                             </ReviewImgWrap>
 
-                            <LikeBtn onClick={reviewLikeClick}>
+                            <LikeBtn onClick={onClickLike}>
                                 👍
-                                <span>{likeCount}</span>
+                                <span>{reviewLike}</span>
                             </LikeBtn>
                         </ReviewsWrapper>
                     )}
-<<<<<<< HEAD
                 </>
-=======
-
-                    <ReviewBox>
-                        <h1>{title}</h1>
-                        <StarWrap>
-                            <Star star={starCount} widthValue={1.8125} />
-                            <h3>{starCount}개</h3>
-                        </StarWrap>
-                        <ReviewBoxHeadInfo>
-                            <h3>{nickname}</h3>
-                            <h3>{date.slice(0, 10)}</h3>
-                        </ReviewBoxHeadInfo>
-
-                        <ReviewBoxContent>
-                            <h3>{content}</h3>
-                            <ReviewLink
-                                to={`/review/alcohol${alcoholId}/review${reviewId}`}
-                            >
-                                전체보기 {'>'}
-                            </ReviewLink>
-                        </ReviewBoxContent>
-                    </ReviewBox>
-                    <ReviewImgWrap>
-                        {reviewImg.length < 2 ? (
-                            <img src={reviewImg} alt={userImg} />
-                        ) : (
-                            <img src={reviewImg[0]} alt={userImg} />
-                        )}
-                    </ReviewImgWrap>
-
-                    <LikeBtn onClick={handleClick}>
-                        👍
-                        <span>{like}</span>
-                    </LikeBtn>
-                </ReviewsWrapper>
->>>>>>> 14203910703b91343de0301538e644a6ba3e9724
             )}
         </>
     );
@@ -417,7 +309,7 @@ const LikeBtn = styled.button`
     border-radius: 52px;
     background: none;
     margin: auto 0;
-
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
