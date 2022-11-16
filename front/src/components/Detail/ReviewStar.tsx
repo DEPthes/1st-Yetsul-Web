@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Star from '../common/Star';
 
@@ -17,6 +17,9 @@ const ReviewStar: React.FC<ReviewStarType> = ({
     highestPercent,
     mostStars,
 }) => {
+    const [windowSize, setWindowSize] = useState({
+        width: window.innerWidth,
+    });
     return (
         <Inner>
             {Number.isNaN(starAvg) ? (
@@ -33,7 +36,11 @@ const ReviewStar: React.FC<ReviewStarType> = ({
                 <Box>
                     <h1>사용자 총 평점</h1>
                     <ImgBox>
-                        <Star star={starAvg} widthValue={29} heightValue={27} />
+                        <Star
+                            star={starAvg}
+                            widthValue={windowSize.width >= 768 ? 29 : 14}
+                            heightValue={windowSize.width >= 768 ? 27 : 13}
+                        />
                     </ImgBox>
                     <div>
                         <h2>{starAvg} / 5</h2>
@@ -44,7 +51,7 @@ const ReviewStar: React.FC<ReviewStarType> = ({
             <Box>
                 <h1>리뷰 수</h1>
                 <Circle>
-                    <h3>{reviewCount}</h3>
+                    <h3>{reviewCount}개</h3>
                 </Circle>
             </Box>
             <Box>
@@ -131,32 +138,47 @@ const ReviewStar: React.FC<ReviewStarType> = ({
 export default ReviewStar;
 
 const Inner = styled.div`
-    width: 1154px;
-    height: 306px;
+    width: 100%;
+    /* height: 306px; */
     border: 1px solid #675b4f;
     border-radius: 18px;
     display: flex;
     margin-top: 28px;
     margin-bottom: 58px;
+    @media (max-width: 767px) {
+        margin-top: 25px;
+        /* height: 132px; */
+        margin-bottom: 29px;
+        border-radius: 10px;
+    }
 
-    img {
+    /* img {
         width: 44px;
         height: 44px;
         color: #8e8372;
         border-radius: 1px;
-    }
+        background-color: red;
+    } */
 
     h1 {
         font-size: 25px;
         color: #675b4f;
-
         margin-top: 64px;
+        @media (max-width: 767px) {
+            font-weight: 400;
+            font-size: 12px;
+            margin-top: 20px;
+        }
     }
 
     h2 {
         font-weight: 500;
         font-size: 30px;
         color: #8b7e6a;
+        @media (max-width: 767px) {
+            font-size: 15px;
+            font-weight: bold;
+        }
     }
 
     h3 {
@@ -164,11 +186,22 @@ const Inner = styled.div`
         font-size: 25px;
         color: #8b7e6a;
     }
+
+    h4 {
+        @media (max-width: 767px) {
+            font-size: 10px;
+        }
+    }
 `;
 
 const ImgBox = styled.div`
     margin-top: 52px;
     margin-bottom: 31px;
+
+    @media (max-width: 767px) {
+        margin-top: 34px;
+        margin-bottom: 11px;
+    }
 `;
 
 const Circle = styled.div`
@@ -179,15 +212,25 @@ const Circle = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-
     margin-top: 20px;
     margin-bottom: 53px;
+
+    @media (max-width: 767px) {
+        width: 48px;
+        height: 48px;
+        margin-top: 33px;
+        margin-bottom: 23px;
+        h3 {
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 13px;
+        }
+    }
 `;
 
 const Box = styled.div`
     display: flex;
     flex-direction: column;
-    height: 100%;
     align-items: center;
     width: 33.3%;
 `;
@@ -199,6 +242,10 @@ const PercentBox = styled.div`
     flex-direction: column;
 
     margin-left: 21px;
+
+    @media (max-width: 767px) {
+        margin-left: 8px;
+    }
 `;
 
 type BarHeightType = {
@@ -211,12 +258,19 @@ const PercentBar = styled.div<BarHeightType>`
     height: ${(props) => props.bar}px;
     max-height: 85px;
     min-height: 17px;
-
     background: #d9d9d9;
     border-radius: 18px;
 
     margin-top: 7px;
     margin-bottom: 11px;
+
+    @media (max-width: 767px) {
+        max-height: 40px;
+        min-height: 5px;
+        width: 5px;
+        margin-top: 5px;
+        margin-bottom: 8px;
+    }
 `;
 
 const PercentBoxWrapper = styled.div`
@@ -225,6 +279,9 @@ const PercentBoxWrapper = styled.div`
     height: inherit;
     align-items: flex-end;
     justify-content: center;
+    @media (max-width: 767px) {
+        margin-bottom: 25px;
+    }
 `;
 
 const HighestPercent = styled.div`
@@ -235,10 +292,23 @@ const HighestPercent = styled.div`
     display: flex;
     justify-content: center;
 
+    @media (max-width: 767px) {
+        width: 16px;
+        height: 12px;
+        border-radius: 5px;
+        margin-top: 22px;
+    }
+
     span {
         margin-top: 3px; // align-center 잘안먹어서
         font-size: 14px;
         color: #ffffff;
+
+        @media (max-width: 767px) {
+            font-size: 6px;
+            color: #ffffff;
+            margin: 0 auto;
+        }
     }
 
     + div {

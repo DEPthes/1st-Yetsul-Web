@@ -81,12 +81,10 @@ const BoardListElement: React.FC<reviewType> = ({
     });
     return (
         <>
-            {' '}
             {isMobile ? (
                 '모바일 화면'
             ) : (
                 <>
-                    {' '}
                     {reviewImg.length < 1 ? (
                         <ReviewsWrapper>
                             <UserImgWrap>
@@ -306,7 +304,6 @@ const ReviewBoxContent = styled.div`
         font-size: 15px;
         color: #8b7e6a;
         margin: 20px 13px;
-        background-color: red;
     }
 `;
 

@@ -149,6 +149,19 @@ const DrinkDetail: React.FC = () => {
         setSelected([true, false, false, false]);
     };
 
+    const sortByDateDesc = () => {
+        // 모바일 용 오래된 순
+        const sortedByDateReviews = reviewForSort
+            .slice(0)
+            .sort((a: ReviewType, b: ReviewType) => {
+                return (
+                    new Date(b.date.slice(0, 10)).valueOf() -
+                    new Date(a.date.slice(0, 10)).valueOf()
+                );
+            });
+        setReviewForSort(sortedByDateReviews);
+    };
+
     const sortByStarAsc = () => {
         // 평점 높은 순 정렬
         if (isSelected[1] === false) {
@@ -172,6 +185,16 @@ const DrinkDetail: React.FC = () => {
                 });
             setReviewForSort(sortedByStarReviews);
             setSelected([false, false, false, true]);
+        }
+    };
+    const [sort, setSort] = useState('ASC');
+    const changeSort = () => {
+        if (sort === 'ASC') {
+            sortByDateDesc();
+            setSort('DESC');
+        } else {
+            sortByDate();
+            setSort('ASC');
         }
     };
 
@@ -255,20 +278,38 @@ const DrinkDetail: React.FC = () => {
                     mostStars={EachStarCount()}
                 />
 
-                <div>
-                    <ReviewTitle>
-                        <h1>포토후기 ({PhotoReviewSrcArr().length})개</h1>
-                    </ReviewTitle>
-                    {PhotoReviewSrcArr().length === 0 ? (
-                        <>
-                            <NoReview>포토후기가 없습니다.</NoReview>
-                        </>
-                    ) : (
-                        <>
-                            {PhotoReviewSrcArr().length >= 5 ? (
+                <ReviewTitle>
+                    <h1>포토후기 ({PhotoReviewSrcArr().length})개</h1>
+                </ReviewTitle>
+                {PhotoReviewSrcArr().length === 0 ? (
+                    <NoReview>
+                        <h1>포토후기가 없습니다.</h1>
+                    </NoReview>
+                ) : (
+                    <>
+                        {PhotoReviewSrcArr().length >= 5 ? (
+                            <PhotoReviewWrapper>
+                                {PhotoReviewSrcArr()
+                                    .slice(0, 4)
+                                    .map((p, index) => {
+                                        return (
+                                            <img
+                                                src={p}
+                                                // eslint-disable-next-line react/no-array-index-key
+                                                key={index}
+                                                alt={p}
+                                            />
+                                        );
+                                    })}
+                                <button type="button" onClick={handleModal}>
+                                    <h1>더보기</h1>
+                                </button>
+                            </PhotoReviewWrapper>
+                        ) : (
+                            <>
                                 <PhotoReviewWrapper>
                                     {PhotoReviewSrcArr()
-                                        .slice(0, 4)
+                                        .slice(0, 5)
                                         .map((p, index) => {
                                             return (
                                                 <img
@@ -279,37 +320,101 @@ const DrinkDetail: React.FC = () => {
                                                 />
                                             );
                                         })}
-                                    <button type="button" onClick={handleModal}>
-                                        <h1>더보기</h1>
-                                    </button>
                                 </PhotoReviewWrapper>
-                            ) : (
-                                <>
-                                    <PhotoReviewWrapper>
-                                        {PhotoReviewSrcArr()
-                                            .slice(0, 5)
-                                            .map((p, index) => {
-                                                return (
-                                                    <img
-                                                        src={p}
-                                                        // eslint-disable-next-line react/no-array-index-key
-                                                        key={index}
-                                                        alt={p}
-                                                    />
-                                                );
-                                            })}
-                                    </PhotoReviewWrapper>
-                                </>
-                            )}
-                        </>
-                    )}
-                </div>
+                            </>
+                        )}
+                    </>
+                )}
 
                 <ReviewTitle>
                     <h1>리뷰 ({reviews.length})개</h1>
                 </ReviewTitle>
                 {isMobile ? (
-                    '모바일화면'
+                    <SortBtn onClick={changeSort}>
+                        {
+                            {
+                                ASC: (
+                                    <>
+                                        <svg
+                                            id="asc"
+                                            style={{
+                                                transform: `rotate(0.5turn)`,
+                                            }}
+                                            width="25"
+                                            height="15"
+                                            viewBox="0 0 25 15"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M23 2L12.5 12.5963L2 2"
+                                                stroke="#8B7E6A"
+                                                strokeWidth="2.5"
+                                                strokeLinecap="round"
+                                            />
+                                        </svg>
+                                        <p>오래 된 순</p>
+                                    </>
+                                ),
+                                DESC: (
+                                    <>
+                                        <svg
+                                            id="asc"
+                                            width="25"
+                                            height="15"
+                                            viewBox="0 0 25 15"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M23 2L12.5 12.5963L2 2"
+                                                stroke="#8B7E6A"
+                                                strokeWidth="2.5"
+                                                strokeLinecap="round"
+                                            />
+                                        </svg>
+                                        <p>최신 순</p>
+                                    </>
+                                ),
+                            }[sort]
+                        }
+
+                        <svg
+                            id="mobileAsc"
+                            width="32"
+                            height="20"
+                            viewBox="0 0 32 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M10.7146 16.3403L10.7146 4.40811"
+                                stroke="#675B4F"
+                                strokeWidth="1.3"
+                                strokeLinecap="round"
+                            />
+                            <path
+                                d="M6.35156 8.57068L10.7144 4.20782L15.0773 8.57068"
+                                stroke="#675B4F"
+                                strokeWidth="1.3"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                            <path
+                                d="M21.2854 3.65967L21.2854 15.5919"
+                                stroke="#675B4F"
+                                strokeWidth="1.3"
+                                strokeLinecap="round"
+                            />
+                            <path
+                                d="M25.6484 11.4293L21.2856 15.7922L16.9227 11.4293"
+                                stroke="#675B4F"
+                                strokeWidth="1.3"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                        </svg>
+                    </SortBtn>
                 ) : (
                     <ReviewSort>
                         <button
@@ -347,7 +452,9 @@ const DrinkDetail: React.FC = () => {
                 )}
 
                 {reviews.length === 0 ? (
-                    <NoReview>작성된 리뷰가 없습니다.</NoReview>
+                    <NoReview>
+                        <h1>작성된 리뷰가 없습니다.</h1>
+                    </NoReview>
                 ) : (
                     <ul>
                         {reviewForSort
@@ -388,19 +495,56 @@ const DrinkDetail: React.FC = () => {
 };
 
 export default DrinkDetail;
+const SortBtn = styled.div`
+    cursor: pointer;
+    position: relative;
+    margin-left: auto;
+
+    > svg {
+        position: absolute;
+        width: 1.25em;
+        right: 5.5em;
+        top: -2.5px;
+    }
+    #mobileAsc {
+        display: none;
+    }
+    font-size: 1.25em;
+    line-height: 1em;
+    letter-spacing: -0.01em;
+    @media (max-width: 767px) {
+        margin-top: 1.583em;
+        font-size: 0.75em;
+        #asc {
+            display: none;
+        }
+        #mobileAsc {
+            display: block;
+        }
+        > p {
+            margin-right: 2.667em;
+        }
+        > svg {
+            position: absolute;
+            right: 0;
+            width: 2.667em;
+            top: -0.5em;
+        }
+    }
+`;
 
 const ReviewSort = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-end;
     margin-top: 27px;
-    font-size: 18px;
     color: #bbb6a8;
     font-family: inherit;
-    width: 1153px;
+    width: 100%;
     background-color: yellow;
 
     button {
+        font-size: 18px;
         background: none;
         border: none;
         font-family: inherit;
@@ -416,27 +560,22 @@ const ReviewSort = styled.div`
 `;
 
 const ReviewTitle = styled.div`
-    padding-bottom: 40px;
+    padding-bottom: 2.5em;
     border-bottom: 1px solid #bbb6a8;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 1153px;
-    background-color: green;
+    width: 100%;
     @media (max-width: 767px) {
-        width: 315px;
-        padding-bottom: 24px;
+        padding-bottom: 0.938em;
     }
 
     h1 {
-        font-size: 1.875rem;
+        font-size: 1.563em;
         color: #675b4f;
-        width: 1153px;
-        background-color: slategray;
         @media (max-width: 767px) {
-            width: 315px;
             font-weight: 400;
-            font-size: 15px;
+            font-size: 0.938em; // 18px
         }
     }
 `;
@@ -469,6 +608,7 @@ const ReviewWriteLink = styled(Link)`
 `;
 
 const Inner = styled.div`
+    width: 72.063em;
     ul {
         list-style: none;
     }
@@ -477,6 +617,10 @@ const Inner = styled.div`
         border-top: 1px solid #bbb6a8;
         margin-top: 58px;
         background-color: #ff9500;
+
+        @media (max-width: 767px) {
+            margin-top: 28px;
+        }
     }
 
     li:first-child {
@@ -488,21 +632,26 @@ const Inner = styled.div`
     justify-content: center;
     align-items: center;
     margin-bottom: 100px;
+
+    @media (max-width: 767px) {
+        width: 411.5px;
+    }
 `;
 
 const NoReview = styled.div`
-    font-size: 23px;
     display: flex;
+    width: 100%;
     justify-content: center;
     align-items: center;
-    width: 1153px;
     height: 287px;
     background-color: purple;
-
     color: #bbb6a8;
 
+    h1 {
+        font-size: 23px;
+    }
+
     @media (max-width: 767px) {
-        width: 315px;
         font-weight: 400;
         font-size: 15px;
     }
@@ -510,7 +659,7 @@ const NoReview = styled.div`
 
 const PhotoReviewWrapper = styled.div`
     display: flex;
-    width: 1153px;
+    width: 100%;
     justify-content: flex-start;
     align-items: center;
 
