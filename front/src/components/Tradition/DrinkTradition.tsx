@@ -39,24 +39,20 @@ const DrinkTradition: React.FC = () => {
                     <div>
                         <InnerNavUl id="service-nav">
                             {list.map((_, i) => (
-                                <InnerNavLI key={i}>
-                                    <a
-                                        href={`#section-${i}`}
-                                        style={{
-                                            color:
-                                                currentElementIndexInViewport ===
-                                                i
-                                                    ? '#675B4F'
-                                                    : '#A7A7A7',
-                                            borderBottom:
-                                                currentElementIndexInViewport ===
-                                                i
-                                                    ? '5px solid #675B4F'
-                                                    : '1px solid #A7A7A7',
-                                        }}
-                                    >
-                                        {arr[i]}
-                                    </a>
+                                <InnerNavLI
+                                    key={i}
+                                    style={{
+                                        color:
+                                            currentElementIndexInViewport === i
+                                                ? '#675B4F'
+                                                : '#A7A7A7',
+                                        borderBottom:
+                                            currentElementIndexInViewport === i
+                                                ? '2px solid #675B4F'
+                                                : '1px solid #A7A7A7',
+                                    }}
+                                >
+                                    <a href={`#section-${i}`}>{arr[i]}</a>
                                 </InnerNavLI>
                             ))}
                         </InnerNavUl>
@@ -455,14 +451,13 @@ const InnerNavUl = styled.ul`
     z-index: 3;
     list-style: none;
     position: fixed;
-    top: 9.1875em;
     left: 50%;
     width: 100%;
-    height: 80px;
+    height: 60px;
     transform: translate(-50%);
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     transition: all 0.3s ease-out;
     @media screen and (max-width: 767px) {
         top: 6.0625em;
@@ -470,11 +465,12 @@ const InnerNavUl = styled.ul`
 `;
 
 const InnerNavLI = styled.li`
-    float: left;
+    display: flex;
+    justify-content: center;
+    width: calc(100vw / 3);
     a {
+        color: #8d837b;
         padding-bottom: 1.25em;
-        padding-left: 3.77vw;
-        padding-right: 3.77vw;
         font-size: 1.25em;
         text-decoration: none;
         @media screen and (max-width: 767px) {
