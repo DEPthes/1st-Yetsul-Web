@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 import Star from '../common/Star';
@@ -79,6 +80,12 @@ export const MyReviewModalWidget: React.FC<myreviewtype> = ({
         }
     };
 
+    const navigate = useNavigate();
+
+    const goToEditTemp = () => {
+        navigate(`/review/alcohol${alcoholId}/review${id}/temporaryedit`);
+    };
+
     return (
         <MyreviewBarInner>
             <MyreviewDrinkImgSection>
@@ -99,7 +106,7 @@ export const MyReviewModalWidget: React.FC<myreviewtype> = ({
                 <StarBox>
                     <Star star={star} widthValue={0.625} />
                 </StarBox>
-                <SeeFull>이어쓰기 &#62;</SeeFull>
+                <SeeFull onClick={goToEditTemp}>이어쓰기 &#62;</SeeFull>
             </MyreviewRightSection>
             <RightRightSection>
                 <CloseBtn>
@@ -231,6 +238,7 @@ const MyreviewRightSection = styled.div`
 `;
 
 const SeeFull = styled.div`
+    cursor: pointer;
     font-size: 0.573vw;
 `;
 

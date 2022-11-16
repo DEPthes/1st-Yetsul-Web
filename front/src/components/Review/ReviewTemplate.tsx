@@ -154,7 +154,7 @@ const InfoBottom = styled.div`
 `;
 
 const AlcoholType = styled.div`
-    width: 5.067em;
+    width: 6.067em;
     height: 2.267em;
     line-height: 2.4em;
     text-align: center;

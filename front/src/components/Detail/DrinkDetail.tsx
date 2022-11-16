@@ -202,7 +202,7 @@ const DrinkDetail: React.FC = () => {
                 nav.className = 'right is-blurred';
             }
         } else {
-            $('body').css('overflow', 'scroll');
+            $('body').css('overflow', 'auto');
             if (main) {
                 main.className = '';
             }
