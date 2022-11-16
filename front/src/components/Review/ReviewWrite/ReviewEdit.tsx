@@ -789,8 +789,8 @@ const ImageWrap = styled.div`
         margin-top: 0.688em;
         > div {
             border-radius: 0.4em;
-            width: 3.08em;
-            height: 2.96em;
+            width: calc((100% - 1.25em) / 5);
+            height: calc(((100vw - 3.125em) - 0.5em) / 5);
             font-size: 1.563em;
             line-height: 1em;
         }
@@ -818,12 +818,10 @@ const ImageBox = styled.div`
     }
     @media (max-width: 767px) {
         border-radius: 0.4em;
-        width: 3.08em;
-        height: 2.96em;
         font-size: 1.563em;
         line-height: 1em;
         &:not(:last-of-type) {
-            margin-right: calc((100% - (3.08em * 5)) / 4);
+            margin-right: 5px;
         }
     }
 `;
