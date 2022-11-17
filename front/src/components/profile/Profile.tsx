@@ -99,47 +99,48 @@ export const Profile: React.FC = () => {
                         <ProfileBox>
                             <ProfileImgBox>
                                 <ProfileImg src={userData.profileImg} />
-                                <ProfileFixImgBtn to="/profile/fix" />
+                                <ProfileFixImgBtn to="/profile/fix">
+                                    <ProfileFixSvg
+                                        width="51"
+                                        height="51"
+                                        viewBox="0 0 51 51"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/ProfileFixSvg"
+                                    >
+                                        <circle
+                                            cx="25.5"
+                                            cy="25.5"
+                                            r="25"
+                                            fill="white"
+                                            stroke="#DEDEDE"
+                                        />
+                                        <path
+                                            d="M24.0029 18.8264H16.9658V34.5764H32.7158V27.3923"
+                                            stroke="black"
+                                            strokeWidth="1.3"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            fillRule="evenodd"
+                                            clipRule="evenodd"
+                                            d="M32.7539 14.2529L37.2996 18.7986L27.2991 28.7991H22.7534V24.2534L32.7539 14.2529Z"
+                                            stroke="black"
+                                            strokeWidth="1.3"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M30.3428 17.234L34.5379 21.4291"
+                                            stroke="black"
+                                            strokeWidth="1.3"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </ProfileFixSvg>
+                                </ProfileFixImgBtn>
                             </ProfileImgBox>
                             <ProfileName>{userData.nickname}</ProfileName>
-                            <ProfileFixSvg
-                                width="51"
-                                height="51"
-                                viewBox="0 0 51 51"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/ProfileFixSvg"
-                            >
-                                <circle
-                                    cx="25.5"
-                                    cy="25.5"
-                                    r="25"
-                                    fill="white"
-                                    stroke="#DEDEDE"
-                                />
-                                <path
-                                    d="M24.0029 18.8264H16.9658V34.5764H32.7158V27.3923"
-                                    stroke="black"
-                                    strokeWidth="1.3"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    fillRule="evenodd"
-                                    clipRule="evenodd"
-                                    d="M32.7539 14.2529L37.2996 18.7986L27.2991 28.7991H22.7534V24.2534L32.7539 14.2529Z"
-                                    stroke="black"
-                                    strokeWidth="1.3"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M30.3428 17.234L34.5379 21.4291"
-                                    stroke="black"
-                                    strokeWidth="1.3"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </ProfileFixSvg>
                         </ProfileBox>
                     </ProfileImgSection>
                     <ProfileImformationSection>
@@ -169,32 +170,37 @@ export const Profile: React.FC = () => {
                                 </MyreviewArrayLi>
                             </MyreviewArray>
                         </MyreviewHeader>
-                        {NoReviewData ? (
-                            <NoDataWindow>나의 리뷰가 없습니다.</NoDataWindow>
-                        ) : (
-                            <Myreview>
-                                {AlcholthatUserWriteforWidget.map(
-                                    (myreview: {
-                                        id: number;
-                                        alcoholId: number;
-                                        title: string;
-                                        star: number;
-                                    }) => (
-                                        <MyReviewWidget
-                                            key={myreview.id}
-                                            id={myreview.id}
-                                            alcoholId={myreview.alcoholId}
-                                            title={myreview.title}
-                                            star={myreview.star}
-                                        />
-                                    ),
-                                )}
-                                <MyReviewSeeFullLink to="/profile/MyReview">
-                                    <SeeFullOuter>전체보기 &#62;</SeeFullOuter>
-                                </MyReviewSeeFullLink>
-                            </Myreview>
-                        )}
-
+                        <Myreview>
+                            {NoReviewData ? (
+                                <NoDataWindow>
+                                    나의 리뷰가 없습니다.
+                                </NoDataWindow>
+                            ) : (
+                                <>
+                                    {AlcholthatUserWriteforWidget.map(
+                                        (myreview: {
+                                            id: number;
+                                            alcoholId: number;
+                                            title: string;
+                                            star: number;
+                                        }) => (
+                                            <MyReviewWidget
+                                                key={myreview.id}
+                                                id={myreview.id}
+                                                alcoholId={myreview.alcoholId}
+                                                title={myreview.title}
+                                                star={myreview.star}
+                                            />
+                                        ),
+                                    )}
+                                    <MyReviewSeeFullLink to="/profile/MyReview">
+                                        <SeeFullOuter>
+                                            전체보기 &#62;
+                                        </SeeFullOuter>
+                                    </MyReviewSeeFullLink>
+                                </>
+                            )}
+                        </Myreview>
                         <MyfavoriteBox>
                             <MyreviewHeader2>
                                 <MyreviewHeadingCom>
@@ -203,7 +209,7 @@ export const Profile: React.FC = () => {
                             </MyreviewHeader2>
                             {NoLikeData ? (
                                 <NoDataWindow>
-                                    나의 리뷰가 없습니다.
+                                    찜한 옛술이 없습니다.
                                 </NoDataWindow>
                             ) : (
                                 <>
@@ -378,8 +384,8 @@ const ProfileImg = styled.img`
 
 const ProfileFixSvg = styled.svg`
     position: relative;
-    top: -13em;
-    left: 3em;
+    top: calc(-10em);
+    left: 1em;
     z-index: 200;
     width: 2.9375em;
 `;
@@ -389,6 +395,7 @@ const ProfileName = styled.p`
     font-weight: 600;
     font-size: 1.875em;
     text-align: center;
+    margin-top: -2.667vw;
 `;
 
 const Myreview = styled.div`

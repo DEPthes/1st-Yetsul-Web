@@ -110,8 +110,9 @@ const MyreviewBarInner = styled.div`
     margin-top: 0.573vw;
     @media screen and (max-width: 767px) {
         width: 85.128vw;
-        height: 21.538vw;
+        height: 23.538vw;
         border-radius: 12px;
+        margin-bottom: 1.521vw;
     }
 `;
 const MyreviewDrinkImgSection = styled.div`
@@ -128,7 +129,7 @@ const MyreviewDrinkImgSection = styled.div`
 const MyreviewDrinkImg = styled.img`
     height: 100%;
     @media screen and (max-width: 767px) {
-        width: 11.282vw;
+        height: 17vw;
     }
 `;
 
@@ -169,6 +170,7 @@ const MyreviewDrinkKind = styled.div`
         padding-top: 0.6vw;
     }
 `;
+
 const MyreviewDrinkName = styled.p`
     color: #675b4f;
     margin-left: 20px;
@@ -186,7 +188,7 @@ const MyreviewHeading = styled.p`
     margin-top: 0.598vw;
     @media screen and (max-width: 767px) {
         margin-left: 0vw;
-        margin-top: 0vw;
+        margin-top: 2vw;
         font-size: 3.077vw;
     }
 `;

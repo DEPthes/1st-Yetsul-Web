@@ -84,6 +84,7 @@ export const MyReviewModalWidget: React.FC<myreviewtype> = ({
 
     const goToEditTemp = () => {
         navigate(`/review/alcohol${alcoholId}/review${id}/temporaryedit`);
+        console.log('시발');
     };
 
     return (
@@ -100,7 +101,7 @@ export const MyReviewModalWidget: React.FC<myreviewtype> = ({
                 </MyreviewInformationUpper>
                 <MyreviewInformationLower>
                     <MyreviewHeading>{title}</MyreviewHeading>
-                    <SeeFull>이어쓰기 &#62;</SeeFull>
+                    <SeeFull onClick={goToEditTemp}>이어쓰기 &#62;</SeeFull>
                 </MyreviewInformationLower>
             </MyreviewInformationSection>
             <MyreviewRightSection>
@@ -110,7 +111,6 @@ export const MyReviewModalWidget: React.FC<myreviewtype> = ({
                 <StarBoxMobile>
                     <Star star={star} widthValue={0.425} />
                 </StarBoxMobile>
-                <SeeFull onClick={goToEditTemp}>이어쓰기 &#62;</SeeFull>
             </MyreviewRightSection>
             <RightRightSection>
                 <CloseBtn>
@@ -211,9 +211,12 @@ const MyreviewInformationUpper = styled.div`
     align-items: center;
 `;
 const MyreviewInformationLower = styled.div`
-    width: 50vw;
     display: flex;
     justify-content: space-between;
+    width: 133%;
+    @media screen and (max-width: 767px) {
+        width: 143%;
+    }
 `;
 
 const MyreviewDrinkKind = styled.div`
@@ -260,7 +263,10 @@ const MyreviewRightSection = styled.div`
 
 const SeeFull = styled.div`
     cursor: pointer;
-    font-size: 0.573vw;
+    @media screen and (max-width: 767px) {
+        z-index: 200000;
+        font-size: 0.573vw;
+    }
 `;
 
 const StarBox = styled.div`
