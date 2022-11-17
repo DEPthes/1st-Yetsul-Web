@@ -20,6 +20,7 @@ export const MyReviewWidget: React.FC<myreviewtype> = ({
     const MyreviewAlcoholId = alcoholId;
     const reviewId = id;
     const [MyreviewAlcoholData, setMyreviewAlcoholData] = useState(Object);
+
     const getData = () => {
         const JWT = localStorage.getItem('accessToken') || '';
         return axios.create({
@@ -173,11 +174,11 @@ const MyreviewDrinkName = styled.p`
     margin-left: 20px;
     font-size: 1.302vw;
     white-space: nowrap;
-
     @media screen and (max-width: 767px) {
         margin-left: 1vw;
         font-size: 3.615vw;
         margin-top: -0.5vw;
+        white-space: normal;
     }
 `;
 const MyreviewHeading = styled.p`

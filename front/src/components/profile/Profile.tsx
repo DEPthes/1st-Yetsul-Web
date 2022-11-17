@@ -36,15 +36,10 @@ export const Profile: React.FC = () => {
 
     useEffect(() => {
         getdata()
-<<<<<<< HEAD
-            .post('https://depth-server.herokuapp.com/review/user')
-            .then((res) => setAlcoholReviewData(res.data))
-=======
             .post(
                 'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/user',
             )
-            .then((res) => setAlcholthatUserWrite(res.data))
->>>>>>> bdac5001a4eb2b52e300dca373c3c2d361104ae9
+            .then((res) => setAlcoholReviewData(res.data))
             .catch((err) => console.log(err));
     }, []);
     const [NoReviewData, setNoReviewData] = useState(true);
@@ -54,22 +49,22 @@ export const Profile: React.FC = () => {
         if (AlcoholReviewData.length !== 0) {
             setNoReviewData(false);
             setAlcholReviewReverse([...AlcoholReviewData].reverse());
-            setAlcholthatUserWriteforWidget(AlcholReviewReverse.slice(0, 3));
         }
-        console.log('설마..');
     }, [AlcoholReviewData]);
+
+    const [RecentColor, setRecentColor] = useState(true);
+    useEffect(() => {
+        setAlcholthatUserWriteforWidget(AlcholReviewReverse.slice(0, 3));
+    }, [AlcholReviewReverse]);
 
     const Recent = () => {
         setAlcholthatUserWriteforWidget(AlcholReviewReverse.slice(0, 3));
+        setRecentColor(true);
     };
     const Older = () => {
         setAlcholthatUserWriteforWidget(AlcoholReviewData.slice(0, 3));
+        setRecentColor(false);
     };
-
-    // useEffect(() => {
-    //     console.log(AlcholthatUserWriteRawData);
-    // });
-    console.log(AlcoholReviewData);
 
     useEffect(() => {
         getdata()
@@ -104,48 +99,47 @@ export const Profile: React.FC = () => {
                         <ProfileBox>
                             <ProfileImgBox>
                                 <ProfileImg src={userData.profileImg} />
-                                <ProfileFixImgBtn to="/profile/fix">
-                                    <ProfileFixSvg
-                                        width="51"
-                                        height="51"
-                                        viewBox="0 0 51 51"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/ProfileFixSvg"
-                                    >
-                                        <circle
-                                            cx="25.5"
-                                            cy="25.5"
-                                            r="25"
-                                            fill="white"
-                                            stroke="#DEDEDE"
-                                        />
-                                        <path
-                                            d="M24.0029 18.8264H16.9658V34.5764H32.7158V27.3923"
-                                            stroke="black"
-                                            strokeWidth="1.3"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            fillRule="evenodd"
-                                            clipRule="evenodd"
-                                            d="M32.7539 14.2529L37.2996 18.7986L27.2991 28.7991H22.7534V24.2534L32.7539 14.2529Z"
-                                            stroke="black"
-                                            strokeWidth="1.3"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M30.3428 17.234L34.5379 21.4291"
-                                            stroke="black"
-                                            strokeWidth="1.3"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </ProfileFixSvg>
-                                </ProfileFixImgBtn>
+                                <ProfileFixImgBtn to="/profile/fix" />
                             </ProfileImgBox>
                             <ProfileName>{userData.nickname}</ProfileName>
+                            <ProfileFixSvg
+                                width="51"
+                                height="51"
+                                viewBox="0 0 51 51"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/ProfileFixSvg"
+                            >
+                                <circle
+                                    cx="25.5"
+                                    cy="25.5"
+                                    r="25"
+                                    fill="white"
+                                    stroke="#DEDEDE"
+                                />
+                                <path
+                                    d="M24.0029 18.8264H16.9658V34.5764H32.7158V27.3923"
+                                    stroke="black"
+                                    strokeWidth="1.3"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M32.7539 14.2529L37.2996 18.7986L27.2991 28.7991H22.7534V24.2534L32.7539 14.2529Z"
+                                    stroke="black"
+                                    strokeWidth="1.3"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    d="M30.3428 17.234L34.5379 21.4291"
+                                    stroke="black"
+                                    strokeWidth="1.3"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </ProfileFixSvg>
                         </ProfileBox>
                     </ProfileImgSection>
                     <ProfileImformationSection>
@@ -155,7 +149,10 @@ export const Profile: React.FC = () => {
                             </MyreviewHeadingCom>
                             <MyreviewArray>
                                 <MyreviewArrayLi>
-                                    <MyreviwArrayText onClick={Recent}>
+                                    <MyreviwArrayText
+                                        onClick={Recent}
+                                        RecentColor={RecentColor}
+                                    >
                                         최신순
                                     </MyreviwArrayText>
                                 </MyreviewArrayLi>
@@ -163,9 +160,12 @@ export const Profile: React.FC = () => {
                                     <MyreviewArrayBar>|</MyreviewArrayBar>
                                 </MyreviewArrayLi>
                                 <MyreviewArrayLi>
-                                    <MyreviwArrayText onClick={Older}>
+                                    <MyreviwArrayText2
+                                        onClick={Older}
+                                        RecentColor={RecentColor}
+                                    >
                                         오래된 순
-                                    </MyreviwArrayText>
+                                    </MyreviwArrayText2>
                                 </MyreviewArrayLi>
                             </MyreviewArray>
                         </MyreviewHeader>
@@ -370,24 +370,24 @@ const ProfileImgBox = styled.div`
 `;
 
 const ProfileImg = styled.img`
-    width: 7.24vw;
-    height: 7.24vw;
+    width: 8.6875em;
+    height: 8.6875em;
     background: #d9d9d9;
     border-radius: 100%;
 `;
 
 const ProfileFixSvg = styled.svg`
-    position: absolute;
-    left: 23vw;
-    top: 12em;
-    width: 3.1875em;
+    position: relative;
+    top: -13em;
+    left: 3em;
     z-index: 200;
+    width: 2.9375em;
 `;
 const ProfileFixImgBtn = styled(Link)``;
 
 const ProfileName = styled.p`
     font-weight: 600;
-    font-size: 1.563vw;
+    font-size: 1.875em;
     text-align: center;
 `;
 
@@ -439,8 +439,13 @@ const MyreviewArrayLi = styled.li`
     float: left;
     margin: 0 0.646vw;
 `;
-const MyreviwArrayText = styled.p`
+const MyreviwArrayText = styled.p<{ RecentColor: boolean }>`
     cursor: pointer;
+    color: ${(props) => (props.RecentColor ? '#8B7E6A' : '#BBB6A8')};
+`;
+const MyreviwArrayText2 = styled.p<{ RecentColor: boolean }>`
+    cursor: pointer;
+    color: ${(props) => (props.RecentColor ? '#BBB6A8' : '#8B7E6A')};
 `;
 
 const MyreviewArrayBar = styled.p``;

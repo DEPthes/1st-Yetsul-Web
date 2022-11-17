@@ -93,13 +93,16 @@ export const MyReviewModalWidget: React.FC<myreviewtype> = ({
                 </MyreviewInformationUpper>
                 <MyreviewInformationLower>
                     <MyreviewHeading>{title}</MyreviewHeading>
+                    <SeeFull>이어쓰기 &#62;</SeeFull>
                 </MyreviewInformationLower>
             </MyreviewInformationSection>
             <MyreviewRightSection>
                 <StarBox>
                     <Star star={star} widthValue={0.625} />
                 </StarBox>
-                <SeeFull>이어쓰기 &#62;</SeeFull>
+                <StarBoxMobile>
+                    <Star star={star} widthValue={0.425} />
+                </StarBoxMobile>
             </MyreviewRightSection>
             <RightRightSection>
                 <CloseBtn>
@@ -147,6 +150,10 @@ const CloseBtn = styled.div`
     > svg {
         width: 1.75em;
         height: 1.75em;
+        @media screen and (max-width: 767px) {
+            width: 1.15em;
+            height: 1.15em;
+        }
         > path {
             stroke-width: 2.3;
         }
@@ -167,11 +174,12 @@ const MyreviewBarInner = styled.div`
 `;
 const MyreviewDrinkImgSection = styled.div`
     margin-left: 3.125vw;
+    width: 10%;
     height: 3.822vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: red;
+    margin-right: 3vw;
     @media screen and (max-width: 767px) {
         margin-left: 3.59vw;
         height: 21.538vw;
@@ -194,7 +202,12 @@ const MyreviewInformationUpper = styled.div`
     display: flex;
     align-items: center;
 `;
-const MyreviewInformationLower = styled.div``;
+const MyreviewInformationLower = styled.div`
+    width: 50vw;
+    display: flex;
+    justify-content: space-between;
+`;
+
 const MyreviewDrinkKind = styled.div`
     color: #454038;
     border: 1px solid #454038;
@@ -203,10 +216,12 @@ const MyreviewDrinkKind = styled.div`
     justify-content: center;
     font-size: 0.677vw;
     width: 2.577vw;
+    white-space: nowrap;
     padding: 0 0.3vw;
     @media screen and (max-width: 767px) {
         width: 10.256vw;
-        padding: 1vw 0.3vw;
+        padding: 1vw 1vw;
+        margin-right: 2vw;
     }
 `;
 const MyreviewDrinkName = styled.div`
@@ -228,6 +243,11 @@ const MyreviewRightSection = styled.div`
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
+    width: 20%;
+    margin-right: 1.5vw;
+    @media screen and (max-width: 767px) {
+        margin-right: -6vw;
+    }
 `;
 
 const SeeFull = styled.div`
@@ -239,6 +259,15 @@ const StarBox = styled.div`
     display: flex;
     justify-content: flex-end;
     @media screen and (max-width: 767px) {
-        height: 30px;
+        display: none;
+    }
+`;
+
+const StarBoxMobile = styled.div`
+    display: none;
+    @media screen and (max-width: 767px) {
+        height: 8vw;
+        display: flex;
+        justify-content: flex-end;
     }
 `;

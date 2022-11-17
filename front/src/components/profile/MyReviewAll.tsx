@@ -17,6 +17,12 @@ export const MyReviewAll: React.FC = () => {
     const [AlcholthatUserWrite, setAlcholthatUserWrite] = useState<DrinkType[]>(
         [],
     );
+    const [AlcholReviewReverse, setAlcholReviewReverse] = useState<DrinkType[]>(
+        [],
+    );
+
+    const [AlcholthatUserWriteforWidget, setAlcholthatUserWriteforWidget] =
+        useState<DrinkType[]>([]);
     const [limit] = useState(4); // 페이지 당 보여줄 게시물 수
     const [page, setPage] = useState(1); // 현재 페이지
     const offset = (page - 1) * limit; // 페이지 당 첫 게시물의 index
@@ -36,6 +42,27 @@ export const MyReviewAll: React.FC = () => {
             .then((res) => setAlcholthatUserWrite(res.data))
             .catch((err) => console.log(err));
     }, []);
+
+    useEffect(() => {
+        if (AlcholthatUserWrite.length !== 0) {
+            setAlcholReviewReverse([...AlcholthatUserWrite].reverse());
+        }
+    }, [AlcholthatUserWrite]);
+
+    const [RecentColor, setRecentColor] = useState(true);
+    useEffect(() => {
+        setAlcholthatUserWriteforWidget(AlcholReviewReverse);
+    }, [AlcholReviewReverse]);
+
+    const Recent = () => {
+        setAlcholthatUserWriteforWidget(AlcholReviewReverse);
+        setRecentColor(true);
+    };
+    const Older = () => {
+        setAlcholthatUserWriteforWidget(AlcholthatUserWrite);
+        setRecentColor(false);
+    };
+
     return (
         <BackgroundTemplate heightValue="100%">
             <Inner>
@@ -101,6 +128,43 @@ export const MyReviewAll: React.FC = () => {
                             임시저장
                         </MobileHeaderTemporarySaveButton>
                     </MobileHeader>
+                    <ArrayChangeContainer>
+                        <p>최신순</p>
+                        <ArrayChangeSvg
+                            width="32"
+                            height="20"
+                            viewBox="0 0 32 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M10.7146 16.3403L10.7146 4.40811"
+                                stroke="#675B4F"
+                                strokeWidth="1.3"
+                                strokeLinecap="round"
+                            />
+                            <path
+                                d="M6.35156 8.57068L10.7144 4.20782L15.0773 8.57068"
+                                stroke="#675B4F"
+                                strokeWidth="1.3"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                            <path
+                                d="M21.2854 3.65967L21.2854 15.5919"
+                                stroke="#675B4F"
+                                strokeWidth="1.3"
+                                strokeLinecap="round"
+                            />
+                            <path
+                                d="M25.6484 11.4293L21.2856 15.7922L16.9227 11.4293"
+                                stroke="#675B4F"
+                                strokeWidth="1.3"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                        </ArrayChangeSvg>
+                    </ArrayChangeContainer>
                     <MyReviewWidgetContainer>
                         {AlcholthatUserWrite.slice(offset, offset + limit).map(
                             (myreview: {
@@ -147,6 +211,14 @@ const MyReviewWidgetContainer = styled.div`
     flex-direction: column;
     align-items: center;
 `;
+
+const ArrayChangeContainer = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+`;
+
+const ArrayChangeSvg = styled.svg``;
 
 type DrinkType = {
     children: ReactNode;
