@@ -287,7 +287,7 @@ export default SecondMain;
 
 const Inner = styled.div`
     width: 100%;
-    position: absolute;
+
     bottom: 0;
     display: flex;
     justify-content: center;
@@ -304,10 +304,10 @@ const TicketStyle = styled.div`
     transition: all 1.6s ease;
     //transform: scale(1.16);
     > svg {
-        height: 53.1875em;
+        height: 80vh;
     }
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     @media (max-width: 767px) {
         zoom: 0.8;
@@ -323,7 +323,6 @@ const TicketRight = styled.div`
     align-items: center;
     justify-content: center;
     margin-left: 8.75em;
-    margin-bottom: 10.625em;
     @media (max-width: 767px) {
         margin-bottom: 1.8125em;
         margin-left: 0;
@@ -373,7 +372,6 @@ const Circle = styled.div`
     border-radius: 50%;
     transition: all 0.3s cubic-bezier(0.67, 0.13, 0.1, 0.81),
         transform 0.15s cubic-bezier(0.67, 0.13, 0.1, 0.81);
-    z-index: 1000;
 
     div {
         @media (max-width: 767px) {

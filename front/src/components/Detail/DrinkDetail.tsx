@@ -27,7 +27,7 @@ export interface DrinkDetailType {
     cool: boolean; // 청량함
     sour: boolean; // 신 맛
     description: string; // 술 설명
-    star: number; // 술 별 점
+    star: string; // 술 별 점
     alcoholImage: string; // 술 사진
     likeCount: number; // 술 찜 횟수
     reviewCount: number; // 리뷰 수
@@ -202,7 +202,7 @@ const DrinkDetail: React.FC = () => {
                 nav.className = 'right is-blurred';
             }
         } else {
-            $('body').css('overflow', 'scroll');
+            $('body').css('overflow', 'auto');
             if (main) {
                 main.className = '';
             }
@@ -243,7 +243,7 @@ const DrinkDetail: React.FC = () => {
                         cool={drinks.cool}
                         sour={drinks.sour}
                         description={drinks.description}
-                        star={+drinks.star}
+                        star={drinks.star}
                         alcoholImage={drinks.alcoholImage}
                         likeCount={drinks.likeCount}
                         reviewCount={reviews.length}

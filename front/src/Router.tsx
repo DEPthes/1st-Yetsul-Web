@@ -24,6 +24,7 @@ import SoolotMachine from './components/soolotmachine/SoolotMachine';
 import SoolotMachineResult from './components/soolotmachine/SoolotMachineResult';
 import ScrollToTop from './utils/scrollToTop';
 import ReviewEdit from './components/Review/ReviewWrite/ReviewEdit';
+import TemporaryReviewEdit from './components/Review/ReviewWrite/TemporaryReviewEdit';
 
 const Router: React.FC = () => {
     return (
@@ -57,6 +58,10 @@ const Router: React.FC = () => {
                 <Route
                     path="/review/alcohol:alcoholId/review:reviewId"
                     element={<ReviewDetail />}
+                />
+                <Route
+                    path="/review/alcohol:alcoholId/review:reviewId/temporaryedit"
+                    element={<TemporaryReviewEdit />}
                 />
                 <Route
                     path="/review/alcohol:alcoholId/review:reviewId/edit"

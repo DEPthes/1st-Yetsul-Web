@@ -105,7 +105,6 @@ const Circle = styled.div`
     border-radius: 50%;
     transition: all 0.3s cubic-bezier(0.67, 0.13, 0.1, 0.81),
         transform 0.15s cubic-bezier(0.67, 0.13, 0.1, 0.81);
-    z-index: 1000;
 
     div {
         @media (max-width: 767px) {
