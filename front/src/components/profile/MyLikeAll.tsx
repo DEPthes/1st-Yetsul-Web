@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import BackgroundTemplate from '../common/BackgroundTemplate';
-import { ProfileHeader } from './profileHeader';
 import { FavoriteAlcholWidget } from './MyLikeAlcholWidget';
 import MyPagination from './MypagePagination';
 

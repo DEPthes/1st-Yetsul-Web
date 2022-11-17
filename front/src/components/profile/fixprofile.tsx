@@ -203,8 +203,8 @@ const ProfileImgFrame = styled.div`
     margin-top: 1.979vw;
     overflow: hidden;
     @media screen and (max-width: 767px) {
-        width: 33.59vw;
-        height: 33.59vw;
+        min-width: 33.59vw;
+        min-height: 33.59vw;
     }
 `;
 const UserProfileImg = styled.img`
