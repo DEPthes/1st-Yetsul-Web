@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { setAccessToken } from '../../services/tokenControl';
 import { userAPI } from '../../services/userControl';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 
@@ -40,7 +41,7 @@ const KakaoLogin: React.FC = () => {
             .then(async (res) => {
                 console.log('accesstoken: ', res.data);
                 if (res.data) {
-                    localStorage.setItem('accessToken', res.data);
+                    setAccessToken(res.data);
                     await userAPI().then(() => {
                         window.location.replace('/');
                     });
