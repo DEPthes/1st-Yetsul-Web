@@ -60,6 +60,7 @@ const ReviewDetail: React.FC = () => {
 
     window.onload = async () => {
         setHeightValue('auto');
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         console.log(document.getElementById('reviewDetail')!.clientHeight);
         if (
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -201,6 +202,7 @@ const ReviewDetail: React.FC = () => {
 
         setHeightValue('auto');
         setTimeout(() => {
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             console.log(document.getElementById('reviewDetail')!.clientHeight);
             if (
                 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

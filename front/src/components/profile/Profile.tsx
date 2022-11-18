@@ -2,30 +2,35 @@
 import React, { useState, useEffect, ReactNode } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import { MyReviewWidget } from './MyReviewWidget';
 import { FavoriteAlcholWidget } from './MyLikeAlcholWidget';
+import { getAccessToken } from '../../services/tokenControl';
 
 export const Profile: React.FC = () => {
     const [MyLikeAlcholData, setMyLikeAlcholData] = useState<DrinkType[]>([]);
-    const [AlcholthatUserWrite, setAlcholthatUserWrite] = useState<DrinkType[]>(
+
+    const [AlcoholReviewData, setAlcoholReviewData] = useState<DrinkType[]>([]);
+
+    const [AlcholReviewReverse, setAlcholReviewReverse] = useState<DrinkType[]>(
         [],
     );
+    const navigate = useNavigate();
+
     const [AlcholthatUserWriteforWidget, setAlcholthatUserWriteforWidget] =
         useState<DrinkType[]>([]);
+
     const [userData, setUserData] = useState<UserType>(Object);
     const getData = () => {
-        const JWT = localStorage.getItem('accessToken') || '';
         return axios.create({
-            headers: { Authorization: `Bearer ${JWT}` },
+            headers: { Authorization: `Bearer ${getAccessToken()}` },
         });
     };
 
     const getdata = () => {
-        const accessToken = localStorage.getItem('accessToken') || '';
         return axios.create({
-            headers: { Authorization: `Bearer ${accessToken}` },
+            headers: { Authorization: `Bearer ${getAccessToken()}` },
         });
     };
 
@@ -34,27 +39,32 @@ export const Profile: React.FC = () => {
             .post(
                 'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/user',
             )
-            .then((res) => setAlcholthatUserWrite(res.data))
+            .then((res) => setAlcoholReviewData(res.data))
             .catch((err) => console.log(err));
     }, []);
-    const [Reverse, setReverse] = useState(false);
+    const [NoReviewData, setNoReviewData] = useState(true);
+    const [NoLikeData, setNoLikeData] = useState(true);
+
+    useEffect(() => {
+        if (AlcoholReviewData.length !== 0) {
+            setNoReviewData(false);
+            setAlcholReviewReverse([...AlcoholReviewData].reverse());
+        }
+    }, [AlcoholReviewData]);
+
+    const [RecentColor, setRecentColor] = useState(true);
+    useEffect(() => {
+        setAlcholthatUserWriteforWidget(AlcholReviewReverse.slice(0, 3));
+    }, [AlcholReviewReverse]);
+
     const Recent = () => {
-        setReverse(false);
+        setAlcholthatUserWriteforWidget(AlcholReviewReverse.slice(0, 3));
+        setRecentColor(true);
     };
     const Older = () => {
-        setReverse(true);
+        setAlcholthatUserWriteforWidget(AlcoholReviewData.slice(0, 3));
+        setRecentColor(false);
     };
-    useEffect(() => {
-        setAlcholthatUserWrite(AlcholthatUserWrite.reverse());
-    }, [Reverse]);
-
-    useEffect(() => {
-        setAlcholthatUserWriteforWidget(AlcholthatUserWrite.slice(0, 3));
-    }, [AlcholthatUserWrite]);
-
-    useEffect(() => {
-        setAlcholthatUserWriteforWidget(AlcholthatUserWrite.slice(0, 3));
-    }, [Reverse]);
 
     useEffect(() => {
         getdata()
@@ -64,6 +74,11 @@ export const Profile: React.FC = () => {
             .then((res) => setMyLikeAlcholData(res.data))
             .catch((err) => console.log(err));
     }, []);
+    useEffect(() => {
+        if (MyLikeAlcholData.length !== 0) {
+            setNoLikeData(false);
+        }
+    }, [MyLikeAlcholData]);
 
     const MyLikeAlcoholDataforWidget = MyLikeAlcholData.slice(0, 4);
 
@@ -73,11 +88,11 @@ export const Profile: React.FC = () => {
                 'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/user',
             )
             .then((res) => setUserData(res.data))
-            .catch((err) => console.log(err));
+            .catch(() => navigate('/'));
     }, []);
 
     return (
-        <BackgroundTemplate heightValue="auto">
+        <BackgroundTemplate heightValue="100%">
             <Inner>
                 <ProfileContainer>
                     <ProfileImgSection>
@@ -135,7 +150,10 @@ export const Profile: React.FC = () => {
                             </MyreviewHeadingCom>
                             <MyreviewArray>
                                 <MyreviewArrayLi>
-                                    <MyreviwArrayText onClick={Recent}>
+                                    <MyreviwArrayText
+                                        onClick={Recent}
+                                        RecentColor={RecentColor}
+                                    >
                                         최신순
                                     </MyreviwArrayText>
                                 </MyreviewArrayLi>
@@ -143,68 +161,93 @@ export const Profile: React.FC = () => {
                                     <MyreviewArrayBar>|</MyreviewArrayBar>
                                 </MyreviewArrayLi>
                                 <MyreviewArrayLi>
-                                    <MyreviwArrayText onClick={Older}>
+                                    <MyreviwArrayText2
+                                        onClick={Older}
+                                        RecentColor={RecentColor}
+                                    >
                                         오래된 순
-                                    </MyreviwArrayText>
+                                    </MyreviwArrayText2>
                                 </MyreviewArrayLi>
                             </MyreviewArray>
                         </MyreviewHeader>
                         <Myreview>
-                            {AlcholthatUserWriteforWidget.map(
-                                (myreview: {
-                                    id: number;
-                                    alcoholId: number;
-                                    title: string;
-                                    star: number;
-                                }) => (
-                                    <MyReviewWidget
-                                        key={myreview.id}
-                                        id={myreview.id}
-                                        alcoholId={myreview.alcoholId}
-                                        title={myreview.title}
-                                        star={myreview.star}
-                                    />
-                                ),
+                            {NoReviewData ? (
+                                <NoDataWindow>
+                                    나의 리뷰가 없습니다.
+                                </NoDataWindow>
+                            ) : (
+                                <>
+                                    {AlcholthatUserWriteforWidget.map(
+                                        (myreview: {
+                                            id: number;
+                                            alcoholId: number;
+                                            title: string;
+                                            star: number;
+                                        }) => (
+                                            <MyReviewWidget
+                                                key={myreview.id}
+                                                id={myreview.id}
+                                                alcoholId={myreview.alcoholId}
+                                                title={myreview.title}
+                                                star={myreview.star}
+                                            />
+                                        ),
+                                    )}
+                                    <MyReviewSeeFullLink to="/profile/MyReview">
+                                        <SeeFullOuter>
+                                            전체보기 &#62;
+                                        </SeeFullOuter>
+                                    </MyReviewSeeFullLink>
+                                </>
                             )}
-                            <MyReviewSeeFullLink to="/profile/MyReview">
-                                <SeeFullOuter>전체보기 &#62;</SeeFullOuter>
-                            </MyReviewSeeFullLink>
                         </Myreview>
-                        <MyreviewHeader>
-                            <MyreviewHeadingCom>
-                                찜한 옛술 모아보기
-                            </MyreviewHeadingCom>
-                        </MyreviewHeader>
                         <MyfavoriteBox>
-                            <MyLikeWidgetContainer>
-                                {MyLikeAlcoholDataforWidget.map(
-                                    (mylike: {
-                                        id: number;
-                                        AlcoholName: string;
-                                        star: number;
-                                        AlcoholByVolume: number;
-                                        alcoholImage: string;
-                                    }) => (
-                                        <FavoriteAlcholWidget
-                                            id={mylike.id}
-                                            key={mylike.id}
-                                            AlcoholName={mylike.AlcoholName}
-                                            star={mylike.star}
-                                            AlcoholByVolume={
-                                                mylike.AlcoholByVolume
-                                            }
-                                            alcoholImage={mylike.alcoholImage}
-                                        />
-                                    ),
-                                )}
-                            </MyLikeWidgetContainer>
-                            <SeeFullOuter2Container>
-                                <MyLikeSeeFullLink to="/profile/MyLikeAlcohole">
-                                    <SeeFullOuter2>
-                                        전체보기 &#62;
-                                    </SeeFullOuter2>
-                                </MyLikeSeeFullLink>
-                            </SeeFullOuter2Container>
+                            <MyreviewHeader2>
+                                <MyreviewHeadingCom>
+                                    찜한 옛술 모아보기
+                                </MyreviewHeadingCom>
+                            </MyreviewHeader2>
+                            {NoLikeData ? (
+                                <NoDataWindow>
+                                    찜한 옛술이 없습니다.
+                                </NoDataWindow>
+                            ) : (
+                                <>
+                                    <MyLikeWidgetContainer>
+                                        {MyLikeAlcoholDataforWidget.map(
+                                            (mylike: {
+                                                id: number;
+                                                AlcoholName: string;
+                                                star: number;
+                                                AlcoholByVolume: number;
+                                                alcoholImage: string;
+                                            }) => (
+                                                <FavoriteAlcholWidget
+                                                    id={mylike.id}
+                                                    key={mylike.id}
+                                                    AlcoholName={
+                                                        mylike.AlcoholName
+                                                    }
+                                                    star={mylike.star}
+                                                    AlcoholByVolume={
+                                                        mylike.AlcoholByVolume
+                                                    }
+                                                    alcoholImage={
+                                                        mylike.alcoholImage
+                                                    }
+                                                />
+                                            ),
+                                        )}
+                                    </MyLikeWidgetContainer>
+                                    <SeeFullOuter2Container>
+                                        <MyLikeSeeFullLink to="/profile/MyLikeAlcohole">
+                                            <SeeFullOuter2>
+                                                전체보기 &#62;
+                                            </SeeFullOuter2>
+                                        </MyLikeSeeFullLink>
+                                    </SeeFullOuter2Container>
+                                </>
+                            )}
                         </MyfavoriteBox>
                     </ProfileImformationSection>
                 </ProfileContainer>
@@ -313,13 +356,17 @@ const ProfileImgSection = styled.section``;
 
 const ProfileImformationSection = styled.section`
     border-left: 1.3px solid #bbb6a8;
-    width: 49.74vw;
+    width: 55%;
 `;
 
 const ProfileBox = styled.div`
-    margin-right: 8.1875em;
-    margin-left: 7.25em;
-    margin-top: 3.875em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-right: 6.823vw;
+    margin-left: 6.823vw;
+    margin-top: 3.229vw;
 `;
 
 const ProfileImgBox = styled.div`
@@ -336,11 +383,11 @@ const ProfileImg = styled.img`
 `;
 
 const ProfileFixSvg = styled.svg`
-    position: absolute;
-    left: 30.4375em;
-    top: 13.375em;
-    width: 3.1875em;
+    position: relative;
+    top: calc(-10em);
+    left: 1em;
     z-index: 200;
+    width: 2.9375em;
 `;
 const ProfileFixImgBtn = styled(Link)``;
 
@@ -348,26 +395,46 @@ const ProfileName = styled.p`
     font-weight: 600;
     font-size: 1.875em;
     text-align: center;
+    margin-top: -2.667vw;
 `;
 
 const Myreview = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    margin-left: 3em;
+    margin-left: 2.5vw;
+    height: 18vw;
 `;
 
 const MyreviewHeader = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding-top: 2.875em;
-    margin-left: 3em;
+    margin-top: 2.083vw;
+    margin-left: 2.5vw;
+`;
+
+const MyreviewHeader2 = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 0.5vw;
 `;
 
 const MyreviewHeadingCom = styled.p`
-    font-size: 1.5625em;
+    font-size: 1.198vw;
     color: #675b4f;
+`;
+
+const NoDataWindow = styled.div`
+    width: 100%;
+    height: 18vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #bbb6a8;
+    font-size: 1.198vw;
 `;
 
 const MyreviewArray = styled.ul`
@@ -379,8 +446,13 @@ const MyreviewArrayLi = styled.li`
     float: left;
     margin: 0 0.646vw;
 `;
-const MyreviwArrayText = styled.p`
+const MyreviwArrayText = styled.p<{ RecentColor: boolean }>`
     cursor: pointer;
+    color: ${(props) => (props.RecentColor ? '#8B7E6A' : '#BBB6A8')};
+`;
+const MyreviwArrayText2 = styled.p<{ RecentColor: boolean }>`
+    cursor: pointer;
+    color: ${(props) => (props.RecentColor ? '#BBB6A8' : '#8B7E6A')};
 `;
 
 const MyreviewArrayBar = styled.p``;
@@ -395,7 +467,10 @@ const MyLikeSeeFullLink = styled(Link)`
     color: #8b7e6a;
 `;
 
-const SeeFullOuter = styled.p``;
+const SeeFullOuter = styled.p`
+    margin-top: 0.833vw;
+    margin-right: 1.563vw;
+`;
 
 const SeeFullOuter2Container = styled.div`
     display: flex;
@@ -403,16 +478,20 @@ const SeeFullOuter2Container = styled.div`
 `;
 
 const SeeFullOuter2 = styled.p`
-    margin-right: 30px;
+    margin-top: 0.833vw;
+    margin-right: 1.563vw;
 `;
 
 const MyfavoriteBox = styled.div`
-    margin-left: 3em;
-    margin-top: 1.625em;
+    margin-left: 2.5vw;
 `;
 
 const MyLikeWidgetContainer = styled.div`
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 1.406vw;
+    margin-top: 0.6vw;
+    width: auto;
 `;
 
 type UserType = {

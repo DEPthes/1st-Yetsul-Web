@@ -190,6 +190,10 @@ const LowerShadowBox = styled.div`
     width: 39.792vw;
     height: 3.073vw;
     box-shadow: 0px -4px 14px rgba(0, 0, 0, 0.1);
+    @media screen and (max-width: 767px) {
+        width: 100%;
+        height: 10vw;
+    }
 `;
 type DrinkType = {
     children: ReactNode;

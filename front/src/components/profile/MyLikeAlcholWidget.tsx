@@ -45,11 +45,9 @@ const LinkWrap = styled(Link)`
 `;
 
 const FavoriteAlcholBox = styled.div`
-    width: 10.677vw;
     height: 15.26vw;
     border: 1px solid #675b4f;
     border-radius: 18px;
-    margin-right: 0.706vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -61,25 +59,32 @@ const FavoriteAlcholBox = styled.div`
 `;
 
 const FavoriteAlcoholImgBox = styled.div`
-    width: 100%;
-    height: 50%;
+    margin-top: 1.719vw;
     display: flex;
     justify-content: center;
     align-items: center;
 `;
 
 const FavoriteAlcholImg = styled.img`
-    height: 90%;
+    height: 6.5vw;
+
+    @media screen and (max-width: 767px) {
+        height: 36.5vw;
+    }
 `;
 
 const FavoriteAlcholLower = styled.div`
     width: 79.51%;
+    margin-bottom: 0.25vw;
 `;
 
 const FavoriteAlcholNameABV = styled.div`
     border-bottom: 1px solid #bbb6a8;
-    margin-bottom: 0.5em;
-    padding-bottom: 0.5em;
+    margin-bottom: 0.469vw;
+    padding-bottom: 0.469vw;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.781vw;
     @media screen and (max-width: 767px) {
         display: flex;
         align-items: flex-end;
