@@ -36,7 +36,7 @@ const AllDrinkRecommend = () => {
                                 contentNumber={1}
                             />
                         </MonthContent>
-                        <MonthContent to="/RecommendTicket">
+                        <MonthContent to="/RecommendSlot">
                             <Block
                                 contentName="슬롯머신"
                                 img="/images/Recommend_Slot.png"
