@@ -12,6 +12,7 @@ import PageUpBtn from '../common/PageUpBtn';
 
 const DrinkList: React.FC = () => {
     const [drinks, setDrinks] = useState<DrinkType[]>([]);
+    const [monthOfDrinks, setMonthOfDrinks] = useState<DrinkType[]>([]);
     const currentDrinks = useRef<DrinkType[]>([]);
     const [sliceDrinksRender, setSliceDrinksRender] = useState<DrinkType[]>([]);
     const sliceDrinks = useRef<DrinkType[]>([]);
@@ -73,7 +74,18 @@ const DrinkList: React.FC = () => {
                         filter: sort,
                     },
                 )
-                .then((res) => setDrinks(res.data))
+                .then((res) => {
+                    setDrinks(
+                        res.data.filter(
+                            (el: DrinkType) => el.alcoholOfMonth === false,
+                        ),
+                    );
+                    setMonthOfDrinks(
+                        res.data.filter(
+                            (el: DrinkType) => el.alcoholOfMonth === true,
+                        ),
+                    );
+                })
                 .catch((err) => console.log(err));
         } else {
             axios
@@ -83,7 +95,18 @@ const DrinkList: React.FC = () => {
                         filter: sort,
                     },
                 )
-                .then((res) => setDrinks(res.data))
+                .then((res) => {
+                    setDrinks(
+                        res.data.filter(
+                            (el: DrinkType) => el.alcoholOfMonth === false,
+                        ),
+                    );
+                    setMonthOfDrinks(
+                        res.data.filter(
+                            (el: DrinkType) => el.alcoholOfMonth === true,
+                        ),
+                    );
+                })
                 .catch((err) => console.log(err));
         }
     }, [sort, categoryNum]);
@@ -277,7 +300,8 @@ const DrinkList: React.FC = () => {
                     <DrinkElList>
                         <ul>
                             {!isMobile
-                                ? drinks
+                                ? monthOfDrinks
+                                      .concat(drinks)
                                       .slice(offset, offset + limit)
                                       .map(
                                           (drink: {
@@ -314,35 +338,43 @@ const DrinkList: React.FC = () => {
                                               );
                                           },
                                       )
-                                : sliceDrinksRender.map(
-                                      (drink: {
-                                          alcoholOfMonth: boolean;
-                                          id: number;
-                                          category: number;
-                                          alcoholImage: string;
-                                          AlcoholName: string;
-                                          AlcoholByVolume: number;
-                                          star: string;
-                                      }) => {
-                                          return (
-                                              <li key={drink.id}>
-                                                  <DrinkListElement
-                                                      alcoholOfMonth={
-                                                          drink.alcoholOfMonth
-                                                      }
-                                                      id={drink.id}
-                                                      img={drink.alcoholImage}
-                                                      category={drink.category}
-                                                      name={drink.AlcoholName}
-                                                      abv={
-                                                          drink.AlcoholByVolume
-                                                      }
-                                                      star={+drink.star}
-                                                  />
-                                              </li>
-                                          );
-                                      },
-                                  )}
+                                : monthOfDrinks
+                                      .concat(sliceDrinksRender)
+                                      .map(
+                                          (drink: {
+                                              alcoholOfMonth: boolean;
+                                              id: number;
+                                              category: number;
+                                              alcoholImage: string;
+                                              AlcoholName: string;
+                                              AlcoholByVolume: number;
+                                              star: string;
+                                          }) => {
+                                              return (
+                                                  <li key={drink.id}>
+                                                      <DrinkListElement
+                                                          alcoholOfMonth={
+                                                              drink.alcoholOfMonth
+                                                          }
+                                                          id={drink.id}
+                                                          img={
+                                                              drink.alcoholImage
+                                                          }
+                                                          category={
+                                                              drink.category
+                                                          }
+                                                          name={
+                                                              drink.AlcoholName
+                                                          }
+                                                          abv={
+                                                              drink.AlcoholByVolume
+                                                          }
+                                                          star={+drink.star}
+                                                      />
+                                                  </li>
+                                              );
+                                          },
+                                      )}
                         </ul>
                         {isMobile && maxPage.current > pageRef.current && (
                             <div
@@ -375,10 +407,12 @@ const DrinkList: React.FC = () => {
 
 export default DrinkList;
 
-const PageScroller = styled.button`
+const PageScroller = styled.div`
     background-color: inherit;
     border: none;
     position: relative;
+    height: auto;
+    zoom: 1.5;
 `;
 
 const Inner = styled.div`

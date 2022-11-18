@@ -1,9 +1,31 @@
+/* eslint-disable no-alert */
 export const setAccessToken = (token: string): void => {
-    localStorage.setItem('accessToken', token);
+    const obj = {
+        value: token,
+        expire: Date.now() + 72_000_000,
+    };
+
+    const objString = JSON.stringify(obj);
+
+    localStorage.setItem('accessToken', objString);
 };
 
 export const getAccessToken = (): string | null => {
-    return localStorage.getItem('accessToken');
+    const objString = localStorage.getItem('accessToken');
+    if (!objString) {
+        alert('로그인이 필요합니다.');
+        window.location.replace('/');
+        return null;
+    }
+    const obj = JSON.parse(objString);
+    if (Date.now() > obj.expire) {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('user');
+        alert('로그인이 만료되었습니다.');
+        window.location.replace('/');
+        return null;
+    }
+    return obj.value;
 };
 
 export const deleteAccessToken = (): void => {

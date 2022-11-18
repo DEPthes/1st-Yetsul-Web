@@ -2,10 +2,11 @@
 import React, { useState, useEffect, ReactNode } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import { MyReviewWidget } from './MyReviewWidget';
 import { FavoriteAlcholWidget } from './MyLikeAlcholWidget';
+import { getAccessToken } from '../../services/tokenControl';
 
 export const Profile: React.FC = () => {
     const [MyLikeAlcholData, setMyLikeAlcholData] = useState<DrinkType[]>([]);
@@ -15,22 +16,21 @@ export const Profile: React.FC = () => {
     const [AlcholReviewReverse, setAlcholReviewReverse] = useState<DrinkType[]>(
         [],
     );
+    const navigate = useNavigate();
 
     const [AlcholthatUserWriteforWidget, setAlcholthatUserWriteforWidget] =
         useState<DrinkType[]>([]);
 
     const [userData, setUserData] = useState<UserType>(Object);
     const getData = () => {
-        const JWT = localStorage.getItem('accessToken') || '';
         return axios.create({
-            headers: { Authorization: `Bearer ${JWT}` },
+            headers: { Authorization: `Bearer ${getAccessToken()}` },
         });
     };
 
     const getdata = () => {
-        const accessToken = localStorage.getItem('accessToken') || '';
         return axios.create({
-            headers: { Authorization: `Bearer ${accessToken}` },
+            headers: { Authorization: `Bearer ${getAccessToken()}` },
         });
     };
 
@@ -88,7 +88,7 @@ export const Profile: React.FC = () => {
                 'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/user',
             )
             .then((res) => setUserData(res.data))
-            .catch((err) => console.log(err));
+            .catch((err) => navigate('/'));
     }, []);
 
     return (

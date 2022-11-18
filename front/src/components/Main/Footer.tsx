@@ -9,9 +9,8 @@ const Footer: React.FC = () => {
                 <FooterInfo>
                     <h1>
                         &lt;옛술의 전당&gt;은 명지대학교 소속 DEPth팀이 운영하고
-                        있으며, <br />
-                        전통주 활성화를 목표로 다양한 컨텐츠를 제공하는 정보
-                        사이트입니다.
+                        있으며, 전통주 활성화를 목표로 다양한 컨텐츠를 제공하는
+                        정보 사이트입니다.
                     </h1>
                 </FooterInfo>
                 <FooterCenter>
@@ -41,7 +40,7 @@ export default Footer;
 const FooterWrapper = styled.div`
     width: 100%;
     height: 18.75em;
-    background: #f2f2f2;
+    background: #fff;
     @media (max-width: 767px) {
         height: 8.1875em;
     }
@@ -62,7 +61,7 @@ const FooterInfo = styled.div`
     letter-spacing: -0.01em;
     color: #8b7e6a;
     > h1 {
-        font-size: 1.5625em;
+        font-size: 1.125em;
     }
     @media (max-width: 767px) {
         margin-top: 1em;
@@ -108,9 +107,9 @@ const FooterFoot = styled.div`
     line-height: 1.5625em;
     text-align: center;
     letter-spacing: -0.01em;
-    color: #000000;
+    color: #bbb6a8;
     h1 {
-        font-size: 1.5625em;
+        font-size: 1.125em;
     }
     @media (max-width: 767px) {
         display: none;
