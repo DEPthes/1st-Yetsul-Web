@@ -71,6 +71,7 @@ const DrinkDetail: React.FC = () => {
                 setReviews(res.data.reviewsWithUserInfo);
                 setStarPercent(res.data.starPercentArray);
                 setReviewForSort(res.data.reviewsWithUserInfo);
+                console.log(reviewForSort);
             })
 
             .catch((err) => console.log(err));
@@ -162,6 +163,16 @@ const DrinkDetail: React.FC = () => {
                 );
             });
         setReviewForSort(sortedByDateReviews);
+    };
+    const [sort, setSort] = useState('ASC');
+    const changeSort = () => {
+        if (sort === 'ASC') {
+            sortByDateDesc();
+            setSort('DESC');
+        } else {
+            sortByDate();
+            setSort('ASC');
+        }
     };
 
     const sortByStarAsc = () => {
@@ -277,7 +288,7 @@ const DrinkDetail: React.FC = () => {
                     mostStars={EachStarCount()}
                 />
 
-                <div>
+                <PhotoWrapper>
                     <ReviewTitle>
                         <h1>포토후기 ({PhotoReviewSrcArr().length})개</h1>
                     </ReviewTitle>
@@ -329,7 +340,7 @@ const DrinkDetail: React.FC = () => {
                             )}
                         </>
                     )}
-                </div>
+                </PhotoWrapper>
 
                 <ReviewTitle>
                     <h1>리뷰 ({reviews.length})개</h1>
@@ -500,6 +511,7 @@ const DrinkDetail: React.FC = () => {
 };
 
 export default DrinkDetail;
+
 const SortBtn = styled.div`
     cursor: pointer;
     position: relative;
@@ -542,20 +554,18 @@ const ReviewSort = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-top: 27px;
+    margin-top: 1.6875em;
     color: #bbb6a8;
     font-family: inherit;
     width: 100%;
-    background-color: yellow;
 
     button {
-        font-size: 18px;
+        font-size: 1.125em;
         background: none;
         border: none;
         font-family: inherit;
         color: #bbb6a8;
-        margin: 0 28px;
-        background-color: pink;
+        margin: 0 1.75em;
     }
 
     button:hover {
@@ -566,7 +576,7 @@ const ReviewSort = styled.div`
 
 const ReviewTitle = styled.div`
     padding-bottom: 2.5em;
-    border-bottom: 1px solid #bbb6a8;
+    border-bottom: 0.0625em solid #bbb6a8;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -586,14 +596,14 @@ const ReviewTitle = styled.div`
 `;
 
 const ReviewWriteLink = styled(Link)`
-    width: 159px;
-    height: 51px;
+    width: 9.9375em;
+    height: 3.1875em;
     background: #8b7e6a;
-    border: 1px solid #8b7e6a;
-    border-radius: 18px;
+    border: 0.0625em solid #8b7e6a;
+    border-radius: 1.125em;
 
     font-family: inherit;
-    font-size: 20px;
+    font-size: 1.25em;
     color: #ffffff;
     font-weight: 400;
 
@@ -604,11 +614,11 @@ const ReviewWriteLink = styled(Link)`
     text-decoration-line: none;
 
     @media (max-width: 767px) {
-        width: 75px;
-        height: 24px;
-        border-radius: 8px;
+        width: 6.6875em; //75px
+        height: 2.5em; //24px
+        border-radius: 0.5em; //8px
         font-weight: 400;
-        font-size: 13px;
+        font-size: 0.8125em; // 13
     }
 `;
 
@@ -616,15 +626,19 @@ const Inner = styled.div`
     width: 72.063em;
     ul {
         list-style: none;
+        @media (max-width: 767px) {
+            width: 19.8125em;
+        }
     }
 
     li {
-        border-top: 1px solid #bbb6a8;
-        margin-top: 58px;
-        background-color: #ff9500;
+        border-top: 0.0625em solid #bbb6a8;
+        margin-top: 3.625em;
 
         @media (max-width: 767px) {
-            margin-top: 28px;
+            margin-top: 1.75em;
+            padding-top: 1.75em;
+            width: 19.8125em;
         }
     }
 
@@ -636,10 +650,10 @@ const Inner = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 100px;
+    margin-bottom: 6.25em;
 
     @media (max-width: 767px) {
-        width: 411.5px;
+        width: 19.8125em;
     }
 `;
 
@@ -648,52 +662,88 @@ const NoReview = styled.div`
     width: 100%;
     justify-content: center;
     align-items: center;
-    height: 287px;
-    background-color: purple;
+    height: 17.9375em;
+
     color: #bbb6a8;
 
     h1 {
-        font-size: 23px;
+        font-size: 1.4375em;
     }
 
     @media (max-width: 767px) {
         font-weight: 400;
-        font-size: 15px;
+        font-size: 0.9375em;
     }
 `;
+const PhotoWrapper = styled.div`
+    width: 100%;
+`;
 
+// 이부분 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 const PhotoReviewWrapper = styled.div`
     display: flex;
-    width: 100%;
-    justify-content: flex-start;
+    float: inline-start;
+    margin-bottom: 1.875em;
     align-items: center;
 
     img {
         cursor: pointer;
-        width: 206px;
-        height: 206px;
+        width: 12.875em;
+        height: 12.875em;
         background: #d9d9d9;
-        border-radius: 18px;
-        margin-right: 30px;
+        border-radius: 1.125em;
+        margin-right: 1.875em;
         object-fit: cover;
-        margin-top: 30px;
-        margin-bottom: 64px;
+        margin-top: 1.875em;
+        margin-bottom: 4em;
+
+        @media (max-width: 767px) {
+            width: 4.625em;
+            height: 4.5em;
+            margin-top: 1.1875em;
+            margin-bottom: 1.625em;
+            margin-right: 0.3125em;
+            border-radius: 0.8125em;
+        }
     }
 
     button {
+        // 더보기
         cursor: pointer;
-        width: 206px;
-        height: 206px;
+        width: 12.875em; // 206
+        height: 12.875em; // 206
         background: #d9d9d9;
-        border-radius: 18px;
+        border-radius: 1.125em; // 18
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 33px;
-        font-size: 30px;
+        margin-top: 1.875em; // 30
+        margin-bottom: 4em; // 64
+        /* margin-bottom: 33px; */
+
         color: #675b4f;
         border: none;
         font-family: inherit;
+
+        h1 {
+            font-size: 1.875em; // 30px
+            @media (max-width: 767px) {
+                font-weight: 400;
+                font-size: 0.8125em; //13
+            }
+        }
+
+        @media (max-width: 767px) {
+            width: 4.625em; //74
+            height: 4.5em; //72
+            margin-top: 1.1875em; //19
+            margin-bottom: 1.625em; //26
+            margin-right: 0.3125em; //5
+            border-radius: 0.8125em; //13
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     }
 `;
 
