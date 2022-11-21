@@ -123,11 +123,11 @@ const Main: React.FC = () => {
                 <InnerLeft>
                     <InnerText>
                         <div>
-                            <h1>10月,</h1>
+                            <h1>12月,</h1>
                         </div>
                         <div>
                             <h1>
-                                왜 벌써 <span>중간고사인건데,</span>
+                                왜 또 <span>기말고사인건데,</span>
                             </h1>
                         </div>
                         <div>
