@@ -47,7 +47,7 @@ const ImageListModal: React.FC<modalType> = ({ modal, photoReview, id }) => {
                     <ModalInner>
                         <PhotoListScroll>
                             <PhotoList>
-                                {photoReview.map((el, index) => {
+                                {photoReview.reverse().map((el, index) => {
                                     return (
                                         // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
                                         <PhotoDiv

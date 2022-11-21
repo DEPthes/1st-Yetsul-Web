@@ -304,12 +304,13 @@ const DrinkDetail: React.FC = () => {
                                         .slice(0, 4)
                                         .map((p, index) => {
                                             return (
-                                                <img
-                                                    src={p[0].toString()}
-                                                    // eslint-disable-next-line react/no-array-index-key
-                                                    key={index}
-                                                    alt={p[0].toString()}
-                                                />
+                                                // eslint-disable-next-line react/no-array-index-key, react/button-has-type
+                                                <button key={index}>
+                                                    <img
+                                                        src={p[0].toString()}
+                                                        alt={p[0].toString()}
+                                                    />
+                                                </button>
                                             );
                                         })}
                                     <button type="button" onClick={handleModal}>
@@ -687,22 +688,14 @@ const PhotoReviewWrapper = styled.div`
     align-items: center;
 
     img {
-        cursor: pointer;
-        width: 12.875em;
-        height: 12.875em;
+        width: 100%;
+        height: 100%;
         background: #d9d9d9;
         border-radius: 1.125em;
-        margin-right: 1.875em;
         object-fit: cover;
-        margin-top: 1.875em;
-        margin-bottom: 4em;
-
         @media (max-width: 767px) {
-            width: 4.625em;
-            height: 4.5em;
-            margin-top: 1.1875em;
-            margin-bottom: 1.625em;
-            margin-right: 0.3125em;
+            height: 100%;
+            width: 100%;
             border-radius: 0.8125em;
         }
     }
@@ -710,8 +703,11 @@ const PhotoReviewWrapper = styled.div`
     button {
         // 더보기
         cursor: pointer;
-        width: 12.875em; // 206
-        height: 12.875em; // 206
+        width: calc((100vw - 1.25em) / 5);
+        height: calc((100vh - 1.25em) / 5);
+        &:not(:last-of-type) {
+            margin-right: calc((100% - ((100% - 1.25em) / 5) * 5) / 4);
+        }
         background: #d9d9d9;
         border-radius: 1.125em; // 18
         display: flex;
@@ -734,15 +730,16 @@ const PhotoReviewWrapper = styled.div`
         }
 
         @media (max-width: 767px) {
-            width: 4.625em; //74
-            height: 4.5em; //72
-            margin-top: 1.1875em; //19
-            margin-bottom: 1.625em; //26
-            margin-right: 0.3125em; //5
-            border-radius: 0.8125em; //13
+            width: calc((100% - 1.25em) / 5);
+            // height: calc(((100vw - 3.125em) - 12.5em) / 5);
+            height: calc((19.8125em + 3.5em) / 5);
+            padding: 0;
             display: flex;
             align-items: center;
             justify-content: center;
+            &:not(:last-of-type) {
+                margin-right: calc((100% - ((100% - 1.25em) / 5) * 5) / 4);
+            }
         }
     }
 `;
