@@ -110,6 +110,26 @@ body {
     color: #8d837b;
     font-size: 100%;
 }
+body::-webkit-scrollbar {
+    width: 8px;
+}
+body::-webkit-scrollbar-thumb {
+    background: #ddd;
+    height: 2.5em;
+    border-radius: 16px;
+} /* 실질적 스크롤 바 */
+
+body::-webkit-scrollbar-thumb:hover {
+    background: #675b4f;
+} /* 실질적 스크롤 바 위에 마우스를 올려다 둘 때 */
+
+body::-webkit-scrollbar-thumb:active {
+    background: #808080;
+} /* 실질적 스크롤 바를 클릭할 때 */
+
+body::-webkit-scrollbar-button {
+    display: none;
+}
 _::-webkit-:not(:root:root),
 body {
     color: #0000ff;

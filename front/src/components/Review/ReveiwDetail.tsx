@@ -375,10 +375,11 @@ const EditWrap = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 1.25em 0px 3.25em 0px;
+    margin: 1.25em 0 3.25em 0;
     @media (max-width: 767px) {
-        bottom: -86px;
+        bottom: -5.375em;
         position: absolute;
+        margin: 0;
     }
 `;
 
@@ -399,10 +400,10 @@ const DeleteBtn = styled.button`
     letter-spacing: -0.01em;
     color: #ffffff;
     @media (max-width: 767px) {
-        width: 86.54px;
-        height: 33px;
-        font-size: 13px;
-        margin-left: 10px;
+        width: 6.656923076923078em;
+        height: 2.5384615384615383em;
+        font-size: 0.8125em;
+        margin-left: 0.7692307692307693em;
     }
 `;
 
@@ -423,9 +424,9 @@ const EditBtn = styled.button`
     color: #ffffff;
 
     @media (max-width: 767px) {
-        width: 86.54px;
-        height: 33px;
-        font-size: 13px;
+        width: 6.656923076923078em;
+        height: 2.5384615384615383em;
+        font-size: 0.8125em;
     }
 `;
 
@@ -442,7 +443,11 @@ const DrinkEl = styled.div`
         font-size: 1.563em;
         color: #675b4f;
         @media (max-width: 767px) {
-            font-size: 18px;
+            font-size: 1.125em;
+            width: calc(100% - 2em);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
 
@@ -450,7 +455,7 @@ const DrinkEl = styled.div`
         font-size: 1.25em;
         color: #8b7e6a;
         @media (max-width: 767px) {
-            font-size: 13px;
+            font-size: 0.8125em;
         }
     }
 
@@ -468,11 +473,11 @@ const DrinkEl = styled.div`
         align-items: center;
         margin-right: 1.133em;
         @media (max-width: 767px) {
-            width: 40px;
-            height: 16px;
-            font-size: 10px;
-            border-radius: 24px;
-            margin-right: 13px;
+            width: 4.5em;
+            height: 1.5em;
+            font-size: 0.625em;
+            border-radius: 1.5em;
+            margin-right: 0.8125em;
         }
     }
 `;
@@ -529,32 +534,32 @@ const DrinkWrapper = styled.div`
         width: 100%;
         height: 5.25em;
         img {
-            width: 30px;
-            height: 46px;
+            width: 1.875em;
+            height: 2.875em;
             object-fit: cover;
         }
 
         div:first-child {
-            top: 21px;
-            left: 25px;
+            top: 1.3125em;
+            left: 1.5625em;
         }
 
         div:nth-child(2) {
-            left: 82px;
-            top: 20px;
+            left: 5.125em;
+            top: 1.25em;
         }
 
         div:nth-child(3) {
-            left: 82px;
-            top: 51px;
+            left: 6.833333333333333em;
+            top: 4.25em;
 
-            font-size: 12px;
+            font-size: 0.75em;
             color: #8b7e6a;
 
             button {
-                margin-left: 7.6px;
+                margin-left: 0.6333333333333333em;
                 border: none;
-                font-size: 12px;
+                font-size: 1em;
                 font-family: inherit;
                 font-weight: inherit;
                 color: #8b7e6a;
@@ -563,8 +568,8 @@ const DrinkWrapper = styled.div`
         }
 
         div:nth-child(4) {
-            right: 16px;
-            top: 24px;
+            right: 1em;
+            top: 1.5em;
         }
     }
 `;
@@ -584,8 +589,8 @@ const Inner = styled.div`
 
     @media (max-width: 767px) {
         width: calc(100% - 5em);
-        padding-top: 99px;
-        padding-bottom: 139px;
+        padding-top: 6.1875em;
+        padding-bottom: 8.6875em;
     }
 `;
 
@@ -607,12 +612,12 @@ const PrevBtn = styled.button`
         cursor: pointer;
     }
     @media (max-width: 767px) {
-        margin-top: 43px;
-        margin-bottom: 27px;
-        border-radius: 9px;
-        width: 39px;
-        height: 29px;
-        font-size: 15px;
+        margin-top: 2.8666666666666667em;
+        margin-bottom: 1.8em;
+        border-radius: 0.6em;
+        width: 2.6em;
+        height: 1.9333333333333333em;
+        font-size: 0.9375em;
     }
 `;
 
@@ -649,10 +654,10 @@ const ImgWrapper = styled.div`
         display: none;
     } /* 스크롤 바 상 하단 버튼 */
     @media (max-width: 767px) {
-        margin-bottom: 19px;
+        margin-bottom: 1.1875em19px;
         img {
-            width: 160px !important;
-            height: 171px !important;
+            width: 10em !important;
+            height: 10.6875em !important;
             margin-right: 0.5em;
             margin-bottom: 0;
         }
@@ -668,7 +673,7 @@ const Content = styled.div`
     padding: 1.68em 1.12em;
     > p {
         width: 100%;
-        height: 150px;
+        height: 12em;
         word-break: break-all;
         overflow-y: scroll;
         ::-webkit-scrollbar {
@@ -691,11 +696,11 @@ const Content = styled.div`
         ::-webkit-scrollbar-button {
             display: none;
         }
-        // height: 150px;
     }
     @media (max-width: 767px) {
-        font-size: 13px;
-        padding: 14px 14px 28px 14px;
+        font-size: 0.8125em;
+        padding: 1.0769230769230769em 1.0769230769230769em 2.152em
+            1.0769230769230769em;
     }
 `;
 
@@ -715,9 +720,9 @@ const ContentHeader = styled.div`
         margin-left: 1em;
     }
     @media (max-width: 767px) {
-        padding: 15px 15px;
+        padding: 0.9375em 0.9375em;
         h3 {
-            font-size: 10px;
+            font-size: 0.625em;
         }
     }
 `;
@@ -734,12 +739,12 @@ const LikeBanner = styled.div`
 
     color: #ffffff;
     @media (max-width: 767px) {
-        font-size: 11px;
-        width: 90px;
-        height: 13px;
-        border-radius: 24px;
+        font-size: 0.6875em;
+        width: 8.181818181818182em;
+        height: 1.1818181818181819em;
+        border-radius: 2.1818181818181817em;
         margin-left: 1em;
-        padding: 10px 10px;
+        padding: 0.9090909090909091em 0.9090909090909091em;
         display: none !important;
     }
 `;
@@ -754,8 +759,8 @@ const LikeBtn = styled.button`
     border: 1px solid #675b4f;
     border-radius: 3.25em;
     @media (max-width: 767px) {
-        width: 54px;
-        height: 26px;
+        width: 3.375em;
+        height: 1.625em;
     }
 `;
 
@@ -767,8 +772,8 @@ const ReviewHeader = styled.div`
     justify-content: space-between;
     padding: 0 2.813em;
     @media (max-width: 767px) {
-        height: 78.48px;
-        padding: 0 23px;
+        height: 4.905em;
+        padding: 0 1.4375em;
         > div:nth-of-type(2) {
             svg {
                 width: 0.8em;
@@ -786,13 +791,13 @@ const HeaderLeft = styled.div`
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        width: 360px;
+        width: 12.857142857142858em;
     }
 
     h3 {
         font-size: 0.938em;
         color: #8b7e6a;
-        width: 360px;
+        width: 24em;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -800,12 +805,12 @@ const HeaderLeft = styled.div`
     }
     @media (max-width: 767px) {
         h1 {
-            font-size: 15px;
-            width: 180px;
+            font-size: 0.9375em;
+            width: 12em;
         }
         h3 {
-            font-size: 12px;
-            width: 160px;
+            font-size: 0.75em;
+            width: 13.333333333333334em;
         }
     }
 `;
@@ -817,7 +822,7 @@ const ReviewWrapper = styled.div`
     border-radius: 1.125em;
     @media (max-width: 767px) {
         width: 100%;
-        border-radius: 12px;
+        border-radius: 0.75em;
         position: relative;
     }
 `;

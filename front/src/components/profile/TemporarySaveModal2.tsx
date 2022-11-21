@@ -105,7 +105,7 @@ const Modal = styled.div`
     height: 34.479vw;
     display: flex;
     flex-direction: column;
-    border-radius: 18px;
+    border-radius: 1.125em;
     background-color: white;
     h1 {
         font-size: 1.302vw;
