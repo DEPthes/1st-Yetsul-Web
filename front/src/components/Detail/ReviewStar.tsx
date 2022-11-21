@@ -17,7 +17,7 @@ const ReviewStar: React.FC<ReviewStarType> = ({
     highestPercent,
     mostStars,
 }) => {
-    const [windowSize, setWindowSize] = useState({
+    const [windowSize] = useState({
         width: window.innerWidth,
     });
     return (
