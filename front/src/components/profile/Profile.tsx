@@ -148,27 +148,21 @@ export const Profile: React.FC = () => {
                             <MyreviewHeadingCom>
                                 나의 리뷰 모아보기
                             </MyreviewHeadingCom>
-                            <MyreviewArray>
-                                <MyreviewArrayLi>
-                                    <MyreviwArrayText
-                                        onClick={Recent}
-                                        RecentColor={RecentColor}
-                                    >
-                                        최신순
-                                    </MyreviwArrayText>
-                                </MyreviewArrayLi>
-                                <MyreviewArrayLi>
-                                    <MyreviewArrayBar>|</MyreviewArrayBar>
-                                </MyreviewArrayLi>
-                                <MyreviewArrayLi>
-                                    <MyreviwArrayText2
-                                        onClick={Older}
-                                        RecentColor={RecentColor}
-                                    >
-                                        오래된 순
-                                    </MyreviwArrayText2>
-                                </MyreviewArrayLi>
-                            </MyreviewArray>
+                            <MyreciewArrayBox>
+                                <MyreviwArrayText
+                                    onClick={Recent}
+                                    RecentColor={RecentColor}
+                                >
+                                    최신순
+                                </MyreviwArrayText>
+                                <MyreviewArrayBar>|</MyreviewArrayBar>
+                                <MyreviwArrayText2
+                                    onClick={Older}
+                                    RecentColor={RecentColor}
+                                >
+                                    오래된 순
+                                </MyreviwArrayText2>
+                            </MyreciewArrayBox>
                         </MyreviewHeader>
                         <Myreview>
                             {NoReviewData ? (
@@ -376,6 +370,7 @@ const ProfileImgBox = styled.div`
 `;
 
 const ProfileImg = styled.img`
+    object-fit: cover;
     width: 8.6875em;
     height: 8.6875em;
     background: #d9d9d9;
@@ -437,25 +432,23 @@ const NoDataWindow = styled.div`
     font-size: 1.198vw;
 `;
 
-const MyreviewArray = styled.ul`
-    list-style: none;
+const MyreciewArrayBox = styled.div`
+    display: flex;
 `;
 
-const MyreviewArrayLi = styled.li`
-    font-size: 0.938vw;
-    float: left;
-    margin: 0 0.646vw;
-`;
 const MyreviwArrayText = styled.p<{ RecentColor: boolean }>`
     cursor: pointer;
     color: ${(props) => (props.RecentColor ? '#8B7E6A' : '#BBB6A8')};
+    margin-right: 1.25vw;
 `;
 const MyreviwArrayText2 = styled.p<{ RecentColor: boolean }>`
     cursor: pointer;
     color: ${(props) => (props.RecentColor ? '#BBB6A8' : '#8B7E6A')};
 `;
 
-const MyreviewArrayBar = styled.p``;
+const MyreviewArrayBar = styled.p`
+    margin-right: 1.25vw;
+`;
 
 const MyReviewSeeFullLink = styled(Link)`
     text-decoration: none;
@@ -558,6 +551,7 @@ const MobileProfileImg = styled.img`
     height: 26.923vw;
     background-color: #d9d9d9;
     border-radius: 100%;
+    object-fit: cover;
 `;
 
 const MobileProfileFix = styled.svg`

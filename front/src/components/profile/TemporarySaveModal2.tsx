@@ -2,6 +2,7 @@ import React, { useState, useEffect, ReactNode } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { MyReviewModalWidget } from './MyReviewModalWidget';
+import { getAccessToken } from '../../services/tokenControl';
 
 type ModalType = {
     ChangeOpenModalShow: () => void;
@@ -15,11 +16,11 @@ export const TemporarySaveModal: React.FC<ModalType> = ({
     const [AlcholthatUserWrite, setAlcholthatUserWrite] = useState<DrinkType[]>(
         [],
     );
+
     const getData = () => {
-        const JWT = localStorage.getItem('accessToken') || '';
         return axios
             .create({
-                headers: { Authorization: `Bearer ${JWT}` },
+                headers: { Authorization: `Bearer ${getAccessToken()}` },
             })
             .post(
                 'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/user/temporary',

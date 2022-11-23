@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 import Star from '../common/Star';
+import { getAccessToken } from '../../services/tokenControl';
 
 type myreviewtype = {
     alcoholId: number;
@@ -22,9 +23,8 @@ export const MyReviewWidget: React.FC<myreviewtype> = ({
     const [MyreviewAlcoholData, setMyreviewAlcoholData] = useState(Object);
 
     const getData = () => {
-        const JWT = localStorage.getItem('accessToken') || '';
         return axios.create({
-            headers: { Authorization: `Bearer ${JWT}` },
+            headers: { Authorization: `Bearer ${getAccessToken()}` },
         });
     };
 
@@ -81,15 +81,17 @@ export const MyReviewWidget: React.FC<myreviewtype> = ({
                 </MyreviewInformationUpper>
                 <MyreviewInformationLower>
                     <MyreviewHeading>{title}</MyreviewHeading>
+                    <LinkWrap
+                        to={`/review/alcohol${alcoholId}/review${reviewId}`}
+                    >
+                        <SeeFull>전체보기 &#62;</SeeFull>
+                    </LinkWrap>
                 </MyreviewInformationLower>
             </MyreviewInformationSection>
             <MyreviewRightSection>
                 <StarBox>
                     <Star star={star} widthValue={0.625} />
                 </StarBox>
-                <LinkWrap to={`/review/alcohol${alcoholId}/review${reviewId}`}>
-                    <SeeFull>전체보기 &#62;</SeeFull>
-                </LinkWrap>
             </MyreviewRightSection>
         </MyreviewBarInner>
     );
@@ -146,13 +148,22 @@ const MyreviewInformationSection = styled.div`
 `;
 const MyreviewInformationUpper = styled.div`
     display: flex;
+    align-items: center;
     margin-top: 0.198vw;
     @media screen and (max-width: 767px) {
         margin-top: 5.128vw;
         width: 90%;
     }
 `;
-const MyreviewInformationLower = styled.div``;
+const MyreviewInformationLower = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 130%;
+    align-items: flex-end;
+    @media screen and (max-width: 767px) {
+        width: 58vw;
+    }
+`;
 const MyreviewDrinkKind = styled.div`
     color: #454038;
     border: 1px solid #454038;
@@ -173,13 +184,12 @@ const MyreviewDrinkKind = styled.div`
 
 const MyreviewDrinkName = styled.p`
     color: #675b4f;
-    margin-left: 20px;
+    margin-left: 2vw;
     font-size: 1.302vw;
     white-space: nowrap;
     @media screen and (max-width: 767px) {
         margin-left: 1vw;
         font-size: 3.615vw;
-        margin-top: -0.5vw;
         white-space: normal;
     }
 `;
@@ -213,9 +223,11 @@ const SeeFull = styled.p`
 
 const StarBox = styled.div`
     width: 7.2vw;
+    display: flex;
+    margin-bottom: 1.5vw;
+    justify-content: flex-end;
     @media screen and (max-width: 767px) {
         width: 15vw;
+        margin-bottom: 9vw;
     }
-    display: flex;
-    justify-content: flex-end;
 `;
