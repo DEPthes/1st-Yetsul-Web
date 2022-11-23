@@ -5,16 +5,13 @@ import styled from 'styled-components';
 import axios from 'axios';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import { getAccessToken } from '../../services/tokenControl';
-
 import { userAPI } from '../../services/userControl';
 
 export const FixProfile: React.FC = () => {
     const [userData, setUserData] = useState<UserType>(Object);
     const getData = () => {
-        const JWT = localStorage.getItem('accessToken') || '';
-        console.log('JWT :', JWT);
         return axios.create({
-            headers: { Authorization: `Bearer ${JWT}` },
+            headers: { Authorization: `Bearer ${getAccessToken()}` },
         });
     };
 
@@ -275,7 +272,7 @@ const Registration = styled.button`
     height: 2.917vw;
     color: white;
     font-size: 1.042vw;
-    margin-top: 13.802vw;
+    margin-top: 10.802vw;
     cursor: pointer;
     @media screen and (max-width: 767px) {
         width: 22.179vw;
