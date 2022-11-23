@@ -59,14 +59,15 @@ const AnimationBtnImg = styled.div`
     position: absolute;
     transition: 0.3s;
     z-index: 100;
-    bottom: 27px;
-    left: 27px;
+
+    bottom: 1.6875em;
+    left: 1.6875em; //27
     @media (max-width: 767px) {
         position: relative;
-        width: 15px;
-        height: 14px;
-        left: -140px;
-        top: 40px;
+        width: 0.9375em; //15
+        height: 0.875em; //14
+        left: -8.75em; // -149
+        top: 2.5em; // 40
     }
 `;
 
@@ -74,25 +75,28 @@ const MonthContent = styled.div`
     cursor: pointer;
     position: relative;
     background-color: #eae8e4;
-    width: 523px;
-    height: 205px;
-    border-radius: 18px;
+    width: 32.6875em;
+    height: 12.8125em;
+    border-radius: 1.125em;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 35px;
+
     @media (max-width: 767px) {
-        width: 337px;
-        height: 133px;
-        font-weight: 400;
-        font-size: 20px; // ddddddd
-        line-height: 20px;
-        margin-bottom: 34px;
+        background-color: none;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        width: 21.0625em;
+        height: 8.3125em;
+        margin-bottom: 2.125em;
     }
     > div:first-of-type {
         transform: scale(1);
-        height: 23px;
-        width: 23px;
+        height: 1.4375em;
+        width: 1.4375em;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -101,21 +105,23 @@ const MonthContent = styled.div`
             align-items: center;
             justify-content: center;
             position: relative;
-            left: -119px;
-            top: 40px;
+            left: -7.4375em; // -119
+            top: 2.5em; // 40
         }
     }
     > div:nth-of-type(2) {
         opacity: 0;
-        height: 48px;
-        width: 48px;
+        height: 3em;
+        width: 3em;
+
         position: absolute;
-        bottom: 15px;
-        left: 15px;
+        bottom: 16.53px;
+        /* bottom: 0.9375em; //15 */
+        left: 8.53px; //15
         @media (max-width: 767px) {
             position: relative;
-            left: -145px;
-            top: 49px;
+            left: -8.87em; // -145
+            top: 3.2625em; // 49
         }
     }
 `;
@@ -124,18 +130,17 @@ const DrinkImg = styled.img`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 35px;
     position: absolute;
+
+    width: 32.6875em;
+    height: 12.8125em;
 
     @media (max-width: 767px) {
         display: flex;
         justify-content: center;
         align-items: center;
         position: absolute;
-        width: 337px;
-        height: 133px;
-        font-weight: 400;
-        font-size: 20px;
-        line-height: 20px;
+        width: 21.0625em;
+        height: 8.3125em;
     }
 `;
