@@ -59,7 +59,6 @@ const AnimationBtnImg = styled.div`
     position: absolute;
     transition: 0.3s;
     z-index: 100;
-
     bottom: 1.6875em;
     left: 1.6875em; //27
     @media (max-width: 767px) {
@@ -84,7 +83,7 @@ const MonthContent = styled.div`
 
     @media (max-width: 767px) {
         background-color: none;
-
+        position: relative;
         img {
             width: 100%;
             height: 100%;
@@ -100,28 +99,27 @@ const MonthContent = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
+        position: absolute;
         @media (max-width: 767px) {
+            position: absolute;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            left: -7.4375em; // -119
-            top: 2.5em; // 40
+            left: 1.25em;
+            top: 5.9em;
         }
     }
     > div:nth-of-type(2) {
         opacity: 0;
         height: 3em;
         width: 3em;
-
         position: absolute;
-        bottom: 16.53px;
-        /* bottom: 0.9375em; //15 */
-        left: 8.53px; //15
+        bottom: 0;
+        left: 0; //15
         @media (max-width: 767px) {
-            position: relative;
-            left: -8.87em; // -145
-            top: 3.2625em; // 49
+            position: absolute;
+            left: 1.15em;
+            top: 5.8em;
         }
     }
 `;

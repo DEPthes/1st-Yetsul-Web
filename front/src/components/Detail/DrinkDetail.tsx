@@ -692,62 +692,58 @@ const PhotoWrapper = styled.div`
 `;
 
 const PhotoReviewWrapper = styled.div`
-    max-width: 100%;
-    height: 12.875em;
     display: flex;
-    margin-bottom: 5.1875em;
-    justify-content: flex-start;
+    float: inline-start;
+    margin-bottom: 1.875em;
     align-items: center;
-
-    @media (max-width: 767px) {
-        height: 72px;
-        margin-bottom: 26px;
-    }
-
-    button {
-        width: calc(100% - 80%);
+    img {
+        width: 100%;
         height: 100%;
+        background: #d9d9d9;
         border-radius: 1.125em;
-        border: none;
-        margin-top: 1.875em;
-
+        object-fit: cover;
         @media (max-width: 767px) {
-            margin-top: 19px;
-        }
-
-        img {
-            width: 100%;
             height: 100%;
-            border-radius: 1.125em;
-            object-fit: cover;
+            width: 100%;
+            border-radius: 0.8125em;
         }
     }
-    :not(last-of-type) {
-        margin-right: 1.875em;
-
-        @media (max-width: 767px) {
-            margin-right: 5px;
+    button {
+        // 더보기
+        cursor: pointer;
+        width: calc((100vw - 1.25em) / 5);
+        height: calc((100vh - 1.25em) / 5);
+        &:not(:last-of-type) {
+            margin-right: calc((100% - ((100% - 1.25em) / 5) * 5) / 4);
         }
-    }
-
-    .more {
+        background: #d9d9d9;
+        border-radius: 1.125em; // 18
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+        margin-top: 1.875em; // 30
+        margin-bottom: 4em; // 64
+        /* margin-bottom: 33px; */
+        color: #675b4f;
+        border: none;
         font-family: inherit;
-
         h1 {
-            font-weight: 400;
-            font-size: 1.875em;
-            line-height: 1.875em;
-            letter-spacing: -0.01em;
-            color: #675b4f;
-
+            font-size: 1.875em; // 30px
             @media (max-width: 767px) {
                 font-weight: 400;
-                font-size: 13px;
-                line-height: 13px;
-                letter-spacing: -0.01em;
+                font-size: 0.8125em; //13
+            }
+        }
+        @media (max-width: 767px) {
+            width: calc((100% - 1.25em) / 5);
+            // height: calc(((100vw - 3.125em) - 12.5em) / 5);
+            height: calc((19.8125em + 3.5em) / 5);
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &:not(:last-of-type) {
+                margin-right: calc((100% - ((100% - 1.25em) / 5) * 5) / 4);
             }
         }
     }

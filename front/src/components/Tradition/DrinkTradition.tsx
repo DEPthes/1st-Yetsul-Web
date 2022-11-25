@@ -454,7 +454,7 @@ const InnerNavUl = styled.ul`
     top: 9.1875em;
     left: 50%;
     width: 100%;
-    height: 60px;
+    height: 3.75em;
     transform: translate(-50%);
     display: flex;
     justify-content: center;
@@ -630,7 +630,7 @@ const DrinkWrapper = styled.div`
 
         @media (max-width: 767px) {
             margin-bottom: 0;
-            margin-top: 50px;
+            margin-top: 3.125em;
             font-weight: 400;
             font-size: 1.25em;
             line-height: 151%;
