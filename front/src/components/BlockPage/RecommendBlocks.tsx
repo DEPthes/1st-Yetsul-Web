@@ -31,7 +31,7 @@ const AllDrinkRecommend = () => {
                     <MonthList>
                         <MonthContent to="/RecommendTicket">
                             <Block
-                                contentName="옛술의 전당"
+                                contentName="옛술의 전당 매표소"
                                 img="/images/Block/Recommend_Ticket.png"
                                 contentNumber={1}
                             />
