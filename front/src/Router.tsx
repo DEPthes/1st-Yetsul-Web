@@ -16,7 +16,6 @@ import { MyReviewAll } from './components/profile/MyReviewAll';
 import { MyLikeAll } from './components/profile/MyLikeAll';
 import ReviewWrite from './components/Review/ReviewWrite/ReviewWrite';
 import KakaoLogin from './components/Login/KakaoLogin';
-import AllDrinkRecommend from './components/BlockPage/Recommend';
 import RecommendSlot from './components/BlockPage/RecommendSlot';
 import RecommendTicket from './components/BlockPage/RecommendTicket';
 import DrinkTradition from './components/Tradition/DrinkTradition';
@@ -25,6 +24,8 @@ import SoolotMachineResult from './components/soolotmachine/SoolotMachineResult'
 import ScrollToTop from './utils/scrollToTop';
 import ReviewEdit from './components/Review/ReviewWrite/ReviewEdit';
 import TemporaryReviewEdit from './components/Review/ReviewWrite/TemporaryReviewEdit';
+import DecDrink from './components/BlockPage/DecDrink';
+import RecommendBlocks from './components/BlockPage/RecommendBlocks';
 
 const Router: React.FC = () => {
     return (
@@ -33,6 +34,10 @@ const Router: React.FC = () => {
             <Header />
             <Routes>
                 <Route path="/" element={<App />} />
+                <Route
+                    path="/AllDrinkRecommend"
+                    element={<RecommendBlocks />}
+                />
                 <Route
                     path="/auth/:service/callback"
                     element={<KakaoLogin />}
@@ -59,6 +64,8 @@ const Router: React.FC = () => {
                     path="/review/alcohol:alcoholId/review:reviewId"
                     element={<ReviewDetail />}
                 />
+
+                <Route path="/BlockPage/DecDrink" element={<DecDrink />} />
                 <Route
                     path="/review/alcohol:alcoholId/review:reviewId/temporaryedit"
                     element={<TemporaryReviewEdit />}
@@ -68,10 +75,6 @@ const Router: React.FC = () => {
                     element={<ReviewEdit />}
                 />
                 <Route path="/list/:id/write" element={<ReviewWrite />} />
-                <Route
-                    path="/AllDrinkRecommend"
-                    element={<AllDrinkRecommend />}
-                />
                 <Route path="/RecommendTicket" element={<RecommendTicket />} />
                 <Route path="/RecommendSlot" element={<RecommendSlot />} />
                 <Route path="/soolot" element={<SoolotMachine />} />

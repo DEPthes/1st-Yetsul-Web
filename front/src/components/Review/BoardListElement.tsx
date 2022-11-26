@@ -315,7 +315,7 @@ const MReviewTitle = styled.div`
     font-weight: 400;
     font-size: 1.0625em;
     line-height: 1.0625em;
-    margin-left: 5.1375em;
+    margin-left: 4.975em;
 `;
 
 const MReviewBoxTop = styled.div`

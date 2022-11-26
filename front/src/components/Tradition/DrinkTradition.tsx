@@ -441,9 +441,9 @@ const DrinkTradition: React.FC = () => {
 export default DrinkTradition;
 
 const ToFocus = styled.div`
-    height: 246px;
+    height: 15.375em;
     @media (max-width: 767px) {
-        height: 140px;
+        height: 8.75em;
     }
 `;
 
@@ -454,7 +454,7 @@ const InnerNavUl = styled.ul`
     top: 9.1875em;
     left: 50%;
     width: 100%;
-    height: 60px;
+    height: 3.75em;
     transform: translate(-50%);
     display: flex;
     justify-content: center;
@@ -487,7 +487,7 @@ const InnerNavLI = styled.li`
 `;
 
 const Inner = styled.div`
-    margin-top: 282px;
+    margin-top: 17.625em;
     text-align: center;
     height: 100%;
     display: flex;
@@ -495,7 +495,7 @@ const Inner = styled.div`
     flex-direction: column;
 
     @media (max-width: 767px) {
-        margin-top: 190px;
+        margin-top: 11.875em;
     }
 `;
 
@@ -504,86 +504,86 @@ const Intro = styled.div`
     flex-direction: column;
     align-items: center;
     h1 {
-        font-size: 25px;
+        font-size: 1.5625em;
         line-height: 175.5%;
         color: #675b4f;
         font-weight: bold;
-        margin-bottom: 140px;
+        margin-bottom: 8.75em;
 
         @media (max-width: 767px) {
             font-weight: 500;
-            font-size: 18px;
+            font-size: 1.125em;
             line-height: 175.5%;
-            margin-bottom: 81px;
+            margin-bottom: 5.0625em;
             font-weight: bold;
         }
     }
 
     h2 {
         font-weight: 400;
-        font-size: 30px;
-        line-height: 30px;
-        margin-bottom: 10px;
+        font-size: 1.875em;
+        line-height: 1.875em;
+        margin-bottom: 0.625em;
         color: #675b4f;
         @media (max-width: 767px) {
             font-weight: 400;
-            font-size: 18px;
-            line-height: 18px;
+            font-size: 1.125em;
+            line-height: 1.125em;
         }
     }
 
     img {
-        margin: 49px 0 145px;
-        width: 425px;
-        height: 253px;
+        margin: 3.0625em 0 9.0625em;
+        width: 26.5625em;
+        height: 15.8125em;
         @media (max-width: 767px) {
-            width: 247px;
-            height: 147.04px;
-            margin: 49px 0 134px;
+            width: 15.4375em;
+            height: 9.19em;
+            margin: 3.0625em 0 8.375em;
         }
     }
     h3 {
         font-weight: 400;
-        font-size: 30px;
+        font-size: 1.875em;
         line-height: 151%;
         color: #4f4940;
-        margin-bottom: 44px;
+        margin-bottom: 2.75em;
         @media (max-width: 767px) {
             font-weight: 400;
-            font-size: 18px;
+            font-size: 1.125em;
             line-height: 151%;
-            margin-bottom: 42px;
+            margin-bottom: 2.625em;
         }
     }
 
     h4 {
         font-weight: 400;
-        font-size: 20px;
+        font-size: 1.25em;
         color: #675b4f;
-        margin-bottom: 50px;
+        margin-bottom: 3.125em;
 
         @media (max-width: 767px) {
             font-weight: 400;
-            font-size: 13px;
-            line-height: 30px;
+            font-size: 0.8125em;
+            line-height: 1.875em;
         }
     }
 
     h5 {
-        margin-top: -40px;
+        margin-top: -2.5em;
         color: #bbb6a8;
         @media (max-width: 767px) {
-            font-size: 10px;
+            font-size: 0.625em;
         }
     }
 
     div {
-        width: 840px;
+        width: 52.5em;
 
         flex-wrap: nowrap;
 
         @media (max-width: 767px) {
-            width: 336px;
+            width: 21em;
 
             flex-wrap: nowrap;
         }
@@ -595,7 +595,7 @@ const Contents = styled.div``;
 const DrinkWrapper = styled.div`
     /* margin-bottom: 246px; */
 
-    width: 962px;
+    width: 60.125em;
     // height: 622px;
     display: flex;
     text-align: left;
@@ -603,36 +603,36 @@ const DrinkWrapper = styled.div`
     justify-content: space-between;
 
     @media (max-width: 767px) {
-        width: 340px;
+        width: 21.25em;
         display: flex;
         flex-direction: column;
     }
 
     img {
         color: #4f4941;
-        width: 331px;
-        height: 331px;
-        margin: 0 25px;
+        width: 20.6875em;
+        height: 20.6875em;
+        margin: 0 1.5625em;
 
         @media (max-width: 767px) {
-            margin: 46px 0;
-            width: 128px;
-            height: 128px;
+            margin: 2.875em 0;
+            width: 8em;
+            height: 8em;
         }
     }
 
     h1 {
         font-weight: 400;
-        font-size: 30px;
+        font-size: 1.875em;
         line-height: 151%;
         color: #4f4940;
-        margin-bottom: 33px;
+        margin-bottom: 2.0625em;
 
         @media (max-width: 767px) {
             margin-bottom: 0;
-            margin-top: 50px;
+            margin-top: 3.125em;
             font-weight: 400;
-            font-size: 20px;
+            font-size: 1.25em;
             line-height: 151%;
         }
     }
@@ -640,43 +640,43 @@ const DrinkWrapper = styled.div`
     h2 {
         color: #675b4f;
         font-weight: 400;
-        font-size: 18px;
+        font-size: 1.125em;
         line-height: 175.5%;
-        margin-bottom: 30px;
+        margin-bottom: 1.875em;
 
         @media (max-width: 767px) {
             font-weight: 400;
-            font-size: 15px;
-            line-height: 20px;
+            font-size: 0.9375em;
+            line-height: 1.25em;
         }
     }
 
     h3 {
         color: #989088;
-        font-size: 16px;
+        font-size: 1em;
         @media (max-width: 767px) {
             font-weight: 400;
-            font-size: 13px;
-            line-height: 20px;
+            font-size: 0.8125em;
+            line-height: 1.25em;
         }
     }
 
     h5 {
         color: #989088;
-        margin-top: 30px;
-        font-size: 16px;
+        margin-top: 1.875em;
+        font-size: 1em;
         @media (max-width: 767px) {
             font-weight: 400;
-            font-size: 13px;
-            line-height: 20px;
+            font-size: 0.8125em;
+            line-height: 1.25em;
         }
     }
 
     h4 {
-        margin-top: 25px;
+        margin-top: 1.5625em;
         color: #989088;
         @media (max-width: 767px) {
-            font-size: 10px;
+            font-size: 0.625em;
             color: #989088;
         }
     }
@@ -684,6 +684,6 @@ const DrinkWrapper = styled.div`
 const DrinkEx = styled.div`
     @media (max-width: 767px) {
         text-align: center;
-        margin-bottom: 60px;
+        margin-bottom: 3.75em;
     }
 `;

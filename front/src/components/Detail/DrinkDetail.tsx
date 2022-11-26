@@ -1,3 +1,6 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/jsx-key */
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -304,7 +307,6 @@ const DrinkDetail: React.FC = () => {
                                         .slice(0, 4)
                                         .map((p, index) => {
                                             return (
-                                                // eslint-disable-next-line react/no-array-index-key, react/button-has-type
                                                 <button key={index}>
                                                     <img
                                                         src={p[0].toString()}
@@ -313,7 +315,12 @@ const DrinkDetail: React.FC = () => {
                                                 </button>
                                             );
                                         })}
-                                    <button type="button" onClick={handleModal}>
+
+                                    <button
+                                        type="button"
+                                        onClick={handleModal}
+                                        className="more"
+                                    >
                                         <h1>더보기</h1>
                                     </button>
                                 </PhotoReviewWrapper>
@@ -324,16 +331,20 @@ const DrinkDetail: React.FC = () => {
                                             .slice(0, 5)
                                             .map((p, index) => {
                                                 return (
-                                                    <img
-                                                        onClick={() =>
-                                                            gotoReview(+p[1])
-                                                        }
-                                                        aria-hidden
-                                                        src={p[0].toString()}
-                                                        // eslint-disable-next-line react/no-array-index-key
-                                                        key={index}
-                                                        alt={p[0].toString()}
-                                                    />
+                                                    <button key={index}>
+                                                        <img
+                                                            onClick={() =>
+                                                                gotoReview(
+                                                                    +p[1],
+                                                                )
+                                                            }
+                                                            aria-hidden
+                                                            src={p[0].toString()}
+                                                            // eslint-disable-next-line react/no-array-index-key
+                                                            key={index}
+                                                            alt={p[0].toString()}
+                                                        />
+                                                    </button>
                                                 );
                                             })}
                                     </PhotoReviewWrapper>
@@ -680,13 +691,11 @@ const PhotoWrapper = styled.div`
     width: 100%;
 `;
 
-// 이부분 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 const PhotoReviewWrapper = styled.div`
     display: flex;
     float: inline-start;
     margin-bottom: 1.875em;
     align-items: center;
-
     img {
         width: 100%;
         height: 100%;
@@ -699,7 +708,6 @@ const PhotoReviewWrapper = styled.div`
             border-radius: 0.8125em;
         }
     }
-
     button {
         // 더보기
         cursor: pointer;
@@ -716,11 +724,9 @@ const PhotoReviewWrapper = styled.div`
         margin-top: 1.875em; // 30
         margin-bottom: 4em; // 64
         /* margin-bottom: 33px; */
-
         color: #675b4f;
         border: none;
         font-family: inherit;
-
         h1 {
             font-size: 1.875em; // 30px
             @media (max-width: 767px) {
@@ -728,7 +734,6 @@ const PhotoReviewWrapper = styled.div`
                 font-size: 0.8125em; //13
             }
         }
-
         @media (max-width: 767px) {
             width: calc((100% - 1.25em) / 5);
             // height: calc(((100vw - 3.125em) - 12.5em) / 5);

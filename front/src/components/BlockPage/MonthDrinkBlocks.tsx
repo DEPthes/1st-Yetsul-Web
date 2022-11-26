@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import MonthBlock from './Block';
@@ -28,15 +29,17 @@ const MonthDrink: React.FC = () => {
                 </Head>
                 <Content>
                     <MonthList>
-                        <MonthBlock
-                            contentName="9월"
-                            img="/images/septemberDrink.png"
-                            contentNumber={1}
-                        />
+                        <LinkWrapper to="/BlockPage/DecDrink">
+                            <MonthBlock
+                                contentName="12월"
+                                img="/images/Block/septemberDrink.png"
+                                contentNumber={1}
+                            />
+                        </LinkWrapper>
                         <div>
                             <MonthBlock
-                                contentName="10월"
-                                img="/images/septemberDrink.png"
+                                contentName="1월"
+                                img="/images/Block/ready.png"
                                 contentNumber={2}
                             />
                         </div>
@@ -47,62 +50,71 @@ const MonthDrink: React.FC = () => {
     );
 };
 
+const LinkWrapper = styled(Link)`
+    text-decoration: none;
+    color: #8e8372;
+`;
+
 const Inner = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 1129px;
+    width: 70.5625em;
     height: auto;
-    padding-top: 147px;
+    padding-top: 9.1875em;
 
     @media (max-width: 767px) {
-        padding-top: 100px;
+        padding-top: 8.75em;
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 338px;
+        width: 21.125em;
     }
 `;
 
 const Head = styled.div`
-    margin-top: 79px;
+    margin-top: 4.938em;
     width: 100%;
-    height: 69px;
-    border-bottom: 1px solid #bbb6a8;
-    padding-bottom: 40px;
-    @media (max-width: 767px) {
-        margin-top: 43px;
-        padding-bottom: 25px;
-    }
+    height: 4.313em;
+    border-bottom: 0.0625em solid #bbb6a8;
+    padding-bottom: 2.063em;
     h1 {
-        font-size: 30px;
-        line-height: 30px;
+        font-size: 1.875em;
+        line-height: 1em;
         color: #454038;
-        margin-bottom: 18px;
-        @media (max-width: 767px) {
-            font-weight: 400;
-            font-size: 20px;
-            line-height: 20px;
-        }
+        margin-bottom: 0.6em;
     }
     span {
-        font-size: 20px;
-
-        @media (max-width: 767px) {
+        font-size: 1.25em;
+    }
+    @media (max-width: 767px) {
+        margin-top: 0;
+        height: auto;
+        padding-bottom: 1.375em;
+        h1 {
+            color: #454038;
+            margin-bottom: 1.2em;
             font-weight: 400;
-            font-size: 15px;
-            line-height: 15px;
+            font-size: 1.25em;
+            line-height: 1.25em;
+        }
+        span {
+            font-weight: 400;
+            font-size: 0.9375em;
+            line-height: 0.9375em;
+            color: #8e8372;
         }
     }
 `;
+
 const Content = styled.div`
-    margin-top: 44px;
+    margin-top: 2.75em;
     width: 100%;
     display: flex;
     flex-direction: column;
 
     @media (max-width: 767px) {
-        margin-top: 30px;
+        margin-top: 1.875em;
     }
 `;
 
@@ -111,14 +123,18 @@ const MonthList = styled.div`
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    @media (max-width: 767px) {
+        display: flex;
+        justify-content: center;
+    }
     h1 {
-        font-size: 25px;
-        margin-bottom: 20px;
+        font-size: 1.5625em;
+        margin-bottom: 1.25em;
         @media (max-width: 767px) {
             font-weight: 400;
-            font-size: 18px;
-            line-height: 18px;
-            margin-bottom: 15px;
+            font-size: 1.125em;
+            line-height: 1.125em;
+            margin-bottom: 0.9375em;
         }
     }
 `;
