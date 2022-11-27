@@ -127,12 +127,12 @@ const Main: React.FC = () => {
                         </div>
                         <div>
                             <h1>
-                                왜 또 <span>기말고사인건데,</span>
+                                <span>종강</span>과 <span>연말 </span>그 사이,
                             </h1>
                         </div>
                         <div>
                             <div>
-                                <h1>날 위로해줄 한 잔, </h1>
+                                <h1>고생한 나를 위한 한 잔,</h1>
                             </div>
 
                             <div>
