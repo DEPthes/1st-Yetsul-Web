@@ -362,14 +362,13 @@ const AHref = styled.a`
 const AHrefLong = styled.a`
     text-decoration: none;
 
-    font-size: 11px;
-    line-height: 15px;
+    font-size: 10px;
     letter-spacing: -0.01em;
     color: #bbb6a8;
 
     @media (max-width: 767px) {
-        font-size: 6px;
-        zoom: 0.57;
+        font-size: 5px;
+        zoom: 0.45;
         line-height: 5px;
     }
 `;

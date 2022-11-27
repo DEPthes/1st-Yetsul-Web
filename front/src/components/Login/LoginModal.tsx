@@ -85,6 +85,7 @@ const ModalMain = styled.div`
     bottom: 0;
     background: rgba(0, 0, 0, 0.3);
     z-index: 100000;
+    transition: 0.5s;
 `;
 
 const LoginCloseBtn = styled.div`

@@ -156,7 +156,7 @@ const Header: React.FC = () => {
     };
 
     return (
-        <HeaderStyle data-html2canvas-ignore="true">
+        <HeaderStyle>
             <div className="head">
                 <LeftHeaed>
                     <div aria-hidden>
