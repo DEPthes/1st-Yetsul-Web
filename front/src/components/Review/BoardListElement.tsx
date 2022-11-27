@@ -39,6 +39,7 @@ const BoardListElement: React.FC<reviewType> = ({
     alcoholId,
 }) => {
     const [reviewLike, setReviewLike] = useState(like);
+    const [isLiked, setIsLiked] = useState(true);
 
     const onClickLike = async () => {
         await axios.post(

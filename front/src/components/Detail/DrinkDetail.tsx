@@ -4,7 +4,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useMediaQuery } from 'react-responsive';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { RootState } from '../../store/config';
@@ -52,9 +51,9 @@ export type ReviewType = {
 };
 
 const DrinkDetail: React.FC = () => {
-    const isMobile = useMediaQuery({
-        query: '(max-width:767px)',
-    });
+    // const isMobile = useMediaQuery({
+    //     query: '(max-width:767px)',
+    // });
 
     const { id } = useParams();
 
@@ -251,6 +250,22 @@ const DrinkDetail: React.FC = () => {
         setReviewForSort(sortedByStarReviews);
         setSelected([false, false, true, false]);
     };
+    const [windowSize, setWindowSize] = useState({
+        width: window.innerWidth,
+    });
+
+    const handleResize = () => {
+        setWindowSize({
+            width: window.innerWidth,
+        });
+    };
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     return (
         <BackgroundTemplate heightValue="auto">
@@ -307,6 +322,7 @@ const DrinkDetail: React.FC = () => {
                                         .slice(0, 4)
                                         .map((p, index) => {
                                             return (
+                                                // eslint-disable-next-line react/no-array-index-key, react/button-has-type
                                                 <button key={index}>
                                                     <img
                                                         src={p[0].toString()}
@@ -315,11 +331,10 @@ const DrinkDetail: React.FC = () => {
                                                 </button>
                                             );
                                         })}
-
                                     <button
+                                        className="more"
                                         type="button"
                                         onClick={handleModal}
-                                        className="more"
                                     >
                                         <h1>더보기</h1>
                                     </button>
@@ -331,20 +346,16 @@ const DrinkDetail: React.FC = () => {
                                             .slice(0, 5)
                                             .map((p, index) => {
                                                 return (
-                                                    <button key={index}>
-                                                        <img
-                                                            onClick={() =>
-                                                                gotoReview(
-                                                                    +p[1],
-                                                                )
-                                                            }
-                                                            aria-hidden
-                                                            src={p[0].toString()}
-                                                            // eslint-disable-next-line react/no-array-index-key
-                                                            key={index}
-                                                            alt={p[0].toString()}
-                                                        />
-                                                    </button>
+                                                    <img
+                                                        onClick={() =>
+                                                            gotoReview(+p[1])
+                                                        }
+                                                        aria-hidden
+                                                        src={p[0].toString()}
+                                                        // eslint-disable-next-line react/no-array-index-key
+                                                        key={index}
+                                                        alt={p[0].toString()}
+                                                    />
                                                 );
                                             })}
                                     </PhotoReviewWrapper>
@@ -357,7 +368,7 @@ const DrinkDetail: React.FC = () => {
                 <ReviewTitle>
                     <h1>리뷰 ({reviews.length})개</h1>
                 </ReviewTitle>
-                {isMobile ? (
+                {windowSize.width <= 768 ? (
                     <SortBtn onClick={changeSort}>
                         {
                             {
@@ -692,58 +703,56 @@ const PhotoWrapper = styled.div`
 `;
 
 const PhotoReviewWrapper = styled.div`
+    width: 100%;
+    height: 12.875em;
     display: flex;
-    float: inline-start;
-    margin-bottom: 1.875em;
+    margin-bottom: 5.1875em;
+    justify-content: flex-start;
     align-items: center;
-    img {
-        width: 100%;
-        height: 100%;
-        background: #d9d9d9;
-        border-radius: 1.125em;
-        object-fit: cover;
-        @media (max-width: 767px) {
-            height: 100%;
-            width: 100%;
-            border-radius: 0.8125em;
-        }
+    @media (max-width: 767px) {
+        height: 4.5em;
+        margin-bottom: 1.625em;
     }
     button {
-        // 더보기
-        cursor: pointer;
-        width: calc((100vw - 1.25em) / 5);
-        height: calc((100vh - 1.25em) / 5);
-        &:not(:last-of-type) {
-            margin-right: calc((100% - ((100% - 1.25em) / 5) * 5) / 4);
-        }
-        background: #d9d9d9;
-        border-radius: 1.125em; // 18
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 1.875em; // 30
-        margin-bottom: 4em; // 64
-        /* margin-bottom: 33px; */
-        color: #675b4f;
+        width: calc(100% - 80%);
+        height: 100%;
+        border-radius: 0.8125em;
         border: none;
+        margin-top: 1.875em;
         font-family: inherit;
-        h1 {
-            font-size: 1.875em; // 30px
+        :not(:last-child) {
+            margin-right: 1.875em;
             @media (max-width: 767px) {
-                font-weight: 400;
-                font-size: 0.8125em; //13
+                margin-right: 0.3125em;
             }
         }
         @media (max-width: 767px) {
-            width: calc((100% - 1.25em) / 5);
-            // height: calc(((100vw - 3.125em) - 12.5em) / 5);
-            height: calc((19.8125em + 3.5em) / 5);
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            &:not(:last-of-type) {
-                margin-right: calc((100% - ((100% - 1.25em) / 5) * 5) / 4);
+            margin-top: 1.1875em;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: 0.8125em;
+            object-fit: cover;
+        }
+    }
+
+    .more {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        h1 {
+            font-weight: 400;
+            font-size: 1.875em;
+            line-height: 1.875em;
+            letter-spacing: -0.01em;
+            color: #675b4f;
+            @media (max-width: 767px) {
+                font-weight: 400;
+                font-size: 0.8125em;
+                line-height: 0.8125em;
+                letter-spacing: -0.01em;
             }
         }
     }
