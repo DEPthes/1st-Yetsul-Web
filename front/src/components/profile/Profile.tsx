@@ -399,6 +399,7 @@ const Myreview = styled.div`
     align-items: flex-end;
     margin-left: 2.5vw;
     height: 18vw;
+    background-color: red;
 `;
 
 const MyreviewHeader = styled.div`
