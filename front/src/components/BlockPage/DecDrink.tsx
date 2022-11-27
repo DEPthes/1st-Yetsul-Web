@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
 import styled from 'styled-components';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 
 const DecDrink: React.FC = () => {
-    const [hv, setHv] = useState('100%');
+    const [, setHv] = useState('100%');
     useEffect(() => {
         if (
             document.body.clientWidth <= 767 &&
@@ -18,14 +17,6 @@ const DecDrink: React.FC = () => {
             setHv('fit-content');
         } else setHv('100%');
     }, []);
-
-    const isMobile = useMediaQuery({
-        query: '(max-width:767px)',
-    });
-
-    const isSE = useMediaQuery({
-        query: `(max-width:390px)`,
-    });
 
     return (
         <BackgroundTemplate

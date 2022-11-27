@@ -7,6 +7,7 @@ import BackgroundTemplate from '../common/BackgroundTemplate';
 import { MyReviewWidget } from './MyReviewWidget';
 import MyPagination from './MypagePagination';
 import { TemporarySaveModal } from './TemporarySaveModal2';
+import { getAccessToken } from '../../services/tokenControl';
 
 export const MyReviewAll: React.FC = () => {
     const [OpenModal, setOpenModal] = useState(false);
@@ -14,7 +15,7 @@ export const MyReviewAll: React.FC = () => {
     const ChangeOpenModalShow = () => {
         setOpenModal((e) => !e);
     };
-    console.log(OpenModal);
+
     const [AlcholthatUserWrite, setAlcholthatUserWrite] = useState<DrinkType[]>(
         [],
     );
@@ -28,13 +29,12 @@ export const MyReviewAll: React.FC = () => {
     const [limit] = useState(4); // 페이지 당 보여줄 게시물 수
     const [page, setPage] = useState(1); // 현재 페이지
     const offset = (page - 1) * limit; // 페이지 당 첫 게시물의 index
+
     const getData = () => {
-        const JWT = localStorage.getItem('accessToken') || '';
         return axios.create({
-            headers: { Authorization: `Bearer ${JWT}` },
+            headers: { Authorization: `Bearer ${getAccessToken()}` },
         });
     };
-
     useEffect(() => {
         getData()
             .post(

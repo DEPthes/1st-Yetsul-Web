@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 import Star from '../common/Star';
+import { getAccessToken } from '../../services/tokenControl';
 
 type myreviewtype = {
     id: number;
@@ -23,9 +24,8 @@ export const MyReviewModalWidget: React.FC<myreviewtype> = ({
     const [MyreviewAlcoholData, setMyreviewAlcoholData] = useState(Object);
 
     const getData2 = () => {
-        const JWT = localStorage.getItem('accessToken') || '';
         return axios.create({
-            headers: { Authorization: `Bearer ${JWT}` },
+            headers: { Authorization: `Bearer ${getAccessToken()}` },
         });
     };
 
@@ -84,7 +84,6 @@ export const MyReviewModalWidget: React.FC<myreviewtype> = ({
 
     const goToEditTemp = () => {
         navigate(`/review/alcohol${alcoholId}/review${id}/temporaryedit`);
-        console.log('시발');
     };
 
     return (
@@ -207,6 +206,7 @@ const MyreviewInformationSection = styled.div`
     }
 `;
 const MyreviewInformationUpper = styled.div`
+    margin-bottom: -0.5vw;
     display: flex;
     align-items: center;
 `;
@@ -214,6 +214,7 @@ const MyreviewInformationLower = styled.div`
     display: flex;
     justify-content: space-between;
     width: 133%;
+    margin-top: 1vw;
     @media screen and (max-width: 767px) {
         width: 143%;
     }
@@ -256,6 +257,7 @@ const MyreviewRightSection = styled.div`
     justify-content: center;
     width: 20%;
     margin-right: 1.5vw;
+    margin-bottom: 1.1vw;
     @media screen and (max-width: 767px) {
         margin-right: -6vw;
     }
@@ -263,8 +265,8 @@ const MyreviewRightSection = styled.div`
 
 const SeeFull = styled.div`
     cursor: pointer;
+    z-index: 200000;
     @media screen and (max-width: 767px) {
-        z-index: 200000;
         font-size: 0.573vw;
     }
 `;

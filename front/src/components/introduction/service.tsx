@@ -198,7 +198,7 @@ const Inner = styled.div`
     z-index: 2;
     background-image: url('/images/introServiceBg.png');
     background-size: cover;
-    background-position: 0 -200px;
+    background-position: 50% 150px;
     @media screen and (max-width: 767px) {
         background-image: url('/images/introServiceMobileBg.png');
         background-position: 50% 150px;

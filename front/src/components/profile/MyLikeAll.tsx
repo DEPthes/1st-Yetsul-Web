@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import { FavoriteAlcholWidget } from './MyLikeAlcholWidget';
 import MyPagination from './MypagePagination';
+import { getAccessToken } from '../../services/tokenControl';
 
 export const MyLikeAll: React.FC = () => {
     const [MyLikeAlcholData, setMyLikeAlcholData] = useState<DrinkType[]>([]);
@@ -14,9 +15,8 @@ export const MyLikeAll: React.FC = () => {
     const offset = (page - 1) * limit; // 페이지 당 첫 게시물의 index
     const [NoLikeData, setNoLikeData] = useState(true);
     const getData = () => {
-        const JWT = localStorage.getItem('accessToken') || '';
         return axios.create({
-            headers: { Authorization: `Bearer ${JWT}` },
+            headers: { Authorization: `Bearer ${getAccessToken()}` },
         });
     };
 

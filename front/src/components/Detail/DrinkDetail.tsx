@@ -219,18 +219,18 @@ const DrinkDetail: React.FC = () => {
         const nav = document.getElementById('fp-nav');
         dispatch(setListModal(!isModal));
         if (isModal === false) {
-            $('body').css('overflow', 'hidden');
             if (main) {
-                main.className = 'is-blurred';
+                main.className = `${main.className} is-blurred`;
             }
             head.className = 'head is-blurred';
             if (nav) {
                 nav.className = 'right is-blurred';
             }
         } else {
-            $('body').css('overflow', 'auto');
             if (main) {
-                main.className = '';
+                main.className = `${main.className.split(' ')[0]} ${
+                    main.className.split(' ')[1]
+                }`;
             }
             head.className = 'head';
             if (nav) {
