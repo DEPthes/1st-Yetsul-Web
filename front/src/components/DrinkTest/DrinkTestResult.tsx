@@ -206,7 +206,7 @@ const DrinkTicketBoxResult: React.FC = () => {
                                 return (
                                     <Drinks
                                         key={data.id}
-                                        margin={24.48}
+                                        margin={4.48}
                                         mediamargin={180}
                                     >
                                         <DrinkImg>

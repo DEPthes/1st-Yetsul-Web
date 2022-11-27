@@ -362,7 +362,8 @@ const AHref = styled.a`
 const AHrefLong = styled.a`
     text-decoration: none;
 
-    font-size: 10px;
+    font-size: 9px;
+    zoom: 0.93;
     letter-spacing: -0.01em;
     color: #bbb6a8;
 
