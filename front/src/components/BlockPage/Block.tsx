@@ -34,7 +34,7 @@ const MonthBlock: React.FC<{
                         <circle cx="11.5" cy="11.5" r="11.5" fill="#EDEBE8" />
                     </svg>
                 </AnimationBtnImg>
-                <AnimationBtnImg id={`hover-icon-${contentNumber}`}>
+                <AnimationArrowImg id={`hover-icon-${contentNumber}`}>
                     <svg
                         width={isMobile ? '30' : '48'}
                         height={isMobile ? '30' : '48'}
@@ -47,7 +47,7 @@ const MonthBlock: React.FC<{
                             fill="#9B9082"
                         />
                     </svg>
-                </AnimationBtnImg>
+                </AnimationArrowImg>
             </MonthContent>
         </div>
     );
@@ -59,14 +59,48 @@ const AnimationBtnImg = styled.div`
     position: absolute;
     transition: 0.3s;
     z-index: 100;
-    bottom: 1.6875em;
-    left: 1.6875em; //27
+    bottom: 1.8875em;
+    left: 1.8875em; //27
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 1.4375em;
+    width: 1.4375em;
+    > svg {
+        height: 100%;
+        width: 100%;
+    }
     @media (max-width: 767px) {
-        position: relative;
         width: 0.9375em; //15
-        height: 0.875em; //14
-        left: -8.75em; // -149
-        top: 2.5em; // 40
+        height: 0.9375em; //14
+
+        bottom: 1.2875em;
+        left: 1.2875em; //27
+    }
+`;
+
+const AnimationArrowImg = styled.div`
+    position: absolute;
+    transition: 0.3s;
+    z-index: 101;
+    bottom: 1.8875em;
+    left: 1.8875em; //27
+    height: 1.4375em;
+    width: 1.4375em;
+    transform: scale(2);
+    opacity: 0;
+
+    > svg {
+        height: 100%;
+        width: 100%;
+    }
+    @media (max-width: 767px) {
+        width: 0.9375em; //15
+        height: 0.9375em; //14
+
+        bottom: 1.2875em;
+        left: 1.2875em; //27
     }
 `;
 
@@ -91,36 +125,6 @@ const MonthContent = styled.div`
         width: 21.0625em;
         height: 8.3125em;
         margin-bottom: 2.125em;
-    }
-    > div:first-of-type {
-        transform: scale(1);
-        height: 1.4375em;
-        width: 1.4375em;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        @media (max-width: 767px) {
-            position: absolute;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            left: 1.25em;
-            top: 5.9em;
-        }
-    }
-    > div:nth-of-type(2) {
-        opacity: 0;
-        height: 3em;
-        width: 3em;
-        position: absolute;
-        bottom: 0;
-        left: 0; //15
-        @media (max-width: 767px) {
-            position: absolute;
-            left: 1.15em;
-            top: 5.8em;
-        }
     }
 `;
 
