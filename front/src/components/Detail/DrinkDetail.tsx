@@ -716,7 +716,7 @@ const PhotoReviewWrapper = styled.div`
         padding-bottom: 20%;
         width: 100%;
         cursor: pointer;
-        width: calc((100vw - 1.25em) / 5);
+        width: calc((100% - 1.25em) / 5);
         // height: calc((100vh - 1.25em) / 5);
         &:not(:last-of-type) {
             margin-right: calc((100% - ((100% - 1.25em) / 5) * 5) / 4);
