@@ -220,18 +220,18 @@ const DrinkDetail: React.FC = () => {
         const nav = document.getElementById('fp-nav');
         dispatch(setListModal(!isModal));
         if (isModal === false) {
-            $('body').css('overflow', 'hidden');
             if (main) {
-                main.className = 'is-blurred';
+                main.className = `${main.className} is-blurred`;
             }
             head.className = 'head is-blurred';
             if (nav) {
                 nav.className = 'right is-blurred';
             }
         } else {
-            $('body').css('overflow', 'auto');
             if (main) {
-                main.className = '';
+                main.className = `${main.className.split(' ')[0]} ${
+                    main.className.split(' ')[1]
+                }`;
             }
             head.className = 'head';
             if (nav) {
@@ -697,6 +697,9 @@ const PhotoReviewWrapper = styled.div`
     margin-bottom: 1.875em;
     align-items: center;
     img {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         background: #d9d9d9;
@@ -709,10 +712,12 @@ const PhotoReviewWrapper = styled.div`
         }
     }
     button {
-        // 더보기
+        position: relative;
+        padding-bottom: 20%;
+        width: 100%;
         cursor: pointer;
-        width: calc((100vw - 1.25em) / 5);
-        height: calc((100vh - 1.25em) / 5);
+        width: calc((100% - 1.25em) / 5);
+        // height: calc((100vh - 1.25em) / 5);
         &:not(:last-of-type) {
             margin-right: calc((100% - ((100% - 1.25em) / 5) * 5) / 4);
         }
@@ -728,6 +733,11 @@ const PhotoReviewWrapper = styled.div`
         border: none;
         font-family: inherit;
         h1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate3d(-50%, -50%, 0);
+            width: 100%;
             font-size: 1.875em; // 30px
             @media (max-width: 767px) {
                 font-weight: 400;

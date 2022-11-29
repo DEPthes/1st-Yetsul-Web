@@ -417,7 +417,7 @@ const Header: React.FC = () => {
                                 onClick={() => onClickMenu('/RecommendTicket')}
                                 aria-hidden
                             >
-                                옛술의 전당
+                                옛술의 전당 매표소
                             </p>
                             <p
                                 onClick={() => onClickMenu('/RecommendSlot')}

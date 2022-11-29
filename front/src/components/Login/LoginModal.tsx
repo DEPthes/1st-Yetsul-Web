@@ -5,6 +5,12 @@ type modalType = {
     modal: () => void;
 };
 const LoginModal: React.FC<modalType> = ({ modal }) => {
+    const isDev: boolean =
+        window.location.href.split('/')[2] === 'localhost:3000';
+    const selectDevOrProductUrl = isDev
+        ? 'localhost:3000'
+        : 'yetsul.s3-website.ap-northeast-2.amazonaws.com';
+
     return (
         <ModalMain aria-hidden id="modal">
             <LoginWrap onClick={(e) => e.stopPropagation()} aria-hidden>
@@ -48,7 +54,7 @@ const LoginModal: React.FC<modalType> = ({ modal }) => {
                 <LoginMain>
                     <ButtonStyle
                         id="kakao"
-                        href="https://kauth.kakao.com/oauth/authorize?client_id=e2d1c7ba92ca798e88509878ae8f44ee&redirect_uri=http://localhost:3000/auth/kakaologin&response_type=code"
+                        href={`https://kauth.kakao.com/oauth/authorize?client_id=e2d1c7ba92ca798e88509878ae8f44ee&redirect_uri=http://${selectDevOrProductUrl}/auth/kakaologin&response_type=code`}
                     >
                         <svg
                             width="22"

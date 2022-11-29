@@ -569,6 +569,7 @@ const DrinkImg = styled.img`
     margin-left: 20px;
     width: 173.63px;
     height: 170.71px;
+    object-fit: contain;
 
     @media (max-width: 767px) {
         margin-top: 39px;
