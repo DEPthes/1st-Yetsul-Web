@@ -84,6 +84,7 @@ const FavoriteAlcholNameABV = styled.div`
     padding-bottom: 0.469vw;
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     font-size: 0.781vw;
     @media screen and (max-width: 767px) {
         display: flex;

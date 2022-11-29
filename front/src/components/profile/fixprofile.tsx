@@ -15,6 +15,33 @@ export const FixProfile: React.FC = () => {
         });
     };
 
+    // const updateReview = async () => {
+    //     const fileArr: File[] = [];
+    //     await axios
+    //         .get(
+    //             `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+    //         )
+    //         .then(async (res) => {
+    //             setLoading(true);
+    //             // eslint-disable-next-line no-restricted-syntax
+    //             for (const url of res.data.reviewImgUrl) {
+    //                 // eslint-disable-next-line no-await-in-loop
+    //                 await convertURLtoFile(url).then(async (res) => {
+    //                     console.log(res);
+    //                     fileArr.push(res);
+    //                 });
+    //             }
+    //             console.log(fileArr);
+
+    //             setFileList(fileList ? fileList.concat(fileArr) : fileArr);
+    //             setLoading(false);
+
+    //             setContents(res.data.content);
+    //             setTitle(res.data.title);
+    //             setStarCount(res.data.star);
+    //         });
+    // };
+
     useEffect(() => {
         getData()
             .get(
@@ -24,19 +51,34 @@ export const FixProfile: React.FC = () => {
             .catch((err) => console.log(err));
     }, []);
 
+    const convertURLtoFile = async (url: string) => {
+        const response = await fetch(
+            `https://accountercors.herokuapp.com/${url}`,
+            {
+                mode: 'cors',
+            },
+        );
+        const data = await response.blob();
+        const filename = 'uploadimg';
+        const metadata = { type: `image/jpeg` };
+        return new File([data], filename, metadata);
+    };
+
     const [InputImage, setInputImage] = useState(String);
     const [pushImage, setPushImage] = useState<File>();
     const [InputName, setInputName] = useState(String);
 
     const navigate = useNavigate();
 
-    const PatchProfileData = () => {
+    const PatchProfileData = async () => {
         const formData = new FormData();
         formData.append('nickname', InputName);
         if (pushImage) {
             formData.append('file', pushImage);
+        } else {
+            const OriginalImgFile = convertURLtoFile(userData.profileImg);
+            formData.append('file', await OriginalImgFile);
         }
-
         axios
             .patch(
                 'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/edituser',
@@ -54,9 +96,12 @@ export const FixProfile: React.FC = () => {
                 navigate('/profile');
             });
     };
-
     useEffect(() => {
-        setInputImage(userData.profileImg);
+        if (userData.profileImg === '기본이미지') {
+            setInputImage('/images/defaultProfileImage.png');
+        } else {
+            setInputImage(userData.profileImg);
+        }
         setInputName(userData.nickname);
     }, [userData]);
 
@@ -70,6 +115,7 @@ export const FixProfile: React.FC = () => {
     const onChange = useCallback((e: any) => {
         setInputName(e.target.value);
     }, []);
+
     return (
         <BackgroundTemplate heightValue="100%">
             <Inner>
@@ -141,7 +187,7 @@ export const FixProfile: React.FC = () => {
                     <UserProfileImg
                         className="imgBox"
                         src={InputImage}
-                        alt="대체이미지"
+                        alt="이미지가 로드되지 않고 있습니다."
                     />
                 </ProfileImgFrame>
                 <NameBox>
@@ -196,7 +242,6 @@ const ProfileImgFrame = styled.div`
     width: 9.531vw;
     height: 9.531vw;
     border-radius: 100%;
-    background-color: #d9d9d9;
     margin-top: 1.979vw;
     overflow: hidden;
     @media screen and (max-width: 767px) {
@@ -250,6 +295,7 @@ const NameBox = styled.div`
 `;
 
 const Name = styled.input`
+    font-family: 'GmarketSansMedium';
     width: 100%;
     height: 100%;
     border-radius: 18px;
@@ -266,6 +312,7 @@ const Name = styled.input`
 `;
 const Registration = styled.button`
     background: #8b7e6a;
+    font-family: 'GmarketSansMedium';
     border: 1px solid #8b7e6a;
     border-radius: 18px;
     width: 6.875vw;
