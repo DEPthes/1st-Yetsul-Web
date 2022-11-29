@@ -39,7 +39,8 @@ const BoardListElement: React.FC<reviewType> = ({
     alcoholId,
 }) => {
     const [reviewLike, setReviewLike] = useState(like);
-    const [isLiked, setIsLiked] = useState(true);
+    const [isLiked, setIsLiked] = useState(false);
+    localStorage.setItem('LikeStatus', JSON.stringify({ isLiked: 'true' }));
 
     const onClickLike = async () => {
         await axios.post(
@@ -51,14 +52,36 @@ const BoardListElement: React.FC<reviewType> = ({
                 },
             },
         );
+
         axios
             .get(
                 `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
             )
             .then((res) => {
                 setReviewLike(res.data.like);
+                console.log(res.data);
+                setIsLiked(!isLiked);
+                console.log(isLiked);
             })
 
+            .catch((err) => console.log(err));
+
+        axios
+            .get(
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/likeornot/${reviewId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${getAccessToken()}`,
+                    },
+                },
+            )
+            .then((res) => {
+                if (res.data === 'LIKE') {
+                    setIsLiked(true);
+                } else if (res.data === 'NOT') {
+                    setIsLiked(false);
+                }
+            })
             .catch((err) => console.log(err));
     };
 
@@ -100,17 +123,29 @@ const BoardListElement: React.FC<reviewType> = ({
                                     </div>
 
                                     <h3>{starCount}개</h3>
-
-                                    <LikeBtn onClick={onClickLike}>
-                                        👍
-                                        <span>{reviewLike}</span>
-                                    </LikeBtn>
+                                    {isLiked === true ? (
+                                        <DefaultLikeBtn onClick={onClickLike}>
+                                            <LikeImg
+                                                src="/images/isLiked.png"
+                                                alt="isLiked"
+                                            />
+                                            <span>{reviewLike}</span>
+                                        </DefaultLikeBtn>
+                                    ) : (
+                                        <LikeBtn onClick={onClickLike}>
+                                            <LikeImg
+                                                src="/images/isNotLiked.png"
+                                                alt="isNotLiked"
+                                            />
+                                            <span>{reviewLike}</span>
+                                        </LikeBtn>
+                                    )}
                                 </MReviewBoxBottom>
 
                                 <ReviewBoxContentNoImg>
                                     <h3>
                                         {content.length >= 55 ? (
-                                            <>{content.slice(0, 30)}...</>
+                                            <>{content.slice(0, 50)}...</>
                                         ) : (
                                             content
                                         )}
@@ -153,15 +188,28 @@ const BoardListElement: React.FC<reviewType> = ({
                                         />
                                     </div>
                                     <h3>{starCount}개</h3>
-                                    <LikeBtn onClick={onClickLike}>
-                                        👍
-                                        <span>{reviewLike}</span>
-                                    </LikeBtn>
+                                    {isLiked === true ? (
+                                        <DefaultLikeBtn onClick={onClickLike}>
+                                            <LikeImg
+                                                src="/images/isLiked.png"
+                                                alt="isLiked"
+                                            />
+                                            <span>{reviewLike}</span>
+                                        </DefaultLikeBtn>
+                                    ) : (
+                                        <LikeBtn onClick={onClickLike}>
+                                            <LikeImg
+                                                src="/images/isNotLiked.png"
+                                                alt="isNotLiked"
+                                            />
+                                            <span>{reviewLike}</span>
+                                        </LikeBtn>
+                                    )}
                                 </MReviewBoxBottom>
                                 <ReviewBoxContent>
                                     <h3>
-                                        {content.length >= 55 ? (
-                                            <>{content.slice(0, 30)}...</>
+                                        {content.length >= 40 ? (
+                                            <>{content.slice(0, 40)}...</>
                                         ) : (
                                             content
                                         )}
@@ -222,7 +270,7 @@ const BoardListElement: React.FC<reviewType> = ({
                                 <ReviewBoxContentNoImg>
                                     <h3>
                                         {content.length >= 55 ? (
-                                            <>{content.slice(0, 55)}...</>
+                                            <>{content.slice(0, 50)}...</>
                                         ) : (
                                             content
                                         )}
@@ -234,10 +282,23 @@ const BoardListElement: React.FC<reviewType> = ({
                                     </ReviewLink>
                                 </ReviewBoxContentNoImg>
                             </ReviewBox>
-                            <LikeBtn onClick={onClickLike}>
-                                👍
-                                <span>{reviewLike}</span>
-                            </LikeBtn>
+                            {isLiked === true ? (
+                                <DefaultLikeBtn onClick={onClickLike}>
+                                    <LikeImg
+                                        src="/images/isLiked.png"
+                                        alt="isLiked"
+                                    />
+                                    <span>{reviewLike}</span>
+                                </DefaultLikeBtn>
+                            ) : (
+                                <LikeBtn onClick={onClickLike}>
+                                    <LikeImg
+                                        src="/images/isNotLiked.png"
+                                        alt="isNotLiked"
+                                    />
+                                    <span>{reviewLike}</span>
+                                </LikeBtn>
+                            )}
                         </ReviewsWrapper>
                     ) : (
                         <ReviewsWrapper>
@@ -270,8 +331,8 @@ const BoardListElement: React.FC<reviewType> = ({
 
                                 <ReviewBoxContent>
                                     <h3>
-                                        {content.length >= 55 ? (
-                                            <>{content.slice(0, 55)}...</>
+                                        {content.length >= 40 ? (
+                                            <>{content.slice(0, 40)}...</>
                                         ) : (
                                             content
                                         )}
@@ -291,10 +352,23 @@ const BoardListElement: React.FC<reviewType> = ({
                                 )}
                             </ReviewImgWrap>
 
-                            <LikeBtn onClick={onClickLike}>
-                                👍
-                                <span>{reviewLike}</span>
-                            </LikeBtn>
+                            {isLiked === true ? (
+                                <DefaultLikeBtn onClick={onClickLike}>
+                                    <LikeImg
+                                        src="/images/isLiked.png"
+                                        alt="isLiked"
+                                    />
+                                    <span>{reviewLike}</span>
+                                </DefaultLikeBtn>
+                            ) : (
+                                <LikeBtn onClick={onClickLike}>
+                                    <LikeImg
+                                        src="/images/isNotLiked.png"
+                                        alt="isNotLiked"
+                                    />
+                                    <span>{reviewLike}</span>
+                                </LikeBtn>
+                            )}
                         </ReviewsWrapper>
                     )}
                 </>
@@ -552,12 +626,14 @@ const ReviewLink = styled(Link)`
     text-decoration: none;
 `;
 
-const LikeBtn = styled.button`
-    width: 6.6875em;
-    height: 3.5em;
-    border: 0.0625em solid #675b4f;
-    border-radius: 3.25em;
-    background: none;
+const DefaultLikeBtn = styled.button`
+    width: 80px;
+    height: 56px;
+
+    background: #675b4f;
+    border: 1px solid #675b4f;
+    border-radius: 52px;
+
     margin: auto 0;
     cursor: pointer;
     display: flex;
@@ -569,7 +645,30 @@ const LikeBtn = styled.button`
         background: none;
         font-family: inherit;
         font-size: 0.9375em;
-        color: #000000;
+        color: #fff;
         margin-left: 0.3125em;
     }
 `;
+
+const LikeBtn = styled.button`
+    width: 80px;
+    height: 56px;
+    border: 1px solid #675b4f;
+    border-radius: 52px;
+    margin: auto 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+        border: none;
+        background: none;
+        font-family: inherit;
+        font-size: 0.9375em;
+        color: #675b4f;
+        margin-left: 0.3125em;
+    }
+`;
+
+const LikeImg = styled.img``;
