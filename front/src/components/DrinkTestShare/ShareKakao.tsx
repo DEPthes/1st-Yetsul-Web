@@ -35,7 +35,7 @@ const ShareKakao: React.FC = () => {
                 },
                 buttons: [
                     {
-                        title: '옛술의 전당 매표소',
+                        title: '옛술의 전당\n매표소',
                         link: {
                             webUrl: url,
                         },
