@@ -228,11 +228,11 @@ const PhotoDiv = styled(Link)`
     margin-bottom: 1.25em;
 
     @media (max-width: 767px) {
-        margin-right: 8.17px;
-        margin-bottom: 11.34px;
+        margin-right: 0.510625em;
+        margin-bottom: 0.70875em;
     }
 
-    &:nth-of-type(6n) {
+    &:nth-of-type(3n) {
         margin-right: 0;
     }
 
