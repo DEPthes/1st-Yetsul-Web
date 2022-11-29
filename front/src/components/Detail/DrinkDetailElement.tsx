@@ -46,9 +46,8 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
     const [like, setLike] = useState(false);
 
     const getData = () => {
-        const accessToken = localStorage.getItem('accessToken') || '';
         return axios.create({
-            headers: { Authorization: `Bearer ${accessToken}` },
+            headers: { Authorization: `Bearer ${getAccessToken()}` },
         });
     };
 
@@ -66,11 +65,6 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
             .post(
                 `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/alcohol/description/${alcolid}/likeornot`,
                 {},
-                {
-                    headers: {
-                        Authorization: `Bearer ${getAccessToken()}`,
-                    },
-                },
             )
             .then((res) => {
                 if (res.data === 'LIKE') {
@@ -363,7 +357,9 @@ const DrinkExplain = styled.div`
 
 const DrinkImg = styled.img`
     margin-right: 7.125em;
+    height: 39em;
     width: 32.875em;
+    object-fit: contain;
 
     @media (max-width: 767px) {
         margin-top: 0.75em;
@@ -373,7 +369,7 @@ const DrinkImg = styled.img`
 `;
 
 const DrinkCategory = styled.div`
-    width: 5.067em;
+    width: 6.067em;
     height: 2.267em;
     border: 1px solid #454038;
     border-radius: 1.5em;

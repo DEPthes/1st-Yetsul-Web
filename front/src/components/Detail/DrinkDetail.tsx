@@ -714,9 +714,30 @@ const PhotoReviewWrapper = styled.div`
         margin-bottom: 1.625em;
     }
     button {
+<<<<<<< HEAD
         width: calc(100% - 80%);
         height: 100%;
         border-radius: 0.8125em;
+=======
+        position: relative;
+        padding-bottom: 20%;
+        width: 100%;
+        cursor: pointer;
+        width: calc((100% - 1.25em) / 5);
+        // height: calc((100vh - 1.25em) / 5);
+        &:not(:last-of-type) {
+            margin-right: calc((100% - ((100% - 1.25em) / 5) * 5) / 4);
+        }
+        background: #d9d9d9;
+        border-radius: 1.125em; // 18
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1.875em; // 30
+        margin-bottom: 4em; // 64
+        /* margin-bottom: 33px; */
+        color: #675b4f;
+>>>>>>> 522288195a2fdbec8dcae69982480323378e125f
         border: none;
         margin-top: 1.875em;
         font-family: inherit;

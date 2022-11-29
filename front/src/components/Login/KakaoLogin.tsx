@@ -10,12 +10,18 @@ const KakaoLogin: React.FC = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const KAKAO_CODE = location.search.split('=')[1];
+    const isDev: boolean =
+        window.location.href.split('/')[2] === 'localhost:3000';
+    const selectDevOrProductUrl = isDev
+        ? 'localhost:3000'
+        : 'yetsul.s3-website.ap-northeast-2.amazonaws.com';
 
     const getKakaoToken = () => {
+        console.log(location.search);
         fetch('https://kauth.kakao.com/oauth/token', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `grant_type=authorization_code&client_id=e2d1c7ba92ca798e88509878ae8f44ee&redirect_uri=http://localhost:3000/auth/kakaologin&code=${KAKAO_CODE}`,
+            body: `grant_type=authorization_code&client_id=e2d1c7ba92ca798e88509878ae8f44ee&redirect_uri=http://${selectDevOrProductUrl}/auth/kakaologin&code=${KAKAO_CODE}`,
         })
             .then((res) => res.json())
             .then((data) => {

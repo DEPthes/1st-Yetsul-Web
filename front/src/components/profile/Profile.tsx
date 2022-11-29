@@ -65,7 +65,6 @@ export const Profile: React.FC = () => {
         setAlcholthatUserWriteforWidget(AlcoholReviewData.slice(0, 3));
         setRecentColor(false);
     };
-
     useEffect(() => {
         getdata()
             .post(
@@ -79,6 +78,14 @@ export const Profile: React.FC = () => {
             setNoLikeData(false);
         }
     }, [MyLikeAlcholData]);
+    const [showImage, setShowImage] = useState(String);
+    useEffect(() => {
+        if (userData.profileImg === '기본이미지') {
+            setShowImage('images/defaultProfileImage.png');
+        } else {
+            setShowImage(userData.profileImg);
+        }
+    }, [userData.profileImg]);
 
     const MyLikeAlcoholDataforWidget = MyLikeAlcholData.slice(0, 4);
 
@@ -98,7 +105,7 @@ export const Profile: React.FC = () => {
                     <ProfileImgSection>
                         <ProfileBox>
                             <ProfileImgBox>
-                                <ProfileImg src={userData.profileImg} />
+                                <ProfileImg src={showImage} />
                                 <ProfileFixImgBtn to="/profile/fix">
                                     <ProfileFixSvg
                                         width="51"
@@ -373,7 +380,6 @@ const ProfileImg = styled.img`
     object-fit: cover;
     width: 8.6875em;
     height: 8.6875em;
-    background: #d9d9d9;
     border-radius: 100%;
 `;
 
@@ -399,7 +405,6 @@ const Myreview = styled.div`
     align-items: flex-end;
     margin-left: 2.5vw;
     height: 18vw;
-    background-color: red;
 `;
 
 const MyreviewHeader = styled.div`
@@ -441,14 +446,17 @@ const MyreviwArrayText = styled.p<{ RecentColor: boolean }>`
     cursor: pointer;
     color: ${(props) => (props.RecentColor ? '#8B7E6A' : '#BBB6A8')};
     margin-right: 1.25vw;
+    font-size: 0.938vw;
 `;
 const MyreviwArrayText2 = styled.p<{ RecentColor: boolean }>`
     cursor: pointer;
     color: ${(props) => (props.RecentColor ? '#BBB6A8' : '#8B7E6A')};
+    font-size: 0.938vw;
 `;
 
 const MyreviewArrayBar = styled.p`
     margin-right: 1.25vw;
+    font-size: 0.938vw;
 `;
 
 const MyReviewSeeFullLink = styled(Link)`
@@ -464,16 +472,18 @@ const MyLikeSeeFullLink = styled(Link)`
 const SeeFullOuter = styled.p`
     margin-top: 0.833vw;
     margin-right: 1.563vw;
+    font-size: 0.781vw;
 `;
 
 const SeeFullOuter2Container = styled.div`
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
 `;
 
 const SeeFullOuter2 = styled.p`
     margin-top: 0.833vw;
     margin-right: 1.563vw;
+    font-size: 0.781vw;
 `;
 
 const MyfavoriteBox = styled.div`
@@ -586,6 +596,7 @@ const MobileNavigationTable = styled.table`
             }
             .heading {
                 margin-left: 1.538vw;
+                font-size: 3.077vw;
             }
         }
     }
