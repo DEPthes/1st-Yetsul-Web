@@ -451,6 +451,18 @@ const MReviewImgWrapper = styled.div`
     display: flex;
     overflow-x: scroll;
     overflow-y: hidden;
+    padding-bottom: 0.5em;
+
+    &::-webkit-scrollbar {
+        width: 0.375em; /* 스크롤바의 너비 */
+        height: 0.495em;
+    }
+    &::-webkit-scrollbar-thumb {
+        height: 0.375em;
+        background: #ddd; /* 스크롤바의 색상 */
+
+        border-radius: 0.625em;
+    }
 
     div {
         width: 8.625em;

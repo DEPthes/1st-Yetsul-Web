@@ -370,6 +370,7 @@ const DrinkImg = styled.img`
         margin-top: 0.75em;
         margin-right: 0em;
         width: 12em;
+        height: 16em;
     }
 `;
 

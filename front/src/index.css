@@ -111,7 +111,7 @@ body {
     font-size: 100%;
 }
 body::-webkit-scrollbar {
-    width: 8px;
+    width: 12px;
 }
 body::-webkit-scrollbar-thumb {
     background: #ddd;
