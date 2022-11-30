@@ -562,6 +562,10 @@ const InnerText = styled.div`
         color: #8b7e6a;
         > p {
             font-size: 1.25em;
+            margin-bottom: -0.12em;
+        }
+        > svg {
+            width: 0.8em;
         }
     }
 `;
