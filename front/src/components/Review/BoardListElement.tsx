@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 /* eslint-disable react/button-has-type */
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 /* eslint-disable no-nested-ternary */
@@ -39,6 +39,26 @@ const BoardListElement: React.FC<reviewType> = ({
     alcoholId,
 }) => {
     const [reviewLike, setReviewLike] = useState(like);
+    const [isLike, setIsLike] = useState<boolean>(false);
+
+    const checkLike = async () => {
+        await axios
+            .get(
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/likeornot/${reviewId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${getAccessToken()}`,
+                    },
+                },
+            )
+            .then((res) => {
+                setIsLike(res.data === 'LIKE');
+            });
+    };
+
+    useEffect(() => {
+        checkLike();
+    }, []);
 
     const onClickLike = async () => {
         await axios.post(
@@ -50,15 +70,9 @@ const BoardListElement: React.FC<reviewType> = ({
                 },
             },
         );
-        axios
-            .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
-            )
-            .then((res) => {
-                setReviewLike(res.data.like);
-            })
-
-            .catch((err) => console.log(err));
+        const likeRate = isLike ? -1 : 1;
+        setReviewLike(reviewLike + likeRate);
+        setIsLike(!isLike);
     };
 
     const isMobile = useMediaQuery({
@@ -100,7 +114,10 @@ const BoardListElement: React.FC<reviewType> = ({
 
                                     <h3>{starCount}개</h3>
 
-                                    <LikeBtn onClick={onClickLike}>
+                                    <LikeBtn
+                                        onClick={onClickLike}
+                                        isLike={isLike}
+                                    >
                                         👍
                                         <span>{reviewLike}</span>
                                     </LikeBtn>
@@ -152,7 +169,10 @@ const BoardListElement: React.FC<reviewType> = ({
                                         />
                                     </div>
                                     <h3>{starCount}개</h3>
-                                    <LikeBtn onClick={onClickLike}>
+                                    <LikeBtn
+                                        onClick={onClickLike}
+                                        isLike={isLike}
+                                    >
                                         👍
                                         <span>{reviewLike}</span>
                                     </LikeBtn>
@@ -233,7 +253,7 @@ const BoardListElement: React.FC<reviewType> = ({
                                     </ReviewLink>
                                 </ReviewBoxContentNoImg>
                             </ReviewBox>
-                            <LikeBtn onClick={onClickLike}>
+                            <LikeBtn onClick={onClickLike} isLike={isLike}>
                                 👍
                                 <span>{reviewLike}</span>
                             </LikeBtn>
@@ -290,7 +310,7 @@ const BoardListElement: React.FC<reviewType> = ({
                                 )}
                             </ReviewImgWrap>
 
-                            <LikeBtn onClick={onClickLike}>
+                            <LikeBtn onClick={onClickLike} isLike={isLike}>
                                 👍
                                 <span>{reviewLike}</span>
                             </LikeBtn>
@@ -563,12 +583,12 @@ const ReviewLink = styled(Link)`
     text-decoration: none;
 `;
 
-const LikeBtn = styled.button`
+const LikeBtn = styled.button<{ isLike: boolean }>`
     width: 6.6875em;
     height: 3.5em;
     border: 0.0625em solid #675b4f;
     border-radius: 3.25em;
-    background: none;
+    background: ${(props) => (props.isLike ? `#675b4f` : `#fff`)};
     margin: auto 0;
     cursor: pointer;
     display: flex;
@@ -580,7 +600,7 @@ const LikeBtn = styled.button`
         background: none;
         font-family: inherit;
         font-size: 0.9375em;
-        color: #000000;
+        color: ${(props) => (props.isLike ? `#fff` : `#000000`)};
         margin-left: 0.3125em;
     }
 `;
