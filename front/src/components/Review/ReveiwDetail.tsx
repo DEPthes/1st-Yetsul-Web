@@ -54,6 +54,7 @@ const ReviewDetail: React.FC = () => {
     const [reviewImg, setReviewImg] = useState([]);
     const [list, setList] = useState<listType[]>([]);
     const [drink, setdrink] = useState<drinkType>(Object);
+    const [isLike, setIsLike] = useState<boolean>(false);
     const [reviewCount, setReviewCount] = useState();
     const dispatch = useDispatch();
     const [heightValue, setHeightValue] = useState('auto');
@@ -109,6 +110,20 @@ const ReviewDetail: React.FC = () => {
             })
 
             .catch((err) => console.log(err));
+
+        axios
+            .get(
+                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/likeornot/${reviewId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${getAccessToken()}`,
+                    },
+                },
+            )
+            .then((res) => {
+                const checkLike = res.data;
+                setIsLike(checkLike === 'LIKE');
+            });
     }, []);
 
     const listSplice = () => {
@@ -151,15 +166,12 @@ const ReviewDetail: React.FC = () => {
                 },
             },
         );
-        axios
-            .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
-            )
-            .then((res) => {
-                setReview(res.data);
-            })
 
-            .catch((err) => console.log(err));
+        const likeRate = isLike ? -1 : 1;
+        console.log(isLike);
+
+        setReview({ ...review, like: review.like + likeRate });
+        setIsLike(!isLike);
     };
 
     const location = useLocation();
