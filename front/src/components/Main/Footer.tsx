@@ -66,6 +66,7 @@ const FooterInfo = styled.div`
     @media (max-width: 767px) {
         margin-top: 1em;
         line-height: 190%;
+        width: 300px;
         > h1 {
             font-size: 0.5em !important;
             text-align: center;

@@ -64,7 +64,11 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
         getData()
             .post(
                 `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/alcohol/description/${alcolid}/likeornot`,
-                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${getAccessToken()}`,
+                    },
+                },
             )
             .then((res) => {
                 if (res.data === 'LIKE') {
@@ -288,6 +292,7 @@ const Center = styled.div`
     right: 0;
     bottom: 0;
     margin-top: 19.064em;
+    transition: 0.5s;
 
     @media (max-width: 767px) {
         margin-top: 8.75em;
@@ -365,6 +370,7 @@ const DrinkImg = styled.img`
         margin-top: 0.75em;
         margin-right: 0em;
         width: 12em;
+        height: 16em;
     }
 `;
 
@@ -389,6 +395,9 @@ const DrinkLikeDiv = styled.div`
     display: block;
     margin-top: 3.136em;
     float: right;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
     @media (max-width: 767px) {
         margin-top: 3.8em;
@@ -397,8 +406,9 @@ const DrinkLikeDiv = styled.div`
 
 const DrinkLikeCount = styled.span`
     font-size: 1.25em;
-    line-height: 2em;
+    line-height: 100%;
     letter-spacing: -0.01em;
+    margin-top: 0.2em;
     color: #8b7e6a;
     float: left;
 
@@ -418,6 +428,8 @@ const DrinkLikeBtn = styled.button`
     border: none;
     float: right;
     padding-left: 0.05em;
+    width: 1.7em;
+    height: 1.7em;
 
     :hover {
         cursor: pointer;
@@ -426,6 +438,7 @@ const DrinkLikeBtn = styled.button`
 
 const DrinkLikeImg = styled.img`
     width: 1.7em;
+    height: 1.7em;
 
     @media (max-width: 767px) {
         width: 1.692em;

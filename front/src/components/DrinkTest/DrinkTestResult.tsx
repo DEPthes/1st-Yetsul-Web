@@ -144,12 +144,14 @@ const DrinkTicketBoxResult: React.FC = () => {
                                 <ImgSource>
                                     <Source title={movie.title} />
                                 </ImgSource>
-                                <DottedLine margin={12.28} mediamargin={1} />
+                                <DottedLine margin={6} mediamargin={1} />
                                 <Drinks margin={0} mediamargin={220}>
-                                    <DrinkImg
-                                        src={drink.alcoholImage}
-                                        alt={drink.AlcoholName}
-                                    />
+                                    <DrinkImg>
+                                        <img
+                                            src={drink.alcoholImage}
+                                            alt={drink.AlcoholName}
+                                        />
+                                    </DrinkImg>
                                     <Drink>
                                         <DrinkVolume>
                                             {drink.AlcoholByVolume}%
@@ -204,13 +206,15 @@ const DrinkTicketBoxResult: React.FC = () => {
                                 return (
                                     <Drinks
                                         key={data.id}
-                                        margin={24.48}
+                                        margin={4.48}
                                         mediamargin={180}
                                     >
-                                        <DrinkImg
-                                            src={data.alcoholImage}
-                                            alt={data.AlcoholName}
-                                        />
+                                        <DrinkImg>
+                                            <img
+                                                src={data.alcoholImage}
+                                                alt={data.AlcoholName}
+                                            />
+                                        </DrinkImg>
                                         <Drink>
                                             <DrinkVolume>
                                                 {data.AlcoholByVolume}%
@@ -295,6 +299,7 @@ export default DrinkTicketBoxResult;
 
 const Result = styled.div`
     justify-content: center;
+    transition: 0.5s;
 `;
 
 const ImgDiv = styled.div`
@@ -322,6 +327,7 @@ const ResultText = styled.div`
     text-align: center;
     letter-spacing: 0.01em;
     color: #675b4f;
+    transition: 0.5s;
 
     @media (max-width: 767px) {
         margin-top: 140px;
@@ -521,33 +527,34 @@ const CircleDottedLine = styled.div`
     width: 156.32px;
     height: 156.32px;
 
-    border-radius: 50%;
+    border-radius: 100%;
     border: 1px dashed #675b4f;
 
     @media (max-width: 767px) {
-        margin-top: 15px;
+        margin-top: 10px;
         width: 57px;
         height: 57px;
     }
 `;
 
 const CircleMovieImg = styled.img`
-    margin-top: 6.99px;
+    margin-top: 7px;
     width: 142.35px;
+    border-radius: 100%;
 
     @media (max-width: 767px) {
-        margin-top: 3px;
+        margin-top: 2.5px;
         width: 51px;
     }
 `;
 
 const ImgSource = styled.div`
     text-align: right;
-    margin-top: 2.11px;
-    margin-right: 15px;
+    margin-top: 8px;
+    margin-right: 25px;
 
     @media (max-width: 767px) {
-        margin-top: 0px;
+        margin-top: -5px;
         margin-right: 0px;
     }
 `;
@@ -563,13 +570,18 @@ const Drinks = styled.div<{ margin: number; mediamargin: number }>`
     }
 `;
 
-const DrinkImg = styled.img`
+const DrinkImg = styled.div`
     position: absolute;
     margin-top: 42.35px;
     margin-left: 20px;
     width: 173.63px;
     height: 170.71px;
     object-fit: contain;
+
+    img {
+        height: 100%;
+        object-fit: cover;
+    }
 
     @media (max-width: 767px) {
         margin-top: 39px;
@@ -581,7 +593,7 @@ const DrinkImg = styled.img`
 
 const Drink = styled.div`
     position: absolute;
-    margin-left: 230.93px;
+    margin-left: 220.93px;
 
     @media (max-width: 767px) {
         margin-left: 96px;
@@ -619,7 +631,7 @@ const DrinkTypeText = styled.div`
 const DrinkVolume = styled.div`
     position: absolute;
     margin-top: 50.69px;
-    right: 5%;
+    right: 9%;
 
     font-size: 18px;
     line-height: 18px;
@@ -662,7 +674,7 @@ const DrinkDetail = styled.div`
         margin-top: 10px;
         margin-bottom: 5px;
         font-size: 9px;
-        zoom: 0.95;
+        zoom: 0.9;
         line-height: 136%;
         color: #bbb6a8;
     }

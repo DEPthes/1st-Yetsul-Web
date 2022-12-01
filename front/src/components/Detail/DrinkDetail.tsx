@@ -74,7 +74,6 @@ const DrinkDetail: React.FC = () => {
                 setReviews(res.data.reviewsWithUserInfo);
                 setStarPercent(res.data.starPercentArray);
                 setReviewForSort(res.data.reviewsWithUserInfo);
-                console.log(reviewForSort);
             })
 
             .catch((err) => console.log(err));
@@ -256,25 +255,27 @@ const DrinkDetail: React.FC = () => {
         <BackgroundTemplate heightValue="auto">
             <Inner id="listModalBack">
                 <DrinkInfoWrapper>
-                    <DrinkDetailElement
-                        id={drinks.id}
-                        AlcoholName={drinks.AlcoholName}
-                        category={drinks.category}
-                        brewery={drinks.brewery}
-                        price={drinks.price}
-                        AlcoholByVolume={drinks.AlcoholByVolume}
-                        sweet={drinks.sweet}
-                        bitter={drinks.bitter}
-                        refreshing={drinks.refreshing}
-                        clean={drinks.clean}
-                        cool={drinks.cool}
-                        sour={drinks.sour}
-                        description={drinks.description}
-                        star={drinks.star}
-                        alcoholImage={drinks.alcoholImage}
-                        likeCount={drinks.likeCount}
-                        reviewCount={reviews.length}
-                    />
+                    {drinks.id && (
+                        <DrinkDetailElement
+                            id={drinks.id}
+                            AlcoholName={drinks.AlcoholName}
+                            category={drinks.category}
+                            brewery={drinks.brewery}
+                            price={drinks.price}
+                            AlcoholByVolume={drinks.AlcoholByVolume}
+                            sweet={drinks.sweet}
+                            bitter={drinks.bitter}
+                            refreshing={drinks.refreshing}
+                            clean={drinks.clean}
+                            cool={drinks.cool}
+                            sour={drinks.sour}
+                            description={drinks.description}
+                            star={drinks.star}
+                            alcoholImage={drinks.alcoholImage}
+                            likeCount={drinks.likeCount}
+                            reviewCount={reviews.length}
+                        />
+                    )}
                 </DrinkInfoWrapper>
                 <ReviewTitle>
                     <h1>리뷰 / 별점</h1>

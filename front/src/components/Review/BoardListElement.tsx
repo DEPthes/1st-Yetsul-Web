@@ -3,7 +3,6 @@
 /* eslint-disable prefer-const */
 /* eslint-disable react/button-has-type */
 import axios from 'axios';
-import { initial } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
@@ -42,11 +41,10 @@ const BoardListElement: React.FC<reviewType> = ({
     alcoholId,
 }) => {
     const [reviewLike, setReviewLike] = useState(like);
-    const [isLiked, setIsLiked] = useState(false);
-    const [initial, setInitial] = useState(false);
+    const [isLike, setIsLike] = useState<boolean>(false);
 
-    useEffect(() => {
-        axios
+    const checkLike = async () => {
+        await axios
             .get(
                 `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/likeornot/${reviewId}`,
                 {
@@ -56,17 +54,13 @@ const BoardListElement: React.FC<reviewType> = ({
                 },
             )
             .then((res) => {
-                if (res.data === 'LIKE') {
-                    setInitial(true);
-                } else if (res.data === 'NOT') {
-                    setInitial(false);
-                }
+                setIsLike(res.data === 'LIKE');
+            });
+    };
 
-                console.log('isLiked', isLiked);
-                console.log('initial', initial);
-            })
-            .catch((err) => console.log(err));
-    }, [isLiked]);
+    useEffect(() => {
+        checkLike();
+    }, []);
 
     const onClickLike = async () => {
         await axios.post(
@@ -78,33 +72,9 @@ const BoardListElement: React.FC<reviewType> = ({
                 },
             },
         );
-
-        axios
-            .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
-            )
-            .then((res) => {
-                setReviewLike(res.data.like);
-            })
-            .catch((err) => console.log(err));
-
-        axios
-            .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/likeornot/${reviewId}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${getAccessToken()}`,
-                    },
-                },
-            )
-            .then((res) => {
-                if (res.data === 'LIKE') {
-                    setIsLiked(true);
-                } else if (res.data === 'NOT') {
-                    setIsLiked(false);
-                }
-            })
-            .catch((err) => console.log(err));
+        const likeRate = isLike ? -1 : 1;
+        setReviewLike(reviewLike + likeRate);
+        setIsLike(!isLike);
     };
 
     const isMobile = useMediaQuery({
@@ -144,61 +114,12 @@ const BoardListElement: React.FC<reviewType> = ({
                                     </div>
 
                                     <h3>{starCount}개</h3>
+
                                     <LikeBtn
                                         onClick={onClickLike}
-                                        backgrond={
-                                            initial === true
-                                                ? '#675b4f'
-                                                : 'none'
-                                        }
-                                        color={
-                                            initial === true
-                                                ? '#fff'
-                                                : '#675b4f'
-                                        }
+                                        isLike={isLike}
                                     >
-                                        <svg
-                                            width="18"
-                                            height="19"
-                                            viewBox="0 0 18 19"
-                                            fill={
-                                                initial === true
-                                                    ? '#fff'
-                                                    : '#675b4f'
-                                            }
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                d="M12.4125 7.09331C12.0975 7.09331 11.88 7.09331 11.88 7.09331C12.315 5.68415 12.795 3.41203 11.3025 2.50953C10.8975 2.26411 9.68249 1.87619 9.50999 2.60453C9.26999 3.60203 9.03749 4.59953 8.47499 5.47828C8.00999 6.1987 7.30499 6.99831 6.42749 7.09331C6.42749 7.1329 6.42749 7.18038 6.42749 7.18038V14.5033C6.42749 14.5033 6.42749 14.7012 6.42749 14.8991C6.51749 14.9308 6.60749 14.9625 6.60749 14.9625L8.18249 15.5087C8.69999 15.6908 9.23999 15.7858 9.78749 15.7858H13.635C14.4 15.7858 15.0225 15.1366 15.0225 14.337C15.0225 14.147 14.985 13.9729 14.9175 13.8066C15.51 13.6325 15.9375 13.0704 15.9375 12.4054C15.9375 12.0333 15.81 11.6929 15.585 11.4316C15.8025 11.1783 15.9375 10.8379 15.9375 10.4737C15.9375 10.1016 15.81 9.76121 15.585 9.49996C15.8025 9.24663 15.9375 8.90619 15.9375 8.54203C15.9375 7.74244 15.315 7.09331 14.5575 7.09331C14.5575 7.09331 13.1925 7.09331 12.4125 7.09331Z"
-                                                stroke={
-                                                    initial === true
-                                                        ? '#675b4f'
-                                                        : '#fff'
-                                                }
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                            <path
-                                                d="M2.0625 5.84241H4.68C5.64 5.84241 6.42 6.66575 6.42 7.67908V14.9941C6.42 16.0074 5.64 16.8307 4.68 16.8307H2.0625V5.84241Z"
-                                                stroke={
-                                                    initial === true
-                                                        ? '#675b4f'
-                                                        : '#fff'
-                                                }
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                            <path
-                                                d="M4.24504 14.8356C4.56813 14.8356 4.83004 14.5591 4.83004 14.2181C4.83004 13.8771 4.56813 13.6006 4.24504 13.6006C3.92195 13.6006 3.66003 13.8771 3.66003 14.2181C3.66003 14.5591 3.92195 14.8356 4.24504 14.8356Z"
-                                                fill={
-                                                    initial === true
-                                                        ? '#675b4f'
-                                                        : '#fff'
-                                                }
-                                            />
-                                        </svg>
+                                        👍
                                         <span>{reviewLike}</span>
                                     </LikeBtn>
                                 </MReviewBoxBottom>
@@ -249,62 +170,11 @@ const BoardListElement: React.FC<reviewType> = ({
                                         />
                                     </div>
                                     <h3>{starCount}개</h3>
-
                                     <LikeBtn
                                         onClick={onClickLike}
-                                        backgrond={
-                                            initial === true
-                                                ? '#675b4f'
-                                                : 'none'
-                                        }
-                                        color={
-                                            initial === true
-                                                ? '#fff'
-                                                : '#675b4f'
-                                        }
+                                        isLike={isLike}
                                     >
-                                        <svg
-                                            width="18"
-                                            height="19"
-                                            viewBox="0 0 18 19"
-                                            fill={
-                                                initial === true
-                                                    ? '#fff'
-                                                    : '#675b4f'
-                                            }
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                d="M12.4125 7.09331C12.0975 7.09331 11.88 7.09331 11.88 7.09331C12.315 5.68415 12.795 3.41203 11.3025 2.50953C10.8975 2.26411 9.68249 1.87619 9.50999 2.60453C9.26999 3.60203 9.03749 4.59953 8.47499 5.47828C8.00999 6.1987 7.30499 6.99831 6.42749 7.09331C6.42749 7.1329 6.42749 7.18038 6.42749 7.18038V14.5033C6.42749 14.5033 6.42749 14.7012 6.42749 14.8991C6.51749 14.9308 6.60749 14.9625 6.60749 14.9625L8.18249 15.5087C8.69999 15.6908 9.23999 15.7858 9.78749 15.7858H13.635C14.4 15.7858 15.0225 15.1366 15.0225 14.337C15.0225 14.147 14.985 13.9729 14.9175 13.8066C15.51 13.6325 15.9375 13.0704 15.9375 12.4054C15.9375 12.0333 15.81 11.6929 15.585 11.4316C15.8025 11.1783 15.9375 10.8379 15.9375 10.4737C15.9375 10.1016 15.81 9.76121 15.585 9.49996C15.8025 9.24663 15.9375 8.90619 15.9375 8.54203C15.9375 7.74244 15.315 7.09331 14.5575 7.09331C14.5575 7.09331 13.1925 7.09331 12.4125 7.09331Z"
-                                                stroke={
-                                                    initial === true
-                                                        ? '#675b4f'
-                                                        : '#fff'
-                                                }
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                            <path
-                                                d="M2.0625 5.84241H4.68C5.64 5.84241 6.42 6.66575 6.42 7.67908V14.9941C6.42 16.0074 5.64 16.8307 4.68 16.8307H2.0625V5.84241Z"
-                                                stroke={
-                                                    initial === true
-                                                        ? '#675b4f'
-                                                        : '#fff'
-                                                }
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                            <path
-                                                d="M4.24504 14.8356C4.56813 14.8356 4.83004 14.5591 4.83004 14.2181C4.83004 13.8771 4.56813 13.6006 4.24504 13.6006C3.92195 13.6006 3.66003 13.8771 3.66003 14.2181C3.66003 14.5591 3.92195 14.8356 4.24504 14.8356Z"
-                                                fill={
-                                                    initial === true
-                                                        ? '#675b4f'
-                                                        : '#fff'
-                                                }
-                                            />
-                                        </svg>
+                                        👍
                                         <span>{reviewLike}</span>
                                     </LikeBtn>
                                 </MReviewBoxBottom>
@@ -384,51 +254,8 @@ const BoardListElement: React.FC<reviewType> = ({
                                     </ReviewLink>
                                 </ReviewBoxContentNoImg>
                             </ReviewBox>
-                            <LikeBtn
-                                onClick={onClickLike}
-                                backgrond={
-                                    initial === true ? '#675b4f' : 'none'
-                                }
-                                color={initial === true ? '#fff' : '#675b4f'}
-                            >
-                                <svg
-                                    width="18"
-                                    height="19"
-                                    viewBox="0 0 18 19"
-                                    fill={initial === true ? '#fff' : '#675b4f'}
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        d="M12.4125 7.09331C12.0975 7.09331 11.88 7.09331 11.88 7.09331C12.315 5.68415 12.795 3.41203 11.3025 2.50953C10.8975 2.26411 9.68249 1.87619 9.50999 2.60453C9.26999 3.60203 9.03749 4.59953 8.47499 5.47828C8.00999 6.1987 7.30499 6.99831 6.42749 7.09331C6.42749 7.1329 6.42749 7.18038 6.42749 7.18038V14.5033C6.42749 14.5033 6.42749 14.7012 6.42749 14.8991C6.51749 14.9308 6.60749 14.9625 6.60749 14.9625L8.18249 15.5087C8.69999 15.6908 9.23999 15.7858 9.78749 15.7858H13.635C14.4 15.7858 15.0225 15.1366 15.0225 14.337C15.0225 14.147 14.985 13.9729 14.9175 13.8066C15.51 13.6325 15.9375 13.0704 15.9375 12.4054C15.9375 12.0333 15.81 11.6929 15.585 11.4316C15.8025 11.1783 15.9375 10.8379 15.9375 10.4737C15.9375 10.1016 15.81 9.76121 15.585 9.49996C15.8025 9.24663 15.9375 8.90619 15.9375 8.54203C15.9375 7.74244 15.315 7.09331 14.5575 7.09331C14.5575 7.09331 13.1925 7.09331 12.4125 7.09331Z"
-                                        stroke={
-                                            initial === true
-                                                ? '#675b4f'
-                                                : '#fff'
-                                        }
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M2.0625 5.84241H4.68C5.64 5.84241 6.42 6.66575 6.42 7.67908V14.9941C6.42 16.0074 5.64 16.8307 4.68 16.8307H2.0625V5.84241Z"
-                                        stroke={
-                                            initial === true
-                                                ? '#675b4f'
-                                                : '#fff'
-                                        }
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M4.24504 14.8356C4.56813 14.8356 4.83004 14.5591 4.83004 14.2181C4.83004 13.8771 4.56813 13.6006 4.24504 13.6006C3.92195 13.6006 3.66003 13.8771 3.66003 14.2181C3.66003 14.5591 3.92195 14.8356 4.24504 14.8356Z"
-                                        fill={
-                                            initial === true
-                                                ? '#675b4f'
-                                                : '#fff'
-                                        }
-                                    />
-                                </svg>
+                            <LikeBtn onClick={onClickLike} isLike={isLike}>
+                                👍
                                 <span>{reviewLike}</span>
                             </LikeBtn>
                         </ReviewsWrapper>
@@ -484,51 +311,8 @@ const BoardListElement: React.FC<reviewType> = ({
                                 )}
                             </ReviewImgWrap>
 
-                            <LikeBtn
-                                onClick={onClickLike}
-                                backgrond={
-                                    initial === true ? '#675b4f' : 'none'
-                                }
-                                color={initial === true ? '#fff' : '#675b4f'}
-                            >
-                                <svg
-                                    width="18"
-                                    height="19"
-                                    viewBox="0 0 18 19"
-                                    fill={initial === true ? '#fff' : '#675b4f'}
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        d="M12.4125 7.09331C12.0975 7.09331 11.88 7.09331 11.88 7.09331C12.315 5.68415 12.795 3.41203 11.3025 2.50953C10.8975 2.26411 9.68249 1.87619 9.50999 2.60453C9.26999 3.60203 9.03749 4.59953 8.47499 5.47828C8.00999 6.1987 7.30499 6.99831 6.42749 7.09331C6.42749 7.1329 6.42749 7.18038 6.42749 7.18038V14.5033C6.42749 14.5033 6.42749 14.7012 6.42749 14.8991C6.51749 14.9308 6.60749 14.9625 6.60749 14.9625L8.18249 15.5087C8.69999 15.6908 9.23999 15.7858 9.78749 15.7858H13.635C14.4 15.7858 15.0225 15.1366 15.0225 14.337C15.0225 14.147 14.985 13.9729 14.9175 13.8066C15.51 13.6325 15.9375 13.0704 15.9375 12.4054C15.9375 12.0333 15.81 11.6929 15.585 11.4316C15.8025 11.1783 15.9375 10.8379 15.9375 10.4737C15.9375 10.1016 15.81 9.76121 15.585 9.49996C15.8025 9.24663 15.9375 8.90619 15.9375 8.54203C15.9375 7.74244 15.315 7.09331 14.5575 7.09331C14.5575 7.09331 13.1925 7.09331 12.4125 7.09331Z"
-                                        stroke={
-                                            initial === true
-                                                ? '#675b4f'
-                                                : '#fff'
-                                        }
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M2.0625 5.84241H4.68C5.64 5.84241 6.42 6.66575 6.42 7.67908V14.9941C6.42 16.0074 5.64 16.8307 4.68 16.8307H2.0625V5.84241Z"
-                                        stroke={
-                                            initial === true
-                                                ? '#675b4f'
-                                                : '#fff'
-                                        }
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M4.24504 14.8356C4.56813 14.8356 4.83004 14.5591 4.83004 14.2181C4.83004 13.8771 4.56813 13.6006 4.24504 13.6006C3.92195 13.6006 3.66003 13.8771 3.66003 14.2181C3.66003 14.5591 3.92195 14.8356 4.24504 14.8356Z"
-                                        fill={
-                                            initial === true
-                                                ? '#675b4f'
-                                                : '#fff'
-                                        }
-                                    />
-                                </svg>
+                            <LikeBtn onClick={onClickLike} isLike={isLike}>
+                                👍
                                 <span>{reviewLike}</span>
                             </LikeBtn>
                         </ReviewsWrapper>
@@ -688,6 +472,18 @@ const MReviewImgWrapper = styled.div`
     display: flex;
     overflow-x: scroll;
     overflow-y: hidden;
+    padding-bottom: 0.5em;
+
+    &::-webkit-scrollbar {
+        width: 0.375em; /* 스크롤바의 너비 */
+        height: 0.495em;
+    }
+    &::-webkit-scrollbar-thumb {
+        height: 0.375em;
+        background: #ddd; /* 스크롤바의 색상 */
+
+        border-radius: 0.625em;
+    }
 
     div {
         width: 8.625em;
@@ -788,27 +584,24 @@ const ReviewLink = styled(Link)`
     text-decoration: none;
 `;
 
-const LikeBtn = styled.button<{
-    backgrond: string;
-    color: string;
-}>`
-    width: 80px;
-    height: 56px;
-    border: 1px solid #675b4f;
-    border-radius: 52px;
+const LikeBtn = styled.button<{ isLike: boolean }>`
+    width: 6.6875em;
+    height: 3.5em;
+    border: 0.0625em solid #675b4f;
+    border-radius: 3.25em;
+    background: ${(props) => (props.isLike ? `#675b4f` : `#fff`)};
     margin: auto 0;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: ${(props) => props.backgrond};
 
     span {
         border: none;
         background: none;
         font-family: inherit;
         font-size: 0.9375em;
-        color: ${(props) => props.color};
+        color: ${(props) => (props.isLike ? `#fff` : `#000000`)};
         margin-left: 0.3125em;
     }
 `;

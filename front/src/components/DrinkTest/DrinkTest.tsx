@@ -216,6 +216,7 @@ const Center = styled.div`
     right: 0;
     bottom: 0;
     margin-top: 14.313em;
+    transition: 0.5s;
 
     @media (max-width: 767px) {
         margin-top: 8.75em;

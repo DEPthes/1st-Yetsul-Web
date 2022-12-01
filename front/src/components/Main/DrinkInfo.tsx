@@ -137,6 +137,10 @@ const DrinkInfoFoot = styled.div`
                 border: 2.5px solid #8b7e6a;
                 transform: matrix(0, 1, 1, 0, 0, 0);
             }
+            > svg {
+                width: 1em;
+                height: 1.56em;
+            }
         }
     }
 `;
