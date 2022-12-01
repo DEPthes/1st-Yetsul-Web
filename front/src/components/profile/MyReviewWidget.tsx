@@ -81,8 +81,11 @@ export const MyReviewWidget: React.FC<myreviewtype> = ({
                         </MyreviewDrinkName>
                     </MyreviewAlcoholeInformationLine>
                     <StarBox>
-                        <Star star={star} widthValue={0.625} />
+                        <Star star={star} widthValue={1.225} />
                     </StarBox>
+                    <MobileStarBox>
+                        <Star star={star} widthValue={0.625} />
+                    </MobileStarBox>
                 </MyreviewInformationUpper>
                 <MyreviewInformationLower>
                     <MyreviewHeading>{title}</MyreviewHeading>
@@ -219,10 +222,18 @@ const SeeFull = styled.p`
 `;
 
 const StarBox = styled.div`
-    width: 2.5vw;
+    width: 4.5vw;
     display: flex;
     justify-content: flex-start;
     @media screen and (max-width: 767px) {
+        display: none;
+    }
+`;
+
+const MobileStarBox = styled.div`
+    display: none;
+    @media screen and (max-width: 767px) {
+        display: block;
         width: 15vw;
         margin-bottom: 1.5vw;
         height: 5vw;
