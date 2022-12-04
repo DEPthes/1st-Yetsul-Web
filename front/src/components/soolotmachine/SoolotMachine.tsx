@@ -125,6 +125,7 @@ export default SoolotMachine;
 
 const Inner = styled.div`
     width: 100%;
+
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -243,9 +244,10 @@ const MachineWrap = styled.div`
     align-items: center;
     margin-bottom: 3.75em;
     padding: 0 1.145625em;
+
     @media (max-width: 767px) {
         zoom: 0.4;
-        margin-top: 15em;
+        margin-top: 10em;
         width: 80%;
         height: fit-content;
     }
@@ -355,7 +357,7 @@ const Rectangle = styled.div`
 
         @media (max-width: 767px) {
             height: 88%;
-
+            box-sizing: border-box;
             width: 80%;
         }
     }
