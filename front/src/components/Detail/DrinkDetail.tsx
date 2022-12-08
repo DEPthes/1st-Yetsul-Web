@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { getAccessToken } from '../../services/tokenControl';
+import { getUserLocalStorage } from '../../services/userControl';
 import { RootState } from '../../store/config';
 import { setListModal } from '../../store/slices/listModalSlice';
 import BackgroundTemplate from '../common/BackgroundTemplate';
@@ -251,6 +253,13 @@ const DrinkDetail: React.FC = () => {
         setSelected([false, false, true, false]);
     };
 
+    const isLogin = (): string | null => {
+        if (getUserLocalStorage() !== 0 && getAccessToken() !== null) {
+            return getAccessToken();
+        }
+        return null;
+    };
+
     return (
         <BackgroundTemplate heightValue="auto">
             <Inner id="listModalBack">
@@ -274,6 +283,7 @@ const DrinkDetail: React.FC = () => {
                             alcoholImage={drinks.alcoholImage}
                             likeCount={drinks.likeCount}
                             reviewCount={reviews.length}
+                            token={isLogin()}
                         />
                     )}
                 </DrinkInfoWrapper>
