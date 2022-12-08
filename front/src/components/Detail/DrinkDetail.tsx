@@ -513,6 +513,7 @@ const DrinkDetail: React.FC = () => {
                                             reviewImg={review.reviewImgUrl}
                                             reviewId={review.id}
                                             alcoholId={review.alcoholId}
+                                            token={isLogin()}
                                         />
                                     </li>
                                 );

@@ -8,7 +8,6 @@ import { useMediaQuery } from 'react-responsive';
 
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { getAccessToken } from '../../services/tokenControl';
 import Star from '../common/Star';
 
 type reviewType = {
@@ -25,7 +24,11 @@ type reviewType = {
     alcoholId: number;
 };
 
-const BoardListElement: React.FC<reviewType> = ({
+interface TokenType extends reviewType {
+    token: string | null;
+}
+
+const BoardListElement: React.FC<TokenType> = ({
     userImg,
     nickname,
     title,
@@ -37,19 +40,26 @@ const BoardListElement: React.FC<reviewType> = ({
     reviewImg,
     reviewId,
     alcoholId,
+    token,
 }) => {
     const [reviewLike, setReviewLike] = useState(like);
     const [isLike, setIsLike] = useState<boolean>(false);
 
+    if (token === null) {
+        // eslint-disable-next-line no-alert
+        alert('로그인이 필요합니다.');
+        window.location.replace('/');
+    }
+    const getData = () => {
+        return axios.create({
+            headers: { Authorization: `Bearer ${token}` },
+        });
+    };
+
     const checkLike = async () => {
-        await axios
+        await getData()
             .get(
                 `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/likeornot/${reviewId}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${getAccessToken()}`,
-                    },
-                },
             )
             .then((res) => {
                 setIsLike(res.data === 'LIKE');
@@ -61,14 +71,8 @@ const BoardListElement: React.FC<reviewType> = ({
     }, []);
 
     const onClickLike = async () => {
-        await axios.post(
+        await getData().post(
             `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
-            {},
-            {
-                headers: {
-                    Authorization: `Bearer ${getAccessToken()}`,
-                },
-            },
         );
         const likeRate = isLike ? -1 : 1;
         setReviewLike(reviewLike + likeRate);
