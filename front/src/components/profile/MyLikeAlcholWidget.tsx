@@ -67,6 +67,7 @@ const FavoriteAlcoholImgBox = styled.div`
 
 const FavoriteAlcholImg = styled.img`
     height: 6.5vw;
+    object-fit: contain;
 
     @media screen and (max-width: 767px) {
         height: 36.5vw;

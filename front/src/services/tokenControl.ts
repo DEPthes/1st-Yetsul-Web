@@ -13,8 +13,6 @@ export const setAccessToken = (token: string): void => {
 export const getAccessToken = (): string | null => {
     const objString = localStorage.getItem('accessToken');
     if (!objString) {
-        alert('로그인이 필요합니다.');
-        window.location.replace('/');
         return null;
     }
     const obj = JSON.parse(objString);

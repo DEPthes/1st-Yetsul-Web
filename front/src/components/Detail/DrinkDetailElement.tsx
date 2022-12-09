@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { getAccessToken } from '../../services/tokenControl';
 import Star from '../common/Star';
 
 export interface DrinkDetailElementType {
@@ -24,7 +23,11 @@ export interface DrinkDetailElementType {
     reviewCount: number; // 리뷰 수
 }
 
-const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
+interface TokenProps extends DrinkDetailElementType {
+    token: string | null;
+}
+
+const DrinkDetailElement: React.FC<TokenProps> = ({
     id,
     AlcoholName,
     category,
@@ -42,12 +45,18 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
     alcoholImage,
     likeCount,
     reviewCount,
+    token,
 }) => {
     const [like, setLike] = useState(false);
 
     const getData = () => {
+        if (token === null) {
+            // eslint-disable-next-line no-alert
+            alert('로그인이 만료되었습니다.');
+            window.location.replace('/');
+        }
         return axios.create({
-            headers: { Authorization: `Bearer ${getAccessToken()}` },
+            headers: { Authorization: `Bearer ${token}` },
         });
     };
 
@@ -61,23 +70,20 @@ const DrinkDetailElement: React.FC<DrinkDetailElementType> = ({
                 alcolid = res.data.alcohol.id;
             });
 
-        getData()
-            .post(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/alcohol/description/${alcolid}/likeornot`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${getAccessToken()}`,
-                    },
-                },
-            )
-            .then((res) => {
-                if (res.data === 'LIKE') {
-                    setLike(true);
-                } else if (res.data === 'NOT') {
-                    setLike(false);
-                }
-            })
-            .catch((err) => console.log(err));
+        if (token !== null) {
+            getData()
+                .post(
+                    `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/alcohol/description/${alcolid}/likeornot`,
+                )
+                .then((res) => {
+                    if (res.data === 'LIKE') {
+                        setLike(true);
+                    } else if (res.data === 'NOT') {
+                        setLike(false);
+                    }
+                })
+                .catch((err) => console.log(err));
+        }
     };
 
     useEffect(() => {
