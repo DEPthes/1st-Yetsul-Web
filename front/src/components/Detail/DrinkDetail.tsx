@@ -529,7 +529,6 @@ const SortBtn = styled.div`
     cursor: pointer;
     position: relative;
     margin-left: auto;
-
     > svg {
         position: absolute;
         width: 1.25em;
@@ -571,7 +570,6 @@ const ReviewSort = styled.div`
     color: #bbb6a8;
     font-family: inherit;
     width: 100%;
-
     button {
         font-size: 1.125em;
         background: none;
@@ -580,7 +578,6 @@ const ReviewSort = styled.div`
         color: #bbb6a8;
         margin: 0 1.75em;
     }
-
     button:hover {
         cursor: pointer;
         color: #8b7e6a;
@@ -597,7 +594,6 @@ const ReviewTitle = styled.div`
     @media (max-width: 767px) {
         padding-bottom: 0.938em;
     }
-
     h1 {
         font-size: 1.563em;
         color: #675b4f;
@@ -614,18 +610,14 @@ const ReviewWriteLink = styled(Link)`
     background: #8b7e6a;
     border: 0.0625em solid #8b7e6a;
     border-radius: 1.125em;
-
     font-family: inherit;
     font-size: 1.25em;
     color: #ffffff;
     font-weight: 400;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     text-decoration-line: none;
-
     @media (max-width: 767px) {
         width: 6.6875em; //75px
         height: 2.5em; //24px
@@ -643,28 +635,23 @@ const Inner = styled.div`
             width: 19.8125em;
         }
     }
-
     li {
         border-top: 0.0625em solid #bbb6a8;
         margin-top: 3.625em;
-
         @media (max-width: 767px) {
             margin-top: 1.75em;
             padding-top: 1.75em;
             width: 19.8125em;
         }
     }
-
     li:first-child {
         border: none;
     }
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-bottom: 6.25em;
-
     @media (max-width: 767px) {
         width: 19.8125em;
     }
@@ -676,13 +663,10 @@ const NoReview = styled.div`
     justify-content: center;
     align-items: center;
     height: 17.9375em;
-
     color: #bbb6a8;
-
     h1 {
         font-size: 1.4375em;
     }
-
     @media (max-width: 767px) {
         font-weight: 400;
         font-size: 0.9375em;

@@ -32,7 +32,7 @@ const MonthDrink: React.FC = () => {
                         <LinkWrapper to="/BlockPage/DecDrink">
                             <MonthBlock
                                 contentName="12월"
-                                img="/images/Block/septemberDrink.png"
+                                img="/images/Block/JongGang.png"
                                 contentNumber={1}
                             />
                         </LinkWrapper>

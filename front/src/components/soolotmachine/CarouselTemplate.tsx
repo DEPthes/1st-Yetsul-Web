@@ -282,6 +282,10 @@ const Slider = styled.div`
             line-height: 175.5%;
             color: #a29b97;
             transition: all 0.6s ease;
+            @media (max-width: 767px) {
+                font-size: 0.56em;
+                -webkit-text-size-adjust: 100%;
+            }
         }
         svg {
             margin-bottom: 1.875em;

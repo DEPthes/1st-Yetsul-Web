@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Star from '../common/Star';
 
@@ -17,9 +17,23 @@ const ReviewStar: React.FC<ReviewStarType> = ({
     highestPercent,
     mostStars,
 }) => {
-    const [windowSize] = useState({
+    const [windowSize, setWindowSize] = useState({
         width: window.innerWidth,
     });
+
+    const handleResize = () => {
+        setWindowSize({
+            width: window.innerWidth,
+        });
+    };
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     return (
         <Inner>
             {Number.isNaN(starAvg) ? (
@@ -262,8 +276,8 @@ const PercentBar = styled.div<BarHeightType>`
     width: 0.875em;
     /* height: 85px; */
     height: ${(props) => props.bar}px;
-    max-height: 5.3125em;
-    min-height: 1.0625em;
+    max-height: 4.9125em;
+    min-height: 1.2625em;
     background: #d9d9d9;
     border-radius: 1.125em;
 
@@ -293,12 +307,13 @@ const PercentBoxWrapper = styled.div`
 `;
 
 const HighestPercent = styled.div`
-    width: 1.625em;
-    height: 1.25em;
+    width: 1.825em;
+    height: 1.7em;
     background: #8e8372;
     border-radius: 1.125em;
     display: flex;
     justify-content: center;
+    align-items: center;
 
     @media (max-width: 767px) {
         width: 1em;
