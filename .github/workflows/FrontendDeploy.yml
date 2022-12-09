@@ -9,7 +9,7 @@ on:
 
 jobs:
    frontend:
-      name: CI with Node
+      name: Frontend CICD
       runs-on: ubuntu-latest
       env:
          working-directory: ./front

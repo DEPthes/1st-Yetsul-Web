@@ -70,8 +70,8 @@ const FavoriteAlcholImg = styled.img`
     object-fit: contain;
 
     @media screen and (max-width: 767px) {
-        height: 42.5vw;
-        width: 32vw;
+        height: 36.5vw;
+        width: 100%;
     }
 `;
 

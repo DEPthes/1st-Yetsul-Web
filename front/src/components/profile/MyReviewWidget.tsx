@@ -74,10 +74,18 @@ export const MyReviewWidget: React.FC<myreviewtype> = ({
             </MyreviewDrinkImgSection>
             <MyreviewInformationSection>
                 <MyreviewInformationUpper>
-                    <MyreviewDrinkKind>{categoryString}</MyreviewDrinkKind>
-                    <MyreviewDrinkName>
-                        {MyreviewAlcoholeName}
-                    </MyreviewDrinkName>
+                    <MyreviewAlcoholeInformationLine>
+                        <MyreviewDrinkKind>{categoryString}</MyreviewDrinkKind>
+                        <MyreviewDrinkName>
+                            {MyreviewAlcoholeName}
+                        </MyreviewDrinkName>
+                    </MyreviewAlcoholeInformationLine>
+                    <StarBox>
+                        <Star star={star} widthValue={1.225} />
+                    </StarBox>
+                    <MobileStarBox>
+                        <Star star={star} widthValue={0.625} />
+                    </MobileStarBox>
                 </MyreviewInformationUpper>
                 <MyreviewInformationLower>
                     <MyreviewHeading>{title}</MyreviewHeading>
@@ -88,11 +96,6 @@ export const MyReviewWidget: React.FC<myreviewtype> = ({
                     </LinkWrap>
                 </MyreviewInformationLower>
             </MyreviewInformationSection>
-            <MyreviewRightSection>
-                <StarBox>
-                    <Star star={star} widthValue={0.625} />
-                </StarBox>
-            </MyreviewRightSection>
         </MyreviewBarInner>
     );
 };
@@ -150,15 +153,22 @@ const MyreviewInformationUpper = styled.div`
     display: flex;
     align-items: center;
     margin-top: 0.198vw;
+    justify-content: space-between;
+    width: 120%;
     @media screen and (max-width: 767px) {
         margin-top: 5.128vw;
-        width: 90%;
+        width: 140%;
     }
+`;
+
+const MyreviewAlcoholeInformationLine = styled.div`
+    display: flex;
+    width: 70%;
 `;
 const MyreviewInformationLower = styled.div`
     display: flex;
     justify-content: space-between;
-    width: 130%;
+    width: 120%;
     align-items: flex-end;
     @media screen and (max-width: 767px) {
         width: 58vw;
@@ -202,32 +212,30 @@ const MyreviewHeading = styled.p`
         font-size: 3.077vw;
     }
 `;
-const MyreviewRightSection = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
-    margin-right: 1.979vw;
-    @media screen and (max-width: 767px) {
-        margin-right: 5.641vw;
-    }
-`;
 
 const SeeFull = styled.p`
     margin-top: 1.02vw;
+    z-index: 2222222;
     @media screen and (max-width: 767px) {
         font-size: 3.077vw;
-        margin-top: 2.128vw;
     }
 `;
 
 const StarBox = styled.div`
-    width: 7.2vw;
+    width: 4.5vw;
     display: flex;
-    margin-bottom: 1.5vw;
-    justify-content: flex-end;
+    justify-content: flex-start;
     @media screen and (max-width: 767px) {
+        display: none;
+    }
+`;
+
+const MobileStarBox = styled.div`
+    display: none;
+    @media screen and (max-width: 767px) {
+        display: block;
         width: 15vw;
-        margin-bottom: 9vw;
+        margin-bottom: 1.5vw;
+        height: 5vw;
     }
 `;
