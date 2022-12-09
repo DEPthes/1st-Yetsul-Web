@@ -136,9 +136,6 @@ const main: React.FC = () => {
     const convertURLtoFile = async (url: string) => {
         const response = await fetch(
             `https://accountercors.herokuapp.com/${url}`,
-            {
-                mode: 'cors',
-            },
         );
         const data = await response.blob();
         const filename = 'uploadImg'; // url 구조에 맞게 수정할 것
@@ -548,7 +545,7 @@ const InputStar = styled.div`
             cursor: pointer;
             width: 1.813em;
             height: 1.813em;
-            margin-right: 1.1em;
+            margin-right: 0em;
         }
     }
     @media (max-width: 767px) {

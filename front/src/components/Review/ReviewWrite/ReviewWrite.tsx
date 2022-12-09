@@ -525,9 +525,9 @@ const InputStar = styled.div`
         top: 0.1em;
         div {
             cursor: pointer;
-            width: 1.813em;
-            height: 1.813em;
-            margin-right: 1.1em;
+            width: 1.8125em;
+            height: 1.8125em;
+            margin-right: 0em;
         }
     }
     @media (max-width: 767px) {

@@ -582,7 +582,7 @@ const InputStar = styled.div`
             cursor: pointer;
             width: 1.813em;
             height: 1.813em;
-            margin-right: 1.1em;
+            margin-right: 0em;
         }
     }
     @media (max-width: 767px) {
