@@ -47,11 +47,6 @@ const BoardListElement: React.FC<TokenType> = ({
     const [reviewLike, setReviewLike] = useState(like);
     const [isLike, setIsLike] = useState<boolean>(false);
 
-    if (token === null) {
-        // eslint-disable-next-line no-alert
-        alert('로그인이 필요합니다.');
-        window.location.replace('/');
-    }
     const getData = () => {
         return axios.create({
             headers: { Authorization: `Bearer ${token}` },
@@ -73,6 +68,11 @@ const BoardListElement: React.FC<TokenType> = ({
     }, []);
 
     const onClickLike = async () => {
+        if (token === null) {
+            // eslint-disable-next-line no-alert
+            alert('로그인이 필요합니다.');
+            window.location.replace('/');
+        }
         await getData().post(
             `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
         );
