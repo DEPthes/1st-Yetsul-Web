@@ -320,6 +320,10 @@ const DrinkDetail: React.FC = () => {
                                             return (
                                                 <button key={index}>
                                                     <img
+                                                        onClick={() =>
+                                                            gotoReview(+p[1])
+                                                        }
+                                                        aria-hidden
                                                         src={p[0].toString()}
                                                         alt={p[0].toString()}
                                                     />
@@ -351,8 +355,6 @@ const DrinkDetail: React.FC = () => {
                                                             }
                                                             aria-hidden
                                                             src={p[0].toString()}
-                                                            // eslint-disable-next-line react/no-array-index-key
-                                                            key={index}
                                                             alt={p[0].toString()}
                                                         />
                                                     </button>
