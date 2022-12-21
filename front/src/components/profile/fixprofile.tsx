@@ -9,9 +9,15 @@ import { userAPI } from '../../services/userControl';
 
 export const FixProfile: React.FC = () => {
     const [userData, setUserData] = useState<UserType>(Object);
+    const token = getAccessToken();
     const getData = () => {
+        if (token === null) {
+            // eslint-disable-next-line no-alert
+            alert('로그인이 필요합니다.');
+            window.location.replace('/');
+        }
         return axios.create({
-            headers: { Authorization: `Bearer ${getAccessToken()}` },
+            headers: { Authorization: `Bearer ${token}` },
         });
     };
 
@@ -79,15 +85,10 @@ export const FixProfile: React.FC = () => {
             const OriginalImgFile = convertURLtoFile(userData.profileImg);
             formData.append('file', await OriginalImgFile);
         }
-        axios
+        getData()
             .patch(
                 'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/edituser',
                 formData,
-                {
-                    headers: {
-                        Authorization: `Bearer ${getAccessToken()}`,
-                    },
-                },
             )
             .then(async () => {
                 // eslint-disable-next-line no-alert

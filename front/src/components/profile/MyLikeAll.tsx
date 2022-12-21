@@ -14,9 +14,16 @@ export const MyLikeAll: React.FC = () => {
     const [page, setPage] = useState(1); // 현재 페이지
     const offset = (page - 1) * limit; // 페이지 당 첫 게시물의 index
     const [NoLikeData, setNoLikeData] = useState(true);
+
+    const token = getAccessToken();
     const getData = () => {
+        if (token === null) {
+            // eslint-disable-next-line no-alert
+            alert('로그인이 필요합니다.');
+            window.location.replace('/');
+        }
         return axios.create({
-            headers: { Authorization: `Bearer ${getAccessToken()}` },
+            headers: { Authorization: `Bearer ${token}` },
         });
     };
 
