@@ -289,9 +289,11 @@ const DrinkDetail: React.FC = () => {
                 </DrinkInfoWrapper>
                 <ReviewTitle>
                     <h1>리뷰 / 별점</h1>
-                    <ReviewWriteLink to={`/list/${drinks.id}/write`}>
-                        리뷰작성
-                    </ReviewWriteLink>
+                    {getUserLocalStorage() !== 0 && (
+                        <ReviewWriteLink to={`/list/${drinks.id}/write`}>
+                            리뷰작성
+                        </ReviewWriteLink>
+                    )}
                 </ReviewTitle>
 
                 <ReviewStar
@@ -691,7 +693,7 @@ const PhotoWrapper = styled.div`
 
 const PhotoReviewWrapper = styled.div`
     display: flex;
-    float: inline-start;
+    // float: inline-start;
     margin-bottom: 1.875em;
     align-items: center;
     img {

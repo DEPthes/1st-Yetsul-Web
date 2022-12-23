@@ -8,7 +8,7 @@ export const setUserLocalStorage = (info: string): void => {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getUserLocalStorage = (): any => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    if (localStorage.getItem('user') !== 'undefined') {
+    if (localStorage.getItem('user')) {
         return JSON.parse(localStorage.getItem('user') || '{}');
     }
     return 0;

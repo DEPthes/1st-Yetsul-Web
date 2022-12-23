@@ -4,12 +4,17 @@ import html2canvas from 'html2canvas';
 
 const ShareInstagram: React.FC = () => {
     const onCapture = () => {
+        const transformOrigin = $('#imgDiv')[0].style.transform;
+        $('#imgDiv')[0].style.setProperty('transfrom', 'none');
         html2canvas($('#imgDiv')[0], {
+            useCORS: true,
             backgroundColor: '#E2DFDA',
         }).then(
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (canvas: { toDataURL: (arg0: string) => any }) => {
                 onSaveAs(canvas.toDataURL('image/png'), 'image-download.png');
+
+                $('#imgDiv')[0].style.transform = transformOrigin;
             },
         );
     };
