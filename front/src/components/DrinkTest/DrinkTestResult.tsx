@@ -24,6 +24,12 @@ const DrinkTicketBoxResult: React.FC = () => {
                 {
                     resultCombination: params.resultStr,
                 },
+                {
+                    headers: {
+                        'Access-control-header': true,
+                        'Access-Control-Allow-Origin': '*',
+                    },
+                },
             )
             .then((res) => {
                 setTicket(res.data);
