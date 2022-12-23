@@ -48,7 +48,7 @@ const Source: React.FC<SourceType> = ({ title }) => {
                         &lt;관동별곡 8백리, 2013, 청동거울&gt;
                     </AHref>
                 );
-            case '난장이가 쏘아올린 작은 공':
+            case '난쟁이가 쏘아올린 작은 공':
                 return (
                     <AHref
                         href="http://www.yes24.com/Product/Goods/141729"

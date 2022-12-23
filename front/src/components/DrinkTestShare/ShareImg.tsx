@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import html2canvas from 'html2canvas';
 
-const ShareInstagram: React.FC = () => {
+const ShareImg: React.FC = () => {
     const onCapture = () => {
         const transformOrigin = $('#imgDiv')[0].style.transform;
         $('#imgDiv')[0].style.setProperty('transfrom', 'none');
@@ -30,12 +30,12 @@ const ShareInstagram: React.FC = () => {
 
     return (
         <ShareBtn type="button" onClick={onCapture}>
-            <ShareImg src="/images/ShareImg.svg" alt="ShareImg" />
+            <ShareImgs src="/images/ShareImg.svg" alt="ShareImg" />
         </ShareBtn>
     );
 };
 
-export default ShareInstagram;
+export default ShareImg;
 
 const ShareBtn = styled.button`
     background-color: transparent;
@@ -49,7 +49,7 @@ const ShareBtn = styled.button`
     }
 `;
 
-const ShareImg = styled.img`
+const ShareImgs = styled.img`
     width: 65px;
     //height: 65px;
 
