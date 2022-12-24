@@ -22,9 +22,7 @@ export const TemporarySaveModal: React.FC<ModalType> = ({
             .create({
                 headers: { Authorization: `Bearer ${getAccessToken()}` },
             })
-            .post(
-                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/user/temporary',
-            )
+            .post('https://yetsul-server.site/review/user/temporary')
             .then((res) => setAlcholthatUserWrite(res.data))
             .catch((err) => console.log(err));
     };

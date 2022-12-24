@@ -20,7 +20,7 @@ const DrinkTicketBoxResult: React.FC = () => {
     useEffect(() => {
         axios
             .post(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/ticketbox/result`,
+                `https://yetsul-server.site/ticketbox/result`,
                 {
                     resultCombination: params.resultStr,
                 },

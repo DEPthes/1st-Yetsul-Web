@@ -57,18 +57,14 @@ const main: React.FC = () => {
         formData.append('star', starCount.toString());
 
         axios
-            .post(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${alcoholId}`,
-                formData,
-                {
-                    headers: {
-                        Authorization: `Bearer ${getAccessToken()}`,
-                    },
+            .post(`https://yetsul-server.site/review/${alcoholId}`, formData, {
+                headers: {
+                    Authorization: `Bearer ${getAccessToken()}`,
                 },
-            )
+            })
             .then(async () => {
                 await axios.delete(
-                    `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+                    `https://yetsul-server.site/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
                 );
                 // eslint-disable-next-line no-alert
                 alert('리뷰작성이 완료되었습니다.');
@@ -92,7 +88,7 @@ const main: React.FC = () => {
 
         axios
             .post(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${alcoholId}/update/${reviewId}`,
+                `https://yetsul-server.site/review/${alcoholId}/update/${reviewId}`,
                 formData,
                 {
                     headers: { Authorization: `Bearer ${getAccessToken()}` },
@@ -183,7 +179,7 @@ const main: React.FC = () => {
         const fileArr: File[] = [];
         await axios
             .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+                `https://yetsul-server.site/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
             )
             .then(async (res) => {
                 setLoading(true);
@@ -454,9 +450,7 @@ const TemporaryReviewEdit: React.FC = () => {
 
     useEffect(() => {
         axios
-            .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${alcoholId}/spec`,
-            )
+            .get(`https://yetsul-server.site/review/${alcoholId}/spec`)
             .then((res) => {
                 setDrinks(res.data.alcohol);
                 setReviewCount(res.data.reviewsWithUserInfo.length);

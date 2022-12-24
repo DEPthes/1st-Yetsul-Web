@@ -37,10 +37,7 @@ export const MyReviewAll: React.FC = () => {
     };
     useEffect(() => {
         getData()
-            .post(
-                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/user',
-                {},
-            )
+            .post('https://yetsul-server.site/review/user', {})
             .then((res) => setAlcholthatUserWrite(res.data))
             .catch((err) => console.log(err));
     }, []);

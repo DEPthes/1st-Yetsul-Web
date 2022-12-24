@@ -63,9 +63,7 @@ const DrinkDetailElement: React.FC<TokenProps> = ({
     const likeornot = async () => {
         let alcolid;
         await axios
-            .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${id}/spec`,
-            )
+            .get(`https://yetsul-server.site/review/${id}/spec`)
             .then((res) => {
                 alcolid = res.data.alcohol.id;
             });
@@ -73,7 +71,7 @@ const DrinkDetailElement: React.FC<TokenProps> = ({
         if (token !== null) {
             getData()
                 .post(
-                    `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/alcohol/description/${alcolid}/likeornot`,
+                    `https://yetsul-server.site/alcohol/description/${alcolid}/likeornot`,
                 )
                 .then((res) => {
                     if (res.data === 'LIKE') {
@@ -104,9 +102,7 @@ const DrinkDetailElement: React.FC<TokenProps> = ({
     const DrinkLikeClick = async () => {
         try {
             await getData()
-                .post(
-                    `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/alcohol/description/${id}`,
-                )
+                .post(`https://yetsul-server.site/alcohol/description/${id}`)
                 .then((res) => {
                     setLikes(res.data.likeCount);
                     DrinkLike();

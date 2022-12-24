@@ -14,9 +14,7 @@ const DrinkTicketBox: React.FC = () => {
 
     useEffect(() => {
         axios
-            .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/ticketbox/test`,
-            )
+            .get(`https://yetsul-server.site/ticketbox/test`)
             .then((res) => setQuestions(res.data))
             .catch((err) => console.log(err));
     }, []);
