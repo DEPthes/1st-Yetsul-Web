@@ -55,9 +55,7 @@ const BoardListElement: React.FC<TokenType> = ({
 
     const checkLike = async () => {
         await getData()
-            .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/likeornot/${reviewId}`,
-            )
+            .get(`https://yetsul-server.site/review/likeornot/${reviewId}`)
             .then((res) => {
                 setIsLike(res.data === 'LIKE');
             });
@@ -74,7 +72,7 @@ const BoardListElement: React.FC<TokenType> = ({
             window.location.replace('/');
         }
         await getData().post(
-            `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+            `https://yetsul-server.site/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
         );
         const likeRate = isLike ? -1 : 1;
         setReviewLike(reviewLike + likeRate);

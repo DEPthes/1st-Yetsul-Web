@@ -42,7 +42,7 @@ const SoolotMachine: React.FC = () => {
     const postSoolot = () => {
         axios
             .post(
-                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/slotMachine/total',
+                'https://yetsul-server.site/slotMachine/total',
                 soolotMachineData,
             )
             .then((res) => {

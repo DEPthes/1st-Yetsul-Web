@@ -29,9 +29,7 @@ export const MyLikeAll: React.FC = () => {
 
     useEffect(() => {
         getData()
-            .post(
-                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/myLikeAlcoholList',
-            )
+            .post('https://yetsul-server.site/auth/myLikeAlcoholList')
             .then((res) => setMyLikeAlcholData(res.data))
             .catch((err) => console.log(err));
     }, []);

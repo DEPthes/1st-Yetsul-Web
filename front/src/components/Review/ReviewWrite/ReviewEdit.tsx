@@ -58,7 +58,7 @@ const main: React.FC = () => {
 
         axios
             .post(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${alcoholId}/update/${reviewId}`,
+                `https://yetsul-server.site/review/${alcoholId}/update/${reviewId}`,
                 formData,
                 {
                     headers: { Authorization: `Bearer ${getAccessToken()}` },
@@ -149,7 +149,7 @@ const main: React.FC = () => {
         const fileArr: File[] = [];
         await axios
             .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+                `https://yetsul-server.site/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
             )
             .then(async (res) => {
                 setLoading(true);
@@ -417,9 +417,7 @@ const ReviewEdit: React.FC = () => {
 
     useEffect(() => {
         axios
-            .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${alcoholId}/spec`,
-            )
+            .get(`https://yetsul-server.site/review/${alcoholId}/spec`)
             .then((res) => {
                 setDrinks(res.data.alcohol);
                 setReviewCount(res.data.reviewsWithUserInfo.length);
