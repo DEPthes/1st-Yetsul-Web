@@ -68,12 +68,9 @@ const DrinkList: React.FC = () => {
     useEffect(() => {
         if (category === '전체') {
             axios
-                .post(
-                    `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/alcohol/list`,
-                    {
-                        filter: sort,
-                    },
-                )
+                .post(`https://yetsul-server.site/alcohol/list`, {
+                    filter: sort,
+                })
                 .then((res) => {
                     setDrinks(
                         res.data.filter(
@@ -90,7 +87,7 @@ const DrinkList: React.FC = () => {
         } else {
             axios
                 .post(
-                    `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/alcohol/list/${categoryNum}`,
+                    `https://yetsul-server.site/alcohol/list/${categoryNum}`,
                     {
                         filter: sort,
                     },

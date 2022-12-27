@@ -68,9 +68,7 @@ const DrinkDetail: React.FC = () => {
 
     useEffect(() => {
         axios
-            .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${id}/spec`,
-            )
+            .get(`https://yetsul-server.site/review/${id}/spec`)
             .then((res) => {
                 setDrinks(res.data.alcohol);
                 setReviews(res.data.reviewsWithUserInfo);
@@ -289,9 +287,11 @@ const DrinkDetail: React.FC = () => {
                 </DrinkInfoWrapper>
                 <ReviewTitle>
                     <h1>리뷰 / 별점</h1>
-                    <ReviewWriteLink to={`/list/${drinks.id}/write`}>
-                        리뷰작성
-                    </ReviewWriteLink>
+                    {getUserLocalStorage() !== 0 && (
+                        <ReviewWriteLink to={`/list/${drinks.id}/write`}>
+                            리뷰작성
+                        </ReviewWriteLink>
+                    )}
                 </ReviewTitle>
 
                 <ReviewStar
@@ -320,6 +320,10 @@ const DrinkDetail: React.FC = () => {
                                             return (
                                                 <button key={index}>
                                                     <img
+                                                        onClick={() =>
+                                                            gotoReview(+p[1])
+                                                        }
+                                                        aria-hidden
                                                         src={p[0].toString()}
                                                         alt={p[0].toString()}
                                                     />
@@ -351,8 +355,6 @@ const DrinkDetail: React.FC = () => {
                                                             }
                                                             aria-hidden
                                                             src={p[0].toString()}
-                                                            // eslint-disable-next-line react/no-array-index-key
-                                                            key={index}
                                                             alt={p[0].toString()}
                                                         />
                                                     </button>
@@ -689,7 +691,7 @@ const PhotoWrapper = styled.div`
 
 const PhotoReviewWrapper = styled.div`
     display: flex;
-    float: inline-start;
+    // float: inline-start;
     margin-bottom: 1.875em;
     align-items: center;
     img {

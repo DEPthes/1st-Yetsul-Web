@@ -90,7 +90,7 @@ const ReviewDetail: React.FC = () => {
         }
         axios
             .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+                `https://yetsul-server.site/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
             )
             .then((res) => {
                 setReview(res.data);
@@ -100,9 +100,7 @@ const ReviewDetail: React.FC = () => {
             .catch((err) => console.log(err));
 
         axios
-            .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${alcoholId}/spec`,
-            )
+            .get(`https://yetsul-server.site/review/${alcoholId}/spec`)
             .then((res) => {
                 setList(res.data.reviewsWithUserInfo);
                 setdrink(res.data.alcohol);
@@ -112,14 +110,11 @@ const ReviewDetail: React.FC = () => {
             .catch((err) => console.log(err));
 
         axios
-            .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/likeornot/${reviewId}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${getAccessToken()}`,
-                    },
+            .get(`https://yetsul-server.site/review/likeornot/${reviewId}`, {
+                headers: {
+                    Authorization: `Bearer ${getAccessToken()}`,
                 },
-            )
+            })
             .then((res) => {
                 const checkLike = res.data;
                 setIsLike(checkLike === 'LIKE');
@@ -149,7 +144,7 @@ const ReviewDetail: React.FC = () => {
 
     const onClickDelete = async () => {
         await axios.delete(
-            `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+            `https://yetsul-server.site/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
         );
         // eslint-disable-next-line no-alert
         alert('리뷰가 삭제되었습니다.');
@@ -158,7 +153,7 @@ const ReviewDetail: React.FC = () => {
 
     const onClickLike = async () => {
         await axios.post(
-            `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+            `https://yetsul-server.site/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
             {},
             {
                 headers: {
@@ -191,7 +186,7 @@ const ReviewDetail: React.FC = () => {
         }
         axios
             .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+                `https://yetsul-server.site/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
             )
             .then((res) => {
                 setReview(res.data);
@@ -201,9 +196,7 @@ const ReviewDetail: React.FC = () => {
             .catch((err) => console.log(err));
 
         axios
-            .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${alcoholId}/spec`,
-            )
+            .get(`https://yetsul-server.site/review/${alcoholId}/spec`)
             .then((res) => {
                 setList(res.data.reviewsWithUserInfo);
                 setdrink(res.data.alcohol);

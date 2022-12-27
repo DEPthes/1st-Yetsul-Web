@@ -8,7 +8,7 @@ export const setUserLocalStorage = (info: string): void => {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getUserLocalStorage = (): any => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    if (localStorage.getItem('user') !== 'undefined') {
+    if (localStorage.getItem('user')) {
         return JSON.parse(localStorage.getItem('user') || '{}');
     }
     return 0;
@@ -24,14 +24,11 @@ export const userAPI = async () => {
     console.log(token);
     if (token) {
         await axios
-            .get(
-                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/user',
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
+            .get('https://yetsul-server.site/auth/user', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
                 },
-            )
+            })
             .then(async (res) => {
                 console.log(res.data);
                 const stringifyUser = JSON.stringify(res.data);

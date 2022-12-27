@@ -32,7 +32,7 @@ export const MyReviewModalWidget: React.FC<myreviewtype> = ({
     useEffect(() => {
         getData2()
             .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/alcohol/description/${MyreviewAlcoholId}`,
+                `https://yetsul-server.site/alcohol/description/${MyreviewAlcoholId}`,
             )
             .then((res) => setMyreviewAlcoholData(res.data))
             .catch((err) => console.log(err));
@@ -72,7 +72,7 @@ export const MyReviewModalWidget: React.FC<myreviewtype> = ({
         // eslint-disable-next-line no-restricted-globals, no-alert
         if (confirm('정말 삭제하시겠습니까??') === true) {
             await axios.delete(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${id}`,
+                `https://yetsul-server.site/review?alcoholId=${alcoholId}&reviewId=${id}`,
             );
             // eslint-disable-next-line no-alert
             alert('리뷰가 삭제되었습니다.');

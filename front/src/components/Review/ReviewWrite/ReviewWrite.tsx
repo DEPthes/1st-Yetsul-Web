@@ -57,13 +57,9 @@ const main: React.FC = () => {
         formData.append('star', starCount.toString());
 
         axios
-            .post(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${id}`,
-                formData,
-                {
-                    headers: { Authorization: `Bearer ${getAccessToken()}` },
-                },
-            )
+            .post(`https://yetsul-server.site/review/${id}`, formData, {
+                headers: { Authorization: `Bearer ${getAccessToken()}` },
+            })
             .then(() => {
                 // eslint-disable-next-line no-alert
                 alert('리뷰작성이 완료되었습니다.');
@@ -87,7 +83,7 @@ const main: React.FC = () => {
 
         axios
             .post(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${id}/temporary`,
+                `https://yetsul-server.site/review/${id}/temporary`,
                 formData,
                 {
                     headers: { Authorization: `Bearer ${getAccessToken()}` },
@@ -399,9 +395,7 @@ const ReviewWrite: React.FC = () => {
 
     useEffect(() => {
         axios
-            .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/${id}/spec`,
-            )
+            .get(`https://yetsul-server.site/review/${id}/spec`)
             .then((res) => {
                 setDrinks(res.data.alcohol);
                 setReviewCount(res.data.reviewsWithUserInfo.length);

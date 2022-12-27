@@ -13,15 +13,15 @@ const KakaoLogin: React.FC = () => {
     const isDev: boolean =
         window.location.href.split('/')[2] === 'localhost:3000';
     const selectDevOrProductUrl = isDev
-        ? 'localhost:3000'
-        : 'yetsul.s3-website.ap-northeast-2.amazonaws.com';
+        ? 'http://localhost:3000'
+        : 'https://www.yetsul.com';
 
     const getKakaoToken = () => {
         console.log(location.search);
         fetch('https://kauth.kakao.com/oauth/token', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `grant_type=authorization_code&client_id=e2d1c7ba92ca798e88509878ae8f44ee&redirect_uri=http://${selectDevOrProductUrl}/auth/kakaologin&code=${KAKAO_CODE}`,
+            body: `grant_type=authorization_code&client_id=e2d1c7ba92ca798e88509878ae8f44ee&redirect_uri=${selectDevOrProductUrl}/auth/kakaologin&code=${KAKAO_CODE}`,
         })
             .then((res) => res.json())
             .then((data) => {
@@ -40,7 +40,7 @@ const KakaoLogin: React.FC = () => {
     const getJwtToken = () => {
         axios
             .get(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/createjwttoken/${localStorage.getItem(
+                `https://yetsul-server.site/auth/createjwttoken/${localStorage.getItem(
                     'token',
                 )}`,
             )

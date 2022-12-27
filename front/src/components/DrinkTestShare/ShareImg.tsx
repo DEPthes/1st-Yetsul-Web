@@ -2,14 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import html2canvas from 'html2canvas';
 
-const ShareInstagram: React.FC = () => {
+const ShareImg: React.FC = () => {
     const onCapture = () => {
+        const transformOrigin = $('#imgDiv')[0].style.transform;
+        $('#imgDiv')[0].style.setProperty('transfrom', 'none');
         html2canvas($('#imgDiv')[0], {
+            useCORS: true,
             backgroundColor: '#E2DFDA',
         }).then(
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (canvas: { toDataURL: (arg0: string) => any }) => {
                 onSaveAs(canvas.toDataURL('image/png'), 'image-download.png');
+
+                $('#imgDiv')[0].style.transform = transformOrigin;
             },
         );
     };
@@ -25,12 +30,12 @@ const ShareInstagram: React.FC = () => {
 
     return (
         <ShareBtn type="button" onClick={onCapture}>
-            <ShareImg src="/images/ShareImg.svg" alt="ShareImg" />
+            <ShareImgs src="/images/ShareImg.svg" alt="ShareImg" />
         </ShareBtn>
     );
 };
 
-export default ShareInstagram;
+export default ShareImg;
 
 const ShareBtn = styled.button`
     background-color: transparent;
@@ -44,7 +49,7 @@ const ShareBtn = styled.button`
     }
 `;
 
-const ShareImg = styled.img`
+const ShareImgs = styled.img`
     width: 65px;
     //height: 65px;
 

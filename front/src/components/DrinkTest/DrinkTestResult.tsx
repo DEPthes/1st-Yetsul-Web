@@ -20,9 +20,15 @@ const DrinkTicketBoxResult: React.FC = () => {
     useEffect(() => {
         axios
             .post(
-                `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/ticketbox/result`,
+                `https://yetsul-server.site/ticketbox/result`,
                 {
                     resultCombination: params.resultStr,
+                },
+                {
+                    headers: {
+                        'Access-control-header': true,
+                        'Access-Control-Allow-Origin': '*',
+                    },
                 },
             )
             .then((res) => {
@@ -48,13 +54,18 @@ const DrinkTicketBoxResult: React.FC = () => {
                             <Date>
                                 <TodayDate />
                             </Date>
-                            <LogoImg src="/images/LogoImg.svg" alt="LogoImg" />
-                            <LogoText
-                                src="/images/LogoText.svg"
-                                alt="LogoText"
-                            />
+                            <Logo>
+                                <LogoImg
+                                    src="/images/LogoImg.svg"
+                                    alt="LogoImg"
+                                />
+                                <LogoText
+                                    src="/images/LogoText.svg"
+                                    alt="LogoText"
+                                />
+                            </Logo>
                             <div>
-                                <TicketText margin={25.36} mediamargin={3.64}>
+                                <TicketText margin={18.36} mediamargin={3.64}>
                                     TICKET
                                 </TicketText>
                                 <div>
@@ -189,7 +200,6 @@ const DrinkTicketBoxResult: React.FC = () => {
                                         </DrinkDetail>
                                         <DetailLink
                                             to={`/list/${drink.id}/spec`}
-                                            margin={150}
                                         >
                                             상세페이지 &gt;
                                         </DetailLink>
@@ -264,7 +274,6 @@ const DrinkTicketBoxResult: React.FC = () => {
                                             </DrinkDetail>
                                             <DetailLink
                                                 to={`/list/${data.id}/spec`}
-                                                margin={165}
                                             >
                                                 상세페이지 &gt;
                                             </DetailLink>
@@ -363,8 +372,8 @@ const TicketImg = styled.img`
 `;
 
 const Date = styled.div`
-    margin-top: 125.81px;
-    margin-right: 390px;
+    margin-top: 140px;
+    margin-right: 330px;
 
     font-size: 15px;
     line-height: 175.5%;
@@ -378,6 +387,11 @@ const Date = styled.div`
         font-size: 10px;
         transform: scale(0.9);
     }
+`;
+
+const Logo = styled.div`
+    justify-content: center;
+    margin-top: -10px;
 `;
 
 const LogoImg = styled.img`
@@ -415,7 +429,6 @@ const TicketText = styled.div<{ margin: number; mediamargin: number }>`
 `;
 
 const FlavorText = styled.div`
-    margin-top: 5.07px;
     font-family: 'InterMedium';
     font-size: 20px;
     line-height: 175.5%;
@@ -423,7 +436,6 @@ const FlavorText = styled.div`
     color: #675b4f;
 
     @media (max-width: 767px) {
-        margin-top: 0px;
         font-size: 12px;
         line-height: 140%;
     }
@@ -509,14 +521,14 @@ const Circle = styled.div`
 
 const Title = styled.div`
     margin-top: 30px;
-    margin-left: 55px;
+    margin-left: 35px;
     text-align: left;
     font-size: 20px;
     color: #675b4f;
 
     @media (max-width: 767px) {
         margin-left: 0px;
-        margin-top: 5px;
+        margin-top: 15px;
         font-size: 13px;
     }
 `;
@@ -538,24 +550,24 @@ const CircleDottedLine = styled.div`
 `;
 
 const CircleMovieImg = styled.img`
-    margin-top: 7px;
-    width: 142.35px;
+    margin-top: 6.5px;
+    width: 143px;
+    height: 143px;
     border-radius: 100%;
 
     @media (max-width: 767px) {
-        margin-top: 2.5px;
+        margin-top: 3px;
         width: 51px;
+        height: 51px;
     }
 `;
 
 const ImgSource = styled.div`
     text-align: right;
     margin-top: 8px;
-    margin-right: 25px;
 
     @media (max-width: 767px) {
         margin-top: -5px;
-        margin-right: 0px;
     }
 `;
 
@@ -573,7 +585,6 @@ const Drinks = styled.div<{ margin: number; mediamargin: number }>`
 const DrinkImg = styled.div`
     position: absolute;
     margin-top: 42.35px;
-    margin-left: 20px;
     width: 173.63px;
     height: 170.71px;
     object-fit: contain;
@@ -584,8 +595,7 @@ const DrinkImg = styled.div`
     }
 
     @media (max-width: 767px) {
-        margin-top: 39px;
-        margin-left: 0px;
+        margin-top: 30px;
         width: 89px;
         height: 87px;
     }
@@ -593,7 +603,7 @@ const DrinkImg = styled.div`
 
 const Drink = styled.div`
     position: absolute;
-    margin-left: 220.93px;
+    margin-left: 185px;
 
     @media (max-width: 767px) {
         margin-left: 96px;
@@ -631,7 +641,7 @@ const DrinkTypeText = styled.div`
 const DrinkVolume = styled.div`
     position: absolute;
     margin-top: 50.69px;
-    right: 9%;
+    right: 5%;
 
     font-size: 18px;
     line-height: 18px;
@@ -656,8 +666,8 @@ const DrinkName = styled.div`
 
     @media (max-width: 767px) {
         margin-top: 9.72px;
-        line-height: 118.5%;
-        font-size: 15px;
+        line-height: 120.5%;
+        font-size: 14px;
     }
 `;
 
@@ -671,18 +681,18 @@ const DrinkDetail = styled.div`
     color: #8e8372;
 
     @media (max-width: 767px) {
-        margin-top: 10px;
-        margin-bottom: 5px;
-        font-size: 9px;
+        margin-top: 8px;
+        margin-bottom: 4px;
+        font-size: 10px;
         zoom: 0.9;
         line-height: 136%;
         color: #bbb6a8;
     }
 `;
 
-const DetailLink = styled(Link)<{ margin: number }>`
+const DetailLink = styled(Link)`
     text-decoration: none;
-    margin-left: ${(props) => props.margin}px;
+    margin-left: 158px;
 
     font-size: 13px;
     line-height: 45px;
@@ -692,6 +702,7 @@ const DetailLink = styled(Link)<{ margin: number }>`
     @media (max-width: 767px) {
         margin-left: 55px;
         font-size: 10px;
+        zoom: 0.9;
         line-height: 10px;
     }
 `;

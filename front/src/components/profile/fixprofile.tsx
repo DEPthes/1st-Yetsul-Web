@@ -25,7 +25,7 @@ export const FixProfile: React.FC = () => {
     //     const fileArr: File[] = [];
     //     await axios
     //         .get(
-    //             `http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
+    //             `https://yetsul-server.site/review?alcoholId=${alcoholId}&reviewId=${reviewId}`,
     //         )
     //         .then(async (res) => {
     //             setLoading(true);
@@ -50,9 +50,7 @@ export const FixProfile: React.FC = () => {
 
     useEffect(() => {
         getData()
-            .get(
-                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/user',
-            )
+            .get('https://yetsul-server.site/auth/user')
             .then((res) => setUserData(res.data))
             .catch((err) => console.log(err));
     }, []);
@@ -86,10 +84,7 @@ export const FixProfile: React.FC = () => {
             formData.append('file', await OriginalImgFile);
         }
         getData()
-            .patch(
-                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/edituser',
-                formData,
-            )
+            .patch('https://yetsul-server.site/auth/edituser', formData)
             .then(async () => {
                 // eslint-disable-next-line no-alert
                 alert('변경되었습니다');

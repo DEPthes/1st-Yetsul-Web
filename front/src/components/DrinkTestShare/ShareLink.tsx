@@ -10,14 +10,14 @@ export const clip = () => {
     });
 };
 
-const ShareGmail: React.FC = () => {
+const ShareLink: React.FC = () => {
     return (
         <ShareBtn type="button" onClick={clip}>
             <ShareImg src="/images/ShareLink.svg" alt="ShareLink" />
         </ShareBtn>
     );
 };
-export default ShareGmail;
+export default ShareLink;
 
 const ShareBtn = styled.button`
     background-color: transparent;

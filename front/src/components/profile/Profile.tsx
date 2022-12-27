@@ -36,9 +36,7 @@ export const Profile: React.FC = () => {
 
     useEffect(() => {
         getdata()
-            .post(
-                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/review/user',
-            )
+            .post('https://yetsul-server.site/review/user')
             .then((res) => setAlcoholReviewData(res.data))
             .catch((err) => console.log(err));
     }, []);
@@ -67,9 +65,7 @@ export const Profile: React.FC = () => {
     };
     useEffect(() => {
         getdata()
-            .post(
-                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/myLikeAlcoholList',
-            )
+            .post('https://yetsul-server.site/auth/myLikeAlcoholList')
             .then((res) => setMyLikeAlcholData(res.data))
             .catch((err) => console.log(err));
     }, []);
@@ -91,9 +87,7 @@ export const Profile: React.FC = () => {
 
     useEffect(() => {
         getData()
-            .get(
-                'http://ec2-13-125-227-68.ap-northeast-2.compute.amazonaws.com:3000/auth/user',
-            )
+            .get('https://yetsul-server.site/auth/user')
             .then((res) => setUserData(res.data))
             .catch(() => navigate('/'));
     }, []);
