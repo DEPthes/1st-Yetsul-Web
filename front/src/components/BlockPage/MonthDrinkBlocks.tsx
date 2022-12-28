@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import BackgroundTemplate from '../common/BackgroundTemplate';
@@ -20,35 +21,129 @@ const MonthDrink: React.FC = () => {
         } else setHv('100%');
     }, []);
 
+    const isMobile = useMediaQuery({
+        query: '(max-width:767px)',
+    });
+
     return (
         <BackgroundTemplate heightValue={hv}>
             <Inner>
                 <Head>
                     <h1>이달의 전통주</h1>
-                    <span>전통주 이야기와 함께하는 이달의 전통주 추천!</span>
+                    <span>이달의 옛술 한 눈에 모아보기!</span>
                 </Head>
                 <Content>
-                    <MonthList>
-                        <LinkWrapper to="/BlockPage/DecDrink">
-                            <MonthBlock
-                                contentName="12월"
-                                img="/images/Block/JongGang.png"
-                                contentNumber={1}
-                            />
-                        </LinkWrapper>
-                        <div>
-                            <MonthBlock
-                                contentName="1월"
-                                img="/images/Block/ready.png"
-                                contentNumber={2}
-                            />
-                        </div>
-                    </MonthList>
+                    <h1>1월</h1>
+                    {isMobile ? (
+                        <MMonthList>
+                            <div>
+                                <MonthBlock
+                                    img="/images/Block/JanMDrink_1.png"
+                                    contentNumber={1}
+                                    contentWidth={32.6875}
+                                    imgWidth={32.6875}
+                                    btnImgLF={0}
+                                    btnImgBT={0}
+                                    btnArrowLF={0}
+                                    btnArrowBT={0}
+                                    mBtnImgBT={0.475}
+                                    mBtnImgLF={1.575}
+                                    mBtnArrowBT={0.475}
+                                    mBtnArrowLF={1.575}
+                                />
+                            </div>
+                            <div>
+                                <MonthBlock
+                                    img="/images/Block/JanMDrink_2.png"
+                                    contentNumber={2}
+                                    contentWidth={32.6875}
+                                    imgWidth={32.6875}
+                                    btnImgLF={0}
+                                    btnImgBT={0}
+                                    btnArrowLF={0}
+                                    btnArrowBT={0}
+                                    mBtnImgBT={0.475}
+                                    mBtnImgLF={1.575}
+                                    mBtnArrowBT={0.475}
+                                    mBtnArrowLF={1.575}
+                                />
+                            </div>
+                            <div>
+                                <MonthBlock
+                                    img="/images/Block/JanMDrink_3.png"
+                                    contentNumber={3}
+                                    contentWidth={32.6875}
+                                    imgWidth={32.6875}
+                                    btnImgLF={0}
+                                    btnImgBT={0}
+                                    btnArrowLF={0}
+                                    btnArrowBT={0}
+                                    mBtnImgBT={0.475}
+                                    mBtnImgLF={1.575}
+                                    mBtnArrowBT={0.475}
+                                    mBtnArrowLF={1.575}
+                                />
+                            </div>
+                        </MMonthList>
+                    ) : (
+                        <MonthList>
+                            <div>
+                                <MonthBlock
+                                    img="/images/Block/JanDrink_1.png"
+                                    contentNumber={1}
+                                    contentWidth={69.875}
+                                    imgWidth={69.875}
+                                    btnImgLF={64.8875}
+                                    btnImgBT={4.1875}
+                                    btnArrowLF={64.8875}
+                                    btnArrowBT={4.1875}
+                                    mBtnImgLF={0}
+                                    mBtnArrowBT={0}
+                                    mBtnImgBT={0}
+                                    mBtnArrowLF={0}
+                                />
+                            </div>
+                            <div>
+                                <MonthBlock
+                                    img="/images/Block/JanDrink_2.png"
+                                    contentNumber={2}
+                                    contentWidth={69.875}
+                                    imgWidth={69.875}
+                                    btnImgLF={64.8875}
+                                    btnImgBT={4.1875}
+                                    btnArrowLF={64.8875}
+                                    btnArrowBT={4.1875}
+                                    mBtnImgLF={0}
+                                    mBtnArrowBT={0}
+                                    mBtnImgBT={0}
+                                    mBtnArrowLF={0}
+                                />
+                            </div>
+                            <div>
+                                <MonthBlock
+                                    img="/images/Block/JanDrink_3.png"
+                                    contentNumber={3}
+                                    contentWidth={69.875}
+                                    imgWidth={69.875}
+                                    btnImgLF={64.8875}
+                                    btnImgBT={4.1875}
+                                    btnArrowLF={64.8875}
+                                    btnArrowBT={4.1875}
+                                    mBtnImgLF={0}
+                                    mBtnArrowBT={0}
+                                    mBtnImgBT={0}
+                                    mBtnArrowLF={0}
+                                />
+                            </div>
+                        </MonthList>
+                    )}
                 </Content>
             </Inner>
         </BackgroundTemplate>
     );
 };
+
+const MMonthList = styled.div``;
 
 const LinkWrapper = styled(Link)`
     text-decoration: none;
@@ -113,20 +208,27 @@ const Content = styled.div`
     display: flex;
     flex-direction: column;
 
+    h1 {
+        font-size: 1.5625em;
+        color: #8e8372;
+        margin-bottom: 0.9375em;
+    }
+
+    div {
+        margin-bottom: 1.1875em;
+    }
+
     @media (max-width: 767px) {
         margin-top: 1.875em;
+
+        h1 {
+            font-size: 1.125em;
+            color: #8e8372;
+        }
     }
 `;
 
 const MonthList = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    @media (max-width: 767px) {
-        display: flex;
-        justify-content: center;
-    }
     h1 {
         font-size: 1.5625em;
         margin-bottom: 1.25em;
