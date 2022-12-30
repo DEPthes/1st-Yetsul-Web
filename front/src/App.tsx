@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React, { useEffect } from 'react';
 import $ from 'jquery';
 import { gsap } from 'gsap';
@@ -94,6 +95,15 @@ const App: React.FC = () => {
             }
         };
     }, []);
+
+    if (navigator.userAgent.indexOf('KAKAO') >= 0)
+        alert('카카오톡 인앱에서는 정상적인 진행이 어려울 수 있습니다.');
+    if (navigator.userAgent.indexOf('[FB') >= 0)
+        alert('페이스북 인앱에서는 정상적인 진행이 어려울 수 있습니다.');
+    if (navigator.userAgent.indexOf('Instagram') >= 0)
+        alert('인스타그램 인앱에서는 정상적인 진행이 어려울 수 있습니다.');
+    if (navigator.userAgent.indexOf('trill') >= 0)
+        alert('틱톡 인앱에서는 정상적인 진행이 어려울 수 있습니다.');
 
     return (
         <div className="main">

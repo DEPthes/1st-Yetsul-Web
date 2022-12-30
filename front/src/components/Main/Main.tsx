@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { RootState } from '../../store/config';
 import { setFormModal } from '../../store/slices/formModalSlice';
@@ -123,16 +124,16 @@ const Main: React.FC = () => {
                 <InnerLeft>
                     <InnerText>
                         <div>
-                            <h1>12月,</h1>
+                            <h1>1月,</h1>
                         </div>
                         <div>
                             <h1>
-                                <span>종강</span>과 <span>연말 </span>그 사이,
+                                <span>HAPPY 2023 !</span>
                             </h1>
                         </div>
                         <div>
                             <div>
-                                <h1>고생한 나를 위한 한 잔,</h1>
+                                <h1>새해를 맞이할 한 잔,</h1>
                             </div>
 
                             <div>
@@ -140,7 +141,9 @@ const Main: React.FC = () => {
                             </div>
                         </div>
                         <div>
-                            <p>이달의 술 한눈에 보기</p>
+                            <LinkWrap to="/month">
+                                <p>이달의 술 한눈에 보기</p>
+                            </LinkWrap>
                             <svg
                                 width="11"
                                 height="18"
@@ -275,6 +278,18 @@ const FormBtn = styled.div`
             @media (max-width: 767px) {
                 height: 1.125em;
             }
+        }
+    }
+`;
+
+const LinkWrap = styled(Link)`
+    color: #675b4f;
+    text-decoration: none;
+    p {
+        font-size: 1.25em;
+
+        @media (max-width: 767px) {
+            font-size: 0.83em;
         }
     }
 `;

@@ -506,6 +506,7 @@ const MenuLoginBlock = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
+
         &:first-of-type {
             background: #fff;
             margin-right: 0.5625em;

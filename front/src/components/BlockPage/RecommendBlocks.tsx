@@ -30,17 +30,37 @@ const AllDrinkRecommend = () => {
                 <Content>
                     <MonthList>
                         <MonthContent to="/RecommendTicket">
+                            <h1>옛술의 전당 매표소</h1>
                             <Block
-                                contentName="옛술의 전당 매표소"
                                 img="/images/Block/Recommend_Ticket.png"
                                 contentNumber={1}
+                                contentWidth={32.6875}
+                                imgWidth={32.6875}
+                                btnImgLF={1.8875}
+                                btnImgBT={1.8875}
+                                btnArrowLF={1.8875}
+                                btnArrowBT={1.8875}
+                                mBtnImgLF={1.2875}
+                                mBtnImgBT={1.2875}
+                                mBtnArrowBT={1.2875}
+                                mBtnArrowLF={1.2875}
                             />
                         </MonthContent>
                         <MonthContent to="/RecommendSlot">
+                            <h1>슬롯 머신</h1>
                             <Block
-                                contentName="슬롯머신"
                                 img="/images/Block/Recommend_Slot.png"
                                 contentNumber={2}
+                                contentWidth={32.6875}
+                                imgWidth={32.6875}
+                                btnImgLF={1.8875}
+                                btnImgBT={1.8875}
+                                btnArrowLF={1.8875}
+                                btnArrowBT={1.8875}
+                                mBtnImgLF={1.2875}
+                                mBtnArrowBT={1.2875}
+                                mBtnImgBT={1.2875}
+                                mBtnArrowLF={1.2875}
                             />
                         </MonthContent>
                     </MonthList>
@@ -117,7 +137,6 @@ const MonthList = styled.div`
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin-top: 2.75em;
 
     h1 {
         font-size: 1.5625em;
@@ -138,7 +157,6 @@ const MonthContent = styled(Link)`
     width: 32.6875em;
     height: 12.8125em;
     border-radius: 1.125em;
-    display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
@@ -148,8 +166,6 @@ const MonthContent = styled(Link)`
         width: 21.0625em;
         height: 8.3125em;
         font-weight: 400;
-        /* font-size: 20px;
-        line-height: 20px; */
         margin-bottom: 4.375em;
     }
 `;
