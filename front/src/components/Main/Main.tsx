@@ -285,6 +285,13 @@ const FormBtn = styled.div`
 const LinkWrap = styled(Link)`
     color: #675b4f;
     text-decoration: none;
+    p {
+        font-size: 1.25em;
+
+        @media (max-width: 767px) {
+            font-size: 0.83em;
+        }
+    }
 `;
 
 const MainStyle = styled.div`
