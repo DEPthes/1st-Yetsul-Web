@@ -1,8 +1,33 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import styled from 'styled-components';
+import Swal from 'sweetalert2';
 
 const Footer: React.FC = () => {
+    const copyGmailToClipBoard = (gmail: string) => {
+        const txt = document.createElement('textarea');
+        document.body.appendChild(txt);
+        txt.value = gmail;
+        txt.select();
+        document.execCommand('copy');
+        document.body.removeChild(txt);
+
+        const Toast = Swal.mixin({
+            toast: true,
+            showConfirmButton: false,
+            timer: 1000,
+            iconColor: '#8b7e6a',
+            background: 'none',
+            position: 'center',
+            backdrop: false,
+        });
+
+        Toast.fire({
+            icon: 'success',
+            text: '클립보드에 복사되었습니다.',
+        });
+    };
+
     return (
         <FooterWrapper className="footer">
             <FooterInner>
@@ -14,17 +39,27 @@ const Footer: React.FC = () => {
                     </h1>
                 </FooterInfo>
                 <FooterCenter>
-                    <SnsIcon>
+                    <SnsIcon
+                        onClick={() =>
+                            copyGmailToClipBoard('2022depth@gmail.com')
+                        }
+                    >
                         <img
                             src={`${process.env.PUBLIC_URL}/images/gmail.png`}
                             alt="gmail"
                         />
                     </SnsIcon>
                     <SnsIcon>
-                        <img
-                            src={`${process.env.PUBLIC_URL}/images/instagram.png`}
-                            alt="instagram"
-                        />
+                        <a
+                            href="https://www.instagram.com/yetsool_hall/"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <img
+                                src={`${process.env.PUBLIC_URL}/images/instagram.png`}
+                                alt="instagram"
+                            />
+                        </a>
                     </SnsIcon>
                 </FooterCenter>
                 <FooterFoot>
