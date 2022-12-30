@@ -50,7 +50,7 @@ const FormModal: React.FC<{ modal: () => void }> = ({ modal }) => {
                     <ModalBottom>
                         <Btn>
                             <a href="https://docs.google.com/forms/d/1PznqpfSg_6N9aEGWASG_mDRvEMBLYlI5py-jkGWArJs/viewform?edit_requested=true">
-                                구글 폼 주소
+                                구글 폼 바로가기
                             </a>
                         </Btn>
                     </ModalBottom>
