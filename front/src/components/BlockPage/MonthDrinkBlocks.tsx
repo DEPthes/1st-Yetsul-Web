@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import MonthBlock from './Block';
