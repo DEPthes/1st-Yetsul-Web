@@ -1,6 +1,8 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import MonthBlock from './Block';
@@ -25,6 +27,12 @@ const MonthDrink: React.FC = () => {
         query: '(max-width:767px)',
     });
 
+    const navigate = useNavigate();
+
+    const gotoDrink = (drinkId: number) => {
+        navigate(`/list/${drinkId}/spec`);
+    };
+
     return (
         <BackgroundTemplate heightValue={hv}>
             <Inner>
@@ -36,7 +44,7 @@ const MonthDrink: React.FC = () => {
                     <h1>1월</h1>
                     {isMobile ? (
                         <MMonthList>
-                            <div>
+                            <div onClick={() => gotoDrink(41)}>
                                 <MonthBlock
                                     img="/images/Block/JanMDrink_1.png"
                                     contentNumber={1}
@@ -52,7 +60,7 @@ const MonthDrink: React.FC = () => {
                                     mBtnArrowLF={1.575}
                                 />
                             </div>
-                            <div>
+                            <div onClick={() => gotoDrink(223)}>
                                 <MonthBlock
                                     img="/images/Block/JanMDrink_2.png"
                                     contentNumber={2}
@@ -68,7 +76,7 @@ const MonthDrink: React.FC = () => {
                                     mBtnArrowLF={1.575}
                                 />
                             </div>
-                            <div>
+                            <div onClick={() => gotoDrink(377)}>
                                 <MonthBlock
                                     img="/images/Block/JanMDrink_3.png"
                                     contentNumber={3}
@@ -87,7 +95,7 @@ const MonthDrink: React.FC = () => {
                         </MMonthList>
                     ) : (
                         <MonthList>
-                            <div>
+                            <div onClick={() => gotoDrink(41)}>
                                 <MonthBlock
                                     img="/images/Block/JanDrink_1.png"
                                     contentNumber={1}
@@ -103,7 +111,7 @@ const MonthDrink: React.FC = () => {
                                     mBtnArrowLF={0}
                                 />
                             </div>
-                            <div>
+                            <div onClick={() => gotoDrink(223)}>
                                 <MonthBlock
                                     img="/images/Block/JanDrink_2.png"
                                     contentNumber={2}
@@ -119,7 +127,7 @@ const MonthDrink: React.FC = () => {
                                     mBtnArrowLF={0}
                                 />
                             </div>
-                            <div>
+                            <div onClick={() => gotoDrink(377)}>
                                 <MonthBlock
                                     img="/images/Block/JanDrink_3.png"
                                     contentNumber={3}
