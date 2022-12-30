@@ -110,7 +110,7 @@ const SoolotMachine: React.FC = () => {
                     <MachineText>
                         <h1>[ 슬롯머신 사용법 ]</h1>
                         <p>1. 날씨 / 기분 / 상황 선택 후 조합하기</p>
-                        <p>2. 손잡이를 당겨 랜덤 조합하기</p>
+                        <p>2. 손잡이를 클릭해서 랜덤 조합하기</p>
                     </MachineText>
                 </MachineWrap>
                 <MachineResultBtn onClick={postSoolot}>
