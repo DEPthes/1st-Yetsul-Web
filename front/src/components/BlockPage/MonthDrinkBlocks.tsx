@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import MonthBlock from './Block';
@@ -152,11 +152,6 @@ const MonthDrink: React.FC = () => {
 };
 
 const MMonthList = styled.div``;
-
-const LinkWrapper = styled(Link)`
-    text-decoration: none;
-    color: #8e8372;
-`;
 
 const Inner = styled.div`
     display: flex;
