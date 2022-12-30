@@ -33,51 +33,16 @@
                             location.href = 'instagram://inappbrowser/close';
                         }
                         if (navigator.userAgent.match(/iPhone|iPad/i)) { // 아이폰 접속 경우
-
-                            var copytoclipboard = function (val) {
-                                var t = document.createElement("textarea");
-                                document.body.appendChild(t);
-                                t.value = val;
-                                t.select();
-                                document.execCommand('copy');
-                                document.body.removeChild(t);
-                            };
-
-                            var inappbrowserout = function () {
-                                copytoclipboard(window.location.href);
-                                alert('URL 주소가 복사되었습니다.\n\nSafari가 열리면 주소창을 길게 터치한 뒤, "붙여놓기 및 이동"를 누르면 정상적으로 이용하실 수 있습니다.');
-                                location.href = 'x-web-search://?';
-                            }
-
-                            window.onload = function () {
-                                if (navigator.userAgent.match(/inapp|NAVER|KAKAOTALK|Snapchat|Line|WirtschaftsWoche|Thunderbird|Instagram|everytimeApp|WhatsApp|Electron|wadiz|AliApp|zumapp|iPhone(.*)Whale|Android(.*)Whale|kakaostory|band|twitter|DaumApps|DaumDevice\/mobile|FB_IAB|FB4A|FBAN|FBIOS|FBSS|SamsungBrowser\/[^1]/i)) {
-                                    if (navigator.userAgent.match(/iPhone|iPad/i)) {
-                                        //모바일대응뷰포트강제설정
-                                        var mobile = document.createElement('meta');
-                                        mobile.name = 'viewport';
-                                        mobile.content = "width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui";
-                                        document.getElementsByTagName('head')[0].appendChild(mobile);
-                                        //노토산스폰트강제설정
-                                        var fonts = document.createElement('link');
-                                        fonts.href = 'https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap';
-                                        document.getElementsByTagName('head')[0].appendChild(fonts);
-                                        document.body.innerHTML = "<style>body{margin:0;padding:0;font-family: 'Noto Sans KR', sans-serif;overflow: hidden;height: 100%;}</style><h2 style='padding-top:50px; text-align:center;font-family: 'Noto Sans KR', sans-serif;'>인앱브라우저 호환문제로 인해<br />Safari로 접속해야합니다.</h2><article style='text-align:center; font-size:17px; word-break:keep-all;color:#999;'>아래 버튼을 눌러 Safari를 실행해주세요<br />Safari가 열리면, 주소창을 길게 터치한 뒤,<br />'붙여놓기 및 이동'을 누르면<br />정상적으로 이용할 수 있습니다.<br /><br /><button onclick='inappbrowserout();' style='min-width:180px;margin-top:10px;height:54px;font-weight: 700;background-color:#31408E;color:#fff;border-radius: 4px;font-size:17px;border:0;'>Safari로 열기</button></article><img style='width:70%;margin:50px 15% 0 15%' src='https://tistory3.daumcdn.net/tistory/1893869/skin/images/inappbrowserout.jpeg' />";
-                                    } else {
-                                        location.href = 'intent://' + location.href.replace(/https?:\/\//i, '') + '#Intent;scheme=http;package=com.android.chrome;end';
-                                    }
-                                }
-                            }
             
-                            // if (navigator.userAgent.indexOf('KAKAO') >= 0)
-                            //     alert('카카오톡 인앱에서는 정상적인 진행이 어려울 수 있습니다. 주소 복사 후 사파리를 이용해주세요.');
-                            // if (navigator.userAgent.indexOf('[FB') >= 0)
-                            //     alert('페이스북 인앱에서는 정상적인 진행이 어려울 수 있습니다. 주소 복사 후 사파리를 이용해주세요.');
-                            // if (navigator.userAgent.indexOf('Instagram') >= 0)
-                            //     alert('인스타그램 인앱에서는 정상적인 진행이 어려울 수 있습니다. 주소 복사 후 사파리를 이용해주세요.');
-                            // if (navigator.userAgent.indexOf('trill') >= 0)
-                            //     alert('틱톡 인앱에서는 정상적인 진행이 어려울 수 있습니다. 주소 복사 후 사파리를 이용해주세요.');
+                            if (navigator.userAgent.indexOf('KAKAO') >= 0)
+                                alert('카카오톡 인앱에서는 정상적인 진행이 어려울 수 있습니다. 주소 복사 후 사파리를 이용해주세요.');
+                            if (navigator.userAgent.indexOf('[FB') >= 0)
+                                alert('페이스북 인앱에서는 정상적인 진행이 어려울 수 있습니다. 주소 복사 후 사파리를 이용해주세요.');
+                            if (navigator.userAgent.indexOf('Instagram') >= 0)
+                                alert('인스타그램 인앱에서는 정상적인 진행이 어려울 수 있습니다. 주소 복사 후 사파리를 이용해주세요.');
+                            if (navigator.userAgent.indexOf('trill') >= 0)
+                                alert('틱톡 인앱에서는 정상적인 진행이 어려울 수 있습니다. 주소 복사 후 사파리를 이용해주세요.');
                         
-            
                         }
                         else { // 안드로이드 접속 경우
                             // 크롬으로 새창 열기
