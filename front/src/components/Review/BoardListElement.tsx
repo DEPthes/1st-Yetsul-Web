@@ -113,9 +113,8 @@ const BoardListElement: React.FC<TokenType> = ({
                                             star={starCount}
                                             widthValue={0.7}
                                         />
+                                        <h3>{starCount}개</h3>
                                     </div>
-
-                                    <h3>{starCount}개</h3>
 
                                     <LikeBtn
                                         onClick={onClickLike}
@@ -197,13 +196,13 @@ const BoardListElement: React.FC<TokenType> = ({
                                 <MReviewTitle>{title}</MReviewTitle>
                                 <MReviewBoxBottom>
                                     <div>
-                                        {' '}
                                         <Star
                                             star={starCount}
                                             widthValue={0.7}
                                         />
+                                        <h3>{starCount}개</h3>
                                     </div>
-                                    <h3>{starCount}개</h3>
+
                                     <LikeBtn
                                         onClick={onClickLike}
                                         isLike={isLike}
@@ -240,6 +239,7 @@ const BoardListElement: React.FC<TokenType> = ({
                                                 }
                                             />
                                         </svg>
+
                                         <span>{reviewLike}</span>
                                     </LikeBtn>
                                 </MReviewBoxBottom>
@@ -486,7 +486,7 @@ const MReviewBoxBottom = styled.div`
     }
     h3 {
         font-size: 0.625em;
-        margin-left: -8.9375em;
+        margin-left: 0.5em;
     }
 `;
 
