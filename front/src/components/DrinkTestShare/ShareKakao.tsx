@@ -9,7 +9,7 @@ declare global {
 }
 
 const ShareKakao: React.FC = () => {
-    const url = 'http://localhost:3000/ticketbox';
+    const url = 'https://www.yetsul.com/ticketbox';
     const ShareURL = window.location.href;
 
     useEffect(() => {
@@ -28,7 +28,7 @@ const ShareKakao: React.FC = () => {
                 content: {
                     title: '옛술의 전당 매표소',
                     description: '나에게 어울리는 전통주는?',
-                    imageUrl: '/images/DEPth.jpeg',
+                    imageUrl: 'https://i.ibb.co/BjR83Jv/test.png',
                     link: {
                         webUrl: url,
                     },
