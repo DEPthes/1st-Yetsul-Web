@@ -387,7 +387,7 @@ const DrinkListElement: React.FC<drinkInfoType> = ({
                             />
                         </MonthOfDrinks>
                         <MonthOfDrinksText>
-                            11월
+                            1월
                             <br />
                             pick
                         </MonthOfDrinksText>
