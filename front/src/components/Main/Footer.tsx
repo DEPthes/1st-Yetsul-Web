@@ -63,7 +63,7 @@ const Footer: React.FC = () => {
                     </SnsIcon>
                 </FooterCenter>
                 <FooterFoot>
-                    <h1>옛술의 전당 사이트 주소</h1>
+                    <h1>www.yetsul.com</h1>
                 </FooterFoot>
             </FooterInner>
         </FooterWrapper>
