@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import TodayDate from './TodayDate';
-import ShareImg from '../DrinkTestShare/ShareImg';
+// import ShareImg from '../DrinkTestShare/ShareImg';
 import ShareLink from '../DrinkTestShare/ShareLink';
 import ShareKakaoBtn from '../DrinkTestShare/ShareKakaoBtn';
 import Source from './Source';
@@ -56,11 +56,11 @@ const DrinkTicketBoxResult: React.FC = () => {
                             </Date>
                             <Logo>
                                 <LogoImg
-                                    src="/images/LogoImg.svg"
+                                    src="/images/logo_4x.png"
                                     alt="LogoImg"
                                 />
                                 <LogoText
-                                    src="/images/LogoText.svg"
+                                    src="/images/logoTxt_4x.png"
                                     alt="LogoText"
                                 />
                             </Logo>
@@ -297,7 +297,7 @@ const DrinkTicketBoxResult: React.FC = () => {
                 <ShareBtn>
                     <ShareLink />
                     <ShareKakaoBtn />
-                    <ShareImg />
+                    {/* <ShareImg /> */}
                 </ShareBtn>
             </Result>
         </BackgroundTemplate>
