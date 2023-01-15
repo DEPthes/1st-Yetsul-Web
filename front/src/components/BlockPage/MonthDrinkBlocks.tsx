@@ -4,11 +4,12 @@ import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import MetaTag from '../../SEOMetatag';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import MonthBlock from './Block';
 
 const MonthDrink: React.FC = () => {
-    const [hv, setHv] = useState('100%');
+    const [hv, setHv] = useState('120vh');
     useEffect(() => {
         if (
             document.body.clientWidth <= 767 &&
@@ -19,7 +20,9 @@ const MonthDrink: React.FC = () => {
             document.body.clientWidth <= 380 &&
             document.body.clientWidth > 360
         ) {
-            setHv('fit-content');
+            setHv('100vh');
+        } else if (document.body.clientWidth > 767) {
+            setHv('120vh');
         } else setHv('100%');
     }, []);
 
@@ -35,9 +38,16 @@ const MonthDrink: React.FC = () => {
 
     return (
         <BackgroundTemplate heightValue={hv}>
+            <MetaTag
+                title="옛술의 전당 - 이달의 옛술"
+                description="옛술의 전당에서 선정한 이번 달과 가장 잘 어울리는 전통주는 무엇일까요?"
+                keywords="전통주 추천, 우리나라 술 추천, 우리 술 추천, 옛술 추천, 술 추천, 전통주, 옛술, 옛술의 전당, 우리술, 술, 우리나라 술, 청주, 약주, 증류주, 리큐르주, 과실주, 탁주, 막걸리"
+                imgsrc="images/JanDrinkRecImg.png"
+                url="https://www.yetsul.com/month"
+            />
             <Inner>
                 <Head>
-                    <h1>이달의 전통주</h1>
+                    <h1>이달의 옛술</h1>
                     <span>이달의 옛술 한 눈에 모아보기!</span>
                 </Head>
                 <Content>
