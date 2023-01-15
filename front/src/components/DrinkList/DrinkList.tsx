@@ -9,6 +9,7 @@ import Pagination from './Pagination';
 import { RootState } from '../../store/config';
 import useIntersect from '../../utils/useIntersect';
 import PageUpBtn from '../common/PageUpBtn';
+import MetaTag from '../../SEOMetatag';
 
 const DrinkList: React.FC = () => {
     const [drinks, setDrinks] = useState<DrinkType[]>([]);
@@ -172,6 +173,13 @@ const DrinkList: React.FC = () => {
 
     return (
         <BackgroundTemplate heightValue={heightValue}>
+            <MetaTag
+                title="옛술의 전당 - 리스트"
+                description="다양한 옛술을 옛술 리스트에서 만나보세요."
+                keywords="전통주 리스트, 전통주 종류, 옛술 리스트, 옛술 종류, 전통주, 옛술, 옛술의 전당, 우리술, 술, 우리나라 술, 청주, 약주, 증류주, 리큐르주, 과실주, 탁주, 막걸리, 옛술의 전당 소개, 옛술의 전당 서비스 소개"
+                imgsrc="images/logoBackGroundImg.png"
+                url="https://www.yetsul.com/list"
+            />
             <Inner>
                 <Head>
                     <h1>옛술 리스트</h1>

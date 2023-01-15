@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import SecondMain from '../Main/SecondMain';
 

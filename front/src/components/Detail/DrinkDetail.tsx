@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import MetaTag from '../../SEOMetatag';
 import { getAccessToken } from '../../services/tokenControl';
 import { getUserLocalStorage } from '../../services/userControl';
 import { RootState } from '../../store/config';
@@ -260,6 +261,13 @@ const DrinkDetail: React.FC = () => {
 
     return (
         <BackgroundTemplate heightValue="auto">
+            <MetaTag
+                title={`옛술의 전당 - ${drinks.AlcoholName}`}
+                description={drinks.description}
+                keywords={`${drinks.AlcoholName}, 전통주 추천, 우리나라 술 추천, 우리 술 추천, 옛술 추천, 술 추천, 술BTI, 옛술의 전당 슬롯머신, 옛술의 전당 매표소, 전통주, 옛술, 옛술의 전당, 우리술, 술, 우리나라 술, 청주, 약주, 증류주, 리큐르주, 과실주, 탁주, 막걸리`}
+                imgsrc={drinks.alcoholImage}
+                url={`https://www.yetsul.com/list/${id}/spec`}
+            />
             <Inner id="listModalBack">
                 <DrinkInfoWrapper>
                     {drinks.id && (

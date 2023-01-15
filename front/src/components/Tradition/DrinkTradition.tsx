@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { useMediaQuery } from 'react-responsive';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import PageUpBtn from '../common/PageUpBtn';
+import MetaTag from '../../SEOMetatag';
 
 const DrinkTradition: React.FC = () => {
     const isMobile = useMediaQuery({
@@ -34,6 +35,13 @@ const DrinkTradition: React.FC = () => {
     ];
     return (
         <BackgroundTemplate heightValue="100">
+            <MetaTag
+                title="옛술의 전당 - 역사"
+                description="우리의 옛술, 역사를 알고 마시면 더욱 맛있다! 옛술의 전당에서 전통주 역사 공부하고 더 맛있게 즐겨봐요."
+                keywords="전통주,전통주 역사, 옛술 역사, 우리술 역사, 옛술, 옛술의 전당, 우리술, 술, 우리나라 술, 청주, 약주, 증류주, 리큐르주, 과실주, 탁주, 막걸리, 옛술의 전당 소개, 옛술의 전당 서비스 소개"
+                imgsrc="images/traditionImgSrc.png"
+                url="https://www.yetsul.com/tradition"
+            />
             <Scrollspy sectionRefs={sectionRefs}>
                 {({ currentElementIndexInViewport }) => (
                     <div>
@@ -61,9 +69,9 @@ const DrinkTradition: React.FC = () => {
             </Scrollspy>
             <Inner>
                 <Intro>
-                    <h1>[전통주 역사]</h1>
+                    <h1>[옛술 역사]</h1>
                     <h2>“역사를 알고 마시면 더욱 맛있다. </h2>
-                    <h2>우리 전통주의 역사”</h2>
+                    <h2>우리 옛술의 역사”</h2>
                     <img
                         src="./images/Tradition/traditionNewspaper.png"
                         alt="traditionNewspaper"
@@ -71,9 +79,9 @@ const DrinkTradition: React.FC = () => {
                     <h3>옛술이란 무엇인가요?</h3>
                     <div>
                         <h4>
-                            전통주는 특정한 민족이나 국가에서 오랜기간 동안
-                            전승되어 온 술을 말하며, 술 문화는 식문화 중에서도
-                            국적과 민족성이 뚜렷한 기호음료이다.
+                            옛술, 전통주는 특정한 민족이나 국가에서 오랜기간
+                            동안 전승되어 온 술을 말하며, 술 문화는 식문화
+                            중에서도 국적과 민족성이 뚜렷한 기호음료이다.
                         </h4>
 
                         <h4>
