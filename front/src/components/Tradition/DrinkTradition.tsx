@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { useMediaQuery } from 'react-responsive';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import PageUpBtn from '../common/PageUpBtn';
+import MetaTag from '../../SEOMetatag';
 
 const DrinkTradition: React.FC = () => {
     const isMobile = useMediaQuery({
@@ -34,6 +35,15 @@ const DrinkTradition: React.FC = () => {
     ];
     return (
         <BackgroundTemplate heightValue="100">
+            <MetaTag
+                title="옛술의 전당 - 역사"
+                description="전통주는 특정한 민족이나 국가에서 오랜기간 동안 전승되어 온 술을 말하며, 술 문화는 식문화 중에서도 국적과 민족성이 뚜렷한 기호음료이다.
+문헌에 의하면 삼국시대 이전 마한 시대부터 풍성한 수확과 복을 기원하며 맑은 곡주를 빚어 조상께 바쳤다고 한다. 이를 통해 우리나라에서는 농사를 시작한 이후부터 술을 빚어 조상께 바치기도 하고, 행사 음료로 즐기기도 했다는 사실을 알 수 있다.
+우리나라의 전통주는 대표적으로 탁주, 약주, 소주로 분류되며 이 중 탁주가 가장 오랜 역사를 가지고 있다고 알려져 있다. 이후 탁주에서 재를 제거한 약주와 약주를 증류한 소주가 만들어졌다."
+                keywords="전통주,전통주 역사, 옛술 역사, 우리술 역사, 옛술, 옛술의 전당, 우리술, 술, 우리나라 술, 청주, 약주, 증류주, 리큐르주, 과실주, 탁주, 막걸리, 옛술의 전당 소개, 옛술의 전당 서비스 소개"
+                imgsrc="images/traditionImgSrc.png"
+                url="https://www.yetsul.com/tradition"
+            />
             <Scrollspy sectionRefs={sectionRefs}>
                 {({ currentElementIndexInViewport }) => (
                     <div>
@@ -61,9 +71,9 @@ const DrinkTradition: React.FC = () => {
             </Scrollspy>
             <Inner>
                 <Intro>
-                    <h1>[전통주 역사]</h1>
+                    <h1>[옛술 역사]</h1>
                     <h2>“역사를 알고 마시면 더욱 맛있다. </h2>
-                    <h2>우리 전통주의 역사”</h2>
+                    <h2>우리 옛술의 역사”</h2>
                     <img
                         src="./images/Tradition/traditionNewspaper.png"
                         alt="traditionNewspaper"
@@ -71,9 +81,9 @@ const DrinkTradition: React.FC = () => {
                     <h3>옛술이란 무엇인가요?</h3>
                     <div>
                         <h4>
-                            전통주는 특정한 민족이나 국가에서 오랜기간 동안
-                            전승되어 온 술을 말하며, 술 문화는 식문화 중에서도
-                            국적과 민족성이 뚜렷한 기호음료이다.
+                            옛술, 전통주는 특정한 민족이나 국가에서 오랜기간
+                            동안 전승되어 온 술을 말하며, 술 문화는 식문화
+                            중에서도 국적과 민족성이 뚜렷한 기호음료이다.
                         </h4>
 
                         <h4>

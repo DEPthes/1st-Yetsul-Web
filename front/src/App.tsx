@@ -6,10 +6,12 @@ import 'fullpage.js/vendors/scrolloverflow';
 import 'fullpage.js';
 import 'fullpage.js/dist/jquery.fullpage.min.css';
 import './App.css';
+
 import Main from './components/Main/Main';
 import SecondMain from './components/Main/SecondMain';
 import ThirdMain from './components/Main/ThirdMain';
 import Footer from './components/Main/Footer';
+import MetaTag from './SEOMetatag';
 
 const App: React.FC = () => {
     $(() => {
@@ -98,6 +100,13 @@ const App: React.FC = () => {
 
     return (
         <div className="main">
+            <MetaTag
+                title="옛술의 전당"
+                description="우리 술 전통주, 어렵지 않다! 옛술의 전당에서 전통주를 새롭고 즐겁게 즐겨보세요."
+                keywords="전통주, 옛술, 옛술의 전당, 우리술, 술, 우리나라 술, 청주, 약주, 증류주, 리큐르주, 과실주, 탁주, 막걸리"
+                imgsrc="images/logoBackGroundImg.png"
+                url="https://www.yetsul.com/"
+            />
             <div className="fullpageStyle">
                 <div className="section" id="section1">
                     <Main />

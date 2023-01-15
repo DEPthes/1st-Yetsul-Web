@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Scrollspy } from '@makotot/ghostui';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import PageUpBtn from '../common/PageUpBtn';
+import MetaTag from '../../SEOMetatag';
 
 const Service: React.FC = () => {
     $(window).scroll(() => {
@@ -25,6 +26,13 @@ const Service: React.FC = () => {
     ];
     return (
         <BackgroundTemplate heightValue="auto">
+            <MetaTag
+                title="옛술의 전당 - 소개"
+                description="'옛술의 전당'은 주류 시장에서 전통주의 판매 비율이 증가할 수 있도록 소비자에게 다양한 컨텐츠를 제공합니다. 세대를 아울러 전통주의 매력을 느낄 수 있도록 전통주의 신선한 이미지를 제고합니다. 당신의 청춘을 위한 한 잔, 옛술의 전당에서 즐겨보는건 어떨까요?"
+                keywords="전통주, 옛술, 옛술의 전당, 우리술, 술, 우리나라 술, 청주, 약주, 증류주, 리큐르주, 과실주, 탁주, 막걸리, 옛술의 전당 소개, 옛술의 전당 서비스 소개"
+                imgsrc="images/logoBackGroundImg.png"
+                url="https://www.yetsul.com/service"
+            />
             <Scrollspy sectionRefs={sectionRefs}>
                 {({ currentElementIndexInViewport }) => (
                     <div>

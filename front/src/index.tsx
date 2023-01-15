@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
 import './index.css';
 import Router from './Router';
@@ -11,6 +12,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
     <Provider store={store}>
-        <Router />
+        <HelmetProvider>
+            <Router />
+        </HelmetProvider>
     </Provider>,
 );

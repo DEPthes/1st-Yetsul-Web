@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import MetaTag from '../../SEOMetatag';
 import BackgroundTemplate from '../common/BackgroundTemplate';
 import Block from './Block';
 
@@ -22,6 +23,13 @@ const AllDrinkRecommend = () => {
 
     return (
         <BackgroundTemplate heightValue={hv}>
+            <MetaTag
+                title="옛술의 전당 - 추천"
+                description="옛술의 전당 매표소와 술롯머신으로 나와 가장 잘 어울리는, 나의 술BTI를 알아보세요!"
+                keywords="전통주 추천, 우리나라 술 추천, 우리 술 추천, 옛술 추천, 술 추천, 술BTI, 옛술의 전당 슬롯머신, 옛술의 전당 매표소, 전통주, 옛술, 옛술의 전당, 우리술, 술, 우리나라 술, 청주, 약주, 증류주, 리큐르주, 과실주, 탁주, 막걸리"
+                imgsrc="images/slotMachingImg.png"
+                url="https://www.yetsul.com/AllDrinkRecommend"
+            />
             <Inner>
                 <Head>
                     <h1>옛술 추천</h1>

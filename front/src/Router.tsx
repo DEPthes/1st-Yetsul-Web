@@ -26,10 +26,18 @@ import ReviewEdit from './components/Review/ReviewWrite/ReviewEdit';
 import TemporaryReviewEdit from './components/Review/ReviewWrite/TemporaryReviewEdit';
 import DecDrink from './components/BlockPage/DecDrink';
 import RecommendBlocks from './components/BlockPage/RecommendBlocks';
+import MetaTag from './SEOMetatag';
 
 const Router: React.FC = () => {
     return (
         <BrowserRouter>
+            <MetaTag
+                title="옛술의 전당"
+                description="우리 술 전통주, 어렵지 않다! 옛술의 전당에서 전통주를 새롭고 즐겁게 즐겨보세요."
+                keywords="전통주, 옛술, 옛술의 전당, 우리술, 술, 우리나라 술, 청주, 약주, 증류주, 리큐르주, 과실주, 탁주, 막걸리"
+                imgsrc="images/logoBackGroundImg.png"
+                url="https://www.yetsul.com/"
+            />
             <ScrollToTop />
             <Header />
             <Routes>
