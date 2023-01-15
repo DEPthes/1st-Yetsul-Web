@@ -233,7 +233,7 @@ const Header: React.FC = () => {
                                     navData.isActive ? 'active' : 'link'
                                 }
                             >
-                                전통주 역사
+                                옛술 역사
                             </NavLink>
                         </li>
                         <li>
@@ -243,7 +243,7 @@ const Header: React.FC = () => {
                                     navData.isActive ? 'active' : 'link'
                                 }
                             >
-                                전통주 추천
+                                옛술 추천
                             </NavLink>
                         </li>
 
