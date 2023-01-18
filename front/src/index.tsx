@@ -1,19 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
 import './index.css';
 import Router from './Router';
 import store from './store/config';
 
+const container = document.getElementById('root') as HTMLElement;
+
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement,
 );
 
-root.render(
-    <Provider store={store}>
-        <HelmetProvider>
+if (container.hasChildNodes()) {
+    ReactDOM.hydrateRoot(
+        container,
+        <Provider store={store}>
             <Router />
-        </HelmetProvider>
-    </Provider>,
-);
+        </Provider>,
+    );
+} else {
+    root.render(
+        <Provider store={store}>
+            <Router />
+        </Provider>,
+    );
+}
+
+// root.render(
+//     <Provider store={store}>
+//         <Router />
+//     </Provider>,
+// );
